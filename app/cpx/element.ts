@@ -17,14 +17,22 @@ interface CpxElementType extends HTMLElement {
 }
 
 export class CpxElement extends HTMLElement implements CpxElementType {
-  ID: number | string | string[] | number[] | any | any[];
+  ID: string;
   initialContent: string;
   storage: Object;
   state: any;
 
   constructor() {
     super();
-    this.ID = this.id || `${this.setAttribute("id", Math.floor(Math.random() * 9999).toString())}`;
+    this.ID =
+      this.getAttribute("component:id") ||
+      `${this.setAttribute(
+        "component:id",
+        Math.floor(Math.random() * 0xffffff)
+          .toString(16)
+          .padStart(6, "0")
+          .toString()
+      )}`;
     this.initialContent = this.innerHTML;
     this.storage = Storage;
     this.state = State;

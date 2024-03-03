@@ -1,4 +1,4 @@
-interface Json {
+interface JsonInterface {
   stringify: (obj: string) => string;
   parse: (str: string) => any;
   clone: (obj: string) => any;
@@ -8,7 +8,7 @@ interface Json {
   isNull: (obj: any) => boolean;
 }
 
-export const Json: Json = {
+export const Json: JsonInterface = {
   stringify: function (obj) {
     return JSON.stringify(obj);
   },

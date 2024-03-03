@@ -1,9 +1,7 @@
 /**
  * Icons
  */
-interface Icon {
-    [key: string | number]: string;
-}
+
 import home from "bundle-text:../../assets/icons/home.svg";
 import informationCircle from "bundle-text:../../assets/icons/information-circle.svg";
 import envelope from "bundle-text:../../assets/icons/envelope.svg";
@@ -154,10 +152,12 @@ import funnel from "bundle-text:../../assets/icons/funnel.svg";
 import xMark from "bundle-text:../../assets/icons/x-mark.svg";
 import share from "bundle-text:../../assets/icons/share.svg";
 
-interface Icon {
+
+export interface IconInterface {
   [key: string | number]: string;
 }
-export const Icon: Icon = {
+
+export const Icon: IconInterface = {
   home,
   share,
   xMark,

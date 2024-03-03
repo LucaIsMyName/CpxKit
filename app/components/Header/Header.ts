@@ -14,7 +14,6 @@ export class ComponentHeader extends Cpx.Element {
     this.navMainType = this.getAttribute("header:nav:type-main") || "main";
     this.navSecondaryType = this.getAttribute("header:nav:type-secondary") || "secondary";
     this.description = this.getAttribute("header:description") || "Header Description";
-
     this.storage = Cpx.Storage;
     this.state = Cpx.State;
   }

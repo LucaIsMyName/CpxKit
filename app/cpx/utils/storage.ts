@@ -1,4 +1,4 @@
-interface Storage {
+export interface StorageInterfaces {
   Local: {
     get: (key: string) => string | null;
     set: (key: string, value: string) => void;
@@ -13,7 +13,7 @@ interface Storage {
   };
 }
 
-export const Storage: Storage = {
+export const Storage: StorageInterfaces = {
   Local: {
     get: (key) => {
       return localStorage.getItem(key);

@@ -13,7 +13,7 @@ import { Icon } from "./utils/icons";
 
 interface CpxTypes {
   Element: typeof Element;
-  define: typeof define;
+  define: Function;
   Config: typeof Config;
   // PlugIns & Utilities
   State: typeof State;

@@ -11,9 +11,11 @@ import { ComponentModal } from "./components/Modal/Modal";
 import { ComponentNav } from "./components/Nav/Nav";
 import { ComponentText } from "./components/Text/Text";
 import { ComponentImage } from "./components/Image/Image";
+import { ComponentFetch } from "./components/Fetch/Fetch";
 
 import { PageHome } from "./pages/home";
 import { PageAbout } from "./pages/about";
+import { PagePost } from "./pages/post";
 
 export {
   Config,
@@ -29,7 +31,9 @@ export {
   ComponentNav,
   ComponentText,
   ComponentImage,
+  ComponentFetch,
   // Pages
   PageHome,
   PageAbout,
+  PagePost,
 };

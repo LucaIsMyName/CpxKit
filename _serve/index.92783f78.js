@@ -599,9 +599,11 @@ parcelHelpers.export(exports, "ComponentModal", ()=>(0, _modal.ComponentModal));
 parcelHelpers.export(exports, "ComponentNav", ()=>(0, _nav.ComponentNav));
 parcelHelpers.export(exports, "ComponentText", ()=>(0, _text.ComponentText));
 parcelHelpers.export(exports, "ComponentImage", ()=>(0, _image.ComponentImage));
+parcelHelpers.export(exports, "ComponentFetch", ()=>(0, _fetch.ComponentFetch));
 parcelHelpers.export(exports, "PageHome", ()=>// Pages
     (0, _home.PageHome));
 parcelHelpers.export(exports, "PageAbout", ()=>(0, _about.PageAbout));
+parcelHelpers.export(exports, "PagePost", ()=>(0, _post.PagePost));
 var _config = require("./config");
 var _cpx = require("./cpx");
 var _db = require("../db/db");
@@ -612,10 +614,12 @@ var _modal = require("./components/Modal/Modal");
 var _nav = require("./components/Nav/Nav");
 var _text = require("./components/Text/Text");
 var _image = require("./components/Image/Image");
+var _fetch = require("./components/Fetch/Fetch");
 var _home = require("./pages/home");
 var _about = require("./pages/about");
+var _post = require("./pages/post");
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"6Z2L1","./cpx":"dMUol","./components/Root/Root":"jFDNf","../db/db":"bjCHj","./components/Header/Header":"Jv9T3","./components/Footer/Footer":"jklJV","./components/Modal/Modal":"dR72k","./pages/home":"jILT7","./pages/about":"faVIF","./components/Nav/Nav":"13T9Y","./components/Text/Text":"45B9b","./components/Image/Image":"hH47y"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"6Z2L1","./cpx":"dMUol","./components/Root/Root":"jFDNf","../db/db":"bjCHj","./components/Header/Header":"Jv9T3","./components/Footer/Footer":"jklJV","./components/Modal/Modal":"dR72k","./pages/home":"jILT7","./pages/about":"faVIF","./components/Nav/Nav":"13T9Y","./components/Text/Text":"45B9b","./components/Image/Image":"hH47y","./components/Fetch/Fetch":"eUsqM","./pages/post":"bQzgf"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -701,7 +705,7 @@ var _storage = require("./utils/storage");
 class CpxElement extends HTMLElement {
     constructor(){
         super();
-        this.ID = this.id || `${this.setAttribute("id", Math.floor(Math.random() * 9999).toString())}`;
+        this.ID = this.getAttribute("component:id") || `${this.setAttribute("component:id", Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0").toString())}`;
         this.initialContent = this.innerHTML;
         this.storage = (0, _storage.Storage);
         this.state = (0, _state.State);
@@ -812,7 +816,9 @@ parcelHelpers.export(exports, "Config", ()=>Config);
 const Config = {
     name: "cpx",
     version: "2.0",
-    enviroment: "development"
+    enviroment: "dev",
+    isLogging: true,
+    isDebugMode: true
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"g2z9M":[function(require,module,exports) {
@@ -820,8 +826,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Http", ()=>Http);
 const Http = {
-    fetch: async (url, options)=>{
-        const response = await fetch(url, options);
+    fetch: async (url)=>{
+        const response = await fetch(url);
         return response.json();
     },
     xhr: (url, options)=>{
@@ -1978,6 +1984,7 @@ var _categories = require("./tables/categories");
 var _users = require("./tables/users");
 var _navigations = require("./tables/navigations");
 var _routes = require("./tables/routes");
+var _posts = require("./tables/posts");
 const AVATAR_URL = "https://www.gravatar.com/avatar/";
 const IMG_URL = "https://source.unsplash.com/random/";
 const DB = {
@@ -1987,10 +1994,13 @@ const DB = {
     NAVIGATIONS: (0, _navigations.navigations),
     USERS: (0, _users.users),
     PRODUCTS: (0, _procucts.products),
-    CATEGORIES: (0, _categories.categories)
+    CATEGORIES: (0, _categories.categories),
+    POSTS: (0, _posts.posts),
+    post: // DB actions
+    (0, _posts.post)
 };
 
-},{"./tables/procucts":"2Rymg","./tables/users":"v5sXa","./tables/navigations":"hrwNx","./tables/routes":"8HJgP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./tables/categories":"jxRAv"}],"2Rymg":[function(require,module,exports) {
+},{"./tables/procucts":"2Rymg","./tables/users":"v5sXa","./tables/navigations":"hrwNx","./tables/routes":"8HJgP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./tables/categories":"jxRAv","./tables/posts":"hvuQ0"}],"2Rymg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "products", ()=>products);
@@ -2488,7 +2498,63 @@ const routes = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/app":"bXLqa"}],"Jv9T3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/app":"bXLqa"}],"hvuQ0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "posts", ()=>posts);
+parcelHelpers.export(exports, "post", ()=>post);
+const posts = [
+    {
+        id: "0",
+        title: "Post 1",
+        description: "Post 1 Description",
+        content: "Post 1 Content"
+    },
+    {
+        id: "1",
+        title: "Post 2",
+        description: "Post 2 Description",
+        content: "Post 2 Content"
+    }
+];
+function byId(id) {
+    return posts.find((post)=>post.id === id);
+}
+function create(post) {
+    posts.push(post);
+}
+function update(post) {
+    const index = posts.findIndex((p)=>p.id === post.id);
+    posts[index] = post;
+}
+function deleteById(id) {
+    const index = posts.findIndex((p)=>p.id === id);
+    posts.splice(index, 1);
+}
+function getAll() {
+    return posts;
+}
+function byTitle(title) {
+    return posts.filter((post)=>post.title === title);
+}
+function byDescription(description) {
+    return posts.filter((post)=>post.description === description);
+}
+function byContent(content) {
+    return posts.filter((post)=>post.content === content);
+}
+const post = {
+    byId,
+    create,
+    update,
+    deleteById,
+    getAll,
+    byTitle,
+    byDescription,
+    byContent
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Jv9T3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ComponentHeader", ()=>ComponentHeader);
@@ -2789,6 +2855,67 @@ class ComponentImage extends (0, _app.Cpx).Element {
 }
 customElements.define(`${(0, _app.Config).prefix}-image`, ComponentImage);
 
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["25TcJ","bXLqa"], "bXLqa", "parcelRequireb0f0")
+},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eUsqM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ComponentFetch", ()=>ComponentFetch);
+var _app = require("../../app");
+class ComponentFetch extends (0, _app.Cpx).Element {
+    constructor(){
+        super();
+        this.fetchUrl = this.getAttribute("fetch:url") || "https://jsonplaceholder.typicode.com/posts";
+    }
+    connectedCallback() {
+        this.render();
+        this.addEventListeners();
+    }
+    tryFetch() {
+        (0, _app.Cpx).Http.fetch(this.fetchUrl = "https://jsonplaceholder.typicode.com/users").then((response)=>{
+            return `Response: ${response.name}`;
+        });
+    }
+    render() {
+        this.innerHTML = `
+       <section class="fetch">
+            ${this.tryFetch()}
+        </section>
+        `;
+    }
+}
+customElements.define(`${(0, _app.Config).prefix}-fetch`, ComponentFetch);
+
+},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bQzgf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PagePost", ()=>PagePost);
+var _app = require("../app");
+class PagePost extends (0, _app.Cpx).Element {
+    constructor(){
+        super();
+        this.postId = this.getAttribute("post:id") || "0";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+            <app-text 
+                text:format=h1
+                text:weight=bold
+                text:size=6xl
+                text:letter-spacing=0
+                text:line-height=md 
+                text:color=primary>
+               ${(0, _app.DB).POSTS[this.postId].title}
+            </app-text>
+            <app-text text:format="p">
+                ${(0, _app.DB).POSTS[this.postId].content}
+            </app-text>
+        `;
+    }
+}
+customElements.define(`${(0, _app.Config).prefix}-page-post`, PagePost);
+
+},{"../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["25TcJ","bXLqa"], "bXLqa", "parcelRequireb0f0")
 
 //# sourceMappingURL=index.92783f78.js.map

@@ -11,7 +11,7 @@ const BASE_URL = "https://api.ipgeolocation.io/ipgeo?";
 /**
  * Represents functions for handling geo-location.
  */
-interface Geo {
+interface GeoInterface {
   /**
    * Converts latitude and longitude coordinates to a city name.
    * @param lat - The latitude coordinate.
@@ -30,7 +30,7 @@ interface Geo {
   locationToCoordinates: (city: string, apiKey?: string) => Promise<{ latitude: number; longitude: number }>;
 }
 
-export const Geo: Geo = {
+export const Geo: GeoInterface = {
   coordinatesToLocation: async function (lat, lon, apiKey = API_KEY) {
     try {
       const apiUrl = `${BASE_URL}lat=${lat}&lon=${lon}&apiKey=${apiKey}`;

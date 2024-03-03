@@ -1,11 +1,11 @@
-interface String {
-    snakeToCamel: (str: string) => string;
-    toHtml: (string: string) => string;
-    toCamelCase: (string: string) => string;
-    removeWhitespace: (string: string) => string;
+export interface StringInterfaces {
+  snakeToCamel: (str: string) => string;
+  toHtml: (string: string) => string;
+  toCamelCase: (string: string) => string;
+  removeWhitespace: (string: string) => string;
 }
 
-export const String = {
+export const String: StringInterfaces = {
   snakeToCamel: function snakeToCamel(str) {
     return str.replace(/_([a-z])/g, (match, letter) => letter.toUpperCase());
   },

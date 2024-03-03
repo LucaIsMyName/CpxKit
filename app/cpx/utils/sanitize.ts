@@ -4,13 +4,13 @@
  * 
  */
 
-interface Sanitize {
+interface SanitizeInterface {
     html: (str: string) => string;
     css: (str: string) => string;
     js: (str: string) => string;
 }
 
-export const Sanitize: Sanitize = {
+export const Sanitize: SanitizeInterface = {
     html: function (str) {
         return str.replace(/[&<>"']/g, function (match) {
             const entities = {
@@ -33,13 +33,13 @@ export const Sanitize: Sanitize = {
     }
 };
 
-interface Unsanitize {
+interface UnsanitizeInterface {
     html: (str: string) => string;
     css: (str: string) => string;
     js: (str: string) => string;
 }
 
-export const Unsanitize: Unsanitize = {
+export const Unsanitize: UnsanitizeInterface = {
 
     html: function (str) {
         const entities = {

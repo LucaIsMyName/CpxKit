@@ -1,7 +1,7 @@
 /**
  * State is managed via the URL SearchParams API
  */
-interface State {
+export interface StateInterface {
   set: (key: string, value: string) => void;
   get: (key: string) => string | null;
   has: (key: string) => boolean;
@@ -9,7 +9,7 @@ interface State {
   delete: (key: string) => void;
 }
 
-export const State: State = {
+export const State: StateInterface = {
   set: (key, value) => {
     const url = new URL(window.location.href);
     url.searchParams.set(key, value);

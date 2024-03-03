@@ -1,5 +1,5 @@
-interface Http {
-  fetch: (url: string, options: RequestInit) => Promise<any>;
+interface HttpInterface {
+  fetch: (url: string) => Promise<any>;
   xhr: (url: string, options: any) => Promise<any>;
   post: (url: string, data: Object) => Promise<any>;
   put: (url: string, data: Object) => Promise<any>;
@@ -7,9 +7,9 @@ interface Http {
   patch: (url: string, data: Object) => Promise<any>;
 }
 
-export const Http: Http = {
-  fetch: async (url, options) => {
-    const response = await fetch(url, options);
+export const Http: HttpInterface = {
+  fetch: async (url: string) => {
+    const response = await fetch(url);
     return response.json();
   },
   xhr: (url, options) => {
