@@ -7,13 +7,19 @@
  * @property {string} ID - A random number that is generated when the element is created. This is used to identify the element in the DOM.
  * @property {string} initialContent - The initial content of the element. This is used to store the content of the element before it is rendered.
  */
-import { State } from "./utils/state.js";
-import { Storage } from "./utils/storage.js";
+import { State } from "./utils/state";
+import { Storage } from "./utils/storage";
 
-export class Element extends HTMLElement {
-  ID: any;
+// Define the interface
+interface CpxElementType extends HTMLElement {
+  addEventListeners(elements?: string, event?: string, storage?: string): void;
+  render(): void;
+}
+
+export class CpxElement extends HTMLElement implements CpxElementType {
+  ID: number | string | string[] | number[] | any | any[];
   initialContent: string;
-  storage: any;
+  storage: Object;
   state: any;
 
   constructor() {
@@ -23,23 +29,21 @@ export class Element extends HTMLElement {
     this.storage = Storage;
     this.state = State;
   }
-  
-  addEventListeners(elements: string = "[data-set-state-key]", event: string = "click", storage: string = "local") {
+
+  addEventListeners(elements = "[data-set-state-key]", event = "click", storeIn = "local") {
     const allDataSetKeyButtons = this.querySelectorAll(elements);
     allDataSetKeyButtons.forEach((button) => {
-      button.addEventListener(event, (e: any) => {
-        State.set(e.target.dataset.setStateKey, e.target.dataset.setStateValue);
-        switch (storage) {
-          case "local":
-            Storage.Local.set(e.target.dataset.setStateKey, e.target.dataset.setStateValue);
-            break;
-          case "session":
-            Storage.Session.set(e.target.dataset.setStateKey, e.target.dataset.setStateValue);
-            break;
-          default:
-            return;
+      button.addEventListener(event, (e: EventListenerOrEventListenerObject | any) => {
+        const key = e.target.dataset.setStateKey;
+        console.log(key);
+        const value = e.target.dataset.setStateValue;
+        this.state.set(key, value);
+        console.log(value);
+        if (storeIn === "local") {
+          Storage.Local.set(key, value);
+        } else if (storeIn === "session") {
+          Storage.Session.set(key, value);
         }
-        this.render();
       });
     });
   }

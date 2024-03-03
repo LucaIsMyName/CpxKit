@@ -1,36 +1,33 @@
 import { Cpx, Config } from "../../app";
 
 export class ComponentModal extends Cpx.Element {
-    title: string;
-    description: string;
-    storage: any;
-    state: any;
-    
-    constructor() {
-        super();
-        this.title =
-            this.getAttribute('modal:title')
-            || 'modal Title';
+  title: string;
+  description: string;
+  storage: any;
+  state: any;
 
-        this.description =
-            this.getAttribute('modal:description')
-            || 'modal Description';
+  constructor() {
+    super();
+    this.title = this.getAttribute("modal:title") || "modal Title";
 
-        this.storage = Cpx.Storage;
-        this.state = Cpx.State;
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
+    this.description = this.getAttribute("modal:description") || "modal Description";
+  }
+  connectedCallback() {
+    this.render();
+    this.addEventListeners();
+  }
 
-    render() {
-        this.innerHTML = `
+  render() {
+    this.innerHTML = `
         <section class="modal">
-            modal!
+           <section 
+                data-set-state-key="modalIsActive" 
+                data-set-state-value="false" 
+                class="
+                    modal__underlay"></section>
+           <section class="modal__content">${this.initialContent}</section>
         </section>
         `;
-    }
-
+  }
 }
 customElements.define(`${Config.prefix}-modal`, ComponentModal);

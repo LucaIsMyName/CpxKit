@@ -1,53 +1,45 @@
-export const Storage = {
+interface Storage {
   Local: {
-    /**
-     *
-     * @param {String} key
-     * @returns
-     */
-    get: (key: string) => {
+    get: (key: string) => string | null;
+    set: (key: string, value: string) => void;
+    has: (key: string) => boolean;
+    hasNot: (key: string) => boolean;
+  };
+  Session: {
+    get: (key: string) => string | null;
+    set: (key: string, value: string) => void;
+    has: (key: string) => boolean;
+    hasNot: (key: string) => boolean;
+  };
+}
+
+export const Storage: Storage = {
+  Local: {
+    get: (key) => {
       return localStorage.getItem(key);
     },
-    /**
-     *
-     * @param {String} key
-     * @param {String} value
-     */
-    set: (key: string, value: string) => {
+    set: (key, value) => {
       localStorage.setItem(key, value);
     },
-
-    has: (key: string) => {
+    has: (key) => {
       return localStorage.getItem(key) !== null;
     },
 
-    hasNot: (key: string) => {
+    hasNot: (key) => {
       return localStorage.getItem(key) === null;
     },
   },
   Session: {
-    /**
-     *
-     * @param {String} key
-     * @param {String} value
-     */
-    get: (key: string) => {
+    get: (key) => {
       return sessionStorage.getItem(key);
     },
-    /**
-     *
-     * @param {String} key
-     * @param {String} value
-     */
-    set: (key: string, value: string) => {
+    set: (key, value) => {
       sessionStorage.setItem(key, value);
     },
-
-    has: (key: string) => {
+    has: (key) => {
       return sessionStorage.getItem(key) !== null;
     },
-
-    hasNot: (key: string) => {
+    hasNot: (key) => {
       return sessionStorage.getItem(key) === null;
     },
   },

@@ -1,9 +1,18 @@
-export const Http = {
-  fetch: async (url: string, options: any) => {
+interface Http {
+  fetch: (url: string, options: RequestInit) => Promise<any>;
+  xhr: (url: string, options: any) => Promise<any>;
+  post: (url: string, data: Object) => Promise<any>;
+  put: (url: string, data: Object) => Promise<any>;
+  delete: (url: string) => Promise<any>;
+  patch: (url: string, data: Object) => Promise<any>;
+}
+
+export const Http: Http = {
+  fetch: async (url, options) => {
     const response = await fetch(url, options);
     return response.json();
   },
-  xhr: (url: string, options: any) => {
+  xhr: (url, options) => {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(options.method, url);
@@ -26,7 +35,7 @@ export const Http = {
       xhr.send();
     });
   },
-  post: async (url: string, data: Object) => {
+  post: async (url, data) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -36,7 +45,7 @@ export const Http = {
     });
     return response.json();
   },
-  put: async (url: string, data: Object) => {
+  put: async (url, data) => {
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -52,7 +61,7 @@ export const Http = {
     });
     return response.json();
   },
-  patch: async (url: string, data: Object) => {
+  patch: async (url, data) => {
     const response = await fetch(url, {
       method: "PATCH",
       headers: {
