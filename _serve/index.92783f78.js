@@ -710,24 +710,47 @@ class CpxElement extends HTMLElement {
         this.storage = (0, _storage.Storage);
         this.state = (0, _state.State);
     }
-    addEventListeners(elements = "[data-set-state-key]", event = "click", storeIn = "local") {
-        const allDataSetKeyButtons = this.querySelectorAll(elements);
-        allDataSetKeyButtons.forEach((button)=>{
-            button.addEventListener(event, (e)=>{
-                const key = e.target.dataset.setStateKey;
-                console.log(key);
-                const value = e.target.dataset.setStateValue;
-                this.state.set(key, value);
-                console.log(value);
-                if (storeIn === "local") (0, _storage.Storage).Local.set(key, value);
-                else if (storeIn === "session") (0, _storage.Storage).Session.set(key, value);
+    // Other class properties and constructor remain unchanged...
+    addEventListeners() {
+        // Get all elements within the component
+        const elements = this.querySelectorAll("*");
+        // Loop through each element
+        elements.forEach((element)=>{
+            // Get all attributes of the current element
+            const attributes = Array.from(element.attributes);
+            // Loop through each attribute
+            attributes.forEach((attribute)=>{
+                const { name, value } = attribute;
+                // Check if the attribute starts with 'click:'
+                if (name.startsWith("click:")) {
+                    console.log("Attribute:", name, value);
+                    // Extract the action, target (state or storage), and setter from the attribute name
+                    const matchResult = name.match(/^click:(state|storage):set\s*\(([^,]+),([^)]+)\)/);
+                    if (matchResult && matchResult.length === 4) {
+                        const [, target, key, valueString] = matchResult;
+                        console.log("Parts:", target, key, valueString);
+                        if (target === "state" || target === "storage") {
+                            console.log("Processing:", target, key, valueString);
+                            // Add event listener
+                            element.addEventListener("click", ()=>{
+                                if (target === "state") {
+                                    console.log("State Key:", key);
+                                    this.state.set(key.trim(), valueString.trim());
+                                } else if (target === "storage") {
+                                    console.log("Storage Key:", key);
+                                    this.storage.set(key.trim(), valueString.trim());
+                                }
+                            });
+                        }
+                    }
+                }
             });
         });
     }
     connectedCallback() {
         this.setAttribute("id", this.ID);
         this.render();
-        this.addEventListeners();
+    // this.addEventListeners();
     }
     render() {
         this.innerHTML = this.initialContent;
@@ -2680,9 +2703,11 @@ class ComponentModal extends (0, _app.Cpx).Element {
            <section 
                 data-set-state-key="modalIsActive" 
                 data-set-state-value="false" 
-                class="
-                    modal__underlay"></section>
-           <section class="modal__content">${this.initialContent}</section>
+                class="modal__underlay">
+           </section>
+           <section class="modal__content">
+              ${this.initialContent}
+            </section>
         </section>
         `;
     }
@@ -2752,10 +2777,13 @@ class ComponentNav extends (0, _app.Cpx).Element {
     connectedCallback() {
         this.render();
         this.addEventListeners();
+        function openPage(page) {
+            (0, _app.Cpx).State.set("page", page);
+        }
     }
     render() {
         this.innerHTML = `
-        <nav class="nav nav--direction-${this.direction} nav--style-${this.style} nav--size-${this.direction} nav--spacing-${this.spacing}">
+        <nav class="nav nav--direction-${this.direction} nav--style-${this.style} nav--spacing-${this.spacing}">
             <ul>
             ${this.nav.map((item, index)=>{
             return `
@@ -2765,8 +2793,7 @@ class ComponentNav extends (0, _app.Cpx).Element {
                             ${this.style === "none" ? `nav__item--style-none` : ``}
                             ${this.style === "button" ? `nav__item--style-button` : ``}
                             "
-                            data-set-state-key="${item.isModal === true ? "modalContent" : ``}${item.isAction === true ? "action" : ``}${item.isModal === false && item.isAction === false ? "page" : ``}" 
-                            data-set-state-value="${item.page}" 
+                            onclick="openPage('${item.page}')"
                             class="
                                 nav__item 
                                 nav__item-${index}">
@@ -2796,10 +2823,10 @@ class ComponentText extends (0, _app.Cpx).Element {
         this.format = this.getAttribute("text:format") || "p";
         this.weight = this.getAttribute("text:weight") || "400";
         this.size = this.getAttribute("text:size") || "md";
-        this.letterSpacing = this.getAttribute("text:letter-spacing") || "0";
+        this.letterSpacing = this.getAttribute("text:letter-spacing") || "normal";
         this.lineHeight = this.getAttribute("text:line-height") || "md";
         this.color = this.getAttribute("text:color") || "currentColor";
-        this.align = this.getAttribute("text:align") || "left";
+        this.align = this.getAttribute("text:align") || "start";
         this.transform = this.getAttribute("text:transform") || "none";
     }
     connectedCallback() {
@@ -2808,9 +2835,7 @@ class ComponentText extends (0, _app.Cpx).Element {
     }
     render() {
         this.innerHTML = `
-        <${this.format} 
-            class="text text--weight-${this.weight} text--size-${this.size} text--letter-spacing-${this.letterSpacing} text--line-height-${this.letterSpacing} text--text-align-${this.align} text--color-${this.color} text--text-transform-${this.transform}
-        ">
+        <${this.format} class="text ${this.weight !== "normal" ? `text--weight-${this.weight}` : ``} ${this.size !== "md" ? `text--size-${this.size}` : ``} ${this.letterSpacing !== "normal" ? `text--letter-spacing-${this.letterSpacing}` : ``} ${this.lineHeight !== "md" ? `text--line-height-${this.lineHeight}` : ``} ${this.align !== "start" ? `text--align-${this.align}` : ``} ${this.color !== "currentColor" ? `text--color-${this.color}` : ``} ${this.transform !== "none" ? `text--transform-${this.transform}` : ``}">
             ${this.initialContent}
         </${this.format}>
         `;

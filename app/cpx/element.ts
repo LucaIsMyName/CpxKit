@@ -12,14 +12,14 @@ import { Storage } from "./utils/storage";
 
 // Define the interface
 interface CpxElementType extends HTMLElement {
-  addEventListeners(elements?: string, event?: string, storage?: string): void;
+  // addEventListeners(elements?: string, event?: string, storage?: string): void;
   render(): void;
 }
 
 export class CpxElement extends HTMLElement implements CpxElementType {
   ID: string;
   initialContent: string;
-  storage: Object;
+  storage: any;
   state: any;
 
   constructor() {
@@ -38,19 +38,44 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     this.state = State;
   }
 
-  addEventListeners(elements = "[data-set-state-key]", event = "click", storeIn = "local") {
-    const allDataSetKeyButtons = this.querySelectorAll(elements);
-    allDataSetKeyButtons.forEach((button) => {
-      button.addEventListener(event, (e: EventListenerOrEventListenerObject | any) => {
-        const key = e.target.dataset.setStateKey;
-        console.log(key);
-        const value = e.target.dataset.setStateValue;
-        this.state.set(key, value);
-        console.log(value);
-        if (storeIn === "local") {
-          Storage.Local.set(key, value);
-        } else if (storeIn === "session") {
-          Storage.Session.set(key, value);
+  // Other class properties and constructor remain unchanged...
+
+  addEventListeners(): void {
+    // Get all elements within the component
+    const elements = this.querySelectorAll('*');
+
+    // Loop through each element
+    elements.forEach(element => {
+      // Get all attributes of the current element
+      const attributes = Array.from(element.attributes);
+
+      // Loop through each attribute
+      attributes.forEach(attribute => {
+        const { name, value } = attribute;
+
+        // Check if the attribute starts with 'click:'
+        if (name.startsWith('click:')) {
+          console.log('Attribute:', name, value);
+          // Extract the action, target (state or storage), and setter from the attribute name
+          const matchResult = name.match(/^click:(state|storage):set\s*\(([^,]+),([^)]+)\)/);
+          if (matchResult && matchResult.length === 4) {
+            const [, target, key, valueString] = matchResult;
+            console.log('Parts:', target, key, valueString);
+            if (target === 'state' || target === 'storage') {
+              console.log('Processing:', target, key, valueString);
+              
+              // Add event listener
+              element.addEventListener('click', () => {
+                if (target === 'state') {
+                  console.log('State Key:', key);
+                  this.state.set(key.trim(), valueString.trim());
+                } else if (target === 'storage') {
+                  console.log('Storage Key:', key);
+                  this.storage.set(key.trim(), valueString.trim());
+                }
+              });
+            }
+          }
         }
       });
     });
@@ -59,7 +84,7 @@ export class CpxElement extends HTMLElement implements CpxElementType {
   connectedCallback() {
     this.setAttribute("id", this.ID);
     this.render();
-    this.addEventListeners();
+    // this.addEventListeners();
   }
 
   render() {

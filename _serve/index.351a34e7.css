@@ -898,16 +898,36 @@ button {
   font-weight: 200;
 }
 
-.text--letter-spacing-tight {
+.text--letter-spacing-xxs {
   letter-spacing: -.05em;
+}
+
+.text--letter-spacing-xs {
+  letter-spacing: -.025em;
+}
+
+.text--letter-spacing-sm {
+  letter-spacing: -.0125em;
 }
 
 .text--letter-spacing-normal {
   letter-spacing: 0;
 }
 
-.text--letter-spacing-wide {
+.text--letter-spacing-lg {
   letter-spacing: .05em;
+}
+
+.text--letter-spacing-xl {
+  letter-spacing: .1em;
+}
+
+.text--letter-spacing-2xl {
+  letter-spacing: .15em;
+}
+
+.text--letter-spacing-3xl {
+  letter-spacing: .2em;
 }
 
 .text--size-xxs {

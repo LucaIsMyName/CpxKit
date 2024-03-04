@@ -15,10 +15,10 @@ export class ComponentText extends Cpx.Element {
     this.format = this.getAttribute("text:format") || "p";
     this.weight = this.getAttribute("text:weight") || "400";
     this.size = this.getAttribute("text:size") || "md";
-    this.letterSpacing = this.getAttribute("text:letter-spacing") || "0";
+    this.letterSpacing = this.getAttribute("text:letter-spacing") || "normal";
     this.lineHeight = this.getAttribute("text:line-height") || "md";
     this.color = this.getAttribute("text:color") || "currentColor";
-    this.align = this.getAttribute("text:align") || "left";
+    this.align = this.getAttribute("text:align") || "start";
     this.transform = this.getAttribute("text:transform") || "none";
   }
   connectedCallback() {
@@ -28,9 +28,7 @@ export class ComponentText extends Cpx.Element {
 
   render() {
     this.innerHTML = `
-        <${this.format} 
-            class="text text--weight-${this.weight} text--size-${this.size} text--letter-spacing-${this.letterSpacing} text--line-height-${this.letterSpacing} text--text-align-${this.align} text--color-${this.color} text--text-transform-${this.transform}
-        ">
+        <${this.format} class="text ${this.weight !== "normal" ? `text--weight-${this.weight}` : ``} ${this.size !== "md" ? `text--size-${this.size}` : ``} ${this.letterSpacing !== "normal" ? `text--letter-spacing-${this.letterSpacing}` : ``} ${this.lineHeight !== "md" ? `text--line-height-${this.lineHeight}` : ``} ${this.align !== "start" ? `text--align-${this.align}` : ``} ${this.color !== "currentColor" ? `text--color-${this.color}` : ``} ${this.transform !== "none" ? `text--transform-${this.transform}` : ``}">
             ${this.initialContent}
         </${this.format}>
         `;

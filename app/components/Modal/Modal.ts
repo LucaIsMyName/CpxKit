@@ -23,9 +23,11 @@ export class ComponentModal extends Cpx.Element {
            <section 
                 data-set-state-key="modalIsActive" 
                 data-set-state-value="false" 
-                class="
-                    modal__underlay"></section>
-           <section class="modal__content">${this.initialContent}</section>
+                class="modal__underlay">
+           </section>
+           <section class="modal__content">
+              ${this.initialContent}
+            </section>
         </section>
         `;
   }

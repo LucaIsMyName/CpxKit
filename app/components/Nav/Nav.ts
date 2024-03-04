@@ -5,7 +5,7 @@ export class ComponentNav extends Cpx.Element {
   nav: Array<string>;
   direction: string;
   spacing: string;
-  style: any;
+  style: CSSStyleDeclaration | any;
   weight: any;
 
   constructor() {
@@ -21,11 +21,15 @@ export class ComponentNav extends Cpx.Element {
   connectedCallback() {
     this.render();
     this.addEventListeners();
+    function openPage(page: string) {
+      Cpx.State.set("page", page);
+  }
+
   }
 
   render() {
     this.innerHTML = `
-        <nav class="nav nav--direction-${this.direction} nav--style-${this.style} nav--size-${this.direction} nav--spacing-${this.spacing}">
+        <nav class="nav nav--direction-${this.direction} nav--style-${this.style} nav--spacing-${this.spacing}">
             <ul>
             ${this.nav
               .map((item: any, index: number) => {
@@ -36,8 +40,7 @@ export class ComponentNav extends Cpx.Element {
                             ${this.style === "none" ? `nav__item--style-none` : ``}
                             ${this.style === "button" ? `nav__item--style-button` : ``}
                             "
-                            data-set-state-key="${item.isModal === true ? "modalContent" : ``}${item.isAction === true ? "action" : ``}${item.isModal === false && item.isAction === false ? "page" : ``}" 
-                            data-set-state-value="${item.page}" 
+                            onclick="openPage('${item.page}')"
                             class="
                                 nav__item 
                                 nav__item-${index}">
@@ -53,6 +56,8 @@ export class ComponentNav extends Cpx.Element {
               </ul>
         </nav>
         `;
+
+        
   }
 }
 customElements.define(`${Config.prefix}-nav`, ComponentNav);

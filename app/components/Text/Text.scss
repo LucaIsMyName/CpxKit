@@ -20,16 +20,36 @@
         }
     }
     &--letter-spacing {
-        &-tight {
+        &-xxs {
             letter-spacing: -0.05em;
+        }
+
+        &-xs {
+            letter-spacing: -0.025em;
+        }
+
+        &-sm {
+            letter-spacing: -0.0125em;
         }
 
         &-normal {
             letter-spacing: 0;
         }
 
-        &-wide {
+        &-lg {
             letter-spacing: 0.05em;
+        }
+
+        &-xl {
+            letter-spacing: 0.1em;
+        }
+
+        &-2xl {
+            letter-spacing: 0.15em;
+        }
+
+        &-3xl {
+            letter-spacing: 0.2em;
         }
     }
     &--size {
