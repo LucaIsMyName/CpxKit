@@ -38,41 +38,49 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     this.state = State;
   }
 
+  reRender() {
+    this.render();
+  }
+
   // Other class properties and constructor remain unchanged...
 
-  addEventListeners(): void {
+  addEventListeners(elements: any = "*"): void {
     // Get all elements within the component
-    const elements = this.querySelectorAll('*');
+    const allElements = this.querySelectorAll(elements);
 
     // Loop through each element
-    elements.forEach(element => {
+    allElements.forEach((element: any) => {
       // Get all attributes of the current element
       const attributes = Array.from(element.attributes);
 
       // Loop through each attribute
-      attributes.forEach(attribute => {
+      attributes.forEach((attribute: any) => {
         const { name, value } = attribute;
 
         // Check if the attribute starts with 'click:'
-        if (name.startsWith('click:')) {
-          console.log('Attribute:', name, value);
+        if (name.startsWith("click:")) {
+          console.log("Attribute:", name, value);
           // Extract the action, target (state or storage), and setter from the attribute name
           const matchResult = name.match(/^click:(state|storage):set\s*\(([^,]+),([^)]+)\)/);
           if (matchResult && matchResult.length === 4) {
             const [, target, key, valueString] = matchResult;
-            console.log('Parts:', target, key, valueString);
-            if (target === 'state' || target === 'storage') {
-              console.log('Processing:', target, key, valueString);
-              
+            console.log("Parts:", target, key, valueString);
+            if (target === "state" || target === "storage") {
+              console.log("Processing:", target, key, valueString);
+
               // Add event listener
-              element.addEventListener('click', () => {
-                if (target === 'state') {
-                  console.log('State Key:', key);
+              element.addEventListener("click", () => {
+                if (target === "state") {
+                  console.log("State Key:", key);
                   this.state.set(key.trim(), valueString.trim());
-                } else if (target === 'storage') {
-                  console.log('Storage Key:', key);
+                } else if (target === "storage") {
+                  console.log("Storage Key:", key);
                   this.storage.set(key.trim(), valueString.trim());
                 }
+                const root = document.querySelectorAll("app-root");
+                root.forEach((root: any) => {
+                  root.reRender();
+                });
               });
             }
           }
@@ -84,7 +92,7 @@ export class CpxElement extends HTMLElement implements CpxElementType {
   connectedCallback() {
     this.setAttribute("id", this.ID);
     this.render();
-    // this.addEventListeners();
+    this.addEventListeners();
   }
 
   render() {

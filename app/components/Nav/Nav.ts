@@ -1,7 +1,7 @@
 import { Cpx, Config, DB } from "../../app";
 
 export class ComponentNav extends Cpx.Element {
-  type: string;
+  type: any;
   nav: Array<string>;
   direction: string;
   spacing: string;
@@ -21,10 +21,6 @@ export class ComponentNav extends Cpx.Element {
   connectedCallback() {
     this.render();
     this.addEventListeners();
-    function openPage(page: string) {
-      Cpx.State.set("page", page);
-  }
-
   }
 
   render() {
@@ -40,7 +36,7 @@ export class ComponentNav extends Cpx.Element {
                             ${this.style === "none" ? `nav__item--style-none` : ``}
                             ${this.style === "button" ? `nav__item--style-button` : ``}
                             "
-                            onclick="openPage('${item.page}')"
+                            click:state:set(${this.nav[index].isModal === false ?`page`:`modalContent`},${item.page})
                             class="
                                 nav__item 
                                 nav__item-${index}">

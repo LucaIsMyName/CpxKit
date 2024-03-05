@@ -28,6 +28,7 @@ export const routes: { [key: string]: Route } = {
   },
   CONTACT: {
     page: "contact",
+
     title: "Contact",
     description: "Contact Page",
     icon: Cpx.Icon.envelope,
@@ -36,6 +37,7 @@ export const routes: { [key: string]: Route } = {
   },
   LOGIN: {
     page: "login",
+
     title: "Login",
     description: "Login Page",
     icon: Cpx.Icon.userCircle,
@@ -44,6 +46,7 @@ export const routes: { [key: string]: Route } = {
   },
   REGISTER: {
     page: "register",
+
     title: "Register",
     description: "Register Page",
     icon: Cpx.Icon.userCircle,
@@ -52,6 +55,7 @@ export const routes: { [key: string]: Route } = {
   },
   SIGN_IN: {
     page: "sign-in",
+
     title: "Sign In",
     description: "Sign In Page",
     icon: Cpx.Icon.userCircle,
@@ -60,6 +64,7 @@ export const routes: { [key: string]: Route } = {
   },
   PROFILE: {
     page: "profile",
+
     title: "Profile",
     description: "Profile Page",
     icon: Cpx.Icon.userCircle,
@@ -68,6 +73,7 @@ export const routes: { [key: string]: Route } = {
   },
   SETTINGS: {
     page: "settings",
+
     title: "Settings",
     description: "Settings Page",
     icon: Cpx.Icon.cog,
@@ -76,14 +82,16 @@ export const routes: { [key: string]: Route } = {
   },
   IMPRINT: {
     page: "imprint",
+
     title: "Imprint",
     description: "Imprint Page",
     icon: Cpx.Icon.scale,
-    isModal: true,
+    isModal: false,
     isAction: false,
   },
   PRIVACY: {
     page: "privacy",
+
     title: "Privacy",
     description: "Privacy Page",
     icon: Cpx.Icon.scale,
@@ -92,6 +100,7 @@ export const routes: { [key: string]: Route } = {
   },
   TERMS: {
     page: "terms",
+
     title: "Terms",
     description: "Terms Page",
     icon: Cpx.Icon.scale,
@@ -100,6 +109,7 @@ export const routes: { [key: string]: Route } = {
   },
   FAQ: {
     page: "faq",
+
     title: "FAQ",
     description: "FAQ Page",
     icon: Cpx.Icon.questionMarkCircle,
@@ -108,6 +118,7 @@ export const routes: { [key: string]: Route } = {
   },
   DEVELOPER: {
     page: "developer",
+
     title: "Developer",
     description: "Developer Page",
     icon: Cpx.Icon.codeBracket,
@@ -116,6 +127,7 @@ export const routes: { [key: string]: Route } = {
   },
   ADD_SEARCHBOT: {
     page: "add-searchbot",
+
     title: "Add Searchbot",
     description: "Add Searchbot Page",
     icon: Cpx.Icon.eye,
@@ -124,6 +136,7 @@ export const routes: { [key: string]: Route } = {
   },
   ADD_ITEM: {
     page: "add-item",
+
     title: "Add Item",
     description: "Add Item Page",
     icon: Cpx.Icon.plusCircle,
@@ -132,6 +145,7 @@ export const routes: { [key: string]: Route } = {
   },
   FILTER: {
     page: "filter",
+
     title: "Filter",
     description: "Filter Page",
     icon: Cpx.Icon.funnel,
@@ -140,6 +154,7 @@ export const routes: { [key: string]: Route } = {
   },
   ITEM_OVERVIEW: {
     page: "item-overview",
+
     title: "Item Overview",
     description: "Item Overview Page",
     icon: Cpx.Icon.viewColumns,
@@ -148,6 +163,7 @@ export const routes: { [key: string]: Route } = {
   },
   ITEM: {
     page: "item",
+
     title: "Item",
     description: "Item Page",
     icon: Cpx.Icon.rocketLaunch,
@@ -156,6 +172,7 @@ export const routes: { [key: string]: Route } = {
   },
   CART: {
     page: "cart",
+
     title: "Cart",
     description: "Cart Page",
     icon: Cpx.Icon.shoppingCart,
@@ -164,6 +181,7 @@ export const routes: { [key: string]: Route } = {
   },
   GET_STARTED: {
     page: "get-started",
+
     title: "Get Started",
     description: "Get Started Page",
     icon: Cpx.Icon.rocketLaunch,
@@ -172,6 +190,7 @@ export const routes: { [key: string]: Route } = {
   },
   DOCS: {
     page: "docs",
+
     title: "Docs",
     description: "Docs Page",
     icon: Cpx.Icon.bookOpen,
@@ -181,6 +200,7 @@ export const routes: { [key: string]: Route } = {
   // ACTIONS
   LIKE: {
     page: null,
+
     title: "Like",
     description: "Like this Item",
     icon: Cpx.Icon.heart,
@@ -189,6 +209,7 @@ export const routes: { [key: string]: Route } = {
   },
   SHARE: {
     page: null,
+
     title: "Share",
     description: "Share this Item",
     icon: Cpx.Icon.share,
@@ -197,6 +218,7 @@ export const routes: { [key: string]: Route } = {
   },
   ADD_TO_CART: {
     page: null,
+
     title: "Add to Cart",
     description: "Add this Item to your Cart",
     icon: Cpx.Icon.shoppingCart,

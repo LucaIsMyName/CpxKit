@@ -30,7 +30,6 @@ export class ComponentRoot extends Cpx.Element {
                 header:nav:type-main="main"
                 header:nav:type-secondary="user"
                 class="root__header"></app-header>
-
             <main class="root__main">
                 ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>

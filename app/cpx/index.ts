@@ -11,8 +11,16 @@ import { Time } from "./utils/time";
 import { Json } from "./utils/json";
 import { Icon } from "./utils/icons";
 
+// Components
+import { AccordionGroup, AccordionItem, AccordionTitle } from "./components/Accordion/index";
+
 interface CpxTypes {
   Element: typeof Element;
+  Components: {
+    AccordionGroup: typeof Element;
+    AccordionItem: typeof Element;
+    AccordionTitle: typeof Element;
+  };
   define: Function;
   Config: typeof Config;
   // PlugIns & Utilities
@@ -25,8 +33,14 @@ interface CpxTypes {
   Icon: typeof Icon;
 }
 
+const Components = {
+  AccordionGroup,
+  AccordionItem,
+  AccordionTitle,
+};
 export const Cpx: CpxTypes = {
   Element,
+  Components,
   define,
   Config,
   // PlugIns & Utilities

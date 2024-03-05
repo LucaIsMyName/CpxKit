@@ -674,8 +674,16 @@ var _sanitize = require("./utils/sanitize");
 var _time = require("./utils/time");
 var _json = require("./utils/json");
 var _icons = require("./utils/icons");
+// Components
+var _index = require("./components/Accordion/index");
+const Components = {
+    AccordionGroup: (0, _index.AccordionGroup),
+    AccordionItem: (0, _index.AccordionItem),
+    AccordionTitle: (0, _index.AccordionTitle)
+};
 const Cpx = {
     Element: (0, _element.CpxElement),
+    Components,
     define: (0, _element1.define),
     Config: (0, _config.Config),
     State: // PlugIns & Utilities
@@ -688,7 +696,7 @@ const Cpx = {
     Icon: (0, _icons.Icon)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./components/Accordion/index":"fVDc8"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -710,12 +718,15 @@ class CpxElement extends HTMLElement {
         this.storage = (0, _storage.Storage);
         this.state = (0, _state.State);
     }
+    reRender() {
+        this.render();
+    }
     // Other class properties and constructor remain unchanged...
-    addEventListeners() {
+    addEventListeners(elements = "*") {
         // Get all elements within the component
-        const elements = this.querySelectorAll("*");
+        const allElements = this.querySelectorAll(elements);
         // Loop through each element
-        elements.forEach((element)=>{
+        allElements.forEach((element)=>{
             // Get all attributes of the current element
             const attributes = Array.from(element.attributes);
             // Loop through each attribute
@@ -740,6 +751,10 @@ class CpxElement extends HTMLElement {
                                     console.log("Storage Key:", key);
                                     this.storage.set(key.trim(), valueString.trim());
                                 }
+                                const root = document.querySelectorAll("app-root");
+                                root.forEach((root)=>{
+                                    root.reRender();
+                                });
                             });
                         }
                     }
@@ -750,7 +765,7 @@ class CpxElement extends HTMLElement {
     connectedCallback() {
         this.setAttribute("id", this.ID);
         this.render();
-    // this.addEventListeners();
+        this.addEventListeners();
     }
     render() {
         this.innerHTML = this.initialContent;
@@ -1949,7 +1964,83 @@ module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill
 },{}],"iQb5W":[function(require,module,exports) {
 module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.25 12L11.2045 3.04549C11.6438 2.60615 12.3562 2.60615 12.7955 3.04549L21.75 12M4.5 9.75V19.875C4.5 20.4963 5.00368 21 5.625 21H9.75V16.125C9.75 15.5037 10.2537 15 10.875 15H13.125C13.7463 15 14.25 15.5037 14.25 16.125V21H18.375C18.9963 21 19.5 20.4963 19.5 19.875V9.75M8.25 21H16.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>\n";
 
-},{}],"jFDNf":[function(require,module,exports) {
+},{}],"fVDc8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AccordionGroup", ()=>(0, _accordionGroup.CpxAccordionGroup));
+parcelHelpers.export(exports, "AccordionItem", ()=>(0, _accordionItem.CpxAccordionItem));
+parcelHelpers.export(exports, "AccordionTitle", ()=>(0, _accordionTitle.CpxAccordionTitle));
+var _accordionGroup = require("./AccordionGroup");
+var _accordionItem = require("./AccordionItem");
+var _accordionTitle = require("./AccordionTitle");
+
+},{"./AccordionGroup":"cE22T","./AccordionItem":"9BBKi","./AccordionTitle":"asQ3O","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cE22T":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAccordionGroup", ()=>CpxAccordionGroup);
+var _element = require("../../element");
+class CpxAccordionGroup extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <div class="accordion-group">
+        ${this.initialContent}
+    </div>
+        `;
+    }
+}
+customElements.define(`accordion-group`, CpxAccordionGroup);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9BBKi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAccordionItem", ()=>CpxAccordionItem);
+var _element = require("../../element");
+class CpxAccordionItem extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <div class="accordion-item">
+        ${this.initialContent}
+    </div>
+        `;
+    }
+}
+customElements.define(`accordion-item`, CpxAccordionItem);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"asQ3O":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAccordionTitle", ()=>CpxAccordionTitle);
+var _element = require("../../element");
+class CpxAccordionTitle extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <div class="accordion-title">
+        ${this.initialContent}
+    </div>
+        `;
+    }
+}
+customElements.define(`accordion-title`, CpxAccordionTitle);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jFDNf":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ComponentRoot", ()=>ComponentRoot);
@@ -1974,7 +2065,6 @@ class ComponentRoot extends (0, _app.Cpx).Element {
                 header:nav:type-main="main"
                 header:nav:type-secondary="user"
                 class="root__header"></app-header>
-
             <main class="root__main">
                 ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>
@@ -2395,7 +2485,7 @@ const routes = {
         title: "Imprint",
         description: "Imprint Page",
         icon: (0, _app.Cpx).Icon.scale,
-        isModal: true,
+        isModal: false,
         isAction: false
     },
     PRIVACY: {
@@ -2777,9 +2867,6 @@ class ComponentNav extends (0, _app.Cpx).Element {
     connectedCallback() {
         this.render();
         this.addEventListeners();
-        function openPage(page) {
-            (0, _app.Cpx).State.set("page", page);
-        }
     }
     render() {
         this.innerHTML = `
@@ -2793,7 +2880,7 @@ class ComponentNav extends (0, _app.Cpx).Element {
                             ${this.style === "none" ? `nav__item--style-none` : ``}
                             ${this.style === "button" ? `nav__item--style-button` : ``}
                             "
-                            onclick="openPage('${item.page}')"
+                            click:state:set(${this.nav[index].isModal === false ? `page` : `modalContent`},${item.page})
                             class="
                                 nav__item 
                                 nav__item-${index}">
