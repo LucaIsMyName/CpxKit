@@ -4,7 +4,19 @@ export interface StringInterfaces {
   toCamelCase: (string: string) => string;
   removeWhitespace: (string: string) => string;
 }
-
+/**
+ * String
+ * @description
+ * String utilities
+ * @example
+ * String.snakeToCamel("hello_world");
+ * --> "helloWorld"
+ * String.toHtml("Hello World");
+ * --> "hello-world"
+ * String.toCamelCase("hello world");
+ * --> "helloWorld"
+ * ...
+ */
 export const String: StringInterfaces = {
   snakeToCamel: function snakeToCamel(str) {
     return str.replace(/_([a-z])/g, (match, letter) => letter.toUpperCase());

@@ -588,38 +588,18 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Config", ()=>(0, _config.Config));
 parcelHelpers.export(exports, "DB", ()=>(0, _db.DB));
-parcelHelpers.export(exports, "Cpx", ()=>// Functions and Utilities
-    // Base Element
-    (0, _cpx.Cpx));
-parcelHelpers.export(exports, "ComponentRoot", ()=>// Components
-    (0, _root.ComponentRoot));
-parcelHelpers.export(exports, "ComponentHeader", ()=>(0, _header.ComponentHeader));
-parcelHelpers.export(exports, "ComponentFooter", ()=>(0, _footer.ComponentFooter));
-parcelHelpers.export(exports, "ComponentModal", ()=>(0, _modal.ComponentModal));
-parcelHelpers.export(exports, "ComponentNav", ()=>(0, _nav.ComponentNav));
-parcelHelpers.export(exports, "ComponentText", ()=>(0, _text.ComponentText));
-parcelHelpers.export(exports, "ComponentImage", ()=>(0, _image.ComponentImage));
-parcelHelpers.export(exports, "ComponentFetch", ()=>(0, _fetch.ComponentFetch));
-parcelHelpers.export(exports, "PageHome", ()=>// Pages
-    (0, _home.PageHome));
+parcelHelpers.export(exports, "Cpx", ()=>(0, _cpx.Cpx));
+parcelHelpers.export(exports, "ComponentRoot", ()=>(0, _root.ComponentRoot));
+parcelHelpers.export(exports, "PageHome", ()=>(0, _home.PageHome));
 parcelHelpers.export(exports, "PageAbout", ()=>(0, _about.PageAbout));
-parcelHelpers.export(exports, "PagePost", ()=>(0, _post.PagePost));
 var _config = require("./config");
 var _cpx = require("./cpx");
 var _db = require("../db/db");
 var _root = require("./components/Root/Root");
-var _header = require("./components/Header/Header");
-var _footer = require("./components/Footer/Footer");
-var _modal = require("./components/Modal/Modal");
-var _nav = require("./components/Nav/Nav");
-var _text = require("./components/Text/Text");
-var _image = require("./components/Image/Image");
-var _fetch = require("./components/Fetch/Fetch");
 var _home = require("./pages/home");
 var _about = require("./pages/about");
-var _post = require("./pages/post");
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"6Z2L1","./cpx":"dMUol","./components/Root/Root":"jFDNf","../db/db":"bjCHj","./components/Header/Header":"Jv9T3","./components/Footer/Footer":"jklJV","./components/Modal/Modal":"dR72k","./pages/home":"jILT7","./pages/about":"faVIF","./components/Nav/Nav":"13T9Y","./components/Text/Text":"45B9b","./components/Image/Image":"hH47y","./components/Fetch/Fetch":"eUsqM","./pages/post":"bQzgf"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"6Z2L1","./cpx":"dMUol","./components/Root/Root":"jFDNf","../db/db":"bjCHj","./pages/home":"jILT7","./pages/about":"faVIF"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -650,7 +630,13 @@ exports.export = function(dest, destName, get) {
 };
 
 },{}],"6Z2L1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * @file config.ts
+ * @description
+ * This file contains the configuration for the application
+ * @example
+ * import { Config } from "./config";
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Config", ()=>Config);
 const Config = {
@@ -676,10 +662,23 @@ var _json = require("./utils/json");
 var _icons = require("./utils/icons");
 // Components
 var _index = require("./components/Accordion/index");
-const Components = {
+var _index1 = require("./components/Text/index");
+var _index2 = require("./components/Tabs/index");
+/**
+ * @class Cpx
+ * @description
+ * This is the main class for the Cpx library. 
+ * It contains all the core functionality of the library.
+ */ const Components = {
     AccordionGroup: (0, _index.AccordionGroup),
     AccordionItem: (0, _index.AccordionItem),
-    AccordionTitle: (0, _index.AccordionTitle)
+    AccordionTitle: (0, _index.AccordionTitle),
+    TextParagraph: (0, _index1.TextParagraph),
+    TextLink: (0, _index1.TextLink),
+    TabContainer: (0, _index2.TabContainer),
+    TabHeader: (0, _index2.TabHeader),
+    TabContent: (0, _index2.TabContent),
+    TabToggle: (0, _index2.TabToggle)
 };
 const Cpx = {
     Element: (0, _element.CpxElement),
@@ -696,7 +695,7 @@ const Cpx = {
     Icon: (0, _icons.Icon)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./components/Accordion/index":"fVDc8"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./components/Accordion/index":"fVDc8","./components/Text/index":"6N7g9","./components/Tabs/index":"bNH0i"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -707,7 +706,24 @@ const Cpx = {
  * @property {string} initialContent - The initial content of the element. This is used to store the content of the element before it is rendered.
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxElement", ()=>CpxElement);
+/**
+ * @class CpxElement
+ * @extends HTMLElement
+ * @description
+ * This is the base class for all custom elements in the app. It extends the native HTMLElement class and adds a few extra features.
+ * @property {string} ID - A random number that is generated when the element is created. This is used to identify the element in the DOM.
+ * @property {string} initialContent - The initial content of the element. This is used to store the content of the element before it is rendered.
+ * @property {any} storage - A reference to the Storage class. This is used to store data in the browser's local storage.
+ * @property {any} state - A reference to the State class. This is used to store the state of the component.
+ * @method {Function} reRender - A method that re-renders the component.
+ * @method {Function} setInitialState - A method that sets the initial state of the component.
+ * @method {Function} addClickHandler - A method that adds event listeners to the component.
+ * @method {Function} render - A method that renders the component.
+ * @method {Function} connectedCallback - A method that is called when the component is connected to the DOM.
+ * @method {Function} render - A method that renders the component.
+ * @method {Function} addClickHandler - A method that adds event listeners to the component.
+ * @method {Function} connectedCallback - A method that is called when the component is connected to the DOM.
+ */ parcelHelpers.export(exports, "CpxElement", ()=>CpxElement);
 var _state = require("./utils/state");
 var _storage = require("./utils/storage");
 class CpxElement extends HTMLElement {
@@ -721,8 +737,33 @@ class CpxElement extends HTMLElement {
     reRender() {
         this.render();
     }
-    // Other class properties and constructor remain unchanged...
-    addEventListeners(elements = "*") {
+    /**
+   * setInitialState
+   * @description
+   * This method sets the initial state of the component.
+   * It is called when the component is connected to the DOM.
+   * @param page
+   * @param modalisactive
+   * @param modalcontent
+   */ setInitialState(page = "home", modalisactive = "false", modalcontent = "profile") {
+        if (!this.state.has("page")) document.addEventListener("DOMContentLoaded", ()=>{
+            this.state.delete("page");
+            this.state.set("page", page);
+        });
+        if (!this.state.has("modalisactive")) document.addEventListener("DOMContentLoaded", ()=>{
+            this.state.set("modalisactive", modalisactive);
+        });
+        if (!this.state.has("modalcontent")) document.addEventListener("DOMContentLoaded", ()=>{
+            this.state.set("modalcontent", modalcontent);
+        });
+    }
+    /**
+   * addEventListeners
+   * @description
+   * This method adds event listeners to the component.
+   * It is called when the element with the correct attribute is clicked
+   * @param elements
+   */ addClickHandler(elements = "*") {
         // Get all elements within the component
         const allElements = this.querySelectorAll(elements);
         // Loop through each element
@@ -765,7 +806,7 @@ class CpxElement extends HTMLElement {
     connectedCallback() {
         this.setAttribute("id", this.ID);
         this.render();
-        this.addEventListeners();
+        this.addClickHandler();
     }
     render() {
         this.innerHTML = this.initialContent;
@@ -928,7 +969,7 @@ const Http = {
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7HptL":[function(require,module,exports) {
 /**
- * Sanitize and Unsanitize functions
+ * 
  * 
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -974,7 +1015,16 @@ const Unsanitize = {
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jyJao":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * Time
+ * @description Time utility functions
+ * @example
+ * Time.now;
+ * Time.nowIn(-5);
+ * Time.days;
+ * Time.daysShort;
+ * Time.months;
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Time", ()=>Time);
 const Time = {
@@ -1064,6 +1114,11 @@ const Json = {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bLiR6":[function(require,module,exports) {
 /**
  * Icons
+ * @description: This file contains all the icons used in the application.
+ * @example
+ * import { Icon } from "./utils/icons";
+ * const icon = Icon.home;
+ * @returns {string} - The SVG string of the home icon.
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Icon", ()=>Icon);
@@ -2010,9 +2065,9 @@ class CpxAccordionItem extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <div class="accordion-item">
+    <details class="accordion-item">
         ${this.initialContent}
-    </div>
+    </details>
         `;
     }
 }
@@ -2032,13 +2087,165 @@ class CpxAccordionTitle extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <div class="accordion-title">
+    <summary class="accordion-title">
         ${this.initialContent}
-    </div>
+    </summary>
         `;
     }
 }
 customElements.define(`accordion-title`, CpxAccordionTitle);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TextParagraph", ()=>(0, _textParagraph.CpxTextParagraph));
+parcelHelpers.export(exports, "TextLink", ()=>(0, _textLink.CpxTextLink));
+var _textParagraph = require("./TextParagraph");
+var _textLink = require("./TextLink");
+
+},{"./TextParagraph":"8hUiz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./TextLink":"fDw3r"}],"8hUiz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTextParagraph", ()=>CpxTextParagraph);
+var _element = require("../../element");
+class CpxTextParagraph extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <p class="text-paragraph">
+        ${this.initialContent}
+    </p>
+        `;
+    }
+}
+customElements.define(`text-paragraph`, CpxTextParagraph);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fDw3r":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTextLink", ()=>CpxTextLink);
+var _element = require("../../element");
+class CpxTextLink extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <a href="#" class="text-link">
+        ${this.initialContent}
+    </a>
+        `;
+    }
+}
+customElements.define(`text-link`, CpxTextLink);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bNH0i":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TabContainer", ()=>(0, _tabContainer.CpxTabContainer));
+parcelHelpers.export(exports, "TabHeader", ()=>(0, _tabHeader.CpxTabHeader));
+parcelHelpers.export(exports, "TabContent", ()=>(0, _tabContent.CpxTabContent));
+parcelHelpers.export(exports, "TabToggle", ()=>(0, _tabToggle.CpxTabToggle));
+var _tabContainer = require("./TabContainer");
+var _tabHeader = require("./TabHeader");
+var _tabContent = require("./TabContent");
+var _tabToggle = require("./TabToggle");
+
+},{"./TabContainer":"1EwjH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./TabHeader":"2vFZ3","./TabContent":"aA48q","./TabToggle":"jdXBV"}],"1EwjH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
+var _element = require("../../element");
+class CpxTabContainer extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section class="tab-container">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-container`, CpxTabContainer);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2vFZ3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
+var _element = require("../../element");
+class CpxTabHeader extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section class="tab-header">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-header`, CpxTabHeader);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aA48q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
+var _element = require("../../element");
+class CpxTabContent extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section class="tab-content">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-content`, CpxTabContent);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jdXBV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
+var _element = require("../../element");
+class CpxTabToggle extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <button class="tab-toggle">
+        ${this.initialContent}
+    </button>
+        `;
+    }
+}
+customElements.define(`tab-toggle`, CpxTabToggle);
 
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jFDNf":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2054,34 +2261,16 @@ class ComponentRoot extends (0, _app.Cpx).Element {
         this.state = (0, _app.Cpx).State;
     }
     connectedCallback() {
+        this.setInitialState();
         this.render();
-        this.addEventListeners();
+        this.addClickHandler();
     }
     render() {
         this.innerHTML = `
         <section class="root">
-            <app-header
-                header:title="${this.title}"
-                header:nav:type-main="main"
-                header:nav:type-secondary="user"
-                class="root__header"></app-header>
             <main class="root__main">
                 ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>
-
-            <app-footer
-                footer:title="${this.title}"
-                class="root__footer"></app-footer>
-
-            <app-modal
-                class="
-                    root__modal 
-                    ${eval(this.state.get("modalIsActive")) === true ? "root__modal--is-active" : ""}
-                "
-                modal:is-active="${this.state.get("modalIsActive")}">
-                ${eval(this.state.get("modalIsActive")) === true ? `<app-page-${this.state.get("modalContent")} class="root__modal-content"></app-page-${this.state.get("modalContent")}>` : ``}
-
-            </app-modal>
         </section>
         `;
     }
@@ -2440,46 +2629,6 @@ const routes = {
         isModal: true,
         isAction: false
     },
-    LOGIN: {
-        page: "login",
-        title: "Login",
-        description: "Login Page",
-        icon: (0, _app.Cpx).Icon.userCircle,
-        isModal: false,
-        isAction: false
-    },
-    REGISTER: {
-        page: "register",
-        title: "Register",
-        description: "Register Page",
-        icon: (0, _app.Cpx).Icon.userCircle,
-        isModal: false,
-        isAction: false
-    },
-    SIGN_IN: {
-        page: "sign-in",
-        title: "Sign In",
-        description: "Sign In Page",
-        icon: (0, _app.Cpx).Icon.userCircle,
-        isModal: false,
-        isAction: false
-    },
-    PROFILE: {
-        page: "profile",
-        title: "Profile",
-        description: "Profile Page",
-        icon: (0, _app.Cpx).Icon.userCircle,
-        isModal: false,
-        isAction: false
-    },
-    SETTINGS: {
-        page: "settings",
-        title: "Settings",
-        description: "Settings Page",
-        icon: (0, _app.Cpx).Icon.cog,
-        isModal: true,
-        isAction: false
-    },
     IMPRINT: {
         page: "imprint",
         title: "Imprint",
@@ -2495,119 +2644,6 @@ const routes = {
         icon: (0, _app.Cpx).Icon.scale,
         isModal: true,
         isAction: false
-    },
-    TERMS: {
-        page: "terms",
-        title: "Terms",
-        description: "Terms Page",
-        icon: (0, _app.Cpx).Icon.scale,
-        isModal: true,
-        isAction: false
-    },
-    FAQ: {
-        page: "faq",
-        title: "FAQ",
-        description: "FAQ Page",
-        icon: (0, _app.Cpx).Icon.questionMarkCircle,
-        isModal: true,
-        isAction: false
-    },
-    DEVELOPER: {
-        page: "developer",
-        title: "Developer",
-        description: "Developer Page",
-        icon: (0, _app.Cpx).Icon.codeBracket,
-        isModal: false,
-        isAction: false
-    },
-    ADD_SEARCHBOT: {
-        page: "add-searchbot",
-        title: "Add Searchbot",
-        description: "Add Searchbot Page",
-        icon: (0, _app.Cpx).Icon.eye,
-        isModal: true,
-        isAction: false
-    },
-    ADD_ITEM: {
-        page: "add-item",
-        title: "Add Item",
-        description: "Add Item Page",
-        icon: (0, _app.Cpx).Icon.plusCircle,
-        isModal: true,
-        isAction: false
-    },
-    FILTER: {
-        page: "filter",
-        title: "Filter",
-        description: "Filter Page",
-        icon: (0, _app.Cpx).Icon.funnel,
-        isModal: true,
-        isAction: false
-    },
-    ITEM_OVERVIEW: {
-        page: "item-overview",
-        title: "Item Overview",
-        description: "Item Overview Page",
-        icon: (0, _app.Cpx).Icon.viewColumns,
-        isModal: false,
-        isAction: false
-    },
-    ITEM: {
-        page: "item",
-        title: "Item",
-        description: "Item Page",
-        icon: (0, _app.Cpx).Icon.rocketLaunch,
-        isModal: false,
-        isAction: false
-    },
-    CART: {
-        page: "cart",
-        title: "Cart",
-        description: "Cart Page",
-        icon: (0, _app.Cpx).Icon.shoppingCart,
-        isModal: true,
-        isAction: false
-    },
-    GET_STARTED: {
-        page: "get-started",
-        title: "Get Started",
-        description: "Get Started Page",
-        icon: (0, _app.Cpx).Icon.rocketLaunch,
-        isModal: false,
-        isAction: false
-    },
-    DOCS: {
-        page: "docs",
-        title: "Docs",
-        description: "Docs Page",
-        icon: (0, _app.Cpx).Icon.bookOpen,
-        isModal: false,
-        isAction: false
-    },
-    // ACTIONS
-    LIKE: {
-        page: null,
-        title: "Like",
-        description: "Like this Item",
-        icon: (0, _app.Cpx).Icon.heart,
-        isModal: false,
-        isAction: true
-    },
-    SHARE: {
-        page: null,
-        title: "Share",
-        description: "Share this Item",
-        icon: (0, _app.Cpx).Icon.share,
-        isModal: false,
-        isAction: true
-    },
-    ADD_TO_CART: {
-        page: null,
-        title: "Add to Cart",
-        description: "Add this Item to your Cart",
-        icon: (0, _app.Cpx).Icon.shoppingCart,
-        isModal: false,
-        isAction: true
     }
 };
 
@@ -2667,161 +2703,33 @@ const post = {
     byContent
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Jv9T3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jILT7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentHeader", ()=>ComponentHeader);
-var _app = require("../../app");
-class ComponentHeader extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.title = this.getAttribute("header:title") || "Header Title";
-        this.navMainType = this.getAttribute("header:nav:type-main") || "main";
-        this.navSecondaryType = this.getAttribute("header:nav:type-secondary") || "secondary";
-        this.description = this.getAttribute("header:description") || "Header Description";
-        this.storage = (0, _app.Cpx).Storage;
-        this.state = (0, _app.Cpx).State;
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    render() {
-        this.innerHTML = `
-        <header class="header">
-            <section class="header__brand">
-                <app-text 
-                    text:format=h1 
-                    text:color=white
-                    text:weight=bold
-                    text:size=md
-                    text:letter-spacing=wide>
-                        ${this.title}
-                </app-text>
-                <app-text class="screen-reader">${this.description}</app-text>
-            </section>
-            <section class="header__navigations">
-                <app-nav 
-                    nav:direction=row 
-                    nav:style=button 
-                    nav:type=${this.navMainType} 
-                    class="
-                        header__nav 
-                        header__nav--is-main"></app-nav>
-                <app-nav 
-                    nav:direction=row 
-                    nav:style=button 
-                    nav:type=${this.navSecondaryType} 
-                    class="
-                        header__nav 
-                        header__nav--is-secondary"></app-nav>
-            </section>
-        </header>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-header`, ComponentHeader);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jklJV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentFooter", ()=>ComponentFooter);
-var _app = require("../../app");
-class ComponentFooter extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.title = this.getAttribute("footer:title") || "Footer Title";
-        this.description = this.getAttribute("footer:description") || "Footer Description";
-        this.navMainType = this.getAttribute("footer:nav:type-main") || "main";
-        this.navSecondaryType = this.getAttribute("footer:nav:type-secondary") || "user";
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    render() {
-        this.innerHTML = `
-       <footer class="footer">
-            <section class="footer__brand">
-                <app-text text:format=h1 text:size=xl text:color=white>
-                    ${this.title}
-                </app-text>
-                <app-text text:format=p text:size=xs text:color=text-dark class="">
-                    ${this.description}
-                </app-text>
-            </section>
-            <section class="footer__navigations">
-                <app-nav 
-                    nav:direction=column 
-                    nav:style="button" 
-                    nav:type="${this.navMainType}" 
-                    class="
-                        footer__nav 
-                        footer__nav--is-main"></app-nav>
-                <app-nav 
-                    nav:direction=column 
-                    nav:style="button" 
-                    nav:type="${this.navSecondaryType}" 
-                    class="
-                        footer__nav 
-                        footer__nav--is-secondary"></app-nav>
-            </section>
-        </footer>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-footer`, ComponentFooter);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dR72k":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentModal", ()=>ComponentModal);
-var _app = require("../../app");
-class ComponentModal extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.title = this.getAttribute("modal:title") || "modal Title";
-        this.description = this.getAttribute("modal:description") || "modal Description";
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    render() {
-        this.innerHTML = `
-        <section class="modal">
-           <section 
-                data-set-state-key="modalIsActive" 
-                data-set-state-value="false" 
-                class="modal__underlay">
-           </section>
-           <section class="modal__content">
-              ${this.initialContent}
-            </section>
-        </section>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-modal`, ComponentModal);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jILT7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PageHome", ()=>PageHome);
+/**
+ * @class PageHome
+ * @description
+ * This is the home page for the application.
+ * It contains all the core functionality of the home page.
+ * @example
+ * <app-page-home></app-page-home>
+ */ parcelHelpers.export(exports, "PageHome", ()=>PageHome);
 var _app = require("../app");
 class PageHome extends (0, _app.Cpx).Element {
     constructor(){
         super();
+        this.state = (0, _app.Cpx).State;
     }
     connectedCallback() {
         this.render();
+        this.addClickHandler();
     }
     render() {
         this.innerHTML = `
-            <app-text  text:format=h1 text:weight=bold text:size=6xl text:letter-spacing=0 text:line-height=md text:color=primary>
-                Home Page
-            </app-text>
-            <app-image image:has-overlay="true"></app-image>
+            <div style="text-align:center">
+                <text-paragraph>Home</text-paragraph>
+                <button click:state:set(page,about)>Go to About</button>
+            </div>
         `;
     }
 }
@@ -2830,204 +2738,35 @@ customElements.define(`${(0, _app.Config).prefix}-page-home`, PageHome);
 },{"../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"faVIF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PageAbout", ()=>PageAbout);
+/**
+ * @class PageAbout
+ * @description
+ * This is the home page for the application.
+ * It contains all the core functionality of the home page.
+ * @example
+ * <app-page-home></app-page-home>
+ */ parcelHelpers.export(exports, "PageAbout", ()=>PageAbout);
 var _app = require("../app");
 class PageAbout extends (0, _app.Cpx).Element {
     constructor(){
         super();
+        this.state = (0, _app.Cpx).State;
     }
     connectedCallback() {
         this.render();
+        this.addClickHandler();
     }
     render() {
         this.innerHTML = `
-             <app-text  text:format=h1 text:weight=bold text:size=6xl text:letter-spacing=0 text:line-height=md text:color=primary>
-                About Page
-            </app-text>
+             <div style="text-align:center">
+                <text-paragraph>About</text-paragraph>
+                <button click:state:set(page,home)>Go to Home</button>
+            </div>
         `;
     }
 }
 customElements.define(`${(0, _app.Config).prefix}-page-about`, PageAbout);
 
-},{"../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"13T9Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentNav", ()=>ComponentNav);
-var _app = require("../../app");
-class ComponentNav extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.type = this.getAttribute("nav:type") || "main";
-        this.nav = (0, _app.DB).NAVIGATIONS[this.type];
-        this.direction = this.getAttribute("nav:direction") || "row";
-        this.spacing = this.getAttribute("nav:spacing") || "normal";
-        this.style = this.getAttribute("nav:style") || "none";
-        this.weight = this.getAttribute("nav:weight") || "normal";
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    render() {
-        this.innerHTML = `
-        <nav class="nav nav--direction-${this.direction} nav--style-${this.style} nav--spacing-${this.spacing}">
-            <ul>
-            ${this.nav.map((item, index)=>{
-            return `
-                    <li>
-                        <button 
-                            class="
-                            ${this.style === "none" ? `nav__item--style-none` : ``}
-                            ${this.style === "button" ? `nav__item--style-button` : ``}
-                            "
-                            click:state:set(${this.nav[index].isModal === false ? `page` : `modalContent`},${item.page})
-                            class="
-                                nav__item 
-                                nav__item-${index}">
-                                <app-text 
-                                    text:weight=${this.weight}>
-                                    ${item.title}
-                                </app-text>
-                            </button>
-                    </li>
-                            `;
-        }).join("")}
-              </ul>
-        </nav>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-nav`, ComponentNav);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"45B9b":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentText", ()=>ComponentText);
-var _app = require("../../app");
-class ComponentText extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.format = this.getAttribute("text:format") || "p";
-        this.weight = this.getAttribute("text:weight") || "400";
-        this.size = this.getAttribute("text:size") || "md";
-        this.letterSpacing = this.getAttribute("text:letter-spacing") || "normal";
-        this.lineHeight = this.getAttribute("text:line-height") || "md";
-        this.color = this.getAttribute("text:color") || "currentColor";
-        this.align = this.getAttribute("text:align") || "start";
-        this.transform = this.getAttribute("text:transform") || "none";
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    render() {
-        this.innerHTML = `
-        <${this.format} class="text ${this.weight !== "normal" ? `text--weight-${this.weight}` : ``} ${this.size !== "md" ? `text--size-${this.size}` : ``} ${this.letterSpacing !== "normal" ? `text--letter-spacing-${this.letterSpacing}` : ``} ${this.lineHeight !== "md" ? `text--line-height-${this.lineHeight}` : ``} ${this.align !== "start" ? `text--align-${this.align}` : ``} ${this.color !== "currentColor" ? `text--color-${this.color}` : ``} ${this.transform !== "none" ? `text--transform-${this.transform}` : ``}">
-            ${this.initialContent}
-        </${this.format}>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-text`, ComponentText);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hH47y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentImage", ()=>ComponentImage);
-var _app = require("../../app");
-class ComponentImage extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.url = this.getAttribute("image:url") || "https://via.placeholder.com/150";
-        this.alt = this.getAttribute("image:alt") || "Image";
-        this.hasOverlay = this.getAttribute("image:has-overlay") || false;
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    render() {
-        this.innerHTML = `
-        <figure class="image"> 
-            <picture>
-                <source media="(max-width:768px)" srcset="${this.url}?as=webp&width=400" type="image/webp">
-                <source media="(max-width:1240px)" srcset="${this.url}?as=webp&width=800" type="image/jpeg">
-                <img src="${this.url}?as=webp&width=1640px" alt="${this.url}" class="image__img">
-            </picture>
-            ${this.hasOverlay ? `
-                <figcaption class="image__overlay">
-                    <app-text class="image__title">
-                        ${this.initialContent}
-                    </app-text>
-                </figcaption>
-                ` : ``}
-        </figure>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-image`, ComponentImage);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eUsqM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentFetch", ()=>ComponentFetch);
-var _app = require("../../app");
-class ComponentFetch extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.fetchUrl = this.getAttribute("fetch:url") || "https://jsonplaceholder.typicode.com/posts";
-    }
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
-    tryFetch() {
-        (0, _app.Cpx).Http.fetch(this.fetchUrl = "https://jsonplaceholder.typicode.com/users").then((response)=>{
-            return `Response: ${response.name}`;
-        });
-    }
-    render() {
-        this.innerHTML = `
-       <section class="fetch">
-            ${this.tryFetch()}
-        </section>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-fetch`, ComponentFetch);
-
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bQzgf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PagePost", ()=>PagePost);
-var _app = require("../app");
-class PagePost extends (0, _app.Cpx).Element {
-    constructor(){
-        super();
-        this.postId = this.getAttribute("post:id") || "0";
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-            <app-text 
-                text:format=h1
-                text:weight=bold
-                text:size=6xl
-                text:letter-spacing=0
-                text:line-height=md 
-                text:color=primary>
-               ${(0, _app.DB).POSTS[this.postId].title}
-            </app-text>
-            <app-text text:format="p">
-                ${(0, _app.DB).POSTS[this.postId].content}
-            </app-text>
-        `;
-    }
-}
-customElements.define(`${(0, _app.Config).prefix}-page-post`, PagePost);
-
-},{"../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["25TcJ","bXLqa"], "bXLqa", "parcelRequireb0f0")
+},{"../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["25TcJ","bXLqa"], "bXLqa", "parcelRequirebbe6")
 
 //# sourceMappingURL=index.92783f78.js.map

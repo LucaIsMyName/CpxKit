@@ -1,5 +1,4 @@
 const IMG_URL = "https://source.unsplash.com/random/";
-import { Cpx } from "../../app/app";
 import { users as USERS } from "./users";
 import { categories as CATEGORIES } from "./categories";
 

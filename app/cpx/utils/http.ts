@@ -6,7 +6,16 @@ interface HttpInterface {
   delete: (url: string) => Promise<any>;
   patch: (url: string, data: Object) => Promise<any>;
 }
-
+/**
+ * Http
+ * @description
+ * Http functions for making requests to a server.
+ * @example
+ * const data = await Http.fetch("https://api.example.com/data");
+ * const response = await Http.xhr("https://api.example.com/data", { method: "GET" });
+ * const result = await Http.post("https://api.example.com/data", { key: "value" });
+ * const result = await Http.put("https://api.example.com/data", { key: "value" });
+ */
 export const Http: HttpInterface = {
   fetch: async (url: string) => {
     const response = await fetch(url);

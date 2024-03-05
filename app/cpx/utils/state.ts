@@ -8,7 +8,13 @@ export interface StateInterface {
   hasNot: (key: string) => boolean;
   delete: (key: string) => void;
 }
-
+/**
+ * State
+ * @description
+ * State is managed via the URL SearchParams API
+ * @example
+ * State.set("page", "home");
+ */
 export const State: StateInterface = {
   set: (key, value) => {
     const url = new URL(window.location.href);

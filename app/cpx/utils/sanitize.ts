@@ -1,6 +1,6 @@
 
 /**
- * Sanitize and Unsanitize functions
+ * 
  * 
  */
 
@@ -9,7 +9,13 @@ interface SanitizeInterface {
     css: (str: string) => string;
     js: (str: string) => string;
 }
-
+/**
+ * Sanitize
+ * @description Sanitize strings for use in HTML, CSS, and JavaScript
+ * @example
+ * Sanitize.html('<script>alert("xss")</script>');
+ * --> '&lt;script&gt;alert("xss")&lt;/script&gt;'
+ */
 export const Sanitize: SanitizeInterface = {
     html: function (str) {
         return str.replace(/[&<>"']/g, function (match) {
@@ -38,7 +44,13 @@ interface UnsanitizeInterface {
     css: (str: string) => string;
     js: (str: string) => string;
 }
-
+/**
+ * Unsanitize
+ * @description Unsanitize strings for use in HTML, CSS, and JavaScript
+ * @example
+ * Unsanitize.html('&lt;script&gt;alert("xss")&lt;/script&gt;');
+ * --> '<script>alert("xss")</script>'
+ */
 export const Unsanitize: UnsanitizeInterface = {
 
     html: function (str) {

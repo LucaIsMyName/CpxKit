@@ -11,9 +11,9 @@ export class CpxAccordionTitle extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <div class="accordion-title">
+    <summary class="accordion-title">
         ${this.initialContent}
-    </div>
+    </summary>
         `;
   }
 }

@@ -7,7 +7,16 @@ interface JsonInterface {
   isNotEmpty: (obj: any) => boolean;
   isNull: (obj: any) => boolean;
 }
-
+/**
+ * Json
+ * @description
+ * JSON utility functions
+ * @example
+ * Json.stringify({ key: "value" });
+ * Json.parse('{"key":"value"}');
+ * Json.clone({ key: "value" });
+ * Json.compare({ key: "value" }, { key: "value" });
+ */
 export const Json: JsonInterface = {
   stringify: function (obj) {
     return JSON.stringify(obj);

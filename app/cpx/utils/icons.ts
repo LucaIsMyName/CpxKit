@@ -1,5 +1,10 @@
 /**
  * Icons
+ * @description: This file contains all the icons used in the application.
+ * @example
+ * import { Icon } from "./utils/icons";
+ * const icon = Icon.home;
+ * @returns {string} - The SVG string of the home icon.
  */
 
 import home from "bundle-text:../../assets/icons/home.svg";

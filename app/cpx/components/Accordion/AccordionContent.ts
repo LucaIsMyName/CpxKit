@@ -1,6 +1,6 @@
 import { CpxElement } from "../../element";
 
-export class CpxAccordionItem extends CpxElement {
+export class CpxAccordionContent extends CpxElement {
   constructor() {
     super();
   }
@@ -11,10 +11,10 @@ export class CpxAccordionItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <details class="accordion-item">
+    <div class="accordion-content">
         ${this.initialContent}
-    </details>
+    </div>
         `;
   }
 }
-customElements.define(`accordion-item`, CpxAccordionItem);
+customElements.define(`accordion-content`, CpxAccordionContent);

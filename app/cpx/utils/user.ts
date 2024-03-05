@@ -1,3 +1,6 @@
+/**
+ * User Agent Information
+ */
 export const User = {
     agent: () => navigator.userAgent,
     agentVersion: () => navigator.appVersion,

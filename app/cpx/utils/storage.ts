@@ -12,7 +12,14 @@ export interface StorageInterfaces {
     hasNot: (key: string) => boolean;
   };
 }
-
+/**
+ * Storage
+ * @description
+ * Storage is managed via the LocalStorage and SessionStorage APIs
+ * @example
+ * Storage.Local.set("key", "value");
+ * Storage.Local.get("key");
+ */
 export const Storage: StorageInterfaces = {
   Local: {
     get: (key) => {

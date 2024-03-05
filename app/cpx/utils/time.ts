@@ -1,3 +1,13 @@
+/**
+ * Time
+ * @description Time utility functions
+ * @example
+ * Time.now;
+ * Time.nowIn(-5);
+ * Time.days;
+ * Time.daysShort;
+ * Time.months;
+ */
 export const Time = {
   now: new Date(),
   nowIn: function (timezone: number = 0) {

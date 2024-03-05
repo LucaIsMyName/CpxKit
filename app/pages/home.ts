@@ -1,20 +1,29 @@
 import { Cpx, Config } from "../app";
-
+/**
+ * @class PageHome
+ * @description
+ * This is the home page for the application.
+ * It contains all the core functionality of the home page.
+ * @example
+ * <app-page-home></app-page-home>
+ */
 export class PageHome extends Cpx.Element {
   constructor() {
     super();
+    this.state = Cpx.State;
   }
 
   connectedCallback() {
     this.render();
+    this.addClickHandler();
   }
 
   render() {
     this.innerHTML = `
-            <app-text  text:format=h1 text:weight=bold text:size=6xl text:letter-spacing=0 text:line-height=md text:color=primary>
-                Home Page
-            </app-text>
-            <app-image image:has-overlay="true"></app-image>
+            <div style="text-align:center">
+                <text-paragraph>Home</text-paragraph>
+                <button click:state:set(page,about)>Go to About</button>
+            </div>
         `;
   }
 }

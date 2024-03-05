@@ -5,7 +5,7 @@
  * Geo functions for converting coordinates to location and vice versa.
  */
 
-const API_KEY = "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef";
+const API_KEY = "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"; // !!
 const BASE_URL = "https://api.ipgeolocation.io/ipgeo?";
 
 /**
@@ -29,7 +29,14 @@ interface GeoInterface {
    */
   locationToCoordinates: (city: string, apiKey?: string) => Promise<{ latitude: number; longitude: number }>;
 }
-
+/**
+ * Geo
+ * @description
+ * Geo functions for converting coordinates to location and vice versa.
+ * @example
+ * const city = await Geo.coordinatesToLocation(48.2082, 16.3738);
+ * const coordinates = await Geo.locationToCoordinates("Vienna");
+ */
 export const Geo: GeoInterface = {
   coordinatesToLocation: async function (lat, lon, apiKey = API_KEY) {
     try {
@@ -42,7 +49,7 @@ export const Geo: GeoInterface = {
       return data.city;
     } catch (error) {
       console.error(`Error in coordinatesToLocation(${lat}, ${lon}): ${error}`);
-      return ''; // Return empty string or handle the error as appropriate
+      return ''; 
     }
   },
   

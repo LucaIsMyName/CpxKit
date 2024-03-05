@@ -13,13 +13,21 @@ import { Icon } from "./utils/icons";
 
 // Components
 import { AccordionGroup, AccordionItem, AccordionTitle } from "./components/Accordion/index";
+import { TextParagraph, TextLink } from "./components/Text/index";
+import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tabs/index";
 
-interface CpxTypes {
+export interface CpxInterface {
   Element: typeof Element;
   Components: {
     AccordionGroup: typeof Element;
     AccordionItem: typeof Element;
     AccordionTitle: typeof Element;
+    TextParagraph: typeof Element;
+    TextLink: typeof Element;
+    TabContainer: typeof Element;
+    TabHeader: typeof Element;
+    TabContent: typeof Element;
+    TabToggle: typeof Element;
   };
   define: Function;
   Config: typeof Config;
@@ -32,13 +40,25 @@ interface CpxTypes {
   Json: typeof Json;
   Icon: typeof Icon;
 }
-
+/**
+ * @class Cpx
+ * @description
+ * This is the main class for the Cpx library. 
+ * It contains all the core functionality of the library.
+ */
 const Components = {
   AccordionGroup,
   AccordionItem,
   AccordionTitle,
+  TextParagraph,
+  TextLink,
+  TabContainer,
+  TabHeader,
+  TabContent,
+  TabToggle,
+
 };
-export const Cpx: CpxTypes = {
+export const Cpx: CpxInterface = {
   Element,
   Components,
   define,

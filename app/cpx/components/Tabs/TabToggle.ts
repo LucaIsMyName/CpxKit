@@ -1,6 +1,6 @@
 import { CpxElement } from "../../element";
 
-export class CpxAccordionItem extends CpxElement {
+export class CpxTabToggle extends CpxElement {
   constructor() {
     super();
   }
@@ -11,10 +11,10 @@ export class CpxAccordionItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <details class="accordion-item">
+    <button class="tab-toggle">
         ${this.initialContent}
-    </details>
+    </button>
         `;
   }
 }
-customElements.define(`accordion-item`, CpxAccordionItem);
+customElements.define(`tab-toggle`, CpxTabToggle);
