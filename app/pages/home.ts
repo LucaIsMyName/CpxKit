@@ -22,7 +22,6 @@ export class PageHome extends Cpx.Element {
     this.innerHTML = `
             <div style="text-align:center">
                 <text-paragraph>Home</text-paragraph>
-                <button click:state:set(page,about)>Go to About</button>
             </div>
         `;
   }

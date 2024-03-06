@@ -10,6 +10,18 @@ CpxKit provides a base class to use for crearting Web Components. `Cpx.Element` 
 
 Based on the `Cpx.Element` class, CpxKit comes with a set of predefined headless Webs Components. They provide the functionality but are styele agnostic and easily adaptablle to your needs.
 
+## `Cpx.State`
+
+State-Management is handled via URL-SearchParam API so the State of the Application is Bookmarkable ...
+
+- `Cpx.State.set('key', 'value')`
+- `Cpx.State.get('key')`
+- `Cpx.State.has('key')`
+- `Cpx.State.hasNot('key')`
+- `Cpx.State.delete('key')`
+
+## `Cpx.Storage`
+
 ## Cpx Utilities
 
 Cpx comes with a set of utility functions and helpers for sanitizing (eg. `Cpx.Sanitize.html('<body>')`), get User Parameters, or Store Data into local Storage, ...

@@ -1,7 +1,5 @@
-import { Cpx } from "../../app/app";
-
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   description: string;
   content: string;
@@ -9,20 +7,20 @@ export interface Post {
 
 export const posts: Post[] = [
   {
-    id: "0",
+    id: 0,
     title: "Post 1",
     description: "Post 1 Description",
     content: "Post 1 Content",
   },
   {
-    id: "1",
+    id: 1,
     title: "Post 2",
     description: "Post 2 Description",
     content: "Post 2 Content",
   },
 ];
 
-function byId(id: string): Post | undefined {
+function id(id: number): any {
   return posts.find((post) => post.id === id);
 }
 
@@ -40,26 +38,29 @@ function deleteById(id: string): void {
   posts.splice(index, 1);
 }
 
-function getAll(): Post[] {
+function all(): Post[] {
   return posts;
 }
-function byTitle(title: string): Post[] {
+function title(title: string): Post[] {
   return posts.filter((post) => post.title === title);
 }
-function byDescription(description: string): Post[] {
+function description(description: string): Post[] {
   return posts.filter((post) => post.description === description);
 }
-function byContent(content: string): Post[] {
+function content(content: string): Post[] {
   return posts.filter((post) => post.content === content);
 }
 
-export const post = {
-  byId,
+export const query: Object = {
+  id,
+  all,
+  title,
+  description,
+  content,
+};
+
+export const action: Object = {
   create,
   update,
   deleteById,
-  getAll,
-  byTitle,
-  byDescription,
-  byContent,
 };

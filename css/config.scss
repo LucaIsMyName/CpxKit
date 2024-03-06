@@ -9,6 +9,7 @@ $mediaQueries: (
 );
 
 :root {
+    --0: 0;
     --1: 0.25rem;
     --2: 0.5rem;
     --3: 0.75rem;
@@ -42,6 +43,41 @@ $mediaQueries: (
     --31: 7.75rem;
     --32: 8rem;
 
+    --relative-0: 0;
+    --relative-1: 0.25em;
+    --relative-2: 0.5em;
+    --relative-3: 0.75em;
+    --relative-4: 1em;
+    --relative-5: 1.25em;
+    --relative-6: 1.5em;
+    --relative-7: 1.75em;
+    --relative-8: 2em;
+    --relative-9: 2.25em;
+    --relative-10: 2.5em;
+    --relative-11: 2.75em;
+    --relative-12: 3em;
+    --relative-13: 3.25em;
+    --relative-14: 3.5em;
+    --relative-15: 3.75em;
+    --relative-16: 4em;
+    --relative-17: 4.25em;
+    --relative-18: 4.5em;
+    --relative-19: 4.75em;
+    --relative-20: 5em;
+    --relative-21: 5.25em;
+    --relative-22: 5.5em;
+    --relative-23: 5.75em;
+    --relative-24: 6em;
+    --relative-25: 6.25em;
+    --relative-26: 6.5em;
+    --relative-27: 6.75em;
+    --relative-28: 7em;
+    --relative-29: 7.25em;
+    --relative-30: 7.5em;
+    --relative-31: 7.75em;
+    --relative-32: 8em;
+
+    --size-0: 0;
     --size-1: 1rem;
     --size-2: 2rem;
     --size-3: 3rem;
@@ -75,8 +111,8 @@ $mediaQueries: (
     --size-31: 176rem;
     --size-32: 184rem;
     --size-full: 100%;
-    --size-vh: calc(100dvh - var(--offset, 0));
-    --size-vw: 100vw;
+    --size-vh: calc(100dvh - var(--vh-offset, 0));
+    --size-vw: calc(vw - var(--vw-offset, 0));
     --size-xxs: var(--size-10);
     --size-xs: var(--size-12);
     --size-sm: var(--size-14);
@@ -89,6 +125,13 @@ $mediaQueries: (
     --transition-fast: 0.3s;
     --transition-medium: 0.6s;
     --transition-slow: 0.9s;
+
+    --transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-ease-in: cubic-bezier(0.42, 0, 1, 1);
+    --transition-ease-out: cubic-bezier(0, 0, 0.58, 1);
+    --transition-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    --transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --transition: var(--transition-property, all) var(--transition-duration, var(--transition-fast)) var(--transition-timing-function, ease-in-out);
 
@@ -137,7 +180,9 @@ $mediaQueries: (
     --font-extrabold: 800;
     --font-black: 900;
 
+    --line-height-none: 0;
     --line-height: 1.25;
+    --line-height-xxs: 0.95;
     --line-height-xs: 1;
     --line-height-sm: 1.1;
     --line-height-md: 1.25;
@@ -150,6 +195,16 @@ $mediaQueries: (
     --line-height-6xl: 2;
     --line-height-7xl: 2.25;
     --line-height-8xl: 2.5;
+
+    --letter-spacing-xxs: -0.05em;
+    --letter-spacing-xs: -0.025em;
+    --letter-spacing-sm: 0;
+    --letter-spacing-md: 0.025em;
+    --letter-spacing-lg: 0.05em;
+    --letter-spacing-xl: 0.1em;
+    --letter-spacing-2xl: 0.25em;
+    --letter-spacing-3xl: 0.5em;
+    --letter-spacing-4xl: 1em;
 
     --radius: 0.25rem;
     --radius-xs: 0.125rem;
@@ -169,6 +224,22 @@ $mediaQueries: (
     --radius-12xl: 9rem;
     --radius-round: 100%;
     --radius-pill: 999999px;
+    --radius-relative-xxs: 0.125em;
+    --radius-relative-xs: 0.25em;
+    --radius-relative-sm: 0.5em;
+    --radius-relative-lg: 1em;
+    --radius-relative-xl: 1.5em;
+    --radius-relative-2xl: 2em;
+    --radius-relative-3xl: 3em;
+    --radius-relative-4xl: 4em;
+    --radius-relative-5xl: 5em;
+    --radius-relative-6xl: 6em;
+    --radius-relative-7xl: 7em;
+    --radius-relative-8xl: 8em;
+    --radius-relative-9xl: 9em;
+    --radius-relative-10xl: 10em;
+    --radius-relative-11xl: 11em;
+    --radius-relative-12xl: 12em;
 
     --border-xs: calc(var(--px) * 0.5);
     --border-sm: calc(var(--px) * 0.75);
@@ -202,7 +273,7 @@ $mediaQueries: (
     --z-50: 50;
     --z-100: 100;
     --z-auto: auto;
-    --z-max: 2147483647;
+    --z-max: calc(infinity);
 
     --opacity-0: 0;
     --opacity-25: 0.25;
@@ -228,7 +299,7 @@ $mediaQueries: (
 
     --px: 1.5px;
 
-    --blue: #007bff;
+    --blue: var(--blue-500);
     --blue-100: #cce5ff;
     --blue-200: #b8daff;
     --blue-300: #95c5ff;
@@ -238,7 +309,7 @@ $mediaQueries: (
     --blue-700: #0077e6;
     --blue-800: #0069d9;
     --blue-900: #005cc5;
-    --indigo: #6610f2;
+    --indigo: var(--indigo-500);
     --indigo-100: #e2e3f7;
     --indigo-200: #c4c6ed;
     --indigo-300: #a6a9e2;
@@ -248,7 +319,7 @@ $mediaQueries: (
     --indigo-700: #4d4bc4;
     --indigo-800: #3f3ab3;
     --indigo-900: #2c2c9b;
-    --purple: #6f42c1;
+    --purple: var(--purple-500);
     --purple-100: #eae6f2;
     --purple-200: #d3ccee;
     --purple-300: #bcaed8;
@@ -258,7 +329,7 @@ $mediaQueries: (
     --purple-700: #6b46a9;
     --purple-800: #623a9f;
     --purple-900: #4b288f;
-    --pink: #e83e8c;
+    --pink: var(--pink-500);
     --pink-100: #f7d6e6;
     --pink-200: #f1bdc8;
     --pink-300: #eba4aa;
@@ -268,7 +339,7 @@ $mediaQueries: (
     --pink-700: #d8434e;
     --pink-800: #d33744;
     --pink-900: #c61c32;
-    --red: #dc3545;
+    --red: var(--red-500);
     --red-100: #f7d6db;
     --red-200: #f1bdc3;
     --red-300: #eba4ab;
@@ -278,7 +349,7 @@ $mediaQueries: (
     --red-700: #d8435d;
     --red-800: #d33753;
     --red-900: #c61c3f;
-    --orange: #fd7e14;
+    --orange: var(--orange-500);
     --orange-100: #ffe8d6;
     --orange-200: #ffdcbf;
     --orange-300: #ffcfac;
@@ -288,7 +359,7 @@ $mediaQueries: (
     --orange-700: #ff9a57;
     --orange-800: #ff8c43;
     --orange-900: #ff6f1c;
-    --yellow: #ffc107;
+    --yellow: var(--yellow-500);
     --yellow-100: #fff3cd;
     --yellow-200: #ffecb3;
     --yellow-300: #ffe499;
@@ -298,7 +369,7 @@ $mediaQueries: (
     --yellow-700: #ffc833;
     --yellow-800: #ffc119;
     --yellow-900: #ffba00;
-    --zinc: #2c3e50;
+    --zinc: var(--zinc-500);
     --zinc-100: #eaecee;
     --zinc-200: #d5d8dc;
     --zinc-300: #bfc3c9;
@@ -308,7 +379,7 @@ $mediaQueries: (
     --zinc-700: #677575;
     --zinc-800: #515f5f;
     --zinc-900: #3b4949;
-    --green: #28a745;
+    --green: var(--green-500);
     --green-100: #d6f5d6;
     --green-200: #bfebbf;
     --green-300: #a8e1a8;
@@ -318,7 +389,7 @@ $mediaQueries: (
     --green-700: #50c150;
     --green-800: #3ab83a;
     --green-900: #1f9d1f;
-    --teal: #20c997;
+    --teal: var(--teal-500);
     --teal-100: #d6f5f2;
     --teal-200: #bfebe6;
     --teal-300: #a8e1da;
@@ -328,7 +399,7 @@ $mediaQueries: (
     --teal-700: #50bfaa;
     --teal-800: #3ab59c;
     --teal-900: #1f9d80;
-    --cyan: #17a2b8;
+    --cyan: var(--cyan-500);
     --cyan-100: #d6f5f7;
     --cyan-200: #bfebf0;
     --cyan-300: #a8e1e8;
@@ -338,7 +409,7 @@ $mediaQueries: (
     --cyan-700: #50bfca;
     --cyan-800: #3ab5c2;
     --cyan-900: #1f9dae;
-    --amber: #ffc107;
+    --amber: var(--amber-500);
     --amber-100: #fff3cd;
     --amber-200: #ffecb3;
     --amber-300: #ffe499;
@@ -348,7 +419,7 @@ $mediaQueries: (
     --amber-700: #ffc833;
     --amber-800: #ffc119;
     --amber-900: #ffba00;
-    --emerald: #10b981;
+    --emerald: var(--emerald-500);
     --emerald-100: #d6f5e6;
     --emerald-200: #bfebd1;
     --emerald-300: #a8e1bc;
@@ -358,8 +429,8 @@ $mediaQueries: (
     --emerald-700: #50bf68;
     --emerald-800: #3ab553;
     --emerald-900: #1f9d3f;
-    --oxblood: #6c001f,
-        --oxblood-100: #f7d6e1;
+    --oxblood: var(--oxblood-500);
+    --oxblood-100: #f7d6e1;
     --oxblood-200: #f1bdcb;
     --oxblood-300: #eba4b5;
     --oxblood-400: #e78b9f;
@@ -368,7 +439,7 @@ $mediaQueries: (
     --oxblood-700: #d8435e;
     --oxblood-800: #d33755;
     --oxblood-900: #c61c41;
-    --brown: #795548;
+    --brown: var(--brown-500);
     --brown-100: #f7ebe6;
     --brown-200: #f1dcd1;
     --brown-300: #ebccb9;
@@ -378,7 +449,7 @@ $mediaQueries: (
     --brown-700: #d48f5d;
     --brown-800: #ce8046;
     --brown-900: #c56a2b;
-    --gray-cool: #adb5bd;
+    --gray-cool: var(--gray-cool-500);
     --gray-cool-100: #f8f9fa;
     --gray-cool-200: #e9ecef;
     --gray-cool-300: #dee2e6;
@@ -388,7 +459,7 @@ $mediaQueries: (
     --gray-cool-700: #495057;
     --gray-cool-800: #343a40;
     --gray-cool-900: #212529;
-    --gray-warm: #6c757d;
+    --gray-warm: var(--gray-warm-500);
     --gray-warm-100: #f8f9fa;
     --gray-warm-200: #e9ecef;
     --gray-warm-300: #dee2e6;
@@ -398,7 +469,7 @@ $mediaQueries: (
     --gray-warm-700: #495057;
     --gray-warm-800: #343a40;
     --gray-warm-900: #212529;
-    --rose: #e83e8c;
+    --rose: var(--rose-500);
     --rose-100: #f7d6e6;
     --rose-200: #f1bdc8;
     --rose-300: #eba4aa;
@@ -408,7 +479,7 @@ $mediaQueries: (
     --rose-700: #d8434e;
     --rose-800: #d33744;
     --rose-900: #c61c32;
-    --fuchsia: #d63384;
+    --fuchsia: var(--fuchsia-500);
     --fuchsia-100: #f7d6e6;
     --fuchsia-200: #f1bdc8;
     --fuchsia-300: #eba4aa;
@@ -418,7 +489,7 @@ $mediaQueries: (
     --fuchsia-700: #d8434e;
     --fuchsia-800: #d33744;
     --fuchsia-900: #c61c32;
-    --violet: #8b5cf6;
+    --violet: var(--violet-500);
     --violet-100: #eae6f2;
     --violet-200: #d3ccee;
     --violet-300: #bcaed8;
@@ -428,7 +499,7 @@ $mediaQueries: (
     --violet-700: #6b46a9;
     --violet-800: #623a9f;
     --violet-900: #4b288f;
-    --lime: #a0d911;
+    --lime: var(--lime-500);
     --lime-100: #f0fbeb;
     --lime-200: #e0f7d7;
     --lime-300: #c9f2b4;
@@ -438,7 +509,7 @@ $mediaQueries: (
     --lime-700: #4fb62c;
     --lime-800: #3aa00f;
     --lime-900: #278700;
-    --light-blue: #5bc0de;
+    --light-blue: var(--light-blue-500);
     --light-blue-100: #d6f5f7;
     --light-blue-200: #bfebf0;
     --light-blue-300: #a8e1e8;
@@ -448,7 +519,7 @@ $mediaQueries: (
     --light-blue-700: #50bfca;
     --light-blue-800: #3ab5c2;
     --light-blue-900: #1f9dae;
-    --light-green: #198754;
+    --light-green: var(--light-green-500);
     --light-green-100: #d6f5d6;
     --light-green-200: #bfebbf;
     --light-green-300: #a8e1a8;
@@ -458,7 +529,7 @@ $mediaQueries: (
     --light-green-700: #50c150;
     --light-green-800: #3ab83a;
     --light-green-900: #1f9d1f;
-    --sky: #0dcaf0;
+    --sky: var(--sky-500);
     --sky-100: #d6f5f7;
     --sky-200: #bfebf0;
     --sky-300: #a8e1e8;
@@ -468,7 +539,7 @@ $mediaQueries: (
     --sky-700: #50bfca;
     --sky-800: #3ab5c2;
     --sky-900: #1f9dae;
-    --gray: #6c757d;
+    --gray: var(--gray-500);
     --gray-100: #f8f9fa;
     --gray-200: #e9ecef;
     --gray-300: #dee2e6;
@@ -503,4 +574,18 @@ $mediaQueries: (
     --black-800: rgba(7, 7, 7, 0.8);
     --white-900: rgba(245, 245, 245, 0.9);
     --black-900: rgba(7, 7, 7, 0.9);
+
+    --shade-xxs: rgba(0, 0, 0, 0.01);
+    --shade-xs: rgba(0, 0, 0, 0.025);
+    --shade-sm: rgba(0, 0, 0, 0.05);
+    --shade-md: rgba(0, 0, 0, 0.1);
+    --shade-lg: rgba(0, 0, 0, 0.15);
+    --shade-xl: rgba(0, 0, 0, 0.2);
+
+    --shade-invert-xxs: rgba(255, 255, 255, 0.01);
+    --shade-invert-xs: rgba(255, 255, 255, 0.025);
+    --shade-invert-sm: rgba(255, 255, 255, 0.05);
+    --shade-invert-md: rgba(255, 255, 255, 0.1);
+    --shade-invert-lg: rgba(255, 255, 255, 0.15);
+    --shade-invert-xl: rgba(255, 255, 255, 0.2);
 }

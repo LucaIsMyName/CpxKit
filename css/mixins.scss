@@ -1,0 +1,27 @@
+@mixin button(
+    $font-size: 1,
+    $font-family: "sans",
+    $padding-x: 3,
+    $padding-y: 2,
+    $border-radius: 1,
+    $border-width: 1,
+    $color: "black",
+    $border-color: "gray-300",
+    $background-color: "gray-200",
+) {
+    border-radius: var(--relative-#{$border-radius});
+    border: calc(var(--px) * #{$border-width}) solid var(--#{$border-color});
+    display: inline-block;
+    line-height: 1;
+    text-overflow: ellipsis;
+    max-width:100%;
+    padding: var(--relative-#{$padding-y}) var(--relative-#{$padding-x});
+    background-color: var(--#{$background-color});
+    cursor: pointer;
+    margin: 0;
+    font-size: calc(1em * #{$font-size});
+    font-family: var(--font-#{$font-family});
+    color: var(--#{$color});
+    line-height: 1;
+    text-align: left;
+}

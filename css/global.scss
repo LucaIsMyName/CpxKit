@@ -1,0 +1,43 @@
+.button {
+    @include button;
+
+    &--primary {
+        @include button(1, sans, 3, 2, 1, 1, white, blue-900, blue-500);
+    }
+    &--secondary {
+        @include button(1, sans, 3, 2, 1, 1, white, gray-900, gray-500);
+    }
+    &--tertiary {
+        @include button(1, sans, 3, 2, 1, 1, white, gray-900, gray-200);
+    }
+    &--danger {
+        @include button(1, sans, 3, 2, 1, 1, white, red-900, red-500);
+    }
+    &--warning {
+        @include button(1, sans, 3, 2, 1, 1, white, yellow-900, yellow-500);
+    }
+    &--success {
+        @include button(1, sans, 3, 2, 1, 1, white, green-900, green-500);
+    }
+    &--info {
+        @include button(1, sans, 3, 2, 1, 1, white, blue-900, blue-500);
+    }
+    &--light {
+        @include button(1, sans, 3, 2, 1, 1, black, gray-900, gray-200);
+    }
+    &--dark {
+        @include button(1, sans, 3, 2, 1, 1, white, gray-900, gray-500);
+    }
+    &--link {
+        @include button(1, sans, 3, 2, 1, 1, blue-900, transparent, transparent);
+    }
+    &--outline {
+        @include button(1, sans, 3, 2, 1, 1, blue-900, blue-900, transparent);
+    }
+    &--text {
+        @include button(1, sans, 0, 0, 0, 0, blue-900, transparent, transparent);
+    }
+    &--icon {
+        @include button(1, sans, 0, 0, 0, 0, transparent, transparent, transparent);
+    }
+}

@@ -1,4 +1,5 @@
 import { CpxElement } from "../../element";
+import { Id } from "../../utils/id";
 
 export class CpxTabToggle extends CpxElement {
   constructor() {
@@ -11,7 +12,7 @@ export class CpxTabToggle extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <button class="tab-toggle">
+    <button class="tab-toggle" toggle:id="${Id.Generate.int(4)}" >
         ${this.initialContent}
     </button>
         `;

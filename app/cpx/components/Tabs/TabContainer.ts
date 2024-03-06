@@ -1,4 +1,5 @@
 import { CpxElement } from "../../element";
+import { Id } from "../../utils/id";
 
 export class CpxTabContainer extends CpxElement {
   constructor() {
@@ -11,7 +12,7 @@ export class CpxTabContainer extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <section class="tab-container">
+    <section tab-container:id="${Id.Generate.hex(12)}" class="tab-container">
         ${this.initialContent}
     </section>
         `;

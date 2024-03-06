@@ -7,6 +7,13 @@
  * @returns {string} - The SVG string of the home icon.
  */
 
+export interface IconInterface {
+  [key: string | number]: string | SVGAElement | HTMLElement | Element | Node | Text | null | undefined | void | boolean | number | Function | Object | Symbol | unknown | any;
+}
+
+type Icon = {
+  [key: string]: string;
+};
 import home from "bundle-text:../../assets/icons/home.svg";
 import informationCircle from "bundle-text:../../assets/icons/information-circle.svg";
 import envelope from "bundle-text:../../assets/icons/envelope.svg";
@@ -158,9 +165,6 @@ import xMark from "bundle-text:../../assets/icons/x-mark.svg";
 import share from "bundle-text:../../assets/icons/share.svg";
 
 
-export interface IconInterface {
-  [key: string | number]: string;
-}
 
 export const Icon: IconInterface = {
   home,

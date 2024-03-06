@@ -71,21 +71,11 @@ export class CpxElement extends HTMLElement implements CpxElementType {
    * @param modalisactive
    * @param modalcontent
    */
-  setInitialState(page: String = "home", modalisactive: String = "false", modalcontent: String = "profile") {
+  setInitialState(page: String = "home") {
     if (!this.state.has("page")) {
       document.addEventListener("DOMContentLoaded", () => {
         this.state.delete("page");
         this.state.set("page", page);
-      });
-    }
-    if (!this.state.has("modalisactive")) {
-      document.addEventListener("DOMContentLoaded", () => {
-        this.state.set("modalisactive", modalisactive);
-      });
-    }
-    if (!this.state.has("modalcontent")) {
-      document.addEventListener("DOMContentLoaded", () => {
-        this.state.set("modalcontent", modalcontent);
       });
     }
   }
@@ -97,7 +87,18 @@ export class CpxElement extends HTMLElement implements CpxElementType {
    * It is called when the element with the correct attribute is clicked
    * @param elements
    */
-  addClickHandler(elements: any = "*"): void {
+  addLoadHandler(elements: any = "*"): void {
+    // Load things here when DOM is ready
+  }
+
+  /**
+   * @name addClickHandler
+   * @param elements 
+   * @description
+   * This method adds event listeners to the component.
+   * It is called when the element with the correct attribute is clicked
+   */
+  addClickHandler(elements: string = "*"): void {
     // Get all elements within the component
     const allElements = this.querySelectorAll(elements);
 
@@ -112,27 +113,27 @@ export class CpxElement extends HTMLElement implements CpxElementType {
 
         // Check if the attribute starts with 'click:'
         if (name.startsWith("click:")) {
-          console.log("Attribute:", name, value);
+          // console.log("Attribute:", name, value);
           // Extract the action, target (state or storage), and setter from the attribute name
           const matchResult = name.match(/^click:(state|storage):set\s*\(([^,]+),([^)]+)\)/);
           if (matchResult && matchResult.length === 4) {
             const [, target, key, valueString] = matchResult;
-            console.log("Parts:", target, key, valueString);
+            // console.log("Parts:", target, key, valueString);
             if (target === "state" || target === "storage") {
-              console.log("Processing:", target, key, valueString);
+              // console.log("Processing:", target, key, valueString);
 
               // Add event listener
               element.addEventListener("click", () => {
                 if (target === "state") {
-                  console.log("State Key:", key);
+                  // console.log("State Key:", key);
                   this.state.set(key.trim(), valueString.trim());
                 } else if (target === "storage") {
-                  console.log("Storage Key:", key);
+                  // console.log("Storage Key:", key);
                   this.storage.set(key.trim(), valueString.trim());
                 }
-                const root = document.querySelectorAll("app-root");
+                const root = document.querySelectorAll(`app-root`); // NOt good, cant be sure that root is <app-root> element
                 root.forEach((root: any) => {
-                  root.reRender();
+                  root.render();
                 });
               });
             }

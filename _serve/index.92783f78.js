@@ -586,20 +586,43 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"bXLqa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Config", ()=>(0, _config.Config));
+parcelHelpers.export(exports, "Config", ()=>// Export App & Cpx Global Objects
+    (0, _config.Config));
 parcelHelpers.export(exports, "DB", ()=>(0, _db.DB));
 parcelHelpers.export(exports, "Cpx", ()=>(0, _cpx.Cpx));
-parcelHelpers.export(exports, "ComponentRoot", ()=>(0, _root.ComponentRoot));
-parcelHelpers.export(exports, "PageHome", ()=>(0, _home.PageHome));
+parcelHelpers.export(exports, "ComponentRoot", ()=>// Export Components
+    (0, _root.ComponentRoot));
+parcelHelpers.export(exports, "ComponentNav", ()=>(0, _nav.ComponentNav));
+parcelHelpers.export(exports, "PageHome", ()=>// Export Pages
+    (0, _home.PageHome));
 parcelHelpers.export(exports, "PageAbout", ()=>(0, _about.PageAbout));
 var _config = require("./config");
 var _cpx = require("./cpx");
 var _db = require("../db/db");
+// Components
 var _root = require("./components/Root/Root");
+var _nav = require("./components/Nav/Nav");
+// Pages
 var _home = require("./pages/home");
 var _about = require("./pages/about");
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"6Z2L1","./cpx":"dMUol","./components/Root/Root":"jFDNf","../db/db":"bjCHj","./pages/home":"jILT7","./pages/about":"faVIF"}],"gkKU3":[function(require,module,exports) {
+},{"./config":"6Z2L1","./cpx":"dMUol","../db/db":"bjCHj","./components/Root/Root":"jFDNf","./components/Nav/Nav":"13T9Y","./pages/home":"jILT7","./pages/about":"faVIF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6Z2L1":[function(require,module,exports) {
+/**
+ * @file config.ts
+ * @description
+ * This file contains the configuration for the application
+ * @example
+ * import { Config } from "./config";
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Config", ()=>Config);
+const Config = {
+    name: "app",
+    version: "0.0.1",
+    prefix: "app"
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -629,23 +652,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"6Z2L1":[function(require,module,exports) {
-/**
- * @file config.ts
- * @description
- * This file contains the configuration for the application
- * @example
- * import { Config } from "./config";
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Config", ()=>Config);
-const Config = {
-    name: "app",
-    version: "0.0.1",
-    prefix: "app"
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dMUol":[function(require,module,exports) {
+},{}],"dMUol":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Cpx", ()=>Cpx);
@@ -660,29 +667,46 @@ var _sanitize = require("./utils/sanitize");
 var _time = require("./utils/time");
 var _json = require("./utils/json");
 var _icons = require("./utils/icons");
-// Components
+var _id = require("./utils/id");
+// Cpx Utility Components
 var _index = require("./components/Accordion/index");
-var _index1 = require("./components/Text/index");
-var _index2 = require("./components/Tabs/index");
+var _index1 = require("./components/Audio/index");
+var _dropDown = require("./components/DropDown");
+var _index2 = require("./components/Text/index");
+var _index3 = require("./components/Tabs/index");
 /**
  * @class Cpx
  * @description
- * This is the main class for the Cpx library. 
+ * This is the main class for the Cpx library.
  * It contains all the core functionality of the library.
  */ const Components = {
-    AccordionGroup: (0, _index.AccordionGroup),
+    AccordionGroup: // Accordion
+    (0, _index.AccordionGroup),
     AccordionItem: (0, _index.AccordionItem),
-    AccordionTitle: (0, _index.AccordionTitle),
-    TextParagraph: (0, _index1.TextParagraph),
-    TextLink: (0, _index1.TextLink),
-    TabContainer: (0, _index2.TabContainer),
-    TabHeader: (0, _index2.TabHeader),
-    TabContent: (0, _index2.TabContent),
-    TabToggle: (0, _index2.TabToggle)
+    AudioPlayer: // Audio
+    (0, _index1.AudioPlayer),
+    AudioCurrent: (0, _index1.AudioCurrent),
+    AudioPlaylist: (0, _index1.AudioPlaylist),
+    AudioControls: (0, _index1.AudioControls),
+    AudioControl: (0, _index1.AudioControl),
+    DropDown: // DropDown
+    (0, _dropDown.DropDown),
+    TextParagraph: // Text
+    (0, _index2.TextParagraph),
+    TextLink: (0, _index2.TextLink),
+    TabContainer: // Tab
+    (0, _index3.TabContainer),
+    TabHeader: (0, _index3.TabHeader),
+    TabContent: (0, _index3.TabContent),
+    TabToggle: (0, _index3.TabToggle)
+};
+const Functions = {
+    runAudio: (0, _index1.runAudio)
 };
 const Cpx = {
     Element: (0, _element.CpxElement),
     Components,
+    Functions,
     define: (0, _element1.define),
     Config: (0, _config.Config),
     State: // PlugIns & Utilities
@@ -692,10 +716,11 @@ const Cpx = {
     Sanitize: (0, _sanitize.Sanitize),
     Time: (0, _time.Time),
     Json: (0, _json.Json),
-    Icon: (0, _icons.Icon)
+    Icon: (0, _icons.Icon),
+    Id: (0, _id.Id)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./components/Accordion/index":"fVDc8","./components/Text/index":"6N7g9","./components/Tabs/index":"bNH0i"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./components/Accordion/index":"fVDc8","./components/Text/index":"6N7g9","./components/Tabs/index":"bNH0i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Audio/index":"4F7iZ","./components/DropDown":"8vhOB"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -745,16 +770,10 @@ class CpxElement extends HTMLElement {
    * @param page
    * @param modalisactive
    * @param modalcontent
-   */ setInitialState(page = "home", modalisactive = "false", modalcontent = "profile") {
+   */ setInitialState(page = "home") {
         if (!this.state.has("page")) document.addEventListener("DOMContentLoaded", ()=>{
             this.state.delete("page");
             this.state.set("page", page);
-        });
-        if (!this.state.has("modalisactive")) document.addEventListener("DOMContentLoaded", ()=>{
-            this.state.set("modalisactive", modalisactive);
-        });
-        if (!this.state.has("modalcontent")) document.addEventListener("DOMContentLoaded", ()=>{
-            this.state.set("modalcontent", modalcontent);
         });
     }
     /**
@@ -763,6 +782,15 @@ class CpxElement extends HTMLElement {
    * This method adds event listeners to the component.
    * It is called when the element with the correct attribute is clicked
    * @param elements
+   */ addLoadHandler(elements = "*") {
+    // Load things here when DOM is ready
+    }
+    /**
+   * @name addClickHandler
+   * @param elements 
+   * @description
+   * This method adds event listeners to the component.
+   * It is called when the element with the correct attribute is clicked
    */ addClickHandler(elements = "*") {
         // Get all elements within the component
         const allElements = this.querySelectorAll(elements);
@@ -775,29 +803,24 @@ class CpxElement extends HTMLElement {
                 const { name, value } = attribute;
                 // Check if the attribute starts with 'click:'
                 if (name.startsWith("click:")) {
-                    console.log("Attribute:", name, value);
+                    // console.log("Attribute:", name, value);
                     // Extract the action, target (state or storage), and setter from the attribute name
                     const matchResult = name.match(/^click:(state|storage):set\s*\(([^,]+),([^)]+)\)/);
                     if (matchResult && matchResult.length === 4) {
                         const [, target, key, valueString] = matchResult;
-                        console.log("Parts:", target, key, valueString);
-                        if (target === "state" || target === "storage") {
-                            console.log("Processing:", target, key, valueString);
-                            // Add event listener
-                            element.addEventListener("click", ()=>{
-                                if (target === "state") {
-                                    console.log("State Key:", key);
-                                    this.state.set(key.trim(), valueString.trim());
-                                } else if (target === "storage") {
-                                    console.log("Storage Key:", key);
-                                    this.storage.set(key.trim(), valueString.trim());
-                                }
-                                const root = document.querySelectorAll("app-root");
-                                root.forEach((root)=>{
-                                    root.reRender();
-                                });
+                        // console.log("Parts:", target, key, valueString);
+                        if (target === "state" || target === "storage") // console.log("Processing:", target, key, valueString);
+                        // Add event listener
+                        element.addEventListener("click", ()=>{
+                            if (target === "state") // console.log("State Key:", key);
+                            this.state.set(key.trim(), valueString.trim());
+                            else if (target === "storage") // console.log("Storage Key:", key);
+                            this.storage.set(key.trim(), valueString.trim());
+                            const root = document.querySelectorAll(`app-root`); // NOt good, cant be sure that root is <app-root> element
+                            root.forEach((root)=>{
+                                root.render();
                             });
-                        }
+                        });
                     }
                 }
             });
@@ -813,7 +836,7 @@ class CpxElement extends HTMLElement {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/state":"eqXTg","./utils/storage":"hcLcL"}],"eqXTg":[function(require,module,exports) {
+},{"./utils/state":"eqXTg","./utils/storage":"hcLcL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eqXTg":[function(require,module,exports) {
 /**
  * State is managed via the URL SearchParams API
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1572,7 +1595,10 @@ const Icon = {
     funnel: (0, _funnelSvgDefault.default)
 };
 
-},{"bundle-text:../../assets/icons/information-circle.svg":"3dz4R","bundle-text:../../assets/icons/envelope.svg":"g7qxJ","bundle-text:../../assets/icons/user-circle.svg":"jEIlT","bundle-text:../../assets/icons/user.svg":"DXmAU","bundle-text:../../assets/icons/academic-cap.svg":"iL6Ej","bundle-text:../../assets/icons/book-open.svg":"3zhvH","bundle-text:../../assets/icons/briefcase.svg":"6dHeA","bundle-text:../../assets/icons/chart-bar.svg":"3012f","bundle-text:../../assets/icons/clipboard.svg":"9Za9l","bundle-text:../../assets/icons/code-bracket.svg":"hBgHx","bundle-text:../../assets/icons/cog.svg":"ieGub","bundle-text:../../assets/icons/circle-stack.svg":"c0NuT","bundle-text:../../assets/icons/cube.svg":"ga0r8","bundle-text:../../assets/icons/banknotes.svg":"eD2Jw","bundle-text:../../assets/icons/currency-dollar.svg":"8k5B3","bundle-text:../../assets/icons/currency-euro.svg":"eWTyp","bundle-text:../../assets/icons/currency-pound.svg":"hWJz8","bundle-text:../../assets/icons/currency-rupee.svg":"7OZV0","bundle-text:../../assets/icons/currency-yen.svg":"bEKCv","bundle-text:../../assets/icons/computer-desktop.svg":"djCzr","bundle-text:../../assets/icons/document-text.svg":"inkGj","bundle-text:../../assets/icons/exclamation-circle.svg":"aLypg","bundle-text:../../assets/icons/exclamation-triangle.svg":"4WdhA","bundle-text:../../assets/icons/shield-exclamation.svg":"gF9YE","bundle-text:../../assets/icons/arrow-down-tray.svg":"ddn9B","bundle-text:../../assets/icons/eye.svg":"4aLTY","bundle-text:../../assets/icons/arrow-down.svg":"d7hRc","bundle-text:../../assets/icons/arrow-left.svg":"7hsF0","bundle-text:../../assets/icons/arrow-right.svg":"iutL5","bundle-text:../../assets/icons/arrow-up.svg":"iqQr4","bundle-text:../../assets/icons/arrow-down-right.svg":"3No3s","bundle-text:../../assets/icons/arrow-down-left.svg":"h8SeD","bundle-text:../../assets/icons/arrow-up-right.svg":"gTLd1","bundle-text:../../assets/icons/arrow-up-left.svg":"kRFMc","bundle-text:../../assets/icons/arrow-long-down.svg":"9LjqB","bundle-text:../../assets/icons/arrow-long-left.svg":"hUtrL","bundle-text:../../assets/icons/arrow-long-right.svg":"klE0j","bundle-text:../../assets/icons/arrow-long-up.svg":"h2RYe","bundle-text:../../assets/icons/arrow-uturn-left.svg":"jy1rB","bundle-text:../../assets/icons/arrow-uturn-right.svg":"Ztpsz","bundle-text:../../assets/icons/arrow-uturn-up.svg":"2fl0Y","bundle-text:../../assets/icons/arrow-uturn-down.svg":"j8Tbp","bundle-text:../../assets/icons/chevron-down.svg":"hjdyT","bundle-text:../../assets/icons/chevron-left.svg":"iM9b0","bundle-text:../../assets/icons/chevron-right.svg":"ftfYC","bundle-text:../../assets/icons/chevron-up.svg":"dZbFg","bundle-text:../../assets/icons/chevron-double-down.svg":"igFlu","bundle-text:../../assets/icons/chevron-double-left.svg":"eAcQW","bundle-text:../../assets/icons/chevron-double-right.svg":"873nd","bundle-text:../../assets/icons/chevron-double-up.svg":"knGZx","bundle-text:../../assets/icons/cloud-arrow-down.svg":"26wWn","bundle-text:../../assets/icons/cloud-arrow-up.svg":"c0qyG","bundle-text:../../assets/icons/folder.svg":"dahEh","bundle-text:../../assets/icons/folder-open.svg":"eRY3l","bundle-text:../../assets/icons/folder-plus.svg":"2tcME","bundle-text:../../assets/icons/folder-minus.svg":"ktKpM","bundle-text:../../assets/icons/folder-arrow-down.svg":"aXI6g","bundle-text:../../assets/icons/adjustments-horizontal.svg":"kAHNq","bundle-text:../../assets/icons/adjustments-vertical.svg":"5l5jf","bundle-text:../../assets/icons/archive-box.svg":"h9g7d","bundle-text:../../assets/icons/archive-box-x-mark.svg":"aB34H","bundle-text:../../assets/icons/archive-box-arrow-down.svg":"bJMOX","bundle-text:../../assets/icons/bars-2.svg":"8dyG5","bundle-text:../../assets/icons/bars-3.svg":"4ZH5n","bundle-text:../../assets/icons/bars-4.svg":"ch2Wi","bundle-text:../../assets/icons/bars-3-bottom-left.svg":"mQpN4","bundle-text:../../assets/icons/bars-3-bottom-right.svg":"h4vtT","bundle-text:../../assets/icons/bars-3-center-left.svg":"deq5I","bundle-text:../../assets/icons/bars-arrow-up.svg":"kRPr8","bundle-text:../../assets/icons/bars-arrow-down.svg":"bdh17","bundle-text:../../assets/icons/bell.svg":"i7ptK","bundle-text:../../assets/icons/bell-alert.svg":"2egdz","bundle-text:../../assets/icons/bell-snooze.svg":"jhypF","bundle-text:../../assets/icons/bell-slash.svg":"bps8X","bundle-text:../../assets/icons/bolt.svg":"iyh73","bundle-text:../../assets/icons/bolt-slash.svg":"bHQxt","bundle-text:../../assets/icons/bookmark.svg":"1BQub","bundle-text:../../assets/icons/bookmark-square.svg":"78IVk","bundle-text:../../assets/icons/building-library.svg":"j1A1n","bundle-text:../../assets/icons/building-office.svg":"eIfeM","bundle-text:../../assets/icons/building-office-2.svg":"dJsdy","bundle-text:../../assets/icons/building-storefront.svg":"5pdnM","bundle-text:../../assets/icons/camera.svg":"iKsU7","bundle-text:../../assets/icons/calendar.svg":"lFDhx","bundle-text:../../assets/icons/clock.svg":"jreCI","bundle-text:../../assets/icons/credit-card.svg":"2JczD","bundle-text:../../assets/icons/shopping-cart.svg":"eT5u0","bundle-text:../../assets/icons/chart-bar-square.svg":"8EB4A","bundle-text:../../assets/icons/chart-pie.svg":"9w1Ez","bundle-text:../../assets/icons/chat-bubble-bottom-center-text.svg":"8tYFk","bundle-text:../../assets/icons/chat-bubble-bottom-center.svg":"jDUR1","bundle-text:../../assets/icons/chat-bubble-left-ellipsis.svg":"fjMa7","bundle-text:../../assets/icons/chat-bubble-oval-left.svg":"4m7Fe","bundle-text:../../assets/icons/chat-bubble-oval-left-ellipsis.svg":"f2rDc","bundle-text:../../assets/icons/face-smile.svg":"e2GEP","bundle-text:../../assets/icons/face-frown.svg":"gRPrB","bundle-text:../../assets/icons/fire.svg":"2kSPX","bundle-text:../../assets/icons/film.svg":"3LF91","bundle-text:../../assets/icons/flag.svg":"3h2EC","bundle-text:../../assets/icons/globe-alt.svg":"hQC04","bundle-text:../../assets/icons/globe-americas.svg":"2oLqV","bundle-text:../../assets/icons/globe-europe-africa.svg":"cA7uw","bundle-text:../../assets/icons/globe-asia-australia.svg":"c5pGC","bundle-text:../../assets/icons/hand-raised.svg":"931wA","bundle-text:../../assets/icons/hand-thumb-down.svg":"i5F8P","bundle-text:../../assets/icons/hand-thumb-up.svg":"dwDsP","bundle-text:../../assets/icons/hashtag.svg":"axa9o","bundle-text:../../assets/icons/heart.svg":"l3NCU","bundle-text:../../assets/icons/identification.svg":"freGQ","bundle-text:../../assets/icons/inbox.svg":"hxyyx","bundle-text:../../assets/icons/inbox-arrow-down.svg":"lB6If","bundle-text:../../assets/icons/inbox-stack.svg":"eCq7W","bundle-text:../../assets/icons/key.svg":"6ss1a","bundle-text:../../assets/icons/language.svg":"dZi5m","bundle-text:../../assets/icons/light-bulb.svg":"bMK7v","bundle-text:../../assets/icons/link.svg":"isIgL","bundle-text:../../assets/icons/list-bullet.svg":"j3iAc","bundle-text:../../assets/icons/lock-closed.svg":"lQ9s6","bundle-text:../../assets/icons/lock-open.svg":"e8GV5","bundle-text:../../assets/icons/magnifying-glass-minus.svg":"7AReM","bundle-text:../../assets/icons/magnifying-glass-plus.svg":"k4yNb","bundle-text:../../assets/icons/magnifying-glass.svg":"5cZvL","bundle-text:../../assets/icons/map-pin.svg":"l1Gm3","bundle-text:../../assets/icons/map.svg":"idhSu","bundle-text:../../assets/icons/megaphone.svg":"4776E","bundle-text:../../assets/icons/microphone.svg":"kTVle","bundle-text:../../assets/icons/moon.svg":"301q0","bundle-text:../../assets/icons/newspaper.svg":"c1wDk","bundle-text:../../assets/icons/no-symbol.svg":"7AC0t","bundle-text:../../assets/icons/paper-airplane.svg":"dMc4J","bundle-text:../../assets/icons/paper-clip.svg":"9aFwu","bundle-text:../../assets/icons/pencil.svg":"cRH1U","bundle-text:../../assets/icons/pencil-square.svg":"8ut5b","bundle-text:../../assets/icons/phone.svg":"9Zx5v","bundle-text:../../assets/icons/phone-arrow-down-left.svg":"eXlPH","bundle-text:../../assets/icons/phone-arrow-up-right.svg":"l3WYE","bundle-text:../../assets/icons/plus.svg":"liadF","bundle-text:../../assets/icons/plus-circle.svg":"9Mlei","bundle-text:../../assets/icons/minus.svg":"65Z0p","bundle-text:../../assets/icons/minus-circle.svg":"2Z4AB","bundle-text:../../assets/icons/queue-list.svg":"7zzGl","bundle-text:../../assets/icons/view-columns.svg":"hDZyi","bundle-text:../../assets/icons/question-mark-circle.svg":"8Tbgz","bundle-text:../../assets/icons/rocket-launch.svg":"hYs18","bundle-text:../../assets/icons/scale.svg":"amZek","bundle-text:../../assets/icons/funnel.svg":"4TUiK","bundle-text:../../assets/icons/x-mark.svg":"9N1yE","bundle-text:../../assets/icons/share.svg":"6IMvY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","bundle-text:../../assets/icons/home.svg":"iQb5W"}],"3dz4R":[function(require,module,exports) {
+},{"bundle-text:../../assets/icons/home.svg":"iQb5W","bundle-text:../../assets/icons/information-circle.svg":"3dz4R","bundle-text:../../assets/icons/envelope.svg":"g7qxJ","bundle-text:../../assets/icons/user-circle.svg":"jEIlT","bundle-text:../../assets/icons/user.svg":"DXmAU","bundle-text:../../assets/icons/academic-cap.svg":"iL6Ej","bundle-text:../../assets/icons/book-open.svg":"3zhvH","bundle-text:../../assets/icons/briefcase.svg":"6dHeA","bundle-text:../../assets/icons/chart-bar.svg":"3012f","bundle-text:../../assets/icons/clipboard.svg":"9Za9l","bundle-text:../../assets/icons/code-bracket.svg":"hBgHx","bundle-text:../../assets/icons/cog.svg":"ieGub","bundle-text:../../assets/icons/circle-stack.svg":"c0NuT","bundle-text:../../assets/icons/cube.svg":"ga0r8","bundle-text:../../assets/icons/banknotes.svg":"eD2Jw","bundle-text:../../assets/icons/currency-dollar.svg":"8k5B3","bundle-text:../../assets/icons/currency-euro.svg":"eWTyp","bundle-text:../../assets/icons/currency-pound.svg":"hWJz8","bundle-text:../../assets/icons/currency-rupee.svg":"7OZV0","bundle-text:../../assets/icons/currency-yen.svg":"bEKCv","bundle-text:../../assets/icons/computer-desktop.svg":"djCzr","bundle-text:../../assets/icons/document-text.svg":"inkGj","bundle-text:../../assets/icons/exclamation-circle.svg":"aLypg","bundle-text:../../assets/icons/exclamation-triangle.svg":"4WdhA","bundle-text:../../assets/icons/shield-exclamation.svg":"gF9YE","bundle-text:../../assets/icons/arrow-down-tray.svg":"ddn9B","bundle-text:../../assets/icons/eye.svg":"4aLTY","bundle-text:../../assets/icons/arrow-down.svg":"d7hRc","bundle-text:../../assets/icons/arrow-left.svg":"7hsF0","bundle-text:../../assets/icons/arrow-right.svg":"iutL5","bundle-text:../../assets/icons/arrow-up.svg":"iqQr4","bundle-text:../../assets/icons/arrow-down-right.svg":"3No3s","bundle-text:../../assets/icons/arrow-down-left.svg":"h8SeD","bundle-text:../../assets/icons/arrow-up-right.svg":"gTLd1","bundle-text:../../assets/icons/arrow-up-left.svg":"kRFMc","bundle-text:../../assets/icons/arrow-long-down.svg":"9LjqB","bundle-text:../../assets/icons/arrow-long-left.svg":"hUtrL","bundle-text:../../assets/icons/arrow-long-right.svg":"klE0j","bundle-text:../../assets/icons/arrow-long-up.svg":"h2RYe","bundle-text:../../assets/icons/arrow-uturn-left.svg":"jy1rB","bundle-text:../../assets/icons/arrow-uturn-right.svg":"Ztpsz","bundle-text:../../assets/icons/arrow-uturn-up.svg":"2fl0Y","bundle-text:../../assets/icons/arrow-uturn-down.svg":"j8Tbp","bundle-text:../../assets/icons/chevron-down.svg":"hjdyT","bundle-text:../../assets/icons/chevron-left.svg":"iM9b0","bundle-text:../../assets/icons/chevron-right.svg":"ftfYC","bundle-text:../../assets/icons/chevron-up.svg":"dZbFg","bundle-text:../../assets/icons/chevron-double-down.svg":"igFlu","bundle-text:../../assets/icons/chevron-double-left.svg":"eAcQW","bundle-text:../../assets/icons/chevron-double-right.svg":"873nd","bundle-text:../../assets/icons/chevron-double-up.svg":"knGZx","bundle-text:../../assets/icons/cloud-arrow-down.svg":"26wWn","bundle-text:../../assets/icons/cloud-arrow-up.svg":"c0qyG","bundle-text:../../assets/icons/folder.svg":"dahEh","bundle-text:../../assets/icons/folder-open.svg":"eRY3l","bundle-text:../../assets/icons/folder-plus.svg":"2tcME","bundle-text:../../assets/icons/folder-minus.svg":"ktKpM","bundle-text:../../assets/icons/folder-arrow-down.svg":"aXI6g","bundle-text:../../assets/icons/adjustments-horizontal.svg":"kAHNq","bundle-text:../../assets/icons/adjustments-vertical.svg":"5l5jf","bundle-text:../../assets/icons/archive-box.svg":"h9g7d","bundle-text:../../assets/icons/archive-box-x-mark.svg":"aB34H","bundle-text:../../assets/icons/archive-box-arrow-down.svg":"bJMOX","bundle-text:../../assets/icons/bars-2.svg":"8dyG5","bundle-text:../../assets/icons/bars-3.svg":"4ZH5n","bundle-text:../../assets/icons/bars-4.svg":"ch2Wi","bundle-text:../../assets/icons/bars-3-bottom-left.svg":"mQpN4","bundle-text:../../assets/icons/bars-3-bottom-right.svg":"h4vtT","bundle-text:../../assets/icons/bars-3-center-left.svg":"deq5I","bundle-text:../../assets/icons/bars-arrow-up.svg":"kRPr8","bundle-text:../../assets/icons/bars-arrow-down.svg":"bdh17","bundle-text:../../assets/icons/bell.svg":"i7ptK","bundle-text:../../assets/icons/bell-alert.svg":"2egdz","bundle-text:../../assets/icons/bell-snooze.svg":"jhypF","bundle-text:../../assets/icons/bell-slash.svg":"bps8X","bundle-text:../../assets/icons/bolt.svg":"iyh73","bundle-text:../../assets/icons/bolt-slash.svg":"bHQxt","bundle-text:../../assets/icons/bookmark.svg":"1BQub","bundle-text:../../assets/icons/bookmark-square.svg":"78IVk","bundle-text:../../assets/icons/building-library.svg":"j1A1n","bundle-text:../../assets/icons/building-office.svg":"eIfeM","bundle-text:../../assets/icons/building-office-2.svg":"dJsdy","bundle-text:../../assets/icons/building-storefront.svg":"5pdnM","bundle-text:../../assets/icons/camera.svg":"iKsU7","bundle-text:../../assets/icons/calendar.svg":"lFDhx","bundle-text:../../assets/icons/clock.svg":"jreCI","bundle-text:../../assets/icons/credit-card.svg":"2JczD","bundle-text:../../assets/icons/shopping-cart.svg":"eT5u0","bundle-text:../../assets/icons/chart-bar-square.svg":"8EB4A","bundle-text:../../assets/icons/chart-pie.svg":"9w1Ez","bundle-text:../../assets/icons/chat-bubble-bottom-center-text.svg":"8tYFk","bundle-text:../../assets/icons/chat-bubble-bottom-center.svg":"jDUR1","bundle-text:../../assets/icons/chat-bubble-left-ellipsis.svg":"fjMa7","bundle-text:../../assets/icons/chat-bubble-oval-left.svg":"4m7Fe","bundle-text:../../assets/icons/chat-bubble-oval-left-ellipsis.svg":"f2rDc","bundle-text:../../assets/icons/face-smile.svg":"e2GEP","bundle-text:../../assets/icons/face-frown.svg":"gRPrB","bundle-text:../../assets/icons/fire.svg":"2kSPX","bundle-text:../../assets/icons/film.svg":"3LF91","bundle-text:../../assets/icons/flag.svg":"3h2EC","bundle-text:../../assets/icons/globe-alt.svg":"hQC04","bundle-text:../../assets/icons/globe-americas.svg":"2oLqV","bundle-text:../../assets/icons/globe-europe-africa.svg":"cA7uw","bundle-text:../../assets/icons/globe-asia-australia.svg":"c5pGC","bundle-text:../../assets/icons/hand-raised.svg":"931wA","bundle-text:../../assets/icons/hand-thumb-down.svg":"i5F8P","bundle-text:../../assets/icons/hand-thumb-up.svg":"dwDsP","bundle-text:../../assets/icons/hashtag.svg":"axa9o","bundle-text:../../assets/icons/heart.svg":"l3NCU","bundle-text:../../assets/icons/identification.svg":"freGQ","bundle-text:../../assets/icons/inbox.svg":"hxyyx","bundle-text:../../assets/icons/inbox-arrow-down.svg":"lB6If","bundle-text:../../assets/icons/inbox-stack.svg":"eCq7W","bundle-text:../../assets/icons/key.svg":"6ss1a","bundle-text:../../assets/icons/language.svg":"dZi5m","bundle-text:../../assets/icons/light-bulb.svg":"bMK7v","bundle-text:../../assets/icons/link.svg":"isIgL","bundle-text:../../assets/icons/list-bullet.svg":"j3iAc","bundle-text:../../assets/icons/lock-closed.svg":"lQ9s6","bundle-text:../../assets/icons/lock-open.svg":"e8GV5","bundle-text:../../assets/icons/magnifying-glass-minus.svg":"7AReM","bundle-text:../../assets/icons/magnifying-glass-plus.svg":"k4yNb","bundle-text:../../assets/icons/magnifying-glass.svg":"5cZvL","bundle-text:../../assets/icons/map-pin.svg":"l1Gm3","bundle-text:../../assets/icons/map.svg":"idhSu","bundle-text:../../assets/icons/megaphone.svg":"4776E","bundle-text:../../assets/icons/microphone.svg":"kTVle","bundle-text:../../assets/icons/moon.svg":"301q0","bundle-text:../../assets/icons/newspaper.svg":"c1wDk","bundle-text:../../assets/icons/no-symbol.svg":"7AC0t","bundle-text:../../assets/icons/paper-airplane.svg":"dMc4J","bundle-text:../../assets/icons/paper-clip.svg":"9aFwu","bundle-text:../../assets/icons/pencil.svg":"cRH1U","bundle-text:../../assets/icons/pencil-square.svg":"8ut5b","bundle-text:../../assets/icons/phone.svg":"9Zx5v","bundle-text:../../assets/icons/phone-arrow-down-left.svg":"eXlPH","bundle-text:../../assets/icons/phone-arrow-up-right.svg":"l3WYE","bundle-text:../../assets/icons/plus.svg":"liadF","bundle-text:../../assets/icons/plus-circle.svg":"9Mlei","bundle-text:../../assets/icons/minus.svg":"65Z0p","bundle-text:../../assets/icons/minus-circle.svg":"2Z4AB","bundle-text:../../assets/icons/queue-list.svg":"7zzGl","bundle-text:../../assets/icons/view-columns.svg":"hDZyi","bundle-text:../../assets/icons/question-mark-circle.svg":"8Tbgz","bundle-text:../../assets/icons/rocket-launch.svg":"hYs18","bundle-text:../../assets/icons/scale.svg":"amZek","bundle-text:../../assets/icons/funnel.svg":"4TUiK","bundle-text:../../assets/icons/x-mark.svg":"9N1yE","bundle-text:../../assets/icons/share.svg":"6IMvY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iQb5W":[function(require,module,exports) {
+module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.25 12L11.2045 3.04549C11.6438 2.60615 12.3562 2.60615 12.7955 3.04549L21.75 12M4.5 9.75V19.875C4.5 20.4963 5.00368 21 5.625 21H9.75V16.125C9.75 15.5037 10.2537 15 10.875 15H13.125C13.7463 15 14.25 15.5037 14.25 16.125V21H18.375C18.9963 21 19.5 20.4963 19.5 19.875V9.75M8.25 21H16.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>\n";
+
+},{}],"3dz4R":[function(require,module,exports) {
 module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M11.25 11.25L11.2915 11.2293C11.8646 10.9427 12.5099 11.4603 12.3545 12.082L11.6455 14.918C11.4901 15.5397 12.1354 16.0573 12.7085 15.7707L12.75 15.75M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM12 8.25H12.0075V8.2575H12V8.25Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>\n";
 
 },{}],"g7qxJ":[function(require,module,exports) {
@@ -2016,86 +2042,129 @@ module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill
 },{}],"6IMvY":[function(require,module,exports) {
 module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.21721 10.9071C6.83295 10.2169 6.096 9.75 5.25 9.75C4.00736 9.75 3 10.7574 3 12C3 13.2426 4.00736 14.25 5.25 14.25C6.096 14.25 6.83295 13.7831 7.21721 13.0929M7.21721 10.9071C7.39737 11.2307 7.5 11.6034 7.5 12C7.5 12.3966 7.39737 12.7693 7.21721 13.0929M7.21721 10.9071L16.7828 5.5929M7.21721 13.0929L16.7828 18.4071M16.7828 18.4071C16.6026 18.7307 16.5 19.1034 16.5 19.5C16.5 20.7426 17.5074 21.75 18.75 21.75C19.9926 21.75 21 20.7426 21 19.5C21 18.2574 19.9926 17.25 18.75 17.25C17.904 17.25 17.1671 17.7169 16.7828 18.4071ZM16.7828 5.5929C17.1671 6.28309 17.904 6.75 18.75 6.75C19.9926 6.75 21 5.74264 21 4.5C21 3.25736 19.9926 2.25 18.75 2.25C17.5074 2.25 16.5 3.25736 16.5 4.5C16.5 4.89664 16.6026 5.26931 16.7828 5.5929Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>\n";
 
-},{}],"iQb5W":[function(require,module,exports) {
-module.exports = "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.25 12L11.2045 3.04549C11.6438 2.60615 12.3562 2.60615 12.7955 3.04549L21.75 12M4.5 9.75V19.875C4.5 20.4963 5.00368 21 5.625 21H9.75V16.125C9.75 15.5037 10.2537 15 10.875 15H13.125C13.7463 15 14.25 15.5037 14.25 16.125V21H18.375C18.9963 21 19.5 20.4963 19.5 19.875V9.75M8.25 21H16.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>\n";
+},{}],"UhlEf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Id", ()=>Id);
+function makeId(characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", length = 5) {
+    let result = "";
+    let actualLength = length;
+    const char = characters;
+    for(let i = 0; i < actualLength; i++)result += char.charAt(Math.floor(Math.random() * characters.length));
+    return result;
+}
+const Id = {
+    Generate: {
+        int: (length)=>{
+            const characters = "0123456789";
+            return makeId(characters, length);
+        },
+        hex: (length)=>{
+            const characters = "0123456789abcdef";
+            return makeId(characters, length);
+        },
+        alphanumeric: (length)=>{
+            const characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            return makeId(characters, length);
+        },
+        random: (length)=>{
+            const characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+";
+            return makeId(characters, Math.floor(Math.random() * length));
+        }
+    }
+};
 
-},{}],"fVDc8":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fVDc8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AccordionGroup", ()=>(0, _accordionGroup.CpxAccordionGroup));
 parcelHelpers.export(exports, "AccordionItem", ()=>(0, _accordionItem.CpxAccordionItem));
-parcelHelpers.export(exports, "AccordionTitle", ()=>(0, _accordionTitle.CpxAccordionTitle));
 var _accordionGroup = require("./AccordionGroup");
 var _accordionItem = require("./AccordionItem");
-var _accordionTitle = require("./AccordionTitle");
 
-},{"./AccordionGroup":"cE22T","./AccordionItem":"9BBKi","./AccordionTitle":"asQ3O","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cE22T":[function(require,module,exports) {
+},{"./AccordionGroup":"cE22T","./AccordionItem":"9BBKi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cE22T":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAccordionGroup", ()=>CpxAccordionGroup);
+/**
+ * @class CpxAccordionGroup
+ * @extends CpxElement
+ * @description
+ * This is the base class for all custom elements in the app. It extends the native HTMLElement class and adds a few extra features.
+ * @property {string} ID - A random number that is generated when the element is created. This is used to identify the element in the DOM.
+ * @property {string} initialContent - The initial content of the element. This is used to store the content of the element before it is rendered.
+ * @property {any} storage - A reference to the Storage class. This is used to store data in the browser's local storage.
+ * @property {any} state - A reference to the State class. This is used to store the state of the component.
+ */ parcelHelpers.export(exports, "CpxAccordionGroup", ()=>CpxAccordionGroup);
 var _element = require("../../element");
+var _id = require("../../utils/id");
 class CpxAccordionGroup extends (0, _element.CpxElement) {
     constructor(){
         super();
     }
     connectedCallback() {
         this.render();
+        this.animateAccordionContent();
+    }
+    animateAccordionContent() {
+        /**
+     * If any <summary> is clicked, expland the correspong details element and close ALL other that are open  inside the same <accorion-group> element, leave all other <accordion-group> element untouched
+     */ this.addEventListener("click", (e)=>{
+            if (e.target.tagName === "SUMMARY") {
+                const accordionGroup = e.target.closest("accordion-group");
+                const details = e.target.closest("details");
+                const allDetails = accordionGroup.querySelectorAll("details");
+                allDetails.forEach((detail)=>{
+                    if (detail !== details) detail.removeAttribute("open");
+                });
+                this.render();
+            }
+        });
     }
     render() {
         this.innerHTML = `
-    <div class="accordion-group">
+    <section accordion-group:id="${(0, _id.Id).Generate.hex(12)}" class="accordion-group">
         ${this.initialContent}
-    </div>
+    </section>
         `;
     }
 }
 customElements.define(`accordion-group`, CpxAccordionGroup);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9BBKi":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9BBKi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxAccordionItem", ()=>CpxAccordionItem);
 var _element = require("../../element");
+var _id = require("../../utils/id");
+var _index = require("../../index");
 class CpxAccordionItem extends (0, _element.CpxElement) {
     constructor(){
         super();
+        this.title = this.getAttribute("accordion-item:title") || "Accordion Item Title";
     }
     connectedCallback() {
         this.render();
     }
     render() {
         this.innerHTML = `
-    <details class="accordion-item">
-        ${this.initialContent}
+    <details class="accordion-item" accordion-item:id="${(0, _id.Id).Generate.hex(6)}" class="accordion-item">
+        <summary class="accordion-item__title">
+            <div class="accordion-item__text">${this.title}</div>
+            <div class="accordion-item__icon">
+              ${this.querySelector("details")?.hasAttribute("open") === true ? `${(0, _index.Cpx).Icon.chevronUp}` : ``}
+              ${this.querySelector("details")?.hasAttribute("open") === false ? `${(0, _index.Cpx).Icon.chevronDown}` : ``}
+            </div>
+        </summary>
+        <div class="accordion-item__content">
+          ${this.initialContent}
+        </div>
     </details>
         `;
     }
 }
 customElements.define(`accordion-item`, CpxAccordionItem);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"asQ3O":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAccordionTitle", ()=>CpxAccordionTitle);
-var _element = require("../../element");
-class CpxAccordionTitle extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <summary class="accordion-title">
-        ${this.initialContent}
-    </summary>
-        `;
-    }
-}
-customElements.define(`accordion-title`, CpxAccordionTitle);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "TextParagraph", ()=>(0, _textParagraph.CpxTextParagraph));
@@ -2103,7 +2172,7 @@ parcelHelpers.export(exports, "TextLink", ()=>(0, _textLink.CpxTextLink));
 var _textParagraph = require("./TextParagraph");
 var _textLink = require("./TextLink");
 
-},{"./TextParagraph":"8hUiz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./TextLink":"fDw3r"}],"8hUiz":[function(require,module,exports) {
+},{"./TextParagraph":"8hUiz","./TextLink":"fDw3r","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8hUiz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTextParagraph", ()=>CpxTextParagraph);
@@ -2159,11 +2228,12 @@ var _tabHeader = require("./TabHeader");
 var _tabContent = require("./TabContent");
 var _tabToggle = require("./TabToggle");
 
-},{"./TabContainer":"1EwjH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./TabHeader":"2vFZ3","./TabContent":"aA48q","./TabToggle":"jdXBV"}],"1EwjH":[function(require,module,exports) {
+},{"./TabContainer":"1EwjH","./TabHeader":"2vFZ3","./TabContent":"aA48q","./TabToggle":"jdXBV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1EwjH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
 var _element = require("../../element");
+var _id = require("../../utils/id");
 class CpxTabContainer extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -2173,7 +2243,7 @@ class CpxTabContainer extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <section class="tab-container">
+    <section tab-container:id="${(0, _id.Id).Generate.hex(12)}" class="tab-container">
         ${this.initialContent}
     </section>
         `;
@@ -2181,7 +2251,7 @@ class CpxTabContainer extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-container`, CpxTabContainer);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2vFZ3":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2vFZ3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
@@ -2230,6 +2300,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
 var _element = require("../../element");
+var _id = require("../../utils/id");
 class CpxTabToggle extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -2239,7 +2310,7 @@ class CpxTabToggle extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <button class="tab-toggle">
+    <button class="tab-toggle" toggle:id="${(0, _id.Id).Generate.int(4)}" >
         ${this.initialContent}
     </button>
         `;
@@ -2247,37 +2318,429 @@ class CpxTabToggle extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-toggle`, CpxTabToggle);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jFDNf":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4F7iZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ComponentRoot", ()=>ComponentRoot);
-var _app = require("../../app");
-class ComponentRoot extends (0, _app.Cpx).Element {
+parcelHelpers.export(exports, "AudioPlayer", ()=>(0, _audioPlayer.CpxAudioPlayer));
+parcelHelpers.export(exports, "AudioCurrent", ()=>(0, _audioCurrent.CpxAudioCurrent));
+parcelHelpers.export(exports, "AudioPlaylist", ()=>(0, _audioPlaylist.CpxAudioPlaylist));
+parcelHelpers.export(exports, "AudioControls", ()=>(0, _audioControls.CpxAudioControls));
+parcelHelpers.export(exports, "AudioControl", ()=>(0, _audioControl.CpxAudioControl));
+parcelHelpers.export(exports, "runAudio", ()=>// functions
+    (0, _runAudio.runAudio));
+var _audioPlayer = require("./AudioPlayer");
+var _audioCurrent = require("./AudioCurrent");
+var _audioPlaylist = require("./AudioPlaylist");
+var _audioControls = require("./AudioControls");
+var _audioControl = require("./AudioControl");
+var _runAudio = require("./runAudio");
+
+},{"./AudioPlayer":"c5wpY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./AudioCurrent":"6ezGA","./AudioPlaylist":"8Yy21","./runAudio":"iHB7Q","./AudioControls":"fJL4o","./AudioControl":"kxtUx"}],"c5wpY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAudioPlayer", ()=>CpxAudioPlayer);
+var _element = require("../../element");
+var _runAudio = require("./runAudio");
+class CpxAudioPlayer extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.title = this.getAttribute("root:title") || "Root Title";
-        this.description = this.getAttribute("root:description") || "Root Description";
-        this.storage = (0, _app.Cpx).Storage;
-        this.state = (0, _app.Cpx).State;
+        this.appearance = this.getAttribute("audio-player:appearance") || "default";
+        this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
+        this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
+        this.album = this.getAttribute("audio-player:album") || "AudioPlayer Album Title";
     }
     connectedCallback() {
-        this.setInitialState();
         this.render();
-        this.addClickHandler();
+        (0, _runAudio.runAudio)();
     }
     render() {
         this.innerHTML = `
-        <section class="root">
-            <main class="root__main">
-                ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
-            </main>
+    <section class="audio-player audio-player--${this.appearance}" data-audioplayer>
+        <audio-current class="audio-player__current"></audio-current>
+        <audio-playlist  class="audio-player__playlist"></audio-playlist>
+    </section>
+        `;
+    }
+}
+customElements.define(`audio-player`, CpxAudioPlayer);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./runAudio":"iHB7Q"}],"iHB7Q":[function(require,module,exports) {
+/**
+ * @name runAudio()
+ * @version 1.0
+ * @author luca mack
+ * @description provides an API to insert an audioplayer element on a website by just adding HTML attributes to elements
+ * @link https://github.com/LucaIsMyName/audioplayer.js
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "runAudio", ()=>runAudio);
+function runAudio() {
+    function initializeAudioPlayer(player) {
+        // Container Elements for Controls and Playlist
+        const controls = player.querySelector("[data-audioplayer-controls]");
+        const playlist = player.querySelector("[data-audioplayer-playlist]");
+        // Elements where the current Track Infos are renderd in
+        const currentTrackImage = player.querySelector('[data-audioplayer-current="cover"]');
+        const currentTrackTitle = player.querySelector('[data-audioplayer-current="title"]');
+        const currentArtistTitle = player.querySelector('[data-audioplayer-current="artist"]');
+        // Controls
+        const playPauseButton = controls.querySelector('[data-audioplayer-control="play-pause"]');
+        const prevButton = controls.querySelector('[data-audioplayer-control="prev"]');
+        const nextButton = controls.querySelector('[data-audioplayer-control="next"]');
+        const repeatPlaylistButton = controls.querySelector('[data-audioplayer-control="repeat-playlist"]');
+        const repeatTrackButton = controls.querySelector('[data-audioplayer-control="repeat-track"]');
+        const volumeInput = controls.querySelector('[data-audioplayer-control="volume"]');
+        const muteUnmuteButton = controls.querySelector('[data-audioplayer-control="mute-unmute"]');
+        const progressBar = controls.querySelector('[data-audioplayer-control="progress-bar"]');
+        const trackItems = Array.from(playlist.querySelectorAll("[data-audioplayer-track][data-audioplayer-track-url]"));
+        let currentTrackIndex = 0;
+        let audio = new Audio();
+        function initializeControl(selector, action) {
+            const control = controls.querySelector(selector);
+            if (control) action(control);
+        }
+        /**
+     * @name loadTrackDetails
+     * @param {number} index
+     */ function loadTrackDetails(index) {
+            const trackItem = trackItems[index];
+            if (!trackItem) {
+                console.error("Track item is undefined. Index:", index);
+                return;
+            }
+            const trackURL = trackItem.getAttribute("data-audioplayer-track-url");
+            if (!trackURL) {
+                console.error("Track URL is missing for index:", index);
+                return;
+            }
+            audio.src = trackURL;
+            const trackImage = trackItem.querySelector('[data-audioplayer-track="cover"]');
+            const trackTitle = trackItem.querySelector('[data-audioplayer-track="title"]');
+            const artistTitle = trackItem.querySelector('[data-audioplayer-track="artist"]');
+            if (currentTrackImage && trackImage) currentTrackImage.src = trackImage.src;
+            else console.log("Track image not found for index:", index);
+            if (trackTitle) currentTrackTitle.textContent = trackTitle.textContent;
+            else console.log("Track title not found for index:", index);
+            if (artistTitle) currentArtistTitle.textContent = artistTitle.textContent;
+            else console.log("Artist title not found for index:", index);
+            playPauseButton.setAttribute("data-audioplayer-current-state", "pause");
+        }
+        trackItems.forEach((trackItem, index)=>{
+            trackItem.addEventListener("click", ()=>{
+                currentTrackIndex = index;
+                loadTrackDetails(index);
+                playPauseButton.setAttribute("data-audioplayer-current-state", "play");
+                audio.play();
+            });
+        });
+        function loadAndPlayTrack(index) {
+            currentTrackIndex = index;
+            loadTrackDetails(index);
+            audio.play().then(()=>{
+                playPauseButton.setAttribute("data-audioplayer-current-state", "play");
+            }).catch((error)=>{});
+        }
+        initializeControl('[data-audioplayer-control="play-pause"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                if (audio.paused) {
+                    audio.play();
+                    control.setAttribute("data-audioplayer-current-state", "play");
+                } else {
+                    audio.pause();
+                    control.setAttribute("data-audioplayer-current-state", "pause");
+                }
+            });
+        });
+        initializeControl('[data-audioplayer-control="prev"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentTrackIndex = (currentTrackIndex - 1 + trackItems.length) % trackItems.length;
+                loadAndPlayTrack(currentTrackIndex);
+            });
+        });
+        initializeControl('[data-audioplayer-control="next"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentTrackIndex = (currentTrackIndex + 1) % trackItems.length;
+                loadAndPlayTrack(currentTrackIndex);
+            });
+        });
+        // Function to toggle repeat playlist
+        function toggleRepeatPlaylist() {
+            audio.loop = false; // Disable track looping
+            repeatPlaylistButton.classList.toggle("active");
+            // Logic to repeat the playlist
+            audio.onended = ()=>{
+                if (repeatPlaylistButton.classList.contains("active")) {
+                    currentTrackIndex = (currentTrackIndex + 1) % trackItems.length;
+                    loadAndPlayTrack(currentTrackIndex);
+                }
+            };
+        }
+        // Function to toggle repeat track
+        function toggleRepeatTrack() {
+            repeatTrackButton.setAttribute("data-audioplayer-repeat-track", "true");
+            audio.loop = repeatTrackButton.getAttribute("data-audioplayer-repeat-track").contains("active");
+        }
+        // Function to update volume
+        function updateVolume() {
+            audio.volume = volumeInput.value / 100;
+        }
+        // Function to toggle mute/unmute
+        function toggleMuteUnmute() {
+            audio.muted = !audio.muted;
+            if (!audio.muted) muteUnmuteButton.setAttribute("data-audioplayer-muted", "false");
+            else muteUnmuteButton.setAttribute("data-audioplayer-muted", "true");
+        }
+        progressBar.value = 0;
+        function updateProgressBar() {
+            const duration = audio.duration;
+            if (duration > 0) progressBar.value = audio.currentTime / duration * 100;
+        }
+        // Attach timeupdate event listener to audio element
+        audio.addEventListener("timeupdate", updateProgressBar);
+        function seekTrack(event) {
+            const progressBarRect = progressBar.getBoundingClientRect();
+            const seekTime = (event.clientX - progressBarRect.left) / progressBarRect.width * audio.duration;
+            audio.currentTime = seekTime;
+        }
+        if (trackItems.length > 0) loadTrackDetails(currentTrackIndex);
+        // Check if the mathcing attribute is available in the DOM and Add event listeners
+        initializeControl('[data-audioplayer-control="repeat-playlist"]', (control)=>{
+            control.addEventListener("click", toggleRepeatPlaylist);
+        });
+        initializeControl('[data-audioplayer-control="repeat-track"]', (control)=>{
+            control.addEventListener("click", toggleRepeatTrack);
+        });
+        initializeControl('[data-audioplayer-control="volume"]', (control)=>{
+            control.addEventListener("click", updateVolume);
+        });
+        initializeControl('[data-audioplayer-control="mute-unmute"]', (control)=>{
+            control.addEventListener("click", toggleMuteUnmute);
+        });
+        initializeControl('[data-audioplayer-control="progress-bar"]', (control)=>{
+            control.addEventListener("click", seekTrack);
+        });
+        initializeControl('[data-audioplayer-control="progress-bar"]', (control)=>{
+            control.addEventListener("input", (event)=>{
+                const duration = audio.duration;
+                if (duration > 0) {
+                    const value = event.target.value;
+                    audio.currentTime = value / 100 * duration;
+                }
+            });
+        });
+        initializeControl('[data-audioplayer-control="prev"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentTrackIndex = (currentTrackIndex + trackItems.length) % trackItems.length;
+                loadAndPlayTrack(currentTrackIndex);
+            });
+        });
+        initializeControl('[data-audioplayer-control="next"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentTrackIndex = currentTrackIndex % trackItems.length;
+                loadAndPlayTrack(currentTrackIndex);
+            });
+        });
+        // Initialize the player with the first track
+        loadAndPlayTrack(currentTrackIndex);
+    }
+    // Initialize all audio players on the page
+    const audioPlayers = document.querySelectorAll("[data-audioplayer]");
+    audioPlayers.forEach((player)=>{
+        initializeAudioPlayer(player);
+    });
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6ezGA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAudioCurrent", ()=>CpxAudioCurrent);
+var _element = require("../../element");
+class CpxAudioCurrent extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.appearance = this.getAttribute("audio-current:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
+        this.title = this.getAttribute("audio-current:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
+        this.artist = this.getAttribute("audio-current:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
+        this.album = this.getAttribute("audio-current:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+        <div class="audio-current">
+            <section>
+                <p data-audioplayer-current="title"></p>
+                <p data-audioplayer-current="artist"></p>
+                <img data-audioplayer-current="cover">
+            </section>
+            ${this.initialContent}
+        </div>
+        `;
+    }
+}
+customElements.define(`audio-current`, CpxAudioCurrent);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8Yy21":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAudioPlaylist", ()=>CpxAudioPlaylist);
+var _element = require("../../element");
+class CpxAudioPlaylist extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.appearance = this.getAttribute("audio-player:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
+        this.title = this.getAttribute("audio-player:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
+        this.artist = this.getAttribute("audio-player:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
+        this.album = this.getAttribute("audio-player:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
+        this.hasArtist = eval(this.getAttribute("audio-player:has-artist")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-artist")) || true;
+        this.hasAlbum = eval(this.getAttribute("audio-player:has-album")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-album")) || true;
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+        <div data-audioplayer-playlist class="audio-playlist">
+            <button class="audio-playlist__track" data-audioplayer-track data-audioplayer-track-url="../dist/song-1.mp3">
+                <p class="audio-playlist__title" data-audioplayer-track="title">${this.title}</p>
+                <p class="audio-playlist__artist" data-audioplayer-track="artist">${this.artist}</p>
+                <img class="audio-playlist__cover" data-audioplayer-track="cover" src="https://placehold.co/600">
+            </button>
+            <button class="audio-playlist__track" data-audioplayer-track data-audioplayer-track-url="../dist/song-1.mp3">
+                <p class="audio-playlist__title" data-audioplayer-track="title">${this.title}</p>
+                <p class="audio-playlist__artist" data-audioplayer-track="artist">${this.artist}</p>
+                <img class="audio-playlist__cover" data-audioplayer-track="cover" src="https://placehold.co/600">
+            </button>
+        </div>
+        `;
+    }
+}
+customElements.define(`audio-playlist`, CpxAudioPlaylist);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fJL4o":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAudioControls", ()=>CpxAudioControls);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxAudioControls extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.appearance = this.getAttribute("audio-controls:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
+        this.title = this.getAttribute("audio-controls:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
+        this.artist = this.getAttribute("audio-controls:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
+        this.album = this.getAttribute("audio-controls:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `  
+            <div data-audioplayer-controls>
+                ${this.initialContent !== "" ? this.initialContent : ` 
+                        <div>
+                            <input class="audio-controls__progress" type="range" data-audioplayer-control="progress-bar">
+                        </div>
+                        <div>
+                            <button class="audio-controls__prev" data-audioplayer-control="prev">
+                                ${(0, _index.Cpx).Icon.prev}
+                            </button>
+                            <button class="audio-controls__play-pause" data-audioplayer-control="play-pause">
+                                ${(0, _index.Cpx).Icon.play}
+                            </button>
+                            <button class="audio-controls__next" data-audioplayer-control="next">
+                                ${(0, _index.Cpx).Icon.next}
+                            </button>
+                        </div>
+                        <div>
+                            <input class="audio-controls__volume" type="range" data-audioplayer-control="volume">
+                        </div>`}  
+            </div>
+        `;
+    }
+}
+customElements.define(`audio-controls`, CpxAudioControls);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"kxtUx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAudioControl", ()=>CpxAudioControl);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxAudioControl extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.appearance = this.getAttribute("audio-control:appearance") || document.querySelector("audio-player").getAttribute("audio-player:appearance") || "default";
+        this.type = this.getAttribute("audio-control:type") || "play-pause";
+        this.hasIcon = eval(this.getAttribute("audio-control:has-icon")) || true;
+        this.hasText = eval(this.getAttribute("audio-control:has-text")) || true;
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `  
+            <button 
+                data-audioplayer-control="${this.type}">
+                ${this.initialContent !== "" ? this.initialContent : ` 
+                    <section>
+                        ${this.hasIcon ? (0, _index.Cpx).Icon[this.type] : ""}
+                        ${this.hasText ? this.type : ""}
+                    </section>
+                    `}  
+            </button>
+        `;
+    }
+}
+customElements.define(`audio-control`, CpxAudioControl);
+
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8vhOB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DropDown", ()=>(0, _dropDown.CpxDropDown));
+var _dropDown = require("./DropDown");
+
+},{"./DropDown":"eKSuN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eKSuN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxDropDown", ()=>CpxDropDown);
+var _element = require("../../element");
+class CpxDropDown extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.title = this.getAttribute("drop-down:title") || "DropDown Title";
+        this.content = this.initialContent || this.getAttribute("drop-down:content") || "DropDown Content";
+    }
+    connectedCallback() {
+        this.render();
+        this.addMouseHandler();
+    }
+    addMouseHandler() {
+        const dropDown = this.querySelector(`[drop-down="toggle"]`);
+        dropDown.addEventListener(`mouseover`, ()=>{
+            dropDown.querySelector(`[drop-down="toggle"]`).style.display = `block`;
+        });
+        dropDown.addEventListener(`mouseout`, ()=>{
+            dropDown.querySelector(`[drop-down="toggle"]`).style.display = `none`;
+        });
+    }
+    render() {
+        this.innerHTML = `
+       <div class="drop-down">
+            <section class="drop-down__toggle" drop-down="toggle">
+                ${this.title}
+            </section>
+        </div>
+        <section class="drop-down__content" drop-down="content">
+                ${this.content}
         </section>
         `;
     }
 }
-customElements.define(`${(0, _app.Config).prefix}-root`, ComponentRoot);
+customElements.define(`drop-down`, CpxDropDown);
 
-},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DB", ()=>DB);
@@ -2298,11 +2761,12 @@ const DB = {
     PRODUCTS: (0, _procucts.products),
     CATEGORIES: (0, _categories.categories),
     POSTS: (0, _posts.posts),
-    post: // DB actions
-    (0, _posts.post)
+    query: // DB actions
+    (0, _posts.query),
+    action: (0, _posts.action)
 };
 
-},{"./tables/procucts":"2Rymg","./tables/users":"v5sXa","./tables/navigations":"hrwNx","./tables/routes":"8HJgP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./tables/categories":"jxRAv","./tables/posts":"hvuQ0"}],"2Rymg":[function(require,module,exports) {
+},{"./tables/procucts":"2Rymg","./tables/categories":"jxRAv","./tables/users":"v5sXa","./tables/navigations":"hrwNx","./tables/routes":"8HJgP","./tables/posts":"hvuQ0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2Rymg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "products", ()=>products);
@@ -2412,7 +2876,7 @@ const products = [
     }
 ];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./users":"v5sXa","./categories":"jxRAv"}],"v5sXa":[function(require,module,exports) {
+},{"./users":"v5sXa","./categories":"jxRAv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"v5sXa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "users", ()=>users);
@@ -2543,130 +3007,79 @@ parcelHelpers.export(exports, "navigations", ()=>navigations);
 var _routes = require("./routes");
 const navigations = {
     main: [
-        (0, _routes.routes).HOME,
-        (0, _routes.routes).ABOUT,
-        (0, _routes.routes).CONTACT,
-        (0, _routes.routes).FAQ
-    ],
-    login: [
-        (0, _routes.routes).LOGIN,
-        (0, _routes.routes).REGISTER,
-        (0, _routes.routes).SIGN_IN
-    ],
-    cta: [
-        (0, _routes.routes).GET_STARTED,
-        (0, _routes.routes).DOCS
-    ],
-    user: [
-        (0, _routes.routes).PROFILE,
-        (0, _routes.routes).SETTINGS
+        (0, _routes.routes).home,
+        (0, _routes.routes).about
     ],
     legal: [
-        (0, _routes.routes).IMPRINT,
-        (0, _routes.routes).PRIVACY,
-        (0, _routes.routes).TERMS
-    ],
-    support: [
-        (0, _routes.routes).FAQ,
-        (0, _routes.routes).DEVELOPER
-    ],
-    customer: [
-        (0, _routes.routes).ITEM_OVERVIEW,
-        (0, _routes.routes).ADD_SEARCHBOT,
-        (0, _routes.routes).CART
-    ],
-    business: [
-        (0, _routes.routes).ADD_ITEM,
-        (0, _routes.routes).DEVELOPER,
-        (0, _routes.routes).DOCS
-    ],
-    guest: [
-        (0, _routes.routes).LOGIN,
-        (0, _routes.routes).REGISTER
-    ],
-    cart: [
-        (0, _routes.routes).CART
-    ],
-    item: [
-        (0, _routes.routes).FILTER,
-        (0, _routes.routes).ITEM_OVERVIEW,
-        (0, _routes.routes).ITEM
-    ],
-    productCardActions: [
-        (0, _routes.routes).LIKE,
-        (0, _routes.routes).SHARE,
-        (0, _routes.routes).ADD_TO_CART
+        (0, _routes.routes).imprint,
+        (0, _routes.routes).privacy
     ]
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./routes":"8HJgP"}],"8HJgP":[function(require,module,exports) {
+},{"./routes":"8HJgP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8HJgP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "routes", ()=>routes);
 var _app = require("../../app/app");
 const routes = {
-    HOME: {
+    home: {
+        type: "page",
         page: "home",
         title: "Home",
         description: "Home Page",
-        icon: (0, _app.Cpx).Icon.home,
-        isModal: false,
-        isAction: false
+        icon: (0, _app.Cpx).Icon.home
     },
-    ABOUT: {
+    about: {
+        type: "page",
         page: "about",
         title: "About",
         description: "About Page",
-        icon: (0, _app.Cpx).Icon.informationCircle,
-        isModal: true,
-        isAction: false
+        icon: (0, _app.Cpx).Icon.informationCircle
     },
-    CONTACT: {
+    contact: {
+        type: "page",
         page: "contact",
         title: "Contact",
         description: "Contact Page",
-        icon: (0, _app.Cpx).Icon.envelope,
-        isModal: true,
-        isAction: false
+        icon: (0, _app.Cpx).Icon.envelope
     },
-    IMPRINT: {
+    imprint: {
         page: "imprint",
+        type: "page",
         title: "Imprint",
         description: "Imprint Page",
-        icon: (0, _app.Cpx).Icon.scale,
-        isModal: false,
-        isAction: false
+        icon: (0, _app.Cpx).Icon.scale
     },
-    PRIVACY: {
+    privacy: {
+        type: "page",
         page: "privacy",
         title: "Privacy",
         description: "Privacy Page",
-        icon: (0, _app.Cpx).Icon.scale,
-        isModal: true,
-        isAction: false
+        icon: (0, _app.Cpx).Icon.scale
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/app":"bXLqa"}],"hvuQ0":[function(require,module,exports) {
+},{"../../app/app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hvuQ0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "posts", ()=>posts);
-parcelHelpers.export(exports, "post", ()=>post);
+parcelHelpers.export(exports, "query", ()=>query);
+parcelHelpers.export(exports, "action", ()=>action);
 const posts = [
     {
-        id: "0",
+        id: 0,
         title: "Post 1",
         description: "Post 1 Description",
         content: "Post 1 Content"
     },
     {
-        id: "1",
+        id: 1,
         title: "Post 2",
         description: "Post 2 Description",
         content: "Post 2 Content"
     }
 ];
-function byId(id) {
+function id(id) {
     return posts.find((post)=>post.id === id);
 }
 function create(post) {
@@ -2680,30 +3093,118 @@ function deleteById(id) {
     const index = posts.findIndex((p)=>p.id === id);
     posts.splice(index, 1);
 }
-function getAll() {
+function all() {
     return posts;
 }
-function byTitle(title) {
+function title(title) {
     return posts.filter((post)=>post.title === title);
 }
-function byDescription(description) {
+function description(description) {
     return posts.filter((post)=>post.description === description);
 }
-function byContent(content) {
+function content(content) {
     return posts.filter((post)=>post.content === content);
 }
-const post = {
-    byId,
+const query = {
+    id,
+    all,
+    title,
+    description,
+    content
+};
+const action = {
     create,
     update,
-    deleteById,
-    getAll,
-    byTitle,
-    byDescription,
-    byContent
+    deleteById
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jILT7":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jFDNf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class ComponentRoot
+ * @description
+ * This is the root component for the application.
+ * It contains all the core functionality of the root component.
+ * @example
+ * <app-root></app-root>
+ */ parcelHelpers.export(exports, "ComponentRoot", ()=>ComponentRoot);
+var _app = require("../../app");
+class ComponentRoot extends (0, _app.Cpx).Element {
+    constructor(){
+        super();
+        this.title = this.getAttribute("root:title") || "Root Title";
+        this.description = this.getAttribute("root:description") || "Root Description";
+        this.storage = (0, _app.Cpx).Storage;
+        this.state = (0, _app.Cpx).State;
+    }
+    connectedCallback() {
+        this.setInitialState();
+        this.render();
+        this.addClickHandler();
+    }
+    // async fetchData() {
+    //   Cpx.Http.fetch("https://jsonplaceholder.typicode.com/posts");
+    //   this.render()
+    // }
+    render() {
+        this.innerHTML = `
+        <section class="root">
+            <app-nav class="root__nav"></app-nav>
+            <main class="root__main">
+                ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
+            </main>
+        </section>
+        `;
+    }
+}
+customElements.define(`${(0, _app.Config).prefix}-root`, ComponentRoot);
+
+},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"13T9Y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class ComponentNav
+ * @description
+ * This is the navigation component for the application.
+ * It contains all the core functionality of the navigation component.
+ * @example
+ * <app-nav></app-nav>
+ */ parcelHelpers.export(exports, "ComponentNav", ()=>ComponentNav);
+var _app = require("../../app");
+class ComponentNav extends (0, _app.Cpx).Element {
+    constructor(){
+        super();
+        this.nav = this.getAttribute("nav:type") || "main"; // DB Hook in DB.NAVIGATION[nav]
+    }
+    connectedCallback() {
+        this.setInitialState();
+        this.render();
+        this.addClickHandler();
+    }
+    getNav() {
+        return (0, _app.DB).NAVIGATIONS[this.nav].map((item)=>{
+            // console.log(item);
+            return `
+          <li class="nav__item">
+            <button class="button--primary" click:state:set(${item.type},${item.page})>${item.title}</button>
+          </li>`;
+        }).join("");
+    }
+    render() {
+        this.innerHTML = `
+        <nav class="nav">
+            <ul class="nav__list">
+                ${this.getNav()}
+            </ul>
+        </nav>
+
+        `;
+    }
+}
+customElements.define(`${(0, _app.Config).prefix}-nav`, ComponentNav);
+
+},{"../../app":"bXLqa","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jILT7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -2728,7 +3229,6 @@ class PageHome extends (0, _app.Cpx).Element {
         this.innerHTML = `
             <div style="text-align:center">
                 <text-paragraph>Home</text-paragraph>
-                <button click:state:set(page,about)>Go to About</button>
             </div>
         `;
     }
@@ -2758,9 +3258,8 @@ class PageAbout extends (0, _app.Cpx).Element {
     }
     render() {
         this.innerHTML = `
-             <div style="text-align:center">
+            <div style="text-align:center">
                 <text-paragraph>About</text-paragraph>
-                <button click:state:set(page,home)>Go to Home</button>
             </div>
         `;
     }

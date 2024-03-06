@@ -6,7 +6,7 @@ import { categories as CATEGORIES } from "./tables/categories";
 import { users as USERS } from "./tables/users";
 import { navigations as NAVIGATIONS } from "./tables/navigations";
 import { routes as ROUTES } from "./tables/routes";
-import { posts as POSTS, post } from "./tables/posts";
+import { posts as POSTS, action, query } from "./tables/posts";
 
 export const DB = {
   AVATAR_URL,
@@ -18,5 +18,6 @@ export const DB = {
   CATEGORIES,
   POSTS,
   // DB actions
-  post
+  query,
+  action,
 };

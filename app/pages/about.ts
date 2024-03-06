@@ -20,9 +20,8 @@ export class PageAbout extends Cpx.Element {
 
   render() {
     this.innerHTML = `
-             <div style="text-align:center">
+            <div style="text-align:center">
                 <text-paragraph>About</text-paragraph>
-                <button click:state:set(page,home)>Go to Home</button>
             </div>
         `;
   }

@@ -1,4 +1,9 @@
+@import 'css/mixins';
 @import 'css/config';
 @import 'css/normalize';
+@import 'css/global';
+
+@import 'app/cpx/style';
 
 @import 'app/components/Root/Root';
+@import 'app/components/Nav/Nav';

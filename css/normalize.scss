@@ -3,15 +3,18 @@
 /* Document
    ========================================================================== */
 
-   * {
+:where(*) {
     box-sizing: border-box;
+    padding:0;
+    margin:0;
 }
+
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
-html {
+:where(html) {
     line-height: 1.15;
     /* 1 */
     -webkit-text-size-adjust: 100%;
@@ -383,6 +386,15 @@ template {
 
 [hidden] {
     display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .screen-reader {
@@ -403,7 +415,7 @@ button {
     cursor: pointer;
     padding: 0;
     margin: 0;
-    font-size: 1rem;
+    font-size: 1em;
     font-family: var(--font-sans);
     color: var(--black);
     line-height: 1;
