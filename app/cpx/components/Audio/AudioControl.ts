@@ -1,5 +1,5 @@
 import { CpxElement } from "../../element";
-import { Cpx } from "../../index";
+import { Icon } from "../../utils/icons";
 
 export class CpxAudioControl extends CpxElement {
   appearance: string;
@@ -22,23 +22,43 @@ export class CpxAudioControl extends CpxElement {
 
   render() {
     this.innerHTML = `  
-            <button 
+            ${
+              this.type === "progress-bar" || this.type === "volume"
+                ? `<input type="range" class="audio-control audio-control--${this.appearance}" data-audioplayer-control="${this.type}">`
+                : `
+                <button 
+                class="audio-control audio-control--${this.appearance}"
                 data-audioplayer-control="${this.type}">
                 ${
                   this.initialContent !== ""
                     ? this.initialContent
-                    : ` 
-                    <section>
+                    : `
+                    <section class="audio-control__inner-container">
                         ${
-                            this.hasIcon ? Cpx.Icon[this.type] : ""
+                          this.hasIcon
+                            ? `
+                                <div class="audio-control__icon">
+                                    ${Icon[this.type]}
+                                </div>
+                                    `
+                            : ""
                         }
                         ${
-                            this.hasText ? this.type : ""
+                          this.hasText
+                            ? `
+                                <div class="audio-control__text">
+                                    ${this.type}
+                                </div>
+                                `
+                            : ""
                         }
                     </section>
                     `
                 }  
-            </button>
+                </button>
+                `
+            }
+            
         `;
   }
 }

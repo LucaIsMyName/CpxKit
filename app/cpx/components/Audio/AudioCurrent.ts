@@ -1,5 +1,13 @@
 import { CpxElement } from "../../element";
 
+/**
+ * @element audio-current
+ * @class CpxAudioCurrent
+ * @description
+ * AudioCurrent Component
+ * @example
+ * <audio-current audio-current:style="default" audio-current:title="AudioPlayer Title" audio-current:artist="AudioPlayer Artist Title" audio-current:album="AudioPlayer Album Title">
+ */
 export class CpxAudioCurrent extends CpxElement {
   appearance: string;
   title: string;
@@ -19,11 +27,11 @@ export class CpxAudioCurrent extends CpxElement {
 
   render() {
     this.innerHTML = `
-        <div class="audio-current">
+        <div class="audio-current audio-current--${this.appearance}">
             <section>
+                <img data-audioplayer-current="cover">
                 <p data-audioplayer-current="title"></p>
                 <p data-audioplayer-current="artist"></p>
-                <img data-audioplayer-current="cover">
             </section>
             ${this.initialContent}
         </div>

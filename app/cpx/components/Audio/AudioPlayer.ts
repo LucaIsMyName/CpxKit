@@ -3,6 +3,14 @@ import { Id } from "../../utils/id";
 import { Cpx } from "../../index";
 import { runAudio } from "./runAudio";
 
+/**
+ * @class CpxAudioPlayer
+ * @description
+ * AudioPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="AudioPlayer Title" audio-player:artist="AudioPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */
 export class CpxAudioPlayer extends CpxElement {
   appearance: string;
   title: string;
@@ -24,10 +32,19 @@ export class CpxAudioPlayer extends CpxElement {
   render() {
     this.innerHTML = `
     <section class="audio-player audio-player--${this.appearance}" data-audioplayer>
-        <audio-current class="audio-player__current"></audio-current>
-        <audio-playlist  class="audio-player__playlist"></audio-playlist>
+    ${
+      this.initialContent !== ""
+        ? `${this.initialContent}`
+        : `
+            <audio-current class="audio-player__current">
+                <audio-controls class="audio-player__controls"></audio-controls>
+            </audio-current>
+            <audio-playlist  class="audio-player__playlist"></audio-playlist>
+        
+    `
+    }
     </section>
-        `;
+    `;
   }
 }
 customElements.define(`audio-player`, CpxAudioPlayer);

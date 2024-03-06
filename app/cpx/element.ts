@@ -37,22 +37,25 @@ interface CpxElementType {
  * @method {Function} connectedCallback - A method that is called when the component is connected to the DOM.
  */
 export class CpxElement extends HTMLElement implements CpxElementType {
-  ID: string;
+  componentName: any;
+  ID: Function | number | string | any;
   initialContent: string;
   storage: any;
   state: any;
 
   constructor() {
     super();
+    console.log("Connected Callback");
+    this.componentName = this.setAttribute("component:name", this.tagName.toLowerCase());
     this.ID =
       this.getAttribute("component:id") ||
-      `${this.setAttribute(
+      this.setAttribute(
         "component:id",
         Math.floor(Math.random() * 0xffffff)
           .toString(16)
           .padStart(6, "0")
           .toString()
-      )}`;
+      );
     this.initialContent = this.innerHTML;
     this.storage = Storage;
     this.state = State;
@@ -93,7 +96,7 @@ export class CpxElement extends HTMLElement implements CpxElementType {
 
   /**
    * @name addClickHandler
-   * @param elements 
+   * @param elements
    * @description
    * This method adds event listeners to the component.
    * It is called when the element with the correct attribute is clicked

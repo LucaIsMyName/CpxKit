@@ -1,5 +1,12 @@
 import { CpxElement } from "../../element";
 
+/**
+ * @element drop-down
+ * @description A drop-down component that can be used to display content when hovered over.
+ * @example
+ * <drop-down drop-down:title="DropDown Title" drop-down:content="DropDown Content">
+ * </drop-down>
+ */
 export class CpxDropDown extends CpxElement implements Element {
   title: string;
   content: string;
@@ -16,11 +23,12 @@ export class CpxDropDown extends CpxElement implements Element {
 
   addMouseHandler() {
     const dropDown = this.querySelector(`[drop-down="toggle"]`) as HTMLElement;
-    dropDown.addEventListener(`mouseover`, () => {
+    const dropDownEvent = this.querySelector(`[drop-down]`)?.getAttribute("drop-down:event") || "mouseover";
+    dropDown.addEventListener(dropDownEvent, () => {
       dropDown.querySelector(`[drop-down="toggle"]`).style.display = `block`;
     });
-    dropDown.addEventListener(`mouseout`, () => {
-        dropDown.querySelector(`[drop-down="toggle"]`).style.display = `none`;
+    dropDown.addEventListener(dropDownEvent === "mouseover" ? "mouseout" : 'DOMContentLoaded', () => {
+      dropDown.querySelector(`[drop-down="toggle"]`).style.display = `none`;
     });
   }
 

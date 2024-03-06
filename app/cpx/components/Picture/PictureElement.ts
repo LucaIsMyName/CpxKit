@@ -1,6 +1,13 @@
 import { CpxElement } from "../../element";
 import { Cpx } from "../../index";
 
+/**
+ * Picture Element
+ * @description
+ * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * @example
+ * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ */
 export class CpxPictureElement extends CpxElement {
   alt: string;
   url: string;

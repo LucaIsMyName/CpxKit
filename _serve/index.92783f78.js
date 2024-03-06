@@ -672,6 +672,7 @@ var _id = require("./utils/id");
 var _index = require("./components/Accordion/index");
 var _index1 = require("./components/Audio/index");
 var _dropDown = require("./components/DropDown");
+var _picture = require("./components/Picture");
 var _index2 = require("./components/Text/index");
 var _index3 = require("./components/Tabs/index");
 /**
@@ -691,6 +692,8 @@ var _index3 = require("./components/Tabs/index");
     AudioControl: (0, _index1.AudioControl),
     DropDown: // DropDown
     (0, _dropDown.DropDown),
+    PictureElement: // Picture
+    (0, _picture.PictureElement),
     TextParagraph: // Text
     (0, _index2.TextParagraph),
     TextLink: (0, _index2.TextLink),
@@ -720,7 +723,7 @@ const Cpx = {
     Id: (0, _id.Id)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./components/Accordion/index":"fVDc8","./components/Text/index":"6N7g9","./components/Tabs/index":"bNH0i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Audio/index":"4F7iZ","./components/DropDown":"8vhOB"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/DropDown":"8vhOB","./components/Picture":"gOZMd","./components/Text/index":"6N7g9","./components/Tabs/index":"bNH0i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -754,7 +757,9 @@ var _storage = require("./utils/storage");
 class CpxElement extends HTMLElement {
     constructor(){
         super();
-        this.ID = this.getAttribute("component:id") || `${this.setAttribute("component:id", Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0").toString())}`;
+        console.log("Connected Callback");
+        this.componentName = this.setAttribute("component:name", this.tagName.toLowerCase());
+        this.ID = this.getAttribute("component:id") || this.setAttribute("component:id", Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0").toString());
         this.initialContent = this.innerHTML;
         this.storage = (0, _storage.Storage);
         this.state = (0, _state.State);
@@ -787,7 +792,7 @@ class CpxElement extends HTMLElement {
     }
     /**
    * @name addClickHandler
-   * @param elements 
+   * @param elements
    * @description
    * This method adds event listeners to the component.
    * It is called when the element with the correct attribute is clicked
@@ -2164,161 +2169,7 @@ class CpxAccordionItem extends (0, _element.CpxElement) {
 }
 customElements.define(`accordion-item`, CpxAccordionItem);
 
-},{"../../element":"7TddR","../../utils/id":"UhlEf","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TextParagraph", ()=>(0, _textParagraph.CpxTextParagraph));
-parcelHelpers.export(exports, "TextLink", ()=>(0, _textLink.CpxTextLink));
-var _textParagraph = require("./TextParagraph");
-var _textLink = require("./TextLink");
-
-},{"./TextParagraph":"8hUiz","./TextLink":"fDw3r","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8hUiz":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTextParagraph", ()=>CpxTextParagraph);
-var _element = require("../../element");
-class CpxTextParagraph extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <p class="text-paragraph">
-        ${this.initialContent}
-    </p>
-        `;
-    }
-}
-customElements.define(`text-paragraph`, CpxTextParagraph);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fDw3r":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTextLink", ()=>CpxTextLink);
-var _element = require("../../element");
-class CpxTextLink extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <a href="#" class="text-link">
-        ${this.initialContent}
-    </a>
-        `;
-    }
-}
-customElements.define(`text-link`, CpxTextLink);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bNH0i":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TabContainer", ()=>(0, _tabContainer.CpxTabContainer));
-parcelHelpers.export(exports, "TabHeader", ()=>(0, _tabHeader.CpxTabHeader));
-parcelHelpers.export(exports, "TabContent", ()=>(0, _tabContent.CpxTabContent));
-parcelHelpers.export(exports, "TabToggle", ()=>(0, _tabToggle.CpxTabToggle));
-var _tabContainer = require("./TabContainer");
-var _tabHeader = require("./TabHeader");
-var _tabContent = require("./TabContent");
-var _tabToggle = require("./TabToggle");
-
-},{"./TabContainer":"1EwjH","./TabHeader":"2vFZ3","./TabContent":"aA48q","./TabToggle":"jdXBV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1EwjH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
-var _element = require("../../element");
-var _id = require("../../utils/id");
-class CpxTabContainer extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <section tab-container:id="${(0, _id.Id).Generate.hex(12)}" class="tab-container">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`tab-container`, CpxTabContainer);
-
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2vFZ3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
-var _element = require("../../element");
-class CpxTabHeader extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <section class="tab-header">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`tab-header`, CpxTabHeader);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aA48q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
-var _element = require("../../element");
-class CpxTabContent extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <section class="tab-content">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`tab-content`, CpxTabContent);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jdXBV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
-var _element = require("../../element");
-var _id = require("../../utils/id");
-class CpxTabToggle extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <button class="tab-toggle" toggle:id="${(0, _id.Id).Generate.int(4)}" >
-        ${this.initialContent}
-    </button>
-        `;
-    }
-}
-customElements.define(`tab-toggle`, CpxTabToggle);
-
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4F7iZ":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4F7iZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AudioPlayer", ()=>(0, _audioPlayer.CpxAudioPlayer));
@@ -2335,10 +2186,17 @@ var _audioControls = require("./AudioControls");
 var _audioControl = require("./AudioControl");
 var _runAudio = require("./runAudio");
 
-},{"./AudioPlayer":"c5wpY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./AudioCurrent":"6ezGA","./AudioPlaylist":"8Yy21","./runAudio":"iHB7Q","./AudioControls":"fJL4o","./AudioControl":"kxtUx"}],"c5wpY":[function(require,module,exports) {
+},{"./AudioPlayer":"c5wpY","./AudioCurrent":"6ezGA","./AudioPlaylist":"8Yy21","./AudioControls":"fJL4o","./AudioControl":"kxtUx","./runAudio":"iHB7Q","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c5wpY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAudioPlayer", ()=>CpxAudioPlayer);
+/**
+ * @class CpxAudioPlayer
+ * @description
+ * AudioPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="AudioPlayer Title" audio-player:artist="AudioPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */ parcelHelpers.export(exports, "CpxAudioPlayer", ()=>CpxAudioPlayer);
 var _element = require("../../element");
 var _runAudio = require("./runAudio");
 class CpxAudioPlayer extends (0, _element.CpxElement) {
@@ -2356,15 +2214,20 @@ class CpxAudioPlayer extends (0, _element.CpxElement) {
     render() {
         this.innerHTML = `
     <section class="audio-player audio-player--${this.appearance}" data-audioplayer>
-        <audio-current class="audio-player__current"></audio-current>
-        <audio-playlist  class="audio-player__playlist"></audio-playlist>
+    ${this.initialContent !== "" ? `${this.initialContent}` : `
+            <audio-current class="audio-player__current">
+                <audio-controls class="audio-player__controls"></audio-controls>
+            </audio-current>
+            <audio-playlist  class="audio-player__playlist"></audio-playlist>
+        
+    `}
     </section>
-        `;
+    `;
     }
 }
 customElements.define(`audio-player`, CpxAudioPlayer);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./runAudio":"iHB7Q"}],"iHB7Q":[function(require,module,exports) {
+},{"../../element":"7TddR","./runAudio":"iHB7Q","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iHB7Q":[function(require,module,exports) {
 /**
  * @name runAudio()
  * @version 1.0
@@ -2553,7 +2416,14 @@ function runAudio() {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6ezGA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAudioCurrent", ()=>CpxAudioCurrent);
+/**
+ * @element audio-current
+ * @class CpxAudioCurrent
+ * @description
+ * AudioCurrent Component
+ * @example
+ * <audio-current audio-current:style="default" audio-current:title="AudioPlayer Title" audio-current:artist="AudioPlayer Artist Title" audio-current:album="AudioPlayer Album Title">
+ */ parcelHelpers.export(exports, "CpxAudioCurrent", ()=>CpxAudioCurrent);
 var _element = require("../../element");
 class CpxAudioCurrent extends (0, _element.CpxElement) {
     constructor(){
@@ -2568,11 +2438,11 @@ class CpxAudioCurrent extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-        <div class="audio-current">
+        <div class="audio-current audio-current--${this.appearance}">
             <section>
+                <img data-audioplayer-current="cover">
                 <p data-audioplayer-current="title"></p>
                 <p data-audioplayer-current="artist"></p>
-                <img data-audioplayer-current="cover">
             </section>
             ${this.initialContent}
         </div>
@@ -2584,7 +2454,15 @@ customElements.define(`audio-current`, CpxAudioCurrent);
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8Yy21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAudioPlaylist", ()=>CpxAudioPlaylist);
+/**
+ * @class CpxAudioPlaylist
+ * @description
+ * AudioPlaylist Component
+ * @example
+ * <audio-playlist audio-player:style="default" audio-player:title="AudioPlayer Title" audio-player:artist="AudioPlayer Artist Title" audio-player:album="AudioPlayer Album Title" audio-player:has-artist="true" audio-player:has-album="true">
+ * </audio-playlist>
+ *
+ */ parcelHelpers.export(exports, "CpxAudioPlaylist", ()=>CpxAudioPlaylist);
 var _element = require("../../element");
 class CpxAudioPlaylist extends (0, _element.CpxElement) {
     constructor(){
@@ -2595,23 +2473,48 @@ class CpxAudioPlaylist extends (0, _element.CpxElement) {
         this.album = this.getAttribute("audio-player:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
         this.hasArtist = eval(this.getAttribute("audio-player:has-artist")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-artist")) || true;
         this.hasAlbum = eval(this.getAttribute("audio-player:has-album")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-album")) || true;
+        this.playlist = [
+            {
+                title: "Song 1",
+                artist: "Artist 1",
+                album: "Album 1",
+                cover: "https://placehold.co/600",
+                url: "../dist/song-1.mp3"
+            },
+            {
+                title: "Song 2",
+                artist: "Artist 2",
+                album: "Album 2",
+                cover: "https://placehold.co/601",
+                url: "../dist/song-2.mp3"
+            },
+            {
+                title: "Song 3",
+                artist: "Artist 3",
+                album: "Album 3",
+                cover: "https://placehold.co/602",
+                url: "../dist/song-3.mp3"
+            }
+        ];
     }
     connectedCallback() {
         this.render();
     }
     render() {
         this.innerHTML = `
-        <div data-audioplayer-playlist class="audio-playlist">
-            <button class="audio-playlist__track" data-audioplayer-track data-audioplayer-track-url="../dist/song-1.mp3">
-                <p class="audio-playlist__title" data-audioplayer-track="title">${this.title}</p>
-                <p class="audio-playlist__artist" data-audioplayer-track="artist">${this.artist}</p>
-                <img class="audio-playlist__cover" data-audioplayer-track="cover" src="https://placehold.co/600">
-            </button>
-            <button class="audio-playlist__track" data-audioplayer-track data-audioplayer-track-url="../dist/song-1.mp3">
-                <p class="audio-playlist__title" data-audioplayer-track="title">${this.title}</p>
-                <p class="audio-playlist__artist" data-audioplayer-track="artist">${this.artist}</p>
-                <img class="audio-playlist__cover" data-audioplayer-track="cover" src="https://placehold.co/600">
-            </button>
+        <div data-audioplayer-playlist class="audio-playlist audio-playlist--${this.appearance}">
+            ${this.playlist.map((track, index)=>{
+            return `
+                    <button class="audio-playlist__track" data-audioplayer-track data-audioplayer-track-url="${track.url}">
+                        <img data-audioplayer-track="cover" src="${track.cover}" alt="${track.title}">
+                        <p data-audioplayer-playlist-track="title">${track.title}</p>
+                        <div class="audio-playlist__meta">
+                          ${this.hasArtist === true ? `<p data-audioplayer-playlist-track="artist">${track.artist}</p>` : ``}
+                          ${this.hasAlbum === true ? `<p data-audioplayer-playlist-track"album">${track.album}</p>` : ``}
+                        </div>
+                    </button>
+                    `;
+        })}
         </div>
         `;
     }
@@ -2621,7 +2524,13 @@ customElements.define(`audio-playlist`, CpxAudioPlaylist);
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fJL4o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAudioControls", ()=>CpxAudioControls);
+/**
+ * @class CpxAudioControls
+ * @description
+ * AudioControls Component
+ * @example
+ * <audio-controls audio-controls:style="default" audio-controls:title="AudioPlayer Title" audio-controls:artist="AudioPlayer Artist Title" audio-controls:album="AudioPlayer Album Title">
+ */ parcelHelpers.export(exports, "CpxAudioControls", ()=>CpxAudioControls);
 var _element = require("../../element");
 var _index = require("../../index");
 class CpxAudioControls extends (0, _element.CpxElement) {
@@ -2631,43 +2540,57 @@ class CpxAudioControls extends (0, _element.CpxElement) {
         this.title = this.getAttribute("audio-controls:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
         this.artist = this.getAttribute("audio-controls:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
         this.album = this.getAttribute("audio-controls:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
+        this.hasPlayPause = this.getAttribute("audio-controls:has-play-pause") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-play-pause")) || true;
+        this.hasPrev = this.getAttribute("audio-controls:has-prev") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-prev")) || true;
+        this.hasNext = this.getAttribute("audio-controls:has-next") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-next")) || true;
+        this.hasProgress = this.getAttribute("audio-controls:has-progress") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-progress")) || true;
+        this.hasVolume = this.getAttribute("audio-controls:has-volume") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-volume")) || true;
     }
     connectedCallback() {
         this.render();
     }
     render() {
         this.innerHTML = `  
-            <div data-audioplayer-controls>
+            <div class="audio-controls audio-controls--${this.appearance}" data-audioplayer-controls>
                 ${this.initialContent !== "" ? this.initialContent : ` 
-                        <div>
-                            <input class="audio-controls__progress" type="range" data-audioplayer-control="progress-bar">
+                        ${this.hasProgress === true ? `
+                            <div class="audio-controls__progress-container">
+                                <audio-control class="audio-controls__progress-slider" audio-control:type="progress-bar">
+                            </div>` : ``}
+                        
+                        <div class="audio-controls__playback-controls-row">
+                            ${this.hasPrev === true ? `
+                                <audio-control class="audio-controls__prev" data-audioplayer-control="prev">
+                                    ${(0, _index.Cpx).Icon.prev}
+                                </audio-control>
+                                    ` : ``}
+                            ${this.hasPlayPause === true ? `
+                                <audio-control class="audio-controls__play-pause" data-audioplayer-control="play-pause">
+                                    ${(0, _index.Cpx).Icon.play}
+                                </audio-control>
+                                ` : ``}
+                            ${this.hasNext === true ? `
+                                  <audio-control class="audio-controls__next" data-audioplayer-control="next">
+                                      ${(0, _index.Cpx).Icon.next}
+                                  </audio-control>
+                                        ` : ``}
                         </div>
-                        <div>
-                            <button class="audio-controls__prev" data-audioplayer-control="prev">
-                                ${(0, _index.Cpx).Icon.prev}
-                            </button>
-                            <button class="audio-controls__play-pause" data-audioplayer-control="play-pause">
-                                ${(0, _index.Cpx).Icon.play}
-                            </button>
-                            <button class="audio-controls__next" data-audioplayer-control="next">
-                                ${(0, _index.Cpx).Icon.next}
-                            </button>
-                        </div>
-                        <div>
-                            <input class="audio-controls__volume" type="range" data-audioplayer-control="volume">
-                        </div>`}  
+                        ${this.hasVolume === true ? `
+                              <div class="audio-controls__volume-container">
+                                  <audio-control class="audio-controls__volume-slider" audio-control:type="volume">
+                              </div>` : ``}`}  
             </div>
         `;
     }
 }
 customElements.define(`audio-controls`, CpxAudioControls);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"kxtUx":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kxtUx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxAudioControl", ()=>CpxAudioControl);
 var _element = require("../../element");
-var _index = require("../../index");
+var _icons = require("../../utils/icons");
 class CpxAudioControl extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -2681,21 +2604,33 @@ class CpxAudioControl extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `  
-            <button 
+            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="audio-control audio-control--${this.appearance}" data-audioplayer-control="${this.type}">` : `
+                <button 
+                class="audio-control audio-control--${this.appearance}"
                 data-audioplayer-control="${this.type}">
-                ${this.initialContent !== "" ? this.initialContent : ` 
-                    <section>
-                        ${this.hasIcon ? (0, _index.Cpx).Icon[this.type] : ""}
-                        ${this.hasText ? this.type : ""}
+                ${this.initialContent !== "" ? this.initialContent : `
+                    <section class="audio-control__inner-container">
+                        ${this.hasIcon ? `
+                                <div class="audio-control__icon">
+                                    ${(0, _icons.Icon)[this.type]}
+                                </div>
+                                    ` : ""}
+                        ${this.hasText ? `
+                                <div class="audio-control__text">
+                                    ${this.type}
+                                </div>
+                                ` : ""}
                     </section>
                     `}  
-            </button>
+                </button>
+                `}
+            
         `;
     }
 }
 customElements.define(`audio-control`, CpxAudioControl);
 
-},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8vhOB":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8vhOB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DropDown", ()=>(0, _dropDown.CpxDropDown));
@@ -2704,7 +2639,13 @@ var _dropDown = require("./DropDown");
 },{"./DropDown":"eKSuN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eKSuN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxDropDown", ()=>CpxDropDown);
+/**
+ * @element drop-down
+ * @description A drop-down component that can be used to display content when hovered over.
+ * @example
+ * <drop-down drop-down:title="DropDown Title" drop-down:content="DropDown Content">
+ * </drop-down>
+ */ parcelHelpers.export(exports, "CpxDropDown", ()=>CpxDropDown);
 var _element = require("../../element");
 class CpxDropDown extends (0, _element.CpxElement) {
     constructor(){
@@ -2718,10 +2659,11 @@ class CpxDropDown extends (0, _element.CpxElement) {
     }
     addMouseHandler() {
         const dropDown = this.querySelector(`[drop-down="toggle"]`);
-        dropDown.addEventListener(`mouseover`, ()=>{
+        const dropDownEvent = this.querySelector(`[drop-down]`)?.getAttribute("drop-down:event") || "mouseover";
+        dropDown.addEventListener(dropDownEvent, ()=>{
             dropDown.querySelector(`[drop-down="toggle"]`).style.display = `block`;
         });
-        dropDown.addEventListener(`mouseout`, ()=>{
+        dropDown.addEventListener(dropDownEvent === "mouseover" ? "mouseout" : "DOMContentLoaded", ()=>{
             dropDown.querySelector(`[drop-down="toggle"]`).style.display = `none`;
         });
     }
@@ -2740,7 +2682,206 @@ class CpxDropDown extends (0, _element.CpxElement) {
 }
 customElements.define(`drop-down`, CpxDropDown);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gOZMd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PictureElement", ()=>(0, _pictureElement.CpxPictureElement));
+var _pictureElement = require("./PictureElement");
+
+},{"./PictureElement":"11clR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"11clR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Picture Element
+ * @description
+ * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * @example
+ * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ */ parcelHelpers.export(exports, "CpxPictureElement", ()=>CpxPictureElement);
+var _element = require("../../element");
+class CpxPictureElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.alt = this.getAttribute("alt") || "Flowers";
+        this.url = this.getAttribute("picture:url") || "https://via.placeholder.com/150";
+        this.urlImgBig = this.getAttribute("picture:url:xl") || this.url || "https://via.placeholder.com/1080";
+        this.urlImgMedium = this.getAttribute("picture:url:md") || this.url || "https://via.placeholder.com/720";
+        this.breakpointBig = this.getAttribute("picture:breakpoint:xl") || "1240px";
+        this.breakpointMedium = this.getAttribute("picture:breakpoint:md") || "720px";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `  
+        <figure class="picture-element">
+            <picture> 
+                <source media="(min-width:${this.breakpointBig})" srcset="${this.url}?as=webp?width=${this.breakpointBig}">
+                <source media="(min-width:${this.breakpointMedium})" srcset="${this.url}?as=webp?width=${this.breakpointMedium}">
+                <img class="picture-element__img" src="${this.url}" alt="${this.alt}">
+            </picture>
+            ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
+        </figure>
+        `;
+    }
+}
+customElements.define(`picture-element`, CpxPictureElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TextParagraph", ()=>(0, _textParagraph.CpxTextParagraph));
+parcelHelpers.export(exports, "TextLink", ()=>(0, _textLink.CpxTextLink));
+var _textParagraph = require("./TextParagraph");
+var _textLink = require("./TextLink");
+
+},{"./TextParagraph":"8hUiz","./TextLink":"fDw3r","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8hUiz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTextParagraph", ()=>CpxTextParagraph);
+var _element = require("../../element");
+class CpxTextParagraph extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <p class="text-paragraph">
+        ${this.initialContent}
+    </p>
+        `;
+    }
+}
+customElements.define(`text-paragraph`, CpxTextParagraph);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fDw3r":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTextLink", ()=>CpxTextLink);
+var _element = require("../../element");
+class CpxTextLink extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <a href="#" class="text-link">
+        ${this.initialContent}
+    </a>
+        `;
+    }
+}
+customElements.define(`text-link`, CpxTextLink);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bNH0i":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TabContainer", ()=>(0, _tabContainer.CpxTabContainer));
+parcelHelpers.export(exports, "TabHeader", ()=>(0, _tabHeader.CpxTabHeader));
+parcelHelpers.export(exports, "TabContent", ()=>(0, _tabContent.CpxTabContent));
+parcelHelpers.export(exports, "TabToggle", ()=>(0, _tabToggle.CpxTabToggle));
+var _tabContainer = require("./TabContainer");
+var _tabHeader = require("./TabHeader");
+var _tabContent = require("./TabContent");
+var _tabToggle = require("./TabToggle");
+
+},{"./TabContainer":"1EwjH","./TabHeader":"2vFZ3","./TabContent":"aA48q","./TabToggle":"jdXBV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1EwjH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
+var _element = require("../../element");
+var _id = require("../../utils/id");
+class CpxTabContainer extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section tab-container:id="${(0, _id.Id).Generate.hex(12)}" class="tab-container">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-container`, CpxTabContainer);
+
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2vFZ3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
+var _element = require("../../element");
+class CpxTabHeader extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section class="tab-header">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-header`, CpxTabHeader);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aA48q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
+var _element = require("../../element");
+class CpxTabContent extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section class="tab-content">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-content`, CpxTabContent);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jdXBV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
+var _element = require("../../element");
+var _id = require("../../utils/id");
+class CpxTabToggle extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <button class="tab-toggle" toggle:id="${(0, _id.Id).Generate.int(4)}" >
+        ${this.initialContent}
+    </button>
+        `;
+    }
+}
+customElements.define(`tab-toggle`, CpxTabToggle);
+
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DB", ()=>DB);
@@ -3260,6 +3401,7 @@ class PageAbout extends (0, _app.Cpx).Element {
         this.innerHTML = `
             <div style="text-align:center">
                 <text-paragraph>About</text-paragraph>
+                <audio-player></audio-player>
             </div>
         `;
     }

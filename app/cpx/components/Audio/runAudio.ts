@@ -5,6 +5,7 @@
  * @description provides an API to insert an audioplayer element on a website by just adding HTML attributes to elements
  * @link https://github.com/LucaIsMyName/audioplayer.js
  */
+
 export function runAudio() {
   function initializeAudioPlayer(player: any) {
     // Container Elements for Controls and Playlist

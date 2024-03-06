@@ -16,6 +16,7 @@ import { Id } from "./utils/id";
 import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
 import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl, runAudio } from "./components/Audio/index";
 import { DropDown } from "./components/DropDown";
+import { PictureElement } from "./components/Picture";
 import { TextParagraph, TextLink } from "./components/Text/index";
 import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tabs/index";
 
@@ -30,6 +31,7 @@ export interface CpxInterface {
     AudioControls: typeof Element;
     AudioControl: typeof Element;
     DropDown: typeof Element;
+    PictureElement: typeof Element;
     // AccordionTitle: typeof Element;
     TextParagraph: typeof Element;
     TextLink: typeof Element;
@@ -71,6 +73,8 @@ const Components = {
   AudioControl,
   // DropDown
   DropDown,
+  // Picture
+  PictureElement,
   // Text
   TextParagraph,
   TextLink,

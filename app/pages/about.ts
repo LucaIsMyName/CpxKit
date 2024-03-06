@@ -22,6 +22,7 @@ export class PageAbout extends Cpx.Element {
     this.innerHTML = `
             <div style="text-align:center">
                 <text-paragraph>About</text-paragraph>
+                <audio-player></audio-player>
             </div>
         `;
   }

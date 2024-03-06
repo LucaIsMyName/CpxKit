@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "parcel serve index.html --dist-dir _serve/",
-    "build": "parcel build index.html --dist-dir _build/ --no-scope-hoist"
+    "build": "parcel build index.html --dist-dir _build/"
   },
   "author": "",
   "license": "ISC",

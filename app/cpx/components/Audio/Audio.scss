@@ -1,4 +1,70 @@
 .audio {
+    &-player {
+        &--default {
+            @media (min-width: map-get($map: $mediaQueries, $key: "sm")) {
+                display: flex;
+                align-items: center;
+                gap: var(--4);
+            }
+
+            padding: var(--4);
+            border-radius: var(--relative-2);
+            border: calc(var(--px) * 1) solid var(--gray-300);
+
+            audio-current {
+                flex: 50%;
+                flex-shrink: 1;
+                flex-grow: 1;
+
+                img {
+                    width: 100%;
+                    max-width: var(--size-xxs);
+                    height: auto;
+                }
+            }
+
+            audio-playlist {
+                flex: 50%;
+                flex-shrink: 1;
+                flex-grow: 1;
+
+                .audio-playlist--default button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: var(--4);
+                    padding: var(--2);
+                    border-radius: var(--relative-2);
+                    border: calc(var(--px) * 1) solid var(--gray-300);
+
+                }
+
+                .audio-playlist__meta {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: var(--4);
+
+                    * {
+                        font-size: 80%;
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    width: 100%;
+                    height: auto;
+
+                    img {
+                        width: 100%;
+                        max-width: var(--relative-6);
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+
     &-controls {}
 
     &-control {}

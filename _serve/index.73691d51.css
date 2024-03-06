@@ -1065,6 +1065,66 @@ summary svg {
   height: 1em;
 }
 
+.audio-player--default {
+  padding: var(--4);
+  border-radius: var(--relative-2);
+  border: calc(var(--px) * 1) solid var(--gray-300);
+}
+
+@media (width >= 32rem) {
+  .audio-player--default {
+    align-items: center;
+    gap: var(--4);
+    display: flex;
+  }
+}
+
+.audio-player--default audio-current {
+  flex: 50%;
+}
+
+.audio-player--default audio-current img {
+  max-width: var(--size-xxs);
+  width: 100%;
+  height: auto;
+}
+
+.audio-player--default audio-playlist {
+  flex: 50%;
+}
+
+.audio-player--default audio-playlist .audio-playlist--default button {
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--4);
+  padding: var(--2);
+  border-radius: var(--relative-2);
+  border: calc(var(--px) * 1) solid var(--gray-300);
+  display: flex;
+}
+
+.audio-player--default audio-playlist .audio-playlist__meta {
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--4);
+  display: flex;
+}
+
+.audio-player--default audio-playlist .audio-playlist__meta * {
+  font-size: 80%;
+}
+
+.audio-player--default audio-playlist button {
+  width: 100%;
+  height: auto;
+}
+
+.audio-player--default audio-playlist button img {
+  max-width: var(--relative-6);
+  width: 100%;
+  height: auto;
+}
+
 .root {
   background-color: var(--white);
   color: var(--black);
