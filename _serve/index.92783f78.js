@@ -2206,6 +2206,9 @@ class CpxAudioPlayer extends (0, _element.CpxElement) {
         this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
         this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
         this.album = this.getAttribute("audio-player:album") || "AudioPlayer Album Title";
+        this.playlist = eval(this.getAttribute("audio-player:playlist")) || [
+            {}
+        ];
     }
     connectedCallback() {
         this.render();
@@ -2215,12 +2218,12 @@ class CpxAudioPlayer extends (0, _element.CpxElement) {
         this.innerHTML = `
     <section class="audio-player audio-player--${this.appearance}" data-audioplayer>
     ${this.initialContent !== "" ? `${this.initialContent}` : `
-            <audio-current class="audio-player__current">
-                <audio-controls class="audio-player__controls"></audio-controls>
-            </audio-current>
-            <audio-playlist  class="audio-player__playlist"></audio-playlist>
-        
-    `}
+            <div>
+              <audio-current class="audio-player__current"></audio-current>
+              <audio-controls class="audio-player__controls"></audio-controls>
+            </div>
+            <audio-playlist audio-playlist:list="${this.playlist}"  class="audio-player__playlist"></audio-playlist>
+        `}
     </section>
     `;
     }
@@ -2439,12 +2442,15 @@ class CpxAudioCurrent extends (0, _element.CpxElement) {
     render() {
         this.innerHTML = `
         <div class="audio-current audio-current--${this.appearance}">
-            <section>
-                <img data-audioplayer-current="cover">
-                <p data-audioplayer-current="title"></p>
-                <p data-audioplayer-current="artist"></p>
-            </section>
-            ${this.initialContent}
+            ${this.initialContent !== "" ? this.initialContent : `
+                  <section>
+                      <img class="audio-current__image" data-audioplayer-current="cover">
+                      <div class="audio-current__text">
+                        <p class="audio-current__title" data-audioplayer-current="title"></p>
+                        <p class="audio-current__artist" data-audioplayer-current="artist"></p>
+                      </div>
+                  </section>
+                `}
         </div>
         `;
     }

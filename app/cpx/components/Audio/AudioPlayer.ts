@@ -16,12 +16,15 @@ export class CpxAudioPlayer extends CpxElement {
   title: string;
   artist: string;
   album: string;
+  playlist: Array<any>;
+
   constructor() {
     super();
     this.appearance = this.getAttribute("audio-player:appearance") || "default";
     this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
     this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
     this.album = this.getAttribute("audio-player:album") || "AudioPlayer Album Title";
+    this.playlist = eval(this.getAttribute("audio-player:playlist")) || [{}];
   }
 
   connectedCallback() {
@@ -36,12 +39,12 @@ export class CpxAudioPlayer extends CpxElement {
       this.initialContent !== ""
         ? `${this.initialContent}`
         : `
-            <audio-current class="audio-player__current">
-                <audio-controls class="audio-player__controls"></audio-controls>
-            </audio-current>
-            <audio-playlist  class="audio-player__playlist"></audio-playlist>
-        
-    `
+            <div>
+              <audio-current class="audio-player__current"></audio-current>
+              <audio-controls class="audio-player__controls"></audio-controls>
+            </div>
+            <audio-playlist audio-playlist:list="${this.playlist}"  class="audio-player__playlist"></audio-playlist>
+        `
     }
     </section>
     `;

@@ -28,12 +28,19 @@ export class CpxAudioCurrent extends CpxElement {
   render() {
     this.innerHTML = `
         <div class="audio-current audio-current--${this.appearance}">
-            <section>
-                <img data-audioplayer-current="cover">
-                <p data-audioplayer-current="title"></p>
-                <p data-audioplayer-current="artist"></p>
-            </section>
-            ${this.initialContent}
+            ${
+              this.initialContent !== ""
+                ? this.initialContent
+                : `
+                  <section>
+                      <img class="audio-current__image" data-audioplayer-current="cover">
+                      <div class="audio-current__text">
+                        <p class="audio-current__title" data-audioplayer-current="title"></p>
+                        <p class="audio-current__artist" data-audioplayer-current="artist"></p>
+                      </div>
+                  </section>
+                `
+            }
         </div>
         `;
   }
