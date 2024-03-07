@@ -8,10 +8,12 @@ import { CpxElement } from "../../element";
  * </drop-down>
  */
 export class CpxDropDown extends CpxElement implements Element {
+  classNames: string;
   title: string;
   content: string;
   constructor() {
     super();
+    this.classNames = this.getAttribute("drop-down:class") || "";
     this.title = this.getAttribute("drop-down:title") || "DropDown Title";
     this.content = this.initialContent || this.getAttribute("drop-down:content") || "DropDown Content";
   }
@@ -27,20 +29,20 @@ export class CpxDropDown extends CpxElement implements Element {
     dropDown.addEventListener(dropDownEvent, () => {
       dropDown.querySelector(`[drop-down="toggle"]`).style.display = `block`;
     });
-    dropDown.addEventListener(dropDownEvent === "mouseover" ? "mouseout" : 'DOMContentLoaded', () => {
+    dropDown.addEventListener(dropDownEvent === "mouseover" ? "mouseout" : "DOMContentLoaded", () => {
       dropDown.querySelector(`[drop-down="toggle"]`).style.display = `none`;
     });
   }
 
   render() {
     this.innerHTML = `
-       <div class="drop-down">
-            <section class="drop-down__toggle" drop-down="toggle">
-                ${this.title}
-            </section>
+       <div class="drop-down ${this.classNames}">
+          <section class="drop-down__toggle" drop-down="toggle">
+              ${this.title}
+          </section>
         </div>
         <section class="drop-down__content" drop-down="content">
-                ${this.content}
+          ${this.content}
         </section>
         `;
   }

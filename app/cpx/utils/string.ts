@@ -21,7 +21,7 @@ export const String: StringInterfaces = {
   snakeToCamel: function snakeToCamel(str) {
     return str.replace(/_([a-z])/g, (match, letter) => letter.toUpperCase());
   },
-  toHtml: function toHtmlString(string) {
+  toHtml: (string) => {
     // Replace spaces and special characters with hyphens
     const slug = string
       .toLowerCase()
@@ -29,7 +29,7 @@ export const String: StringInterfaces = {
       .replace(/\s+/g, "-");
     return slug;
   },
-  toCamelCase: function toCamelCase(string) {
+  toCamelCase: (string) => {
     const words = string.split(/[\s-]+/);
     const camelCaseString = words
       .map((word, index) => {

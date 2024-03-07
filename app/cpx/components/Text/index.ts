@@ -1,7 +1,5 @@
-import { CpxTextParagraph as TextParagraph } from "./TextParagraph";
-import { CpxTextLink as TextLink } from "./TextLink";
+import { CpxTextElement as TextElement } from "./TextElement";
 
 export {
-    TextParagraph,
-    TextLink
+    TextElement
 }

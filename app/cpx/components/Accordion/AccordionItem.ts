@@ -3,8 +3,11 @@ import { Id } from "../../utils/id";
 import { Cpx } from "../../index";
 
 export class CpxAccordionItem extends CpxElement {
+  classNames: string;
+  title: string;
   constructor() {
     super();
+    this.classNames = this.getAttribute("accordion-item:class") || "";
     this.title = this.getAttribute("accordion-item:title") || "Accordion Item Title";
   }
 
@@ -14,7 +17,7 @@ export class CpxAccordionItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <details class="accordion-item" accordion-item:id="${Id.Generate.hex(6)}" class="accordion-item">
+    <details class="accordion-item" accordion-item:id="${Id.Generate.hex(6)}" class="accordion-item ${this.classNames}">
         <summary class="accordion-item__title">
             <div class="accordion-item__text">${this.title}</div>
             <div class="accordion-item__icon">

@@ -11,14 +11,18 @@ import { Time } from "./utils/time";
 import { Json } from "./utils/json";
 import { Icon } from "./utils/icons";
 import { Id } from "./utils/id";
+import { String } from "./utils/string";
 
 // Cpx Utility Components
 import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
-import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl, runAudio } from "./components/Audio/index";
+import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl, runAudio as audioAPI } from "./components/Audio/index";
 import { DropDown } from "./components/DropDown";
+import { SliderContainer, SliderItem, runSlider as sliderAPI } from "./components/Slider";
 import { PictureElement } from "./components/Picture";
-import { TextParagraph, TextLink } from "./components/Text/index";
-import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tabs/index";
+import { SuspenseAll } from "./components/Suspense";
+import { TextElement } from "./components/Text/index";
+import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tab/index";
+import { VideoPlayer, VideoControls, VideoControl, VideoPlaylist, VideoPlaylistItem, runVideo as videoAPI } from "./components/Video";
 
 export interface CpxInterface {
   Element: typeof Element;
@@ -31,17 +35,25 @@ export interface CpxInterface {
     AudioControls: typeof Element;
     AudioControl: typeof Element;
     DropDown: typeof Element;
+    SliderContainer: typeof Element;
+    SliderItem: typeof Element;
     PictureElement: typeof Element;
-    // AccordionTitle: typeof Element;
-    TextParagraph: typeof Element;
-    TextLink: typeof Element;
+    SuspenseAll: typeof Element;
+    TextElement: typeof Element;
     TabContainer: typeof Element;
     TabHeader: typeof Element;
     TabContent: typeof Element;
     TabToggle: typeof Element;
+    VideoPlayer: typeof Element;
+    VideoControls: typeof Element;
+    VideoControl: typeof Element;
+    VideoPlaylist: typeof Element;
+    VideoPlaylistItem: typeof Element;
   };
   Functions: {
-    runAudio: Function;
+    audioAPI: Function;
+    videoAPI: Function;
+    sliderAPI: Function;
   };
   define: Function;
   Config: typeof Config;
@@ -54,6 +66,7 @@ export interface CpxInterface {
   Json: typeof Json;
   Icon: typeof Icon;
   Id: typeof Id;
+  String: typeof String;
 }
 /**
  * @class Cpx
@@ -73,21 +86,34 @@ const Components = {
   AudioControl,
   // DropDown
   DropDown,
+  //Slider
+  SliderContainer,
+  SliderItem,
   // Picture
   PictureElement,
+  // Suspense
+  SuspenseAll,
   // Text
-  TextParagraph,
-  TextLink,
+  TextElement,
   // Tab
   TabContainer,
   TabHeader,
   TabContent,
   TabToggle,
+  // Video
+  VideoPlayer,
+  VideoControls,
+  VideoControl,
+  VideoPlaylist,
+  VideoPlaylistItem,
 };
 
 const Functions = {
-  runAudio,
+  audioAPI,
+  videoAPI,
+  sliderAPI,
 };
+
 export const Cpx: CpxInterface = {
   Element,
   Components,
@@ -103,4 +129,5 @@ export const Cpx: CpxInterface = {
   Json,
   Icon,
   Id,
+  String,
 };

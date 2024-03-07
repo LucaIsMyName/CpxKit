@@ -1,0 +1,3 @@
+# ./app/cpx
+
+Cpx Library that provides a `Cpx.Element` and certain pre-made Web-Components like `<video-player>`, `<picture-element>`, ...

@@ -21,7 +21,7 @@ export class PageHome extends Cpx.Element {
   render() {
     this.innerHTML = `
             <div style="text-align:center">
-                <text-paragraph>Home</text-paragraph>
+                <text-element text-element:type=h1>Home</text-element>
             </div>
         `;
   }

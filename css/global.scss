@@ -41,3 +41,59 @@
         @include button(1, sans, 0, 0, 0, 0, transparent, transparent, transparent);
     }
 }
+
+$spacing-types:(
+    'margin': (
+        'm': 'margin',
+        'mt': 'margin-top',
+        'mr': 'margin-right',
+        'mb': 'margin-bottom',
+        'ml': 'margin-left',
+        'mx': 'margin-inline',
+        'my': 'margin-block'
+    ),
+    'padding': (
+        'p': 'padding',
+        'pt': 'padding-top',
+        'pr': 'padding-right',
+        'pb': 'padding-bottom',
+        'pl': 'padding-left',
+        'px': 'padding-inline',
+        'py': 'padding-block'
+    ),
+    'gap': (
+        'gap': 'gap',
+        'grid-gap': 'grid-gap',
+        'row-gap': 'row-gap',
+        'column-gap': 'column-gap'
+    ),
+);
+
+$spacing-values: (
+    1: var(--1),
+    2: var(--2),
+    3: var(--3),
+    4: var(--4),
+    5: var(--5),
+    6: var(--6),
+    7: var(--7),
+    8: var(--8),
+    9: var(--9),
+    10:var(--10),
+    11:var(--11),
+    12:var(--12),
+    13:var(--13),
+    14:var(--14),
+    15:var(--15),
+    16:var(--16),
+);
+
+@each $type, $props in $spacing-types {
+    @each $key, $value in $spacing-values {
+        @each $prop, $css in $props {
+            .#{$prop}-#{$key} {
+                #{$css}: $value;
+            }
+        }
+    }
+}

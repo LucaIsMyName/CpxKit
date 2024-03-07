@@ -1,5 +1,8 @@
 .audio {
     &-player {
+        &__column{
+            flex: 1 1 50%;
+        } 
         &--default {
             @media (min-width: map-get($map: $mediaQueries, $key: "sm")) {
                 display: flex;
@@ -11,65 +14,90 @@
             border-radius: var(--relative-2);
             border: calc(var(--px) * 1) solid var(--gray-300);
 
-            audio-current {
+            :where(audio-current) {
                 flex: 50%;
                 flex-shrink: 1;
                 flex-grow: 1;
 
-                img {
+                :where(img) {
                     width: 100%;
                     max-width: var(--size-xxs);
                     height: auto;
                 }
             }
 
-            audio-playlist {
-                flex: 50%;
-                flex-shrink: 1;
-                flex-grow: 1;
 
-                .audio-playlist--default button {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: var(--4);
-                    padding: var(--2);
-                    border-radius: var(--relative-2);
-                    border: calc(var(--px) * 1) solid var(--gray-300);
+        }
+    }
 
-                }
+    &-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        :where(.audio-controls__playback-controls-row) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--4);
+            width: 100%;
 
-                .audio-playlist__meta {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: var(--4);
-
-                    * {
-                        font-size: 80%;
-                    }
-                }
-
-                button {
-                    width: 100%;
-                    width: 100%;
-                    height: auto;
-
-                    img {
-                        width: 100%;
-                        max-width: var(--relative-6);
-                        height: auto;
-                    }
-                }
+            :where(button) {
+                width: var(--12);
+                height: var(--12);
             }
         }
     }
 
-    &-controls {}
+    &-control {
+        display: block;
 
-    &-control {}
+        :where(button) {
+            width: var(--7);
+            height: var(--7);
+        }
+    }
 
     &-current {}
 
     &-playlist {}
+}
+
+audio-playlist {
+    flex: 50%;
+    flex-shrink: 1;
+    flex-grow: 1;
+
+   :where(.audio-playlist--default button) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--4);
+        padding: var(--2);
+        border-radius: var(--relative-2);
+        border: calc(var(--px) * 1) solid var(--gray-300);
+
+    }
+
+    :where(.audio-playlist__meta) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--4);
+
+        :where(*) {
+            font-size: 80%;
+        }
+    }
+
+    :where(button) {
+        width: 100%;
+        width: 100%;
+        height: auto;
+
+        :where(img) {
+            width: 100%;
+            max-width: var(--relative-6);
+            height: auto;
+        }
+    }
 }

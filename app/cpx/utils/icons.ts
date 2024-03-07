@@ -12,7 +12,7 @@ export interface IconInterface {
 }
 
 type Icon = {
-  [key: string]: string;
+  [key: string]: any;
 };
 import home from "bundle-text:../../assets/icons/home.svg";
 import informationCircle from "bundle-text:../../assets/icons/information-circle.svg";
@@ -163,10 +163,20 @@ import scale from "bundle-text:../../assets/icons/scale.svg";
 import funnel from "bundle-text:../../assets/icons/funnel.svg";
 import xMark from "bundle-text:../../assets/icons/x-mark.svg";
 import share from "bundle-text:../../assets/icons/share.svg";
+import speakerWave from "bundle-text:../../assets/icons/speaker-wave.svg";
+import play from "bundle-text:../../assets/icons/play.svg";
+import forward from "bundle-text:../../assets/icons/forward.svg";
+import backward from "bundle-text:../../assets/icons/backward.svg";
+import arrowPath from "bundle-text:../../assets/icons/arrow-path.svg";
 
 
 
 export const Icon: IconInterface = {
+  arrowPath,
+  forward,
+  backward,
+  play,
+  speakerWave,
   home,
   share,
   xMark,

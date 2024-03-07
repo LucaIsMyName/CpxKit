@@ -94,6 +94,25 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     // Load things here when DOM is ready
   }
 
+  addRenderOnClick(): void {
+    const allElements = this.querySelectorAll("[click:render]");
+    allElements.forEach((element: any) => {
+      element.addEventListener("click", () => {
+        this.render();
+      });
+    });
+  }
+
+  addDeleteOnClick(): void {
+    const allElements = this.querySelectorAll("[click:delete]");
+    allElements.forEach((element: any) => {
+      element.addEventListener("click", () => {
+        this.innerHTML = '';
+        this.render();
+      });
+    });
+  }
+
   /**
    * @name addClickHandler
    * @param elements

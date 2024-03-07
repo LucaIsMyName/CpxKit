@@ -11,8 +11,10 @@ import { Id } from "../../utils/id";
  * @property {any} state - A reference to the State class. This is used to store the state of the component.
  */
 export class CpxAccordionGroup extends CpxElement {
+  classNames: string;
   constructor() {
     super();
+    this.classNames = this.getAttribute("accordion-group:class") || "";
   }
 
   connectedCallback() {
@@ -41,7 +43,7 @@ export class CpxAccordionGroup extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <section accordion-group:id="${Id.Generate.hex(12)}" class="accordion-group">
+    <section accordion-group:id="${Id.Generate.hex(12)}" class="accordion-group ${this.classNames}">
         ${this.initialContent}
     </section>
         `;

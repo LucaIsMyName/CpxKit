@@ -1,0 +1,23 @@
+picture-element {
+
+    display: block;
+    width: 100%;
+    height: auto;
+
+    figure {
+        --aspect-ratio: 16 / 9;
+        overflow: hidden;
+        aspect-ratio: var(--aspect-ratio);
+    }
+
+    :where(figure, img) {
+        line-height: 0;
+    }
+
+    :where(img) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
