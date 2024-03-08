@@ -12,11 +12,11 @@ export class CpxAudioControls extends CpxElement {
   appearance: string;
   classNames: string;
 
-  hasPlayPause: boolean;
-  hasPrev: boolean;
-  hasNext: boolean;
-  hasProgress: boolean;
-  hasVolume: boolean;
+  hasPlayPause: any;
+  hasPrev: any;
+  hasNext: any;
+  hasProgress: any;
+  hasVolume: any;
 
   iconPlay: string;
   iconPause: string;
@@ -30,11 +30,11 @@ export class CpxAudioControls extends CpxElement {
     this.appearance = this.getAttribute("audio-controls:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
     this.classNames = this.getAttribute("audio-controls:class") || "";
 
-    this.hasPlayPause = this.getAttribute("audio-controls:has-play-pause") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-play-pause")) || true;
-    this.hasPrev = this.getAttribute("audio-controls:has-prev") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-prev")) || true;
-    this.hasNext = this.getAttribute("audio-controls:has-next") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-next")) || true;
-    this.hasProgress = this.getAttribute("audio-controls:has-progress") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-progress")) || true;
-    this.hasVolume = this.getAttribute("audio-controls:has-volume") || eval(document.querySelector("audio-player").getAttribute("audio-player:has-volume")) || true;
+    this.hasPlayPause = this.getAttribute("audio-controls:has-play-pause") || document.querySelector("audio-player").getAttribute("audio-player:has-play-pause") || true;
+    this.hasPrev = this.getAttribute("audio-controls:has-prev") || document.querySelector("audio-player").getAttribute("audio-player:has-prev") || true;
+    this.hasNext = this.getAttribute("audio-controls:has-next") || document.querySelector("audio-player").getAttribute("audio-player:has-next") || true;
+    this.hasProgress = this.getAttribute("audio-controls:has-progress") || document.querySelector("audio-player").getAttribute("audio-player:has-progress") || true;
+    this.hasVolume = this.getAttribute("audio-controls:has-volume") || document.querySelector("audio-player").getAttribute("audio-player:has-volume") || true;
 
     this.iconPlay = Cpx.Icon.play;
     this.iconPause = Cpx.Icon.pause;
@@ -45,14 +45,20 @@ export class CpxAudioControls extends CpxElement {
   }
 
   render() {
+    let evalPlayPause = eval(this.hasPlayPause);
+    let evalPrev = eval(this.hasPrev);
+    let evalNext = eval(this.hasNext);
+    let evalProgress = eval(this.hasProgress);
+    let evalVolume = eval(this.hasVolume);
+
     this.innerHTML = `  
-            <div class="audio-controls audio-controls--${this.appearance} ${this.classNames}" data-audioplayer-controls>
+            <div class="audio-controls audio-controls--${this.appearance} ${this.classNames}" audio-controls>
                 ${
                   this.initialContent !== ""
                     ? this.initialContent
                     : ` 
                         ${
-                          this.hasProgress === true
+                          evalProgress === true
                             ? `
                             <div class="audio-controls__progress-container">
                                 <audio-control class="audio-controls__progress-slider" audio-control:type="progress-bar">
@@ -62,27 +68,27 @@ export class CpxAudioControls extends CpxElement {
                         
                         <div class="audio-controls__playback-controls-row">
                             ${
-                              this.hasPrev === true
+                              evalPrev === true
                                 ? `
-                                <audio-control class="audio-controls__prev" data-audioplayer-control="prev">
+                                <audio-control class="audio-controls__prev" audio-control="prev">
                                     ${this.iconPrev}
                                 </audio-control>
                                     `
                                 : ``
                             }
                             ${
-                              this.hasPlayPause === true
+                              evalPlayPause === true
                                 ? `
-                                <audio-control class="audio-controls__play-pause" data-audioplayer-control="play-pause">
+                                <audio-control class="audio-controls__play-pause" audio-control="play-pause">
                                     ${this.iconPlay}
                                 </audio-control>
                                 `
                                 : ``
                             }
                             ${
-                              this.hasNext === true
+                              evalNext === true
                                 ? `
-                                  <audio-control class="audio-controls__next" data-audioplayer-control="next">
+                                  <audio-control class="audio-controls__next" audio-control="next">
                                       ${this.iconNext}
                                   </audio-control>
                                         `
@@ -90,7 +96,7 @@ export class CpxAudioControls extends CpxElement {
                             }
                         </div>
                         ${
-                          this.hasVolume === true
+                          evalVolume === true
                             ? `
                               <div class="audio-controls__volume-container">
                                   <audio-control class="audio-controls__volume-slider" audio-control:type="volume">

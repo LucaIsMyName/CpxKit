@@ -5,8 +5,9 @@
 
 :where(*) {
     box-sizing: border-box;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
+    text-align:start
 }
 
 /**
@@ -48,10 +49,21 @@ main {
    */
 
 :where(h1, h2, h3, h4, h5, h6, p, small, span, strong, em, a, ul, ol, li, div, img, input, button, textarea, select, form, label, table, thead, tbody, tr, th, td, hr, nav, header, footer, section, article, main, aside, figure, figcaption, blockquote, pre, code, video, audio, canvas, iframe, details, summary, fieldset, legend, progress, meter, time, mark, output, datalist, menu, menuitem, menuitem, summary, details, summary, template) {
-    font-size: 1em;
+    font-size: var(--font-sm);
     font-family: var(--font-sans);
     margin: 0;
     padding: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, small, span, strong, em, a, ul, ol, li, div, img, input, button, textarea, select, form, label, table, thead, tbody, tr, th, td, hr, nav, header, footer, section, article, main, aside, figure, figcaption, blockquote, video, audio, canvas, iframe, details, summary, fieldset, legend, progress, meter, time, mark, output, datalist, menu, menuitem, menuitem, summary, details, summary, template) {
+    font-size: 1em;
+    // font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+}
+
+:where(pre, code) {
+    font-family: var(--font-mono) !important;
 }
 
 /* Grouping content
@@ -79,7 +91,6 @@ hr {
    */
 
 pre {
-    font-family: monospace, monospace;
     /* 1 */
     font-size: 1em;
     /* 2 */
@@ -127,7 +138,6 @@ strong {
 code,
 kbd,
 samp {
-    font-family: monospace, monospace;
     /* 1 */
     font-size: 1em;
     /* 2 */
@@ -181,11 +191,11 @@ img {
    * 2. Remove the margin in Firefox and Safari.
    */
 
-button,
-input,
-optgroup,
-select,
-textarea {
+:where(button,
+    input,
+    optgroup,
+    select,
+    textarea) {
     font-family: inherit;
     /* 1 */
     font-size: 100%;
@@ -201,8 +211,8 @@ textarea {
    * 1. Show the overflow in Edge.
    */
 
-button,
-input {
+:where(button,
+    input) {
     /* 1 */
     overflow: visible;
 }
@@ -212,8 +222,8 @@ input {
    * 1. Remove the inheritance of text transform in Firefox.
    */
 
-button,
-select {
+:where(button,
+    select) {
     /* 1 */
     text-transform: none;
 }
@@ -222,10 +232,10 @@ select {
    * Correct the inability to style clickable types in iOS and Safari.
    */
 
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+:where(button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"]) {
     -webkit-appearance: button;
 }
 
@@ -233,10 +243,10 @@ button,
    * Remove the inner border and padding in Firefox.
    */
 
-button::-moz-focus-inner,
+   :where(button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type="submit"]::-moz-focus-inner ){
     border-style: none;
     padding: 0;
 }
@@ -245,10 +255,10 @@ button::-moz-focus-inner,
    * Restore the focus styles unset by the previous rule.
    */
 
-button:-moz-focusring,
+   :where(button:-moz-focusring,
 [type="button"]:-moz-focusring,
 [type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+[type="submit"]:-moz-focusring) {
     outline: 1px dotted ButtonText;
 }
 
@@ -411,7 +421,7 @@ template {
     border-width: 0;
 }
 
-button {
+:where(button) {
     background-color: transparent;
     border: none;
     cursor: pointer;

@@ -1,8 +1,7 @@
 import { CpxElement } from "../../element";
 import { Id } from "../../utils/id";
 import { Cpx } from "../../index";
-import { runAudio } from "./runAudio";
-
+import { audioAPI } from "../../utils/audio";
 /**
  * @class CpxAudioPlayer
  * @description
@@ -12,12 +11,18 @@ import { runAudio } from "./runAudio";
  * </audio-player>
  */
 export class CpxAudioPlayer extends CpxElement {
-  appearance: string;
-  classNames: string;
-  title: string;
-  artist: string;
-  album: string;
+  appearance: any;
+  classNames: any;
+  title: any;
+  artist: any;
+  album: any;
   playlist: Array<any>;
+  hasPlaylist: any;
+  hasControls: any;
+  hasTitle: any;
+  hasArtist: any;
+  hasCover: any;
+  hasCurrent: any;
 
   constructor() {
     super();
@@ -26,7 +31,13 @@ export class CpxAudioPlayer extends CpxElement {
     this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
     this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
     this.album = this.getAttribute("audio-player:album") || "AudioPlayer Album Title";
-    this.playlist = eval(this.getAttribute("audio-player:playlist")) || [
+    this.hasPlaylist = this.getAttribute("audio-player:has-playlist") || true;
+    this.hasControls = this.getAttribute("audio-player:has-controls") || true;
+    this.hasTitle = this.getAttribute("audio-player:has-title") || true;
+    this.hasArtist = this.getAttribute("audio-player:has-artist") || true;
+    this.hasCover = this.getAttribute("audio-player:has-cover") || true;
+    this.hasCurrent = this.getAttribute("audio-player:has-current") || true;
+    this.playlist = [
       {
         title: "Song 1",
         artist: "Artist 1",
@@ -50,21 +61,33 @@ export class CpxAudioPlayer extends CpxElement {
 
   connectedCallback() {
     this.render();
-    runAudio();
+    audioAPI();
   }
 
   render() {
+    let evalHasPlaylist = eval(this.hasPlaylist);
+    let evalHasControls = eval(this.hasControls);
+    let evalHasTitle = eval(this.hasTitle);
+    let evalHasArtist = eval(this.hasArtist);
+    let evalHasCover = eval(this.hasCover);
+    let evalHasCurrent = eval(this.hasCurrent);
+
     this.innerHTML = `
-    <section class="audio-player audio-player--${this.appearance} ${this.classNames}" data-audioplayer>
+    <section class="audio-player audio-player--${this.appearance} ${this.classNames}" audio>
     ${
       this.initialContent !== ""
         ? `${this.initialContent}`
         : `
+        ${
+          evalHasCurrent === true || evalHasControls === true
+            ? `
             <div class="audio-player__column">
-              <audio-current class="audio-player__current"></audio-current>
-              <audio-controls class="audio-player__controls"></audio-controls>
-            </div>
-            <audio-playlist class="audio-player__column audio-player__playlist" class=""></audio-playlist>
+              ${evalHasCurrent === true ? `<audio-current audio-current:has-title="${evalHasTitle}" audio-current:has-artist="${evalHasArtist}" audio-current:has-cover="${evalHasCover}" class="audio-player__current"></audio-current>` : ``}
+              ${evalHasControls === true ? `<audio-controls class="audio-player__controls"></audio-controls>` : ``}
+            </div>`
+            : ``
+        }
+        ${evalHasPlaylist === true ? `<audio-playlist class="audio-player__column audio-player__playlist" class=""></audio-playlist>` : ``}
         `
     }
     </section>

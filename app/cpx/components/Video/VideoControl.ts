@@ -30,12 +30,12 @@ export class CpxVideoControl extends CpxElement {
     this.innerHTML = `  
             ${
               this.type === "progress-bar" || this.type === "volume"
-                ? `<input type="range" class="video-control video-control--${this.appearance} video-control--slider ${this.classNames}" data-videoplayer-control="${this.type}">`
+                ? `<input type="range" class="video-control video-control--${this.appearance} video-control--slider ${this.classNames}" video-control="${this.type}">`
                 : `
                 <button 
                 click:delete
                 class="video-control video-control--${this.appearance} ${this.classNames}"
-                data-videoplayer-control="${this.type}">
+                video-control="${this.type}">
                 ${
                   this.initialContent !== ""
                     ? this.initialContent
@@ -46,7 +46,7 @@ export class CpxVideoControl extends CpxElement {
                             ? `${
                                 this.type === "play-pause"
                                   ? `   <div  class="video-control__icon">
-                                            ${this.querySelector("button").getAttribute("data-videoplayer-current-state") === "play" ? Icon.pause : Icon.play}
+                                            ${this.querySelector("button").getAttribute("video-current-state") === "play" ? Icon.pause : Icon.play}
                                         </div>`
                                   : ``
                               }

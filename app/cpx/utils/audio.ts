@@ -6,26 +6,26 @@
  * @link https://github.com/LucaIsMyName/audioplayer.js
  */
 
-export function runAudio() {
+function audioAPI() {
   function initializeAudioPlayer(player: any) {
     // Container Elements for Controls and Playlist
-    const controls = player.querySelector("[data-audioplayer-controls]");
-    const playlist = player.querySelector("[data-audioplayer-playlist]");
+    const controls = player.querySelector("[audio-controls]");
+    const playlist = player.querySelector("[audio-playlist]");
     // Elements where the current Track Infos are renderd in
-    const currentTrackImage = player.querySelector('[data-audioplayer-current="cover"]');
-    const currentTrackTitle = player.querySelector('[data-audioplayer-current="title"]');
-    const currentArtistTitle = player.querySelector('[data-audioplayer-current="artist"]');
+    const currentTrackImage = player.querySelector('[audio-current="cover"]');
+    const currentTrackTitle = player.querySelector('[audio-current="title"]');
+    const currentArtistTitle = player.querySelector('[audio-current="artist"]');
     // Controls
-    const playPauseButton = controls.querySelector('[data-audioplayer-control="play-pause"]');
-    const prevButton = controls.querySelector('[data-audioplayer-control="prev"]');
-    const nextButton = controls.querySelector('[data-audioplayer-control="next"]');
-    const repeatPlaylistButton = controls.querySelector('[data-audioplayer-control="repeat-playlist"]');
-    const repeatTrackButton = controls.querySelector('[data-audioplayer-control="repeat-track"]');
-    const volumeInput = controls.querySelector('[data-audioplayer-control="volume"]');
-    const muteUnmuteButton = controls.querySelector('[data-audioplayer-control="mute-unmute"]');
-    const progressBar = controls.querySelector('[data-audioplayer-control="progress-bar"]');
+    const playPauseButton = controls.querySelector('[audio-control="play-pause"]');
+    const prevButton = controls.querySelector('[audio-control="prev"]');
+    const nextButton = controls.querySelector('[audio-control="next"]');
+    const repeatPlaylistButton = controls.querySelector('[audio-control="repeat-playlist"]');
+    const repeatTrackButton = controls.querySelector('[audio-control="repeat-track"]');
+    const volumeInput = controls.querySelector('[audio-control="volume"]');
+    const muteUnmuteButton = controls.querySelector('[audio-control="mute-unmute"]');
+    const progressBar = controls.querySelector('[audio-control="progress-bar"]');
 
-    const trackItems = Array.from(playlist.querySelectorAll("[data-audioplayer-track][data-audioplayer-track-url]"));
+    const trackItems = Array.from(playlist.querySelectorAll("[audio-track][audio-track-url]"));
     let currentTrackIndex = 0;
     let audio = new Audio();
 
@@ -46,7 +46,7 @@ export function runAudio() {
         return;
       }
 
-      const trackURL = trackItem.getAttribute("data-audioplayer-track-url");
+      const trackURL = trackItem.getAttribute("audio-track-url");
       if (!trackURL) {
         console.error("Track URL is missing for index:", index);
         return;
@@ -54,9 +54,9 @@ export function runAudio() {
 
       audio.src = trackURL;
 
-      const trackImage = trackItem.querySelector('[data-audioplayer-track="cover"]');
-      const trackTitle = trackItem.querySelector('[data-audioplayer-track="title"]');
-      const artistTitle = trackItem.querySelector('[data-audioplayer-track="artist"]');
+      const trackImage = trackItem.querySelector('[audio-track="cover"]');
+      const trackTitle = trackItem.querySelector('[audio-track="title"]');
+      const artistTitle = trackItem.querySelector('[audio-track="artist"]');
 
       if (currentTrackImage && trackImage) {
         currentTrackImage.src = trackImage.src;
@@ -76,14 +76,14 @@ export function runAudio() {
         console.log("Artist title not found for index:", index);
       }
 
-      playPauseButton.setAttribute("data-audioplayer-current-state", "pause");
+      playPauseButton.setAttribute("audio-current-state", "pause");
     }
 
     trackItems.forEach((trackItem: any, index: number) => {
       trackItem.addEventListener("click", () => {
         currentTrackIndex = index;
         loadTrackDetails(index);
-        playPauseButton.setAttribute("data-audioplayer-current-state", "play");
+        playPauseButton.setAttribute("audio-current-state", "play");
         audio.play();
       });
     });
@@ -95,31 +95,31 @@ export function runAudio() {
       audio
         .play()
         .then(() => {
-          playPauseButton.setAttribute("data-audioplayer-current-state", "play");
+          playPauseButton.setAttribute("audio-current-state", "play");
         })
         .catch((error) => {});
     }
 
-    initializeControl('[data-audioplayer-control="play-pause"]', (control: any) => {
+    initializeControl('[audio-control="play-pause"]', (control: any) => {
       control.addEventListener("click", () => {
         if (audio.paused) {
           audio.play();
-          control.setAttribute("data-audioplayer-current-state", "play");
+          control.setAttribute("audio-current-state", "play");
         } else {
           audio.pause();
-          control.setAttribute("data-audioplayer-current-state", "pause");
+          control.setAttribute("audio-current-state", "pause");
         }
       });
     });
 
-    initializeControl('[data-audioplayer-control="prev"]', (control: any) => {
+    initializeControl('[audio-control="prev"]', (control: any) => {
       control.addEventListener("click", () => {
         currentTrackIndex = (currentTrackIndex - 1 + trackItems.length) % trackItems.length;
         loadAndPlayTrack(currentTrackIndex);
       });
     });
 
-    initializeControl('[data-audioplayer-control="next"]', (control: any) => {
+    initializeControl('[audio-control="next"]', (control: any) => {
       control.addEventListener("click", () => {
         currentTrackIndex = (currentTrackIndex + 1) % trackItems.length;
         loadAndPlayTrack(currentTrackIndex);
@@ -141,8 +141,8 @@ export function runAudio() {
 
     // Function to toggle repeat track
     function toggleRepeatTrack() {
-      repeatTrackButton.setAttribute("data-audioplayer-repeat-track", "true");
-      audio.loop = repeatTrackButton.getAttribute("data-audioplayer-repeat-track").contains("active");
+      repeatTrackButton.setAttribute("audio-repeat-track", "true");
+      audio.loop = repeatTrackButton.getAttribute("audio-repeat-track").contains("active");
     }
 
     // Function to update volume
@@ -154,9 +154,9 @@ export function runAudio() {
     function toggleMuteUnmute() {
       audio.muted = !audio.muted;
       if (!audio.muted) {
-        muteUnmuteButton.setAttribute("data-audioplayer-muted", "false");
+        muteUnmuteButton.setAttribute("audio-muted", "false");
       } else {
-        muteUnmuteButton.setAttribute("data-audioplayer-muted", "true");
+        muteUnmuteButton.setAttribute("audio-muted", "true");
       }
     }
 
@@ -183,22 +183,22 @@ export function runAudio() {
     }
 
     // Check if the mathcing attribute is available in the DOM and Add event listeners
-    initializeControl('[data-audioplayer-control="repeat-playlist"]', (control: any) => {
+    initializeControl('[audio-control="repeat-playlist"]', (control: any) => {
       control.addEventListener("click", toggleRepeatPlaylist);
     });
-    initializeControl('[data-audioplayer-control="repeat-track"]', (control: any) => {
+    initializeControl('[audio-control="repeat-track"]', (control: any) => {
       control.addEventListener("click", toggleRepeatTrack);
     });
-    initializeControl('[data-audioplayer-control="volume"]', (control: any) => {
+    initializeControl('[audio-control="volume"]', (control: any) => {
       control.addEventListener("click", updateVolume);
     });
-    initializeControl('[data-audioplayer-control="mute-unmute"]', (control: any) => {
+    initializeControl('[audio-control="mute-unmute"]', (control: any) => {
       control.addEventListener("click", toggleMuteUnmute);
     });
-    initializeControl('[data-audioplayer-control="progress-bar"]', (control: any) => {
+    initializeControl('[audio-control="progress-bar"]', (control: any) => {
       control.addEventListener("click", seekTrack);
     });
-    initializeControl('[data-audioplayer-control="progress-bar"]', (control: any) => {
+    initializeControl('[audio-control="progress-bar"]', (control: any) => {
       control.addEventListener("input", (event) => {
         const duration = audio.duration;
         if (duration > 0) {
@@ -207,13 +207,13 @@ export function runAudio() {
         }
       });
     });
-    initializeControl('[data-audioplayer-control="prev"]', (control: any) => {
+    initializeControl('[audio-control="prev"]', (control: any) => {
       control.addEventListener("click", () => {
         currentTrackIndex = (currentTrackIndex + trackItems.length) % trackItems.length;
         loadAndPlayTrack(currentTrackIndex);
       });
     });
-    initializeControl('[data-audioplayer-control="next"]', (control: any) => {
+    initializeControl('[audio-control="next"]', (control: any) => {
       control.addEventListener("click", () => {
         currentTrackIndex = currentTrackIndex % trackItems.length;
         loadAndPlayTrack(currentTrackIndex);
@@ -225,9 +225,11 @@ export function runAudio() {
   }
 
   // Initialize all audio players on the page
-  const audioPlayers = document.querySelectorAll("[data-audioplayer]");
+  const audioPlayers = document.querySelectorAll("[audio]");
 
   audioPlayers.forEach((player) => {
     initializeAudioPlayer(player);
   });
 }
+
+export { audioAPI };

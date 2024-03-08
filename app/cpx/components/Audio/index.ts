@@ -4,7 +4,6 @@ import { CpxAudioPlaylist as AudioPlaylist } from "./AudioPlaylist";
 import { CpxAudioPlaylistItem as AudioPlaylistItem } from "./AudioPlaylistItem";
 import { CpxAudioControls as AudioControls } from "./AudioControls";
 import { CpxAudioControl as AudioControl } from "./AudioControl";
-import { runAudio } from "./runAudio";
 
 export {
   AudioPlayer,
@@ -12,7 +11,5 @@ export {
   AudioPlaylist,
   AudioPlaylistItem,
   AudioControls,
-  AudioControl,
-  // functions
-  runAudio,
+  AudioControl
 };

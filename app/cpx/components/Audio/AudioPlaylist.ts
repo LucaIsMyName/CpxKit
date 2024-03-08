@@ -17,8 +17,8 @@ export class CpxAudioPlaylist extends CpxElement {
   title: string;
   artist: string;
   album: string;
-  hasArtist: boolean;
-  hasAlbum: boolean;
+  hasArtist: any;
+  hasAlbum: any;
   playlist: Array<Object>;
   constructor() {
     super();
@@ -27,9 +27,9 @@ export class CpxAudioPlaylist extends CpxElement {
     this.title = this.getAttribute("audio-player:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
     this.artist = this.getAttribute("audio-player:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
     this.album = this.getAttribute("audio-player:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
-    this.hasArtist = eval(this.getAttribute("audio-playlist:has-artist")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-artist")) || true;
-    this.hasAlbum = eval(this.getAttribute("audio-playlist:has-album")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-album")) || true;
-    this.playlist = eval(this.getAttribute("audio-playlist:playlist")) || [
+    this.hasArtist = this.getAttribute("audio-playlist:has-artist") || document.querySelector("audio-player").getAttribute("audio-player:has-artist") || true;
+    this.hasAlbum = this.getAttribute("audio-playlist:has-album") || document.querySelector("audio-player").getAttribute("audio-player:has-album") || true;
+    this.playlist = [
       {
         title: "Song 1",
         artist: "Artist 1",
@@ -48,8 +48,11 @@ export class CpxAudioPlaylist extends CpxElement {
   }
 
   render() {
+    let evalArtist = eval(this.hasArtist);
+    let evalAlbum = eval(this.hasAlbum);
+  
     this.innerHTML = `
-        <div data-audioplayer-playlist class="audio-playlist audio-playlist--${this.appearance} ${this.classNames}">
+        <div audio-playlist class="audio-playlist audio-playlist--${this.appearance} ${this.classNames}">
           ${
             this.initialContent !== ""
               ? `${this.initialContent}`
@@ -63,9 +66,11 @@ export class CpxAudioPlaylist extends CpxElement {
                       audio-playlist-item:album="${track.album}"
                       audio-playlist-item:url="${track.url}"
                       audio-playlist-item:cover="${track.cover}"
-                    ></audio-playlist-item>
+                      audio-playlist-item:has-artist="${evalArtist}"
+                      audio-playlist-item:has-album="${evalAlbum}"
+                      ></audio-playlist-item>
                     `;
-              })}
+              }).join("")}
               `
           }
             

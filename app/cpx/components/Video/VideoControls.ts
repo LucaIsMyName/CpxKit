@@ -13,12 +13,12 @@ export class CpxVideoControls extends CpxElement {
   appearance: string;
   classNames: string;
   position: string;
-  hasPlayPause: boolean;
-  hasPrev: boolean;
-  hasNext: boolean;
-  hasMuteUnmute: boolean;
-  hasVolume: boolean;
-  hasProgress: boolean;
+  hasPlayPause: boolean | null;
+  hasPrev: boolean | null;
+  hasNext: boolean | null;
+  hasMuteUnmute: boolean | null;
+  hasVolume: boolean | null;
+  hasProgress: boolean | null;
 
   constructor() {
     super();
@@ -35,30 +35,68 @@ export class CpxVideoControls extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <div data-videoplayer-controls class="video-controls video-controls--${this.appearance} video-controls--${this.position} ${this.classNames}">
+    <div video-controls class="video-controls video-controls--${this.appearance} video-controls--${this.position} ${this.classNames}">
     ${
       this.initialContent !== ""
-        ? `${this.initialContent}`
+        ? this.initialContent
         : `
-        <div class="video-controls__progress-container">
-            <video-control class="video-controls__progress-bar" video-control:type="progress-bar"></video-control>
-        </div>
+        ${
+          this.hasProgress === true
+            ? `
+              <div class="video-controls__progress-container">
+                <video-control class="video-controls__progress-bar" video-control:type="progress-bar"></video-control>
+              </div>
+              `
+            : ``
+        }
+        
         <section class="video-controls__bottom">
-            <video-control class="video-controls__prev" video-control:type="prev">
+          ${
+            this.hasPrev === true
+              ? `
+              <video-control class="video-controls__prev" video-control:type="prev">
                 ${Icon.backward}
-            </video-control>
-            <video-control class="video-controls__play-pause" video-control:type="play-pause">
+              </video-control>
+                `
+              : ``
+          }
+          ${
+            this.hasPlayPause === true
+              ? `
+              <video-control class="video-controls__play-pause" video-control:type="play-pause">
                 ${Icon.play}
-            </video-control>
-            <video-control class="video-controls__next" video-control:type="next">
+              </video-control>
+                `
+              : ``
+          }
+          ${
+            this.hasNext === true
+              ? `
+              <video-control class="video-controls__next" video-control:type="next">
                 ${Icon.forward}
-            </video-control>
-            <video-control class="video-controls__mute-unmute" video-control:type="mute-unmute">
+              </video-control>
+                `
+              : ``
+          }
+
+          ${
+            this.hasMuteUnmute === true
+              ? `
+              <video-control class="video-controls__mute-unmute" video-control:type="mute-unmute">
                 ${Icon.speakerWave}
-            </video-control>
-            <div class="video-controls__volume-container">
-                <video-control class="video-controls__volume" video-control:type="volume"></video-control>
-            </div>
+              </video-control>
+                `
+              : ``
+          }
+          ${
+            this.hasVolume === true
+              ? `
+              <div class="video-controls__volume-container">
+                  <video-control class="video-controls__volume" video-control:type="volume"></video-control>
+              </div>
+                `
+              : ``
+          }
         </section>
         `
     }

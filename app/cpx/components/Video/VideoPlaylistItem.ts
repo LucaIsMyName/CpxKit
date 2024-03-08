@@ -35,20 +35,19 @@ export class CpxVideoPlaylistItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-        <button click:storage:local:set(currentvideo,${Cpx.String.toHtml(this.videoTitle)}) class="video-playlist-item video-playlist-item--${this.appearance} ${this.classNames}" data-videoplayer-video data-videoplayer-video-url="${this.videoUrl}">
-            ${
-              this.initialContent !== ""
-                ? `${this.initialContent}`
-                : `
-                    <section class="video-playlist-item__row">
+        <button click:storage:local:set(currentvideo,${Cpx.String.toHtml(this.videoTitle)}) class="video-playlist-item video-playlist-item--${this.appearance} ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
+          ${
+            this.initialContent !== ""
+              ? this.initialContent
+              : `<section class="video-playlist-item__row">
                         <div class="video-playlist-item__left">
-                            <img data-videoplayer-video="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
-                            <p data-videoplayer-video="title">${this.videoTitle}</p>
+                            <img video-playlist-item="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
+                            <p video-playlist-item="title">${this.videoTitle}</p>
                         </div>
-                        <p class="video-playlist-item__right" data-videoplayer-video="artist">${this.videoArtist}</p>
-                    </section>
+                        <p class="video-playlist-item__right" video-playlist-item="artist">${this.videoArtist}</p>
+                   </section>
                     `
-            }
+          }
         </button>
     `;
   }

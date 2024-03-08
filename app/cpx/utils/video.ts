@@ -4,25 +4,25 @@
  * @description provides an API to insert a video player element on a website by just adding HTML attributes to elements
  */
 
-export function runVideo() {
+function videoAPI() {
   function initializeVideoPlayer(player: any) {
     // Container Elements for Controls and Playlist
-    const controls = player.querySelector("[data-videoplayer-controls]");
+    const controls = player.querySelector("[video-controls]");
     // Elements where the current Video Infos are rendered in
-    const currentVideoTitle = player.querySelector("[data-videoplayer-current='title']");
-    const currentVideoPoster = player.querySelector("[data-videoplayer-current='poster']");
-    const currentVideoUrl = player.querySelector("[data-videoplayer-current='url']");
-    const currentVideoArtist = player.querySelector("[data-videoplayer-current='artist']");
+    const currentVideoTitle = player.querySelector("[video-current='title']");
+    const currentVideoPoster = player.querySelector("[video-current='poster']");
+    const currentVideoUrl = player.querySelector("[video-current='url']");
+    const currentVideoArtist = player.querySelector("[video-current='artist']");
     // Controls
-    const playPauseButton = controls.querySelector('[data-videoplayer-control="play-pause"]');
-    const prevButton = controls.querySelector('[data-videoplayer-control="prev"]');
-    const nextButton = controls.querySelector('[data-videoplayer-control="next"]');
-    const volumeInput = controls.querySelector('[data-videoplayer-control="volume"]');
-    const muteUnmuteButton = controls.querySelector('[data-videoplayer-control="mute-unmute"]');
-    const progressBar = controls.querySelector('[data-videoplayer-control="progress-bar"]');
-    const playlist = player.querySelector("[data-videoplayer-playlist]");
+    const playPauseButton = controls.querySelector('[video-control="play-pause"]');
+    const prevButton = controls.querySelector('[video-control="prev"]');
+    const nextButton = controls.querySelector('[video-control="next"]');
+    const volumeInput = controls.querySelector('[video-control="volume"]');
+    const muteUnmuteButton = controls.querySelector('[video-control="mute-unmute"]');
+    const progressBar = controls.querySelector('[video-control="progress-bar"]');
+    const playlist = player.querySelector("[video-playlist]");
 
-    const videoItems = Array.from(playlist.querySelectorAll("[data-videoplayer-video][data-videoplayer-video-url]"));
+    const videoItems = Array.from(playlist.querySelectorAll("[video-playlist-item][video-playlist-item-url]"));
     let currentVideoIndex = 0;
     let video = player.querySelector("video");
 
@@ -40,7 +40,7 @@ export function runVideo() {
         return;
       }
 
-      const videoURL = videoItem.getAttribute("data-videoplayer-video-url");
+      const videoURL = videoItem.getAttribute("video-playlist-item-url");
       if (!videoURL) {
         console.error("Video URL is missing for index:", index);
         return;
@@ -48,17 +48,16 @@ export function runVideo() {
 
       video.src = videoURL;
 
-    /**
-     * @name loadVideoDetails
-     * @param {number} index
-     * @description
-     * Load the video details from the playlist
-     */
-      const videoTitle = videoItem.querySelector('[data-videoplayer-video="title"]');
-      const videoArtist = videoItem.querySelector('[data-videoplayer-video="artist"]');
-      const videoPoster = videoItem.querySelector('[data-videoplayer-video="poster"]');
-      const videoUrl = videoItem.querySelector('[data-videoplayer-video="url"]');
-
+      /**
+       * @name loadVideoDetails
+       * @param {number} index
+       * @description
+       * Load the video details from the playlist
+       */
+      const videoTitle = videoItem.querySelector('[video-playlist-item="title"]');
+      const videoArtist = videoItem.querySelector('[video-playlist-item="artist"]');
+      const videoPoster = videoItem.querySelector('[video-playlist-item="poster"]');
+      const videoUrl = videoItem.querySelector('[video-playlist-item="url"]');
 
       if (videoTitle) {
         currentVideoTitle.textContent = videoTitle.textContent;
@@ -84,14 +83,14 @@ export function runVideo() {
         console.log("Video poster not found for index:", index);
       }
 
-      playPauseButton.setAttribute("data-videoplayer-current-state", "pause");
+      playPauseButton.setAttribute("video-current-state", "pause");
     }
 
     videoItems.forEach((videoItem: any, index: any) => {
       videoItem.addEventListener("click", () => {
         currentVideoIndex = index;
         loadVideoDetails(index);
-        playPauseButton.setAttribute("data-videoplayer-current-state", "play");
+        playPauseButton.setAttribute("video-current-state", "play");
         video.play();
       });
     });
@@ -103,31 +102,31 @@ export function runVideo() {
       video
         .play()
         .then(() => {
-          playPauseButton.setAttribute("data-videoplayer-current-state", "play");
+          playPauseButton.setAttribute("video-current-state", "play");
         })
         .catch((error: any) => {});
     }
 
-    initializeControl('[data-videoplayer-control="play-pause"]', (control: any) => {
+    initializeControl('[video-control="play-pause"]', (control: any) => {
       control.addEventListener("click", () => {
         if (video.paused) {
           video.play();
-          control.setAttribute("data-videoplayer-current-state", "play");
+          control.setAttribute("video-current-state", "play");
         } else {
           video.pause();
-          control.setAttribute("data-videoplayer-current-state", "pause");
+          control.setAttribute("video-current-state", "pause");
         }
       });
     });
 
-    initializeControl('[data-videoplayer-control="prev"]', (control: any) => {
+    initializeControl('[video-control="prev"]', (control: any) => {
       control.addEventListener("click", () => {
         currentVideoIndex = (currentVideoIndex - 1 + videoItems.length) % videoItems.length;
         loadAndPlayVideo(currentVideoIndex);
       });
     });
 
-    initializeControl('[data-videoplayer-control="next"]', (control: any) => {
+    initializeControl('[video-control="next"]', (control: any) => {
       control.addEventListener("click", () => {
         currentVideoIndex = (currentVideoIndex + 1) % videoItems.length;
         loadAndPlayVideo(currentVideoIndex);
@@ -143,9 +142,9 @@ export function runVideo() {
     function toggleMuteUnmute() {
       video.muted = !video.muted;
       if (!video.muted) {
-        muteUnmuteButton.setAttribute("data-videoplayer-muted", "false");
+        muteUnmuteButton.setAttribute("video-muted", "false");
       } else {
-        muteUnmuteButton.setAttribute("data-videoplayer-muted", "true");
+        muteUnmuteButton.setAttribute("video-muted", "true");
       }
     }
 
@@ -168,16 +167,16 @@ export function runVideo() {
     }
 
     // Add event listeners
-    initializeControl('[data-videoplayer-control="volume"]', (control: any) => {
+    initializeControl('[video-control="volume"]', (control: any) => {
       control.addEventListener("click", updateVolume);
     });
-    initializeControl('[data-videoplayer-control="mute-unmute"]', (control: any) => {
+    initializeControl('[video-control="mute-unmute"]', (control: any) => {
       control.addEventListener("click", toggleMuteUnmute);
     });
-    initializeControl('[data-videoplayer-control="progress-bar"]', (control: any) => {
+    initializeControl('[video-control="progress-bar"]', (control: any) => {
       control.addEventListener("click", seekVideo);
     });
-    initializeControl('[data-videoplayer-control="progress-bar"]', (control: any) => {
+    initializeControl('[video-control="progress-bar"]', (control: any) => {
       control.addEventListener("input", (event: any) => {
         const duration = video.duration;
         if (duration > 0) {
@@ -186,13 +185,13 @@ export function runVideo() {
         }
       });
     });
-    initializeControl('[data-videoplayer-control="prev"]', (control: any) => {
+    initializeControl('[video-control="prev"]', (control: any) => {
       control.addEventListener("click", () => {
         currentVideoIndex = (currentVideoIndex + videoItems.length) % videoItems.length;
         loadAndPlayVideo(currentVideoIndex);
       });
     });
-    initializeControl('[data-videoplayer-control="next"]', (control: any) => {
+    initializeControl('[video-control="next"]', (control: any) => {
       control.addEventListener("click", () => {
         currentVideoIndex = currentVideoIndex % videoItems.length;
         loadAndPlayVideo(currentVideoIndex);
@@ -204,9 +203,11 @@ export function runVideo() {
   }
 
   // Initialize all video players on the page
-  const videoPlayers = document.querySelectorAll("[data-videoplayer]");
+  const videoPlayers = document.querySelectorAll("[video]");
 
   videoPlayers.forEach((player) => {
     initializeVideoPlayer(player);
   });
 }
+
+export { videoAPI };

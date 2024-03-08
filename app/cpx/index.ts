@@ -12,17 +12,22 @@ import { Json } from "./utils/json";
 import { Icon } from "./utils/icons";
 import { Id } from "./utils/id";
 import { String } from "./utils/string";
+import { Copy as copyAPI } from "./utils/copy";
+import { audioAPI } from "./utils/audio";
+import { videoAPI } from "./utils/video";
 
 // Cpx Utility Components
 import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
-import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl, runAudio as audioAPI } from "./components/Audio/index";
+import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl } from "./components/Audio/index";
+import { BadgeElement } from "./components/Badge";
+import { CodeBlock } from "./components/Code";
 import { DropDown } from "./components/DropDown";
 import { SliderContainer, SliderItem, runSlider as sliderAPI } from "./components/Slider";
 import { PictureElement } from "./components/Picture";
 import { SuspenseAll } from "./components/Suspense";
 import { TextElement } from "./components/Text/index";
 import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tab/index";
-import { VideoPlayer, VideoControls, VideoControl, VideoPlaylist, VideoPlaylistItem, runVideo as videoAPI } from "./components/Video";
+import { VideoPlayer, VideoControls, VideoControl, VideoPlaylist, VideoPlaylistItem } from "./components/Video";
 
 export interface CpxInterface {
   Element: typeof Element;
@@ -34,7 +39,9 @@ export interface CpxInterface {
     AudioPlaylist: typeof Element;
     AudioControls: typeof Element;
     AudioControl: typeof Element;
+    BadgeElement: typeof Element;
     DropDown: typeof Element;
+    CodeBlock: typeof Element;
     SliderContainer: typeof Element;
     SliderItem: typeof Element;
     PictureElement: typeof Element;
@@ -54,6 +61,7 @@ export interface CpxInterface {
     audioAPI: Function;
     videoAPI: Function;
     sliderAPI: Function;
+    copyAPI: Function;
   };
   define: Function;
   Config: typeof Config;
@@ -84,8 +92,12 @@ const Components = {
   AudioPlaylist,
   AudioControls,
   AudioControl,
+  // Badge
+  BadgeElement,
   // DropDown
   DropDown,
+  // Code
+  CodeBlock,
   //Slider
   SliderContainer,
   SliderItem,
@@ -112,6 +124,7 @@ const Functions = {
   audioAPI,
   videoAPI,
   sliderAPI,
+  copyAPI,
 };
 
 export const Cpx: CpxInterface = {

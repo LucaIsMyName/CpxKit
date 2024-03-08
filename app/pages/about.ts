@@ -1,4 +1,5 @@
 import { Cpx, Config } from "../app";
+
 /**
  * @class PageAbout
  * @description
@@ -8,36 +9,70 @@ import { Cpx, Config } from "../app";
  * <app-page-home></app-page-home>
  */
 export class PageAbout extends Cpx.Element {
+  state = Cpx.State;
+  copyToElement = Cpx.Functions.copyAPI.toElement;
   constructor() {
     super();
     this.state = Cpx.State;
+    this.copyToElement = Cpx.Functions.copyAPI.toElement;
   }
 
   connectedCallback() {
     this.render();
     this.addClickHandler();
+    this.copyToElement();
   }
-
+  addCopyClickHandler() {
+    // Add click event listener to the copy button
+  }
   render() {
     this.innerHTML = `
-            <div style="text-align:center">
-                <text-element
-                  text-element:type=h1
-                  text-element:font-size="5xl"
-                  text-element:font-weight="bold"
-                  text-element:font-family="serif"
-                  text-element:letter-spacing="lg"
-                  text-element:line-height="xs"
-                ><a href="#">About</a></text-element>
-                <picture-element 
-                  picture-element:aspect-ratio="3 / 1"
-                  picture-element:url="https://via.placeholder.com/500"
-                  ></picture-element>
-                <audio-player
-                  audio-player:has-title="true"
-                  audio-player:has-artist="true"
-                  audio-player:appearance="default"
-                  audio-player:position="bottom-inside"></audio-player>
+            <div style="text-align:center;max-width:768px;margin-inline:auto">
+              <section copy-element="trigger">CopyButton</section>
+              <section copy-element="target">Target Area
+              </section>
+              <section copy-element="origin">
+                <text-element text-element:type=h1 text-element:font-size=xl>Origin Area</text-element>
+              </section>  
+                  
+            <div>
+                  <badge-element
+                    badge-element:color="green">My Badge</badge-element>
+                  <badge-element
+                    badge-element:color="red">My Badge</badge-element>
+                  <badge-element
+                    badge-element:color="yellow">My Badge</badge-element>
+              </div>
+              <audio-player audio-player:has-playlist=false></audio-player>
+              <video-player></video-player>
+              <div>
+                  <badge-element
+                    badge-element:color="purple"
+                    badge-element:size=md
+                    >My Badge</badge-element>
+                  <badge-element
+                    badge-element:color="sky"
+                    badge-element:size=md
+                    badge-element:action="console.log('test')"
+                    >Sky Badge</badge-element>
+                  <badge-element
+                    badge-element:color="pink"
+                    badge-element:size=md
+                    >My Badge</badge-element>
+              </div>
+                <code-block 
+                  code-block:has-header="false" 
+                  code-block:has-copy-button="false" 
+                  code-block:title="myFiles" 
+                  code-block:lang="bash" 
+                  code-block:theme=light>
+                  
+console.log('test');
+const myVar = 'test';
+export function myFunction(param = true, { myVar }) {
+    return { myVar, param };
+}
+</code-block>
             </div>
         `;
   }

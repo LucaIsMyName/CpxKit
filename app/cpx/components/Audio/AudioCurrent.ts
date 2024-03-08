@@ -9,14 +9,14 @@ import { CpxElement } from "../../element";
  * <audio-current audio-current:style="default" audio-current:title="AudioPlayer Title" audio-current:artist="AudioPlayer Artist Title" audio-current:album="AudioPlayer Album Title">
  */
 export class CpxAudioCurrent extends CpxElement {
-  appearance: string;
+  appearance: any;
   classNames: string;
   title: string;
   artist: string;
   album: string;
-  hasTitle: boolean;
-  hasArtist: boolean;
-  hasCover: boolean;
+  hasTitle: any;
+  hasArtist: any;
+  hasCover: any;
 
   constructor() {
     super();
@@ -25,12 +25,16 @@ export class CpxAudioCurrent extends CpxElement {
     this.title = this.getAttribute("audio-current:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
     this.artist = this.getAttribute("audio-current:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
     this.album = this.getAttribute("audio-current:album") || document.querySelector("audio-player").getAttribute("audio-player:album") || "AudioPlayer Album Title";
-    this.hasTitle = eval(this.getAttribute("audio-current:has-title")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-title")) || true;
-    this.hasArtist = eval(this.getAttribute("audio-current:has-artist")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-artist")) || true;
-    this.hasCover = eval(this.getAttribute("audio-current:has-cover")) || eval(document.querySelector("audio-player").getAttribute("audio-player:has-cover")) || true;
+    this.hasTitle = this.getAttribute("audio-current:has-title") || document.querySelector("audio-player").getAttribute("audio-player:has-title") || true;
+    this.hasArtist = this.getAttribute("audio-current:has-artist") || document.querySelector("audio-player").getAttribute("audio-player:has-artist") || true;
+    this.hasCover = this.getAttribute("audio-current:has-cover") || document.querySelector("audio-player").getAttribute("audio-player:has-cover") || true;
   }
 
   render() {
+    let evalTitle = eval(this.hasTitle);
+    let evalArtist = eval(this.hasArtist);
+    let evalCover = eval(this.hasCover);
+    
     this.innerHTML = `
         <div class="audio-current audio-current--${this.appearance} ${this.classNames}">
             ${
@@ -38,17 +42,17 @@ export class CpxAudioCurrent extends CpxElement {
                 ? this.initialContent
                 : `
                 ${
-                  this.hasCover === true
+                  evalCover === true
                     ? `
-                      <img class="audio-current__image mb:4" data-audioplayer-current="cover">`
+                      <img class="audio-current__image mb:4" audio-current="cover">`
                     : ``
                 }
                 ${
-                  this.hasTitle === true || this.hasArtist === true
+                  evalTitle === true || evalArtist === true
                     ? `
                     <div class="audio-current__text">
-                      ${this.hasTitle === true ? `<text-element class="audio-current__title" data-audioplayer-current="title">${this.title}</text-element>` : ``}
-                      ${this.hasArtist === true ? `<text-element class="audio-current__title" data-audioplayer-current="artist">${this.artist}</text-element>` : ``}
+                      ${evalTitle === true ? `<text-element class="audio-current__title" audio-current="title">${this.title}</text-element>` : ``}
+                      ${evalArtist === true ? `<text-element class="audio-current__title" audio-current="artist">${this.artist}</text-element>` : ``}
                     </div>
                     `
                     : ``

@@ -137,8 +137,8 @@ $mediaQueries: (
 
     --font-sans: system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --font-display: system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-mono: geist-mono, ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-    --font-serif: 'Merriweather', serif;
+    --font-mono: system-ui-mono, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    --font-serif: serif;
 
     --font-xxs: 0.625rem;
     --font-xs: 0.775rem;
@@ -207,8 +207,10 @@ $mediaQueries: (
     --letter-spacing-4xl: 1em;
 
     --radius: 0.25rem;
+    --radius-xxs: 0.1rem;
     --radius-xs: 0.125rem;
     --radius-sm: 0.25rem;
+    --radius-md: 0.33rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;

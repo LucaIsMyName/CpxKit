@@ -27,7 +27,7 @@ export class CpxTextElement extends CpxElement {
     this.fontFamily = this.getAttribute("text-element:font-family") || "sans";
     this.fontWeight = this.getAttribute("text-element:font-weight") || "normal";
     this.fontStyle = this.getAttribute("text-element:font-style") || "normal";
-    this.fontSize = this.getAttribute("text-element:font-size") || "md";
+    this.fontSize = this.getAttribute("text-element:font-size") || "sm";
     this.lineHeight = this.getAttribute("text-element:line-height") || "inherit";
     this.letterSpacing = this.getAttribute("text-element:letter-spacing") || "inherit";
   }

@@ -54,21 +54,22 @@ export class CpxVideoPlaylist extends CpxElement {
 
   render() {
     this.innerHTML = `
-        <div data-videoplayer-playlist class="video-playlist ${this.classNames}">
+        <div video-playlist class="video-playlist ${this.classNames}">
             ${
               this.initialContent !== ""
                 ? `${this.initialContent}`
                 : `
-                ${this.playlist.map((video: any, index: number) => {
-                  return `
-                        <video-playlist-item
-                            class="video-playlist__item"
-                            video-playlist-item:appearance="${this.appearance}"
-                            video-playlist-item:title="${video.title}"
-                            video-playlist-item:artist="${video.artist}"
-                            video-playlist-item:url="${video.url}"></video-playlist-item>
-                        `;
-                })}
+                ${this.playlist
+                  .map((video: any, index: number) => {
+                    return `
+                  <video-playlist-item
+                    class="video-playlist__item"
+                    video-playlist-item:appearance="${this.appearance}"
+                    video-playlist-item:title="${video.title}"
+                    video-playlist-item:artist="${video.artist}"
+                    video-playlist-item:url="${video.url}"></video-playlist-item>`;
+                  })
+                  .join("")}
                 `
             }      
         </div>

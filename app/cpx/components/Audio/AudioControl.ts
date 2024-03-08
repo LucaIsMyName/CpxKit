@@ -6,8 +6,8 @@ export class CpxAudioControl extends CpxElement {
   classNames: string;
   type: string;
   url: string;
-  hasIcon: boolean;
-  hasText: boolean;
+  hasIcon: any;
+  hasText: any;
   icon: string;
 
   constructor() {
@@ -16,26 +16,29 @@ export class CpxAudioControl extends CpxElement {
     this.classNames = this.getAttribute("audio-control:class") || "";
     this.type = this.getAttribute("audio-control:type") || "play-pause";
     this.icon = this.getAttribute("audio-control:icon") || "play";
-    this.hasIcon = eval(this.getAttribute("audio-control:has-icon")) || true;
-    this.hasText = eval(this.getAttribute("audio-control:has-text")) || true;
+    this.hasIcon = this.getAttribute("audio-control:has-icon") || true;
+    this.hasText = this.getAttribute("audio-control:has-text") || true;
   }
 
   render() {
+    let evalIcon = eval(this.hasIcon);
+    let evalText = eval(this.hasText);
+
     this.innerHTML = `  
             ${
               this.type === "progress-bar" || this.type === "volume"
-                ? `<input type="range" class="audio-control audio-control--${this.appearance} ${this.classNames}" data-audioplayer-control="${this.type}">`
+                ? `<input type="range" class="audio-control audio-control--${this.appearance} ${this.classNames}" audio-control="${this.type}">`
                 : `
                 <button 
                 class="audio-control audio-control--${this.appearance} ${this.classNames}"
-                data-audioplayer-control="${this.type}">
+                audio-control="${this.type}">
                 ${
                   this.initialContent !== ""
                     ? this.initialContent
                     : `
                     <section class="audio-control__inner-container">
                         ${
-                          this.hasIcon
+                          evalIcon
                             ? `
                                 <div class="audio-control__icon">
                                     ${Icon[this.icon]}
@@ -44,7 +47,7 @@ export class CpxAudioControl extends CpxElement {
                             : ""
                         }
                         ${
-                          this.hasText
+                          evalText
                             ? `
                                 <div class="audio-control__text">
                                     ${this.type}

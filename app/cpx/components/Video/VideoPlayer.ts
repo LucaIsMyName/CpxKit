@@ -1,6 +1,5 @@
 import { CpxElement } from "../../element";
-import { runVideo } from "./runVideo";
-
+import { videoAPI } from "../../utils/video";
 /**
  * @class CpxVideoPlayer
  * @description
@@ -20,6 +19,8 @@ export class CpxVideoPlayer extends CpxElement {
   hasTitle: boolean;
   hasArtist: boolean;
   controlsPosition: string;
+  hasControls: boolean;
+  hasPlaylist: boolean;
 
   constructor() {
     super();
@@ -31,16 +32,18 @@ export class CpxVideoPlayer extends CpxElement {
     this.controlsPosition = this.getAttribute(`video-player:controls-position`) || `bottom-inside`;
     this.hasTitle = eval(this.getAttribute(`video-player:has-title`)) || true;
     this.hasArtist = eval(this.getAttribute(`video-player:has-artist`)) || false;
+    this.hasControls = eval(this.getAttribute(`video-player:has-controls`)) || true;
+    this.hasPlaylist = eval(this.getAttribute(`video-player:has-playlist`)) || true;
   }
 
   connectedCallback() {
     this.render();
-    runVideo();
+    videoAPI();
   }
 
   render() {
     this.innerHTML = `
-    <div class="video-player ${this.classNames}" data-videoplayer>
+    <div class="video-player ${this.classNames}" video>
     ${
       this.initialContent !== ""
         ? `${this.initialContent}`
@@ -49,23 +52,31 @@ export class CpxVideoPlayer extends CpxElement {
             <section class="video-player__video-container">
                 <img 
                     class="video-player__poster"
-                    data-videoplayer-current="cover" src="${this.poster}">
+                    video-current="cover" src="${this.poster}">
                 <video 
                     class="video-player__video"
-                    data-videoplayer-current>
+                    video-current>
                 </video>
-                <video-controls
+                ${
+                  this.hasControls === true
+                    ? `<video-controls
                     video-controls:appearance="${this.appearance}"
-                    video-controls:position="${this.controlsPosition}"></video-controls>
+                    video-controls:position="${this.controlsPosition}"></video-controls>`
+                    : ``
+                }
             </section>
             <div class="video-player__meta my-4">
-                ${this.hasTitle === true ? `<h2 class="video-player__title mb-2" data-videoplayer-current="title">${this.title}</h2>` : ``}
-                ${this.hasArtist === true ? `<p class="video-player__artist" data-videoplayer-current="artist">${this.artist}</p>` : ``}
+                ${this.hasTitle === true ? `<h2 class="video-player__title mb-2" video-current="title">${this.title}</h2>` : ``}
+                ${this.hasArtist === true ? `<p class="video-player__artist" video-current="artist">${this.artist}</p>` : ``}
             </div>
         </div>
-        <video-playlist
-            class="video-player__column"
-            video-playlist:appearance="${this.appearance}"></video-playlist>
+        ${
+          this.hasPlaylist === true
+            ? `<video-playlist
+                  class="video-player__column"
+                  video-playlist:appearance="${this.appearance}"></video-playlist>`
+            : ``
+        }
        `
     }
     </div>

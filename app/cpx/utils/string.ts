@@ -3,6 +3,7 @@ export interface StringInterfaces {
   toHtml: (string: string) => string;
   toCamelCase: (string: string) => string;
   removeWhitespace: (string: string) => string;
+  trimWhitespace: (string: string) => string;
 }
 /**
  * String
@@ -42,7 +43,11 @@ export const String: StringInterfaces = {
       .join("");
     return camelCaseString;
   },
-  removeWhitespace: function removeWhitespace(string) {
+  removeWhitespace: function removeWhitespace(string:string) {
     return string.replace(/\s+/g, "");
   },
+
+  trimWhitespace: function trimWhitespace(string:string) {
+    return string.replace(/^\s+|\s+$/g, '');
+  }
 };
