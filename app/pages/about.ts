@@ -43,7 +43,7 @@ export class PageAbout extends Cpx.Element {
                   <badge-element
                     badge-element:color="yellow">My Badge</badge-element>
               </div>
-              <audio-player audio-player:has-playlist=false></audio-player>
+              <audio-player audio-player:has-playlist=true></audio-player>
               <video-player></video-player>
               <div>
                   <badge-element
