@@ -20,8 +20,11 @@ export class PageHome extends Cpx.Element {
 
   render() {
     this.innerHTML = `
-            <div style="text-align:center">
-                <text-element text-element:type="h1">Home</text-element>
+            <div style="max-width:768px; margin-inline:auto; padding: var(--4)">
+              <parse-markdown
+              parse-markdown:styles="true"
+              parse-markdown:url="https://raw.githubusercontent.com/adam-p/markdown-here/master/README.md"></parse-markdown>
+                
             </div>
         `;
   }

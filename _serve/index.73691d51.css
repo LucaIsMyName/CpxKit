@@ -111637,11 +111637,13 @@ text-element {
 }
 
 pre code.hljs {
+  font-family: var(--font-mono);
   padding: 0;
 }
 
 .hljs {
   color: var(--gray-600);
+  font-family: var(--font-mono);
   background: none;
   padding: 0;
 }

@@ -81,14 +81,17 @@ export class CpxCodeBlock extends CpxElement {
         <header class="p:4 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:gray-400">
             ${
               this.hasHeader === true
-                ? `
+                ? ` 
                   <div class="display:flex gap:4 color:black items:center">
-                      <section class="size:md weigth:semibold">${this.title}</section>
+                      <section class="size:md weigth:semibold leading:2">${this.title}</section>
                       <badge-element
-                      badge-element:border-radius="xs"
-                      badge-element:padding="sm"
+                      badge-element:radius="sm"
+                      badge-element:padding="1"
+                      badge-element:size="xs"
                       badge-element:font-family="mono"
-                      badge-element:color="${this.theme}"
+                      badge-element:color="gray-dark-800"
+                      badge-element:border-color="gray-900"
+                      badge-element:bg="${this.theme}"
                       class="">.${this.lang}</badge-element>
                   </div>
                   `
@@ -98,7 +101,7 @@ export class CpxCodeBlock extends CpxElement {
               this.hasCopyButton === true
                 ? `
                   <section class="">
-                      <button class="w:6 h:6" copy-clipboard="trigger">
+                      <button class="w:5 h:5" copy-clipboard="trigger">
                         ${Icon.clipboard}
                       </button>
                   </section>

@@ -838,15 +838,15 @@ class CpxElement extends HTMLElement {
             });
         });
     }
-    addDeleteOnClick() {
-        const allElements = this.querySelectorAll("[click:delete]");
-        allElements.forEach((element)=>{
-            element.addEventListener("click", ()=>{
-                this.innerHTML = "";
-                this.render();
-            });
-        });
-    }
+    // addDeleteOnClick(): void {
+    //   const allElements = this.querySelectorAll("[click:delete]");
+    //   allElements.forEach((element: any) => {
+    //     element.addEventListener("click", () => {
+    //       this.innerHTML = '';
+    //       this.render();
+    //     });
+    //   });
+    // }
     /**
    * @name addClickHandler
    * @param elements
@@ -2799,7 +2799,7 @@ class CpxAccordionItem extends (0, _element.CpxElement) {
             </div>
         </summary>
         <div class="py:4">
-          <text-element>${this.initialContent}</text-element>
+          <p>${this.initialContent}</p>
         </div>
     </details>
         `;
@@ -3204,8 +3204,8 @@ class CpxBadgeElement extends (0, _element.CpxElement) {
         this.innerHTML = `
         <button 
         ${this.action !== false ? `
-              onclick="${this.action}"
-              ` : `tabindex="-1"`}
+            onclick="${this.action}"
+            ` : `tabindex="-1"`}
         class="size:${this.size} color:${this.color} bg:${this.bgColor} border-width:1 border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${eval(this.padding) * 2} py:${eval(this.padding) * 1} ${this.classNames}">
             <span>${this.initialContent}</span>
         </button>
@@ -3284,20 +3284,23 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
         return `
     ${this.hasHeader === true && this.hasCopyButton === true ? `
         <header class="p:4 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:gray-400">
-            ${this.hasHeader === true ? `
+            ${this.hasHeader === true ? ` 
                   <div class="display:flex gap:4 color:black items:center">
-                      <section class="size:md weigth:semibold">${this.title}</section>
+                      <section class="size:md weigth:semibold leading:2">${this.title}</section>
                       <badge-element
-                      badge-element:border-radius="xs"
-                      badge-element:padding="sm"
+                      badge-element:radius="sm"
+                      badge-element:padding="1"
+                      badge-element:size="xs"
                       badge-element:font-family="mono"
-                      badge-element:color="${this.theme}"
+                      badge-element:color="gray-dark-800"
+                      badge-element:border-color="gray-900"
+                      badge-element:bg="${this.theme}"
                       class="">.${this.lang}</badge-element>
                   </div>
                   ` : ``}
             ${this.hasCopyButton === true ? `
                   <section class="">
-                      <button class="w:6 h:6" copy-clipboard="trigger">
+                      <button class="w:5 h:5" copy-clipboard="trigger">
                         ${(0, _icons.Icon).clipboard}
                       </button>
                   </section>
@@ -10726,16 +10729,6 @@ class CpxParseMarkdown extends (0, _element.CpxElement) {
     }
     render() {
         const evalBaseStyles = eval(this.hasBaseStyles);
-        if (this.initialContent !== "") fetch(this.initialContent).then((response)=>response.text()).then((markdownContent)=>{
-            // Parse the Markdown content using marked
-            this.innerHTML = `
-          <div class="parse-markdown parse-markdown--styles-${evalBaseStyles.toString()} ${this.classNames}">
-            ${_marked.parse(markdownContent)}
-          </div>
-        `;
-        }).catch((error)=>{
-            console.error("Error fetching Markdown Initial Content:", error);
-        });
         // Check if sourceUrl is provided
         if (!this.sourceUrl) {
             console.error("No source URL provided for Markdown content.");
@@ -13863,8 +13856,11 @@ class PageHome extends (0, _app.Cpx).Element {
     }
     render() {
         this.innerHTML = `
-            <div style="text-align:center">
-                <text-element text-element:type="h1">Home</text-element>
+            <div style="max-width:768px; margin-inline:auto; padding: var(--4)">
+              <parse-markdown
+              parse-markdown:styles="true"
+              parse-markdown:url="https://raw.githubusercontent.com/adam-p/markdown-here/master/README.md"></parse-markdown>
+                
             </div>
         `;
     }

@@ -103,15 +103,15 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     });
   }
 
-  addDeleteOnClick(): void {
-    const allElements = this.querySelectorAll("[click:delete]");
-    allElements.forEach((element: any) => {
-      element.addEventListener("click", () => {
-        this.innerHTML = '';
-        this.render();
-      });
-    });
-  }
+  // addDeleteOnClick(): void {
+  //   const allElements = this.querySelectorAll("[click:delete]");
+  //   allElements.forEach((element: any) => {
+  //     element.addEventListener("click", () => {
+  //       this.innerHTML = '';
+  //       this.render();
+  //     });
+  //   });
+  // }
 
   /**
    * @name addClickHandler

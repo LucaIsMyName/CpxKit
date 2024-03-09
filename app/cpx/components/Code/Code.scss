@@ -1,11 +1,13 @@
 pre code.hljs {
     padding: 0;
+    font-family: var(--font-mono);
 }
 
 .hljs {
     color: var(--gray-600);
     background: transparent;
     padding: 0;
+    font-family: var(--font-mono);
 
     code {
         padding: 0;

@@ -26,7 +26,7 @@ export class CpxAccordionItem extends CpxElement {
             </div>
         </summary>
         <div class="py:4">
-          <text-element>${this.initialContent}</text-element>
+          <p>${this.initialContent}</p>
         </div>
     </details>
         `;

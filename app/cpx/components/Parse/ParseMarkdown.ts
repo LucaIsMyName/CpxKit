@@ -22,21 +22,6 @@ export class CpxParseMarkdown extends CpxElement {
 
   render() {
     const evalBaseStyles = eval(this.hasBaseStyles);
-    if (this.initialContent !== "") {
-      fetch(this.initialContent)
-        .then((response) => response.text())
-        .then((markdownContent) => {
-          // Parse the Markdown content using marked
-          this.innerHTML = `
-          <div class="parse-markdown parse-markdown--styles-${evalBaseStyles.toString()} ${this.classNames}">
-            ${marked.parse(markdownContent)}
-          </div>
-        `;
-        })
-        .catch((error) => {
-          console.error("Error fetching Markdown Initial Content:", error);
-        });
-    }
     // Check if sourceUrl is provided
     if (!this.sourceUrl) {
       console.error("No source URL provided for Markdown content.");

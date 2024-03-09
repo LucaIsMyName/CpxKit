@@ -43,11 +43,11 @@ export class CpxBadgeElement extends CpxElement implements Element {
         ${
           this.action !== false
             ? `
-              onclick="${this.action}"
-              `
+            onclick="${this.action}"
+            `
             : `tabindex="-1"`
         }
-        class="size:${this.size} color:${this.color} bg:${this.bgColor} border-width:1 border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${(eval(this.padding)*2)} py:${(eval(this.padding)*1)} ${this.classNames}">
+        class="size:${this.size} color:${this.color} bg:${this.bgColor} border-width:1 border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${eval(this.padding) * 2} py:${eval(this.padding) * 1} ${this.classNames}">
             <span>${this.initialContent}</span>
         </button>
         `;
