@@ -78,11 +78,11 @@ export class CpxCodeBlock extends CpxElement {
     ${
       this.hasHeader === true && this.hasCopyButton === true
         ? `
-        <header class="p:4 w:full display:flex gap:4 justify-content:between align-items:center border-b-width:1 border-color:gray-400">
+        <header class="p:4 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:gray-400">
             ${
               this.hasHeader === true
                 ? `
-                  <div class="display:flex gap:4 align-items:center">
+                  <div class="display:flex gap:4 color:black items:center">
                       <section class="size:md weigth:semibold">${this.title}</section>
                       <badge-element
                       badge-element:border-radius="xs"
