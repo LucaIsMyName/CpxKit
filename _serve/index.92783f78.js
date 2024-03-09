@@ -763,7 +763,7 @@ const Cpx = {
     Object: (0, _object.Object)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Suspense":"kLJ9V","./components/Text/index":"6N7g9","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Skeleton":"1hvL3","./utils/object":"bshMI","./components/Picture":"gOZMd","./components/Parse":"1CUIs"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Text/index":"6N7g9","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -2615,6 +2615,108 @@ function videoAPI() {
     });
 }
 
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bshMI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Object", ()=>Object);
+const Object = {
+    /**
+   * @name create
+   * @param elementType
+   * @returns {HTMLElement}
+   * @description Create a new element
+   * @example
+   * const newElement = Object.create("div");
+   */ create: (elementType = "div")=>{
+        return document.createElement(elementType);
+    },
+    /**
+   * @name insert
+   * @param element
+   * @param parent
+   * @description Insert an element into the DOM
+   * @example
+   * Object.insert(newElement, parentElement);
+   */ insert: (element, parent = document.querySelector("body"))=>{
+        parent.appendChild(element);
+    },
+    /**
+   * @name remove
+   * @param element
+   * @param parent
+   * @description Remove an element from the DOM
+   * @example
+   * Object.remove(newElement, parentElement);
+   */ remove: (element, parent)=>{
+        if (parent) parent.removeChild(element);
+        else element.remove();
+    },
+    Add: {
+        /**
+     * @name attribute
+     * @param element 
+     * @param attribute 
+     * @param value 
+     * @description Add an attribute to an element
+     * @example
+     * Object.Add.attribute(newElement, "id", "new-id");
+     */ attribute: (element, attribute, value)=>{
+            element.setAttribute(attribute, value);
+        },
+        /**
+     * @name id
+     * @param element 
+     * @param id
+     * @description Add an id to an element
+     * @example
+     * Object.Add.id(newElement, "new-id"); 
+     */ id: (element, id)=>{
+            element.id = id;
+        },
+        /**
+     * @name class
+     * @param element 
+     * @param className 
+     * @description Add a class to an element
+     * @example
+     * Object.Add.class(newElement, "new-class");
+     */ class: (element, className)=>{
+            element.classList.add(className);
+        }
+    },
+    Delete: {
+        /**
+     * @name attribute
+     * @param element 
+     * @param attribute 
+     * @description Remove an attribute from an element
+     * @example
+     * Object.Delete.attribute(newElement, "id");
+     */ attribute: (element, attribute)=>{
+            element.removeAttribute(attribute);
+        },
+        /**
+     * @name id
+     * @param element 
+     * @description Remove an id from an element
+     * @example
+     * Object.Delete.id(newElement);
+     */ id: (element)=>{
+            element.id = "";
+        },
+        /**
+     * @name class
+     * @param element 
+     * @param className
+     * @description Remove a class from an element
+     * @example
+     * Object.Delete.class(newElement, "new-class"); 
+     */ class: (element, className)=>{
+            element.classList.remove(className);
+        }
+    }
+};
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fVDc8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -2705,7 +2807,7 @@ class CpxAccordionItem extends (0, _element.CpxElement) {
 }
 customElements.define(`accordion-item`, CpxAccordionItem);
 
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../utils/icons":"bLiR6"}],"4F7iZ":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4F7iZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AudioPlayer", ()=>(0, _audioPlayer.CpxAudioPlayer));
@@ -2964,7 +3066,7 @@ class CpxAudioControls extends (0, _element.CpxElement) {
     constructor(){
         super();
         this.classNames = this.getAttribute("audio-controls:class") || "";
-        this.color = this.getAttribute("audio-controls:color") || "gray-400";
+        this.color = this.getAttribute("audio-controls:color") || "gray-dark-200";
         this.hasPlayPause = this.getAttribute("audio-controls:has-play-pause") || document.querySelector("audio-player").getAttribute("audio-player:has-play-pause") || true;
         this.hasPrev = this.getAttribute("audio-controls:has-prev") || document.querySelector("audio-player").getAttribute("audio-player:has-prev") || true;
         this.hasNext = this.getAttribute("audio-controls:has-next") || document.querySelector("audio-player").getAttribute("audio-player:has-next") || true;
@@ -3031,7 +3133,7 @@ class CpxAudioControl extends (0, _element.CpxElement) {
         this.type = this.getAttribute("audio-control:type") || "play-pause";
         this.icon = this.getAttribute("audio-control:icon") || "play";
         this.size = this.getAttribute("audio-control:size") || "16";
-        this.color = this.getAttribute("audio-control:color") || "gray-700";
+        this.color = this.getAttribute("audio-control:color") || "gray-dark-700";
         this.hasIcon = this.getAttribute("audio-control:has-icon") || true;
         this.hasText = this.getAttribute("audio-control:has-text") || true;
     }
@@ -3051,7 +3153,7 @@ class CpxAudioControl extends (0, _element.CpxElement) {
                                 </div>
                                     ` : ""}
                         ${evalText ? `
-                                <div class="">
+                                <div class="size:sm">
                                     ${this.type}
                                 </div>
                                 ` : ""}
@@ -10599,726 +10701,6 @@ class CpxSliderItem extends (0, _element.CpxElement) {
 }
 customElements.define(`slider-item`, CpxSliderItem);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kLJ9V":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SuspenseAll", ()=>(0, _suspenseAll.CpxSuspenseAll));
-var _suspenseAll = require("./SuspenseAll");
-
-},{"./SuspenseAll":"4Xqtf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Xqtf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxSuspenseAll", ()=>CpxSuspenseAll);
-var _element = require("../../element");
-var _icons = require("../../utils/icons");
-class CpxSuspenseAll extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("suspense-all:class") || "";
-        this.bounceDuration = eval(this.getAttribute("suspense-all:bounce-duration")) || 500; // Default bounce duration
-        this.debounceTimeout = null;
-        this.hasIcon = eval(this.getAttribute("suspense-all:has-icon")) || true;
-    }
-    connectedCallback() {
-        this.render();
-        // Wait for the entire document to be loaded
-        document.addEventListener("DOMContentLoaded", ()=>{
-            // Show the content after everything is loaded
-            this.showContent();
-        });
-    }
-    // Debounce function
-    debounce(func, delay) {
-        clearTimeout(this.debounceTimeout);
-        this.debounceTimeout = setTimeout(()=>func(), delay);
-    }
-    showContent() {
-        // Display the actual content with debounce effect
-        this.debounce(()=>{
-            const content = this.initialContent || "";
-            this.innerHTML = `
-        <div class=" ${this.classNames}">
-          ${content}
-        </div>
-      `;
-        }, eval(this.bounceDuration)); // Adjust the delay as needed (e.g., 300ms)
-    }
-    render() {
-        // Display loading screen initially
-        this.innerHTML = `
-    <section class="h:available display:grid place-content:cneter${this.classNames}">
-      ${this.hasIcon === true ? `
-            <div class="w:9 h:9 bg:gray-500">${(0, _icons.Icon).arrowPath}</div>
-          ` : ``}
-    </section>`;
-    }
-}
-customElements.define(`suspense-all`, CpxSuspenseAll);
-
-},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TextElement", ()=>(0, _textElement.CpxTextElement));
-var _textElement = require("./TextElement");
-
-},{"./TextElement":"Ygver","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Ygver":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @element text-element
- * @class CpxTextElement
- * @description
- * TextElement Component
- * @example
- * <text-element text-element:type="p" text-element:class="text-element--example" text-element:align="center" text-element:font-family="serif" text-element:font-weight="bold" text-element:font-style="italic" text-element:font-size="lg" text-element:line-height="sm" text-element:letter-spacing="sm">
- */ parcelHelpers.export(exports, "CpxTextElement", ()=>CpxTextElement);
-var _element = require("../../element");
-class CpxTextElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.type = this.getAttribute("text-element:type") || "p";
-        this.classNames = this.getAttribute("text-element:class") || "";
-        this.align = this.getAttribute("text-element:align") || "start";
-        this.fontFamily = this.getAttribute("text-element:font-family") || "sans";
-        this.fontWeight = this.getAttribute("text-element:font-weight") || "normal";
-        this.fontStyle = this.getAttribute("text-element:font-style") || "normal";
-        this.fontSize = this.getAttribute("text-element:size") || "sm";
-        this.lineHeight = this.getAttribute("text-element:line-height") || "1";
-        this.letterSpacing = this.getAttribute("text-element:tracking") || "sm";
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <${this.type} class="
-    align:${this.align}
-    size:${this.fontSize}
-    weight:${this.fontWeight}
-    font-style:${this.fontStyle}
-    font-family:${this.fontFamily}
-    line-height:${this.lineHeight}
-    tracking:${this.letterSpacing}
-    ${this.classNames}">
-        ${this.initialContent}
-    </${this.type}>
-        `;
-    }
-}
-customElements.define(`text-element`, CpxTextElement);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lwDpZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TabContainer", ()=>(0, _tabContainer.CpxTabContainer));
-parcelHelpers.export(exports, "TabHeader", ()=>(0, _tabHeader.CpxTabHeader));
-parcelHelpers.export(exports, "TabContent", ()=>(0, _tabContent.CpxTabContent));
-parcelHelpers.export(exports, "TabToggle", ()=>(0, _tabToggle.CpxTabToggle));
-var _tabContainer = require("./TabContainer");
-var _tabHeader = require("./TabHeader");
-var _tabContent = require("./TabContent");
-var _tabToggle = require("./TabToggle");
-
-},{"./TabContainer":"9bR2q","./TabHeader":"4D8G5","./TabContent":"dBlXm","./TabToggle":"ircPr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9bR2q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxTabContainer
- * @description
- * TabContainer Component
- * @example
- * <tab-container tab-container:id="tab-container-id">
- */ parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
-var _element = require("../../element");
-var _id = require("../../utils/id");
-class CpxTabContainer extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("tab-container:class") || "";
-        this.tabContainerId = this.getAttribute("tab-container:id") || (0, _id.Id).Generate.hex(12);
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <section
-      tab-container:id="${this.tabContainerId}"
-      class="tab-container ${this.classNames}">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`tab-container`, CpxTabContainer);
-
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D8G5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
-var _element = require("../../element");
-class CpxTabHeader extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.tabHeaderId = this.getAttribute("tab-header:id");
-        this.classNames = this.getAttribute("tab-header:class") || "";
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <section 
-      tab-header:id="${this.tabHeaderId} " 
-      class="tab-header ${this.classNames}">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`tab-header`, CpxTabHeader);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBlXm":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
-var _element = require("../../element");
-class CpxTabContent extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("tab-content:class") || "";
-        this.tabContentId = this.getAttribute("tab-content:id");
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <section 
-      tab-content:id
-      tab-content:is-active
-      class="tab-content ${this.classNames}">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`tab-content`, CpxTabContent);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ircPr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
-var _element = require("../../element");
-var _id = require("../../utils/id");
-class CpxTabToggle extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.tabToggleId = this.getAttribute("toggle:id") || (0, _id.Id).Generate.int(4);
-        this.classNames = this.getAttribute("toggle:class") || "";
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <button
-      class="tab-toggle ${this.classNames}"
-      tab-toggle:id="${this.tabToggleId}">
-        ${this.initialContent}
-    </button>
-        `;
-    }
-}
-customElements.define(`tab-toggle`, CpxTabToggle);
-
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bg3EL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "VideoPlayer", ()=>(0, _videoPlayer.CpxVideoPlayer));
-parcelHelpers.export(exports, "VideoControls", ()=>(0, _videoControls.CpxVideoControls));
-parcelHelpers.export(exports, "VideoControl", ()=>(0, _videoControl.CpxVideoControl));
-parcelHelpers.export(exports, "VideoPlaylist", ()=>(0, _videoPlaylist.CpxVideoPlaylist));
-parcelHelpers.export(exports, "VideoPlaylistItem", ()=>(0, _videoPlaylistItem.CpxVideoPlaylistItem));
-var _videoPlayer = require("./VideoPlayer");
-var _videoControls = require("./VideoControls");
-var _videoControl = require("./VideoControl");
-var _videoPlaylist = require("./VideoPlaylist");
-var _videoPlaylistItem = require("./VideoPlaylistItem");
-
-},{"./VideoPlayer":"23QjX","./VideoControls":"aolqF","./VideoControl":"ccmNe","./VideoPlaylist":"bdhwF","./VideoPlaylistItem":"cFIQP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"23QjX":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxVideoPlayer
- * @description
- * VideoPlayer Component
- * @example
- * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
- * </audio-player>
- */ parcelHelpers.export(exports, "CpxVideoPlayer", ()=>CpxVideoPlayer);
-var _element = require("../../element");
-var _video = require("../../utils/video");
-class CpxVideoPlayer extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("video-player:class") || "";
-        this.poster = this.getAttribute(`video-player:poster`) || `https://placehold.co/1600x900`;
-        this.title = this.getAttribute(`video-player:title`) || `videoPlayer Title`;
-        this.artist = this.getAttribute(`video-player:artist`) || `videoPlayer Artist Title`;
-        this.controlsPosition = this.getAttribute(`video-player:controls-position`) || `bottom-inside`;
-        this.hasTitle = eval(this.getAttribute(`video-player:has-title`)) || true;
-        this.hasArtist = eval(this.getAttribute(`video-player:has-artist`)) || false;
-        this.hasControls = eval(this.getAttribute(`video-player:has-controls`)) || true;
-        this.hasPlaylist = eval(this.getAttribute(`video-player:has-playlist`)) || true;
-    }
-    connectedCallback() {
-        this.render();
-        (0, _video.videoAPI)();
-    }
-    render() {
-        this.innerHTML = `
-    <div class=" ${this.classNames}" video>
-    ${this.initialContent !== "" ? `${this.initialContent}` : `
-        <div class="">
-            <section class="position:relative">
-                <video 
-                    class="w:full bg:gray-300"
-                    video-current>
-                </video>
-                ${this.hasControls === true ? `<video-controls
-                    video-controls:position="${this.controlsPosition}"></video-controls>` : ``}
-            </section>
-            <div class=" my-4">
-                ${this.hasTitle === true ? `<h2 class="my:3 size:lg" video-current="title">${this.title}</h2>` : ``}
-                ${this.hasArtist === true ? `<p class="" video-current="artist">${this.artist}</p>` : ``}
-            </div>
-        </div>
-        ${this.hasPlaylist === true ? `<video-playlist
-                  class=""
-                  video-playlist:appearance="${this.appearance}"></video-playlist>` : ``}
-       `}
-    </div>
-    `;
-    }
-}
-customElements.define(`video-player`, CpxVideoPlayer);
-
-},{"../../element":"7TddR","../../utils/video":"dmuKk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aolqF":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxVideoControls
- * @description
- * VideoPlayer Component
- * @example
- * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
- * </audio-player>
- */ parcelHelpers.export(exports, "CpxVideoControls", ()=>CpxVideoControls);
-var _element = require("../../element");
-var _icons = require("../../utils/icons");
-class CpxVideoControls extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("video-controls:class") || "";
-        this.position = this.getAttribute("video-controls:position") || "bottom-inside";
-        this.hasPlayPause = eval(this.getAttribute("video-controls:has-play-pause")) || true;
-        this.hasPrev = eval(this.getAttribute("video-controls:has-prev")) || true;
-        this.hasNext = eval(this.getAttribute("video-controls:has-next")) || true;
-        this.hasMuteUnmute = eval(this.getAttribute("video-controls:has-mute-unmute")) || true;
-        this.hasVolume = eval(this.getAttribute("video-controls:has-volume")) || true;
-        this.hasProgress = eval(this.getAttribute("video-controls:has-progress")) || true;
-    }
-    render() {
-        this.innerHTML = `
-    <div video-controls class="
-    ${this.position === "bottom-inside" ? `position:absolute bottom:0 left:0 right:0 p:4` : ``}
-    ${this.position === "bottom-outside" ? `position:relative` : ``}
-    ${this.classNames}">
-    ${this.initialContent !== "" ? this.initialContent : `
-        ${this.hasProgress === true ? `
-              <div class="mb:2">
-                <video-control video-control:class="w:full" video-control:type="progress-bar"></video-control>
-              </div>
-              ` : ``}
-        
-        <section class="display:flex items:center gap:4">
-          ${this.hasPrev === true ? `
-              <video-control class="" video-control:type="prev">
-                ${(0, _icons.Icon).backward}
-              </video-control>
-                ` : ``}
-          ${this.hasPlayPause === true ? `
-              <video-control class="" video-control:type="play-pause">
-                ${(0, _icons.Icon).play}
-              </video-control>
-                ` : ``}
-          ${this.hasNext === true ? `
-              <video-control class="" video-control:type="next">
-                ${(0, _icons.Icon).forward}
-              </video-control>
-                ` : ``}
-
-          ${this.hasMuteUnmute === true ? `
-              <video-control class="" video-control:type="mute-unmute">
-                ${(0, _icons.Icon).speakerWave}
-              </video-control>
-                ` : ``}
-          ${this.hasVolume === true ? `
-              <div class="h:full display:flex items:center">
-                  <video-control class="h:full display:flex items:center" video-control:type="volume"></video-control>
-              </div>
-                ` : ``}
-        </section>
-        `}
-    </div>
-    `;
-    }
-}
-customElements.define(`video-controls`, CpxVideoControls);
-
-},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ccmNe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxVideoControl", ()=>CpxVideoControl);
-var _element = require("../../element");
-var _icons = require("../../utils/icons");
-class CpxVideoControl extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("video-control:class") || "";
-        this.type = this.getAttribute("video-control:type") || "play-pause";
-        this.icon = this.getAttribute("video-control:icon") || "play";
-        this.size = this.getAttribute("video-control:size") || "9";
-        this.hasIcon = eval(this.getAttribute("video-control:has-icon")) || true;
-        this.hasText = eval(this.getAttribute("video-control:has-text")) || false;
-    }
-    connectedCallback() {
-        this.render();
-        this.addClickHandler();
-        this.addDeleteOnClick();
-    }
-    render() {
-        this.innerHTML = `  
-            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="${this.classNames}" video-control="${this.type}">` : `
-                <button 
-                click:delete
-                class="size:${this.size} w:${this.size} h:${this.size} ${this.classNames}"
-                video-control="${this.type}">
-                ${this.initialContent !== "" ? this.initialContent : `
-                    <section class="">
-                        ${this.hasIcon ? `${this.type === "play-pause" ? `   <div  class="">
-                                            ${this.querySelector("button").getAttribute("video-current-state") === "play" ? (0, _icons.Icon).pause : (0, _icons.Icon).play}
-                                        </div>` : ``}
-                                <div class="">
-                                    ${(0, _icons.Icon)[this.icon]}
-                                </div>
-                                    ` : ""}
-                        ${this.hasText ? `
-                                <div class="">
-                                    ${this.type}
-                                </div>
-                                ` : ""}
-                    </section>
-                    `}  
-                </button>
-                `}
-            
-        `;
-    }
-}
-customElements.define(`video-control`, CpxVideoControl);
-
-},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bdhwF":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxVideoPlaylist
- * @description
- * VideoPlayer Component
- * @example
- * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
- * </audio-player>
- */ parcelHelpers.export(exports, "CpxVideoPlaylist", ()=>CpxVideoPlaylist);
-var _element = require("../../element");
-class CpxVideoPlaylist extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("video-playlist:class") || "";
-        this.baseUrl = this.getAttribute("video-playlist:url") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:url") : "https://api.coverr.co/videos/");
-        this.apiKey = this.getAttribute("video-playlist:api-key") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:api-key") : "45e2e6d3f93979c3e38af50d42150752");
-        this.poster = this.getAttribute(`video-playlist:poster`) || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:poster") : "https://placehold.co/100");
-        this.getVideo = (identifier = "1")=>{
-            return `${this.baseUrl}/${identifier}?api_key=${this.apiKey}`;
-        };
-        this.playlist = [
-            {
-                title: "Video 1",
-                id: "1",
-                artist: "Artist 1",
-                cover: "https://placehold.co/16x9",
-                url: `${this.getVideo("curvy-mountain-road-zcxbgh2l")}`
-            },
-            {
-                title: "Video 2",
-                id: "2",
-                artist: "Artist 2",
-                cover: "https://placehold.co/16x9",
-                url: `${this.getVideo("curvy-mountain-road-zcxbgh2l")}`
-            }
-        ];
-        console.log(this.playlist);
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-        <div video-playlist class="${this.classNames}">
-            ${this.initialContent !== "" ? `${this.initialContent}` : `
-                ${this.playlist.map((video, index)=>{
-            return `
-                  <video-playlist-item
-                    class=""
-                    video-playlist-item:title="${video.title}"
-                    video-playlist-item:artist="${video.artist}"
-                    video-playlist-item:url="${video.url}"></video-playlist-item>`;
-        }).join("")}
-                `}      
-        </div>
-    `;
-    }
-}
-customElements.define(`video-playlist`, CpxVideoPlaylist);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cFIQP":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxVideoPlaylistItem
- * @description
- * VideoPlayer Component
- * @example
- * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
- * </audio-player>
- */ parcelHelpers.export(exports, "CpxVideoPlaylistItem", ()=>CpxVideoPlaylistItem);
-var _element = require("../../element");
-var _index = require("../../index");
-class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("video-playlist-item:class") || "";
-        this.videoPoster = this.getAttribute("video-playlist-item:poster") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:poster") : "https://placehold.co/100");
-        this.videoUrl = this.getAttribute("video-playlist-item:url") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:url") : "https://api.coverr.co/videos/");
-        this.apiKey = this.getAttribute("video-playlist-item:api-key") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:api-key") : "45e2e6d3f93979c3e38af50d42150752");
-        this.videoTitle = this.getAttribute("video-playlist-item:title") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:title") : "Video Title");
-        this.videoArtist = this.getAttribute("video-playlist-item:artist") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:artist") : "Artist");
-        this.videoId = this.getAttribute("video-playlist-item:id");
-    }
-    render() {
-        this.innerHTML = `
-        <button click:storage:local:set(currentvideo,${(0, _index.Cpx).String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:gray-300 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
-          ${this.initialContent !== "" ? this.initialContent : `<section class="display:flex">
-                        <div class="display:flex">
-                            <img video-playlist-item="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
-                            <p video-playlist-item="title">${this.videoTitle}</p>
-                        </div>
-                        <p class="" video-playlist-item="artist">${this.videoArtist}</p>
-                   </section>
-                    `}
-        </button>
-    `;
-    }
-}
-customElements.define(`video-playlist-item`, CpxVideoPlaylistItem);
-
-},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1hvL3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SkeletonElement", ()=>(0, _skeletonElement.CpxSkeletonElement));
-var _skeletonElement = require("./SkeletonElement");
-
-},{"./SkeletonElement":"1N0Ef","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1N0Ef":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Picture Element
- * @description
- * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
- * @example
- * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
- */ parcelHelpers.export(exports, "CpxSkeletonElement", ()=>CpxSkeletonElement);
-var _element = require("../../element");
-class CpxSkeletonElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("skeleton-element:class") || "";
-        this.display = this.getAttribute("skeleton-element:display") || "inline-block";
-        this.color = this.getAttribute("skeleton-element:color") || "gray-300";
-        this.borderRadius = this.getAttribute("skeleton-element:border-radius") || "sm";
-        this.width = this.getAttribute("skeleton-element:width") || "lg";
-        this.height = this.getAttribute("skeleton-element:height") || "5";
-    }
-    render() {
-        this.innerHTML = `  
-        <div class="h:${this.height} w:full max-w:${this.width} display:${this.display}  radius:${this.borderRadius} bg:${this.color} ${this.classNames}">
-        </div>
-        `;
-    }
-}
-customElements.define(`skeleton-element`, CpxSkeletonElement);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bshMI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Object", ()=>Object);
-const Object = {
-    /**
-   * @name create
-   * @param elementType
-   * @returns {HTMLElement}
-   * @description Create a new element
-   * @example
-   * const newElement = Object.create("div");
-   */ create: (elementType = "div")=>{
-        return document.createElement(elementType);
-    },
-    /**
-   * @name insert
-   * @param element
-   * @param parent
-   * @description Insert an element into the DOM
-   * @example
-   * Object.insert(newElement, parentElement);
-   */ insert: (element, parent = document.querySelector("body"))=>{
-        parent.appendChild(element);
-    },
-    /**
-   * @name remove
-   * @param element
-   * @param parent
-   * @description Remove an element from the DOM
-   * @example
-   * Object.remove(newElement, parentElement);
-   */ remove: (element, parent)=>{
-        if (parent) parent.removeChild(element);
-        else element.remove();
-    },
-    Add: {
-        /**
-     * @name attribute
-     * @param element 
-     * @param attribute 
-     * @param value 
-     * @description Add an attribute to an element
-     * @example
-     * Object.Add.attribute(newElement, "id", "new-id");
-     */ attribute: (element, attribute, value)=>{
-            element.setAttribute(attribute, value);
-        },
-        /**
-     * @name id
-     * @param element 
-     * @param id
-     * @description Add an id to an element
-     * @example
-     * Object.Add.id(newElement, "new-id"); 
-     */ id: (element, id)=>{
-            element.id = id;
-        },
-        /**
-     * @name class
-     * @param element 
-     * @param className 
-     * @description Add a class to an element
-     * @example
-     * Object.Add.class(newElement, "new-class");
-     */ class: (element, className)=>{
-            element.classList.add(className);
-        }
-    },
-    Delete: {
-        /**
-     * @name attribute
-     * @param element 
-     * @param attribute 
-     * @description Remove an attribute from an element
-     * @example
-     * Object.Delete.attribute(newElement, "id");
-     */ attribute: (element, attribute)=>{
-            element.removeAttribute(attribute);
-        },
-        /**
-     * @name id
-     * @param element 
-     * @description Remove an id from an element
-     * @example
-     * Object.Delete.id(newElement);
-     */ id: (element)=>{
-            element.id = "";
-        },
-        /**
-     * @name class
-     * @param element 
-     * @param className
-     * @description Remove a class from an element
-     * @example
-     * Object.Delete.class(newElement, "new-class"); 
-     */ class: (element, className)=>{
-            element.classList.remove(className);
-        }
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gOZMd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PictureElement", ()=>(0, _pictureElement.CpxPictureElement));
-var _pictureElement = require("./PictureElement");
-
-},{"./PictureElement":"11clR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"11clR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Picture Element
- * @description
- * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
- * @example
- * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
- */ parcelHelpers.export(exports, "CpxPictureElement", ()=>CpxPictureElement);
-var _element = require("../../element");
-class CpxPictureElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("picture-element:class") || "";
-        this.width = this.getAttribute("picture-element:width") || "600";
-        this.height = this.getAttribute("picture-element:height") || "600";
-        this.aspectRatio = this.getAttribute("picture-element:aspect-ratio") || "1/1";
-        this.alt = this.getAttribute("picture-element:alt") || "";
-        this.url = this.getAttribute("picture-element:url") || "https://via.placeholder.com/150";
-        this.urlImgBig = this.getAttribute("picture-element:screen:xl:url") || false;
-        this.urlImgMedium = this.getAttribute("picture-element:screen:md:url") || false;
-        this.screenBig = this.getAttribute("picture-element:screen:xl") || "1240px";
-        this.screenMedium = this.getAttribute("picture-element:screen:md") || "720px";
-        this.loading = this.getAttribute("picture-element:loading") || "lazy";
-    }
-    render() {
-        this.innerHTML = `  
-        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class="picture-element ${this.classNames}">
-        <suspense-all>
-            <picture> 
-              ${this.urlImgBig !== false ? `<source media="(min-width:${this.screenBig})" srcset="${this.urlImgBig}?as=webp?width=${this.screenBig}">` : ``}
-              ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
-                <img loading="${this.loading}" class="picture-element__img" src="${this.url}" alt="${this.alt}">
-            </picture>
-            ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
-            </suspense-all>
-          </figure>
-        `;
-    }
-}
-customElements.define(`picture-element`, CpxPictureElement);
-
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1CUIs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -11374,7 +10756,7 @@ class CpxParseMarkdown extends (0, _element.CpxElement) {
 }
 customElements.define(`parse-markdown`, CpxParseMarkdown);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","marked":"4duqf"}],"4duqf":[function(require,module,exports) {
+},{"../../element":"7TddR","marked":"4duqf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4duqf":[function(require,module,exports) {
 /**
  * marked v12.0.1 - a markdown parser
  * Copyright (c) 2011-2024, Christopher Jeffrey. (MIT Licensed)
@@ -13374,7 +12756,625 @@ customElements.define(`parse-markdown`, CpxParseMarkdown);
     exports1.walkTokens = walkTokens;
 });
 
-},{}],"bjCHj":[function(require,module,exports) {
+},{}],"gOZMd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PictureElement", ()=>(0, _pictureElement.CpxPictureElement));
+var _pictureElement = require("./PictureElement");
+
+},{"./PictureElement":"11clR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"11clR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Picture Element
+ * @description
+ * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * @example
+ * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ */ parcelHelpers.export(exports, "CpxPictureElement", ()=>CpxPictureElement);
+var _element = require("../../element");
+class CpxPictureElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("picture-element:class") || "";
+        this.width = this.getAttribute("picture-element:width") || "600";
+        this.height = this.getAttribute("picture-element:height") || "600";
+        this.aspectRatio = this.getAttribute("picture-element:aspect-ratio") || "1/1";
+        this.alt = this.getAttribute("picture-element:alt") || "";
+        this.url = this.getAttribute("picture-element:url") || "https://via.placeholder.com/150";
+        this.urlImgBig = this.getAttribute("picture-element:screen:xl:url") || false;
+        this.urlImgMedium = this.getAttribute("picture-element:screen:md:url") || false;
+        this.screenBig = this.getAttribute("picture-element:screen:xl") || "1240px";
+        this.screenMedium = this.getAttribute("picture-element:screen:md") || "720px";
+        this.loading = this.getAttribute("picture-element:loading") || "lazy";
+    }
+    render() {
+        this.innerHTML = `  
+        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class="picture-element ${this.classNames}">
+        <suspense-all>
+            <picture> 
+              ${this.urlImgBig !== false ? `<source media="(min-width:${this.screenBig})" srcset="${this.urlImgBig}?as=webp?width=${this.screenBig}">` : ``}
+              ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
+                <img loading="${this.loading}" class="picture-element__img" src="${this.url}" alt="${this.alt}">
+            </picture>
+            ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
+            </suspense-all>
+          </figure>
+        `;
+    }
+}
+customElements.define(`picture-element`, CpxPictureElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kLJ9V":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SuspenseAll", ()=>(0, _suspenseAll.CpxSuspenseAll));
+var _suspenseAll = require("./SuspenseAll");
+
+},{"./SuspenseAll":"4Xqtf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Xqtf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxSuspenseAll", ()=>CpxSuspenseAll);
+var _element = require("../../element");
+var _icons = require("../../utils/icons");
+class CpxSuspenseAll extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("suspense-all:class") || "";
+        this.bounceDuration = eval(this.getAttribute("suspense-all:bounce-duration")) || 500; // Default bounce duration
+        this.debounceTimeout = null;
+        this.hasIcon = eval(this.getAttribute("suspense-all:has-icon")) || true;
+    }
+    connectedCallback() {
+        this.render();
+        // Wait for the entire document to be loaded
+        document.addEventListener("DOMContentLoaded", ()=>{
+            // Show the content after everything is loaded
+            this.showContent();
+        });
+    }
+    // Debounce function
+    debounce(func, delay) {
+        clearTimeout(this.debounceTimeout);
+        this.debounceTimeout = setTimeout(()=>func(), delay);
+    }
+    showContent() {
+        // Display the actual content with debounce effect
+        this.debounce(()=>{
+            const content = this.initialContent || "";
+            this.innerHTML = `
+        <div class=" ${this.classNames}">
+          ${content}
+        </div>
+      `;
+        }, eval(this.bounceDuration)); // Adjust the delay as needed (e.g., 300ms)
+    }
+    render() {
+        // Display loading screen initially
+        this.innerHTML = `
+    <section class="h:available display:grid place-content:cneter${this.classNames}">
+      ${this.hasIcon === true ? `
+            <div class="w:9 h:9 bg:gray-500">${(0, _icons.Icon).arrowPath}</div>
+          ` : ``}
+    </section>`;
+    }
+}
+customElements.define(`suspense-all`, CpxSuspenseAll);
+
+},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1hvL3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SkeletonElement", ()=>(0, _skeletonElement.CpxSkeletonElement));
+var _skeletonElement = require("./SkeletonElement");
+
+},{"./SkeletonElement":"1N0Ef","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1N0Ef":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Picture Element
+ * @description
+ * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * @example
+ * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ */ parcelHelpers.export(exports, "CpxSkeletonElement", ()=>CpxSkeletonElement);
+var _element = require("../../element");
+class CpxSkeletonElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("skeleton-element:class") || "";
+        this.display = this.getAttribute("skeleton-element:display") || "inline-block";
+        this.color = this.getAttribute("skeleton-element:color") || "gray-300";
+        this.borderRadius = this.getAttribute("skeleton-element:border-radius") || "sm";
+        this.width = this.getAttribute("skeleton-element:width") || "lg";
+        this.height = this.getAttribute("skeleton-element:height") || "5";
+    }
+    render() {
+        this.innerHTML = `  
+        <div class="h:${this.height} w:full max-w:${this.width} display:${this.display}  radius:${this.borderRadius} bg:${this.color} ${this.classNames}">
+        </div>
+        `;
+    }
+}
+customElements.define(`skeleton-element`, CpxSkeletonElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TextElement", ()=>(0, _textElement.CpxTextElement));
+var _textElement = require("./TextElement");
+
+},{"./TextElement":"Ygver","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Ygver":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @element text-element
+ * @class CpxTextElement
+ * @description
+ * TextElement Component
+ * @example
+ * <text-element text-element:type="p" text-element:class="text-element--example" text-element:align="center" text-element:font-family="serif" text-element:font-weight="bold" text-element:font-style="italic" text-element:font-size="lg" text-element:line-height="sm" text-element:letter-spacing="sm">
+ */ parcelHelpers.export(exports, "CpxTextElement", ()=>CpxTextElement);
+var _element = require("../../element");
+class CpxTextElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.type = this.getAttribute("text-element:type") || "p";
+        this.classNames = this.getAttribute("text-element:class") || "";
+        this.align = this.getAttribute("text-element:align") || "start";
+        this.fontFamily = this.getAttribute("text-element:font-family") || "sans";
+        this.fontWeight = this.getAttribute("text-element:font-weight") || "normal";
+        this.fontStyle = this.getAttribute("text-element:font-style") || "normal";
+        this.fontSize = this.getAttribute("text-element:size") || "sm";
+        this.lineHeight = this.getAttribute("text-element:line-height") || "1";
+        this.letterSpacing = this.getAttribute("text-element:tracking") || "sm";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <${this.type} class="
+    align:${this.align}
+    size:${this.fontSize}
+    weight:${this.fontWeight}
+    font-style:${this.fontStyle}
+    font-family:${this.fontFamily}
+    line-height:${this.lineHeight}
+    tracking:${this.letterSpacing}
+    ${this.classNames}">
+        ${this.initialContent}
+    </${this.type}>
+        `;
+    }
+}
+customElements.define(`text-element`, CpxTextElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lwDpZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TabContainer", ()=>(0, _tabContainer.CpxTabContainer));
+parcelHelpers.export(exports, "TabHeader", ()=>(0, _tabHeader.CpxTabHeader));
+parcelHelpers.export(exports, "TabContent", ()=>(0, _tabContent.CpxTabContent));
+parcelHelpers.export(exports, "TabToggle", ()=>(0, _tabToggle.CpxTabToggle));
+var _tabContainer = require("./TabContainer");
+var _tabHeader = require("./TabHeader");
+var _tabContent = require("./TabContent");
+var _tabToggle = require("./TabToggle");
+
+},{"./TabContainer":"9bR2q","./TabHeader":"4D8G5","./TabContent":"dBlXm","./TabToggle":"ircPr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9bR2q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxTabContainer
+ * @description
+ * TabContainer Component
+ * @example
+ * <tab-container tab-container:id="tab-container-id">
+ */ parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
+var _element = require("../../element");
+var _id = require("../../utils/id");
+class CpxTabContainer extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("tab-container:class") || "";
+        this.tabContainerId = this.getAttribute("tab-container:id") || (0, _id.Id).Generate.hex(12);
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section
+      tab-container:id="${this.tabContainerId}"
+      class="tab-container ${this.classNames}">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-container`, CpxTabContainer);
+
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D8G5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
+var _element = require("../../element");
+class CpxTabHeader extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.tabHeaderId = this.getAttribute("tab-header:id");
+        this.classNames = this.getAttribute("tab-header:class") || "";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section 
+      tab-header:id="${this.tabHeaderId} " 
+      class="tab-header ${this.classNames}">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-header`, CpxTabHeader);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBlXm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
+var _element = require("../../element");
+class CpxTabContent extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("tab-content:class") || "";
+        this.tabContentId = this.getAttribute("tab-content:id");
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <section 
+      tab-content:id
+      tab-content:is-active
+      class="tab-content ${this.classNames}">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`tab-content`, CpxTabContent);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ircPr":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
+var _element = require("../../element");
+var _id = require("../../utils/id");
+class CpxTabToggle extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.tabToggleId = this.getAttribute("toggle:id") || (0, _id.Id).Generate.int(4);
+        this.classNames = this.getAttribute("toggle:class") || "";
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+    <button
+      class="tab-toggle ${this.classNames}"
+      tab-toggle:id="${this.tabToggleId}">
+        ${this.initialContent}
+    </button>
+        `;
+    }
+}
+customElements.define(`tab-toggle`, CpxTabToggle);
+
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bg3EL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "VideoPlayer", ()=>(0, _videoPlayer.CpxVideoPlayer));
+parcelHelpers.export(exports, "VideoControls", ()=>(0, _videoControls.CpxVideoControls));
+parcelHelpers.export(exports, "VideoControl", ()=>(0, _videoControl.CpxVideoControl));
+parcelHelpers.export(exports, "VideoPlaylist", ()=>(0, _videoPlaylist.CpxVideoPlaylist));
+parcelHelpers.export(exports, "VideoPlaylistItem", ()=>(0, _videoPlaylistItem.CpxVideoPlaylistItem));
+var _videoPlayer = require("./VideoPlayer");
+var _videoControls = require("./VideoControls");
+var _videoControl = require("./VideoControl");
+var _videoPlaylist = require("./VideoPlaylist");
+var _videoPlaylistItem = require("./VideoPlaylistItem");
+
+},{"./VideoPlayer":"23QjX","./VideoControls":"aolqF","./VideoControl":"ccmNe","./VideoPlaylist":"bdhwF","./VideoPlaylistItem":"cFIQP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"23QjX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxVideoPlayer
+ * @description
+ * VideoPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */ parcelHelpers.export(exports, "CpxVideoPlayer", ()=>CpxVideoPlayer);
+var _element = require("../../element");
+var _video = require("../../utils/video");
+class CpxVideoPlayer extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("video-player:class") || "";
+        this.poster = this.getAttribute(`video-player:poster`) || `https://placehold.co/1600x900`;
+        this.title = this.getAttribute(`video-player:title`) || `videoPlayer Title`;
+        this.artist = this.getAttribute(`video-player:artist`) || `videoPlayer Artist Title`;
+        this.controlsPosition = this.getAttribute(`video-player:controls-position`) || `bottom-inside`;
+        this.hasTitle = eval(this.getAttribute(`video-player:has-title`)) || true;
+        this.hasArtist = eval(this.getAttribute(`video-player:has-artist`)) || false;
+        this.hasControls = eval(this.getAttribute(`video-player:has-controls`)) || true;
+        this.hasPlaylist = eval(this.getAttribute(`video-player:has-playlist`)) || true;
+    }
+    connectedCallback() {
+        this.render();
+        (0, _video.videoAPI)();
+    }
+    render() {
+        this.innerHTML = `
+    <div class=" ${this.classNames}" video>
+    ${this.initialContent !== "" ? `${this.initialContent}` : `
+        <div class="">
+            <section class="position:relative">
+                <video 
+                    class="w:full bg:gray-300"
+                    video-current>
+                </video>
+                ${this.hasControls === true ? `<video-controls
+                    video-controls:position="${this.controlsPosition}"></video-controls>` : ``}
+            </section>
+            <div class=" my-4">
+                ${this.hasTitle === true ? `<h2 class="my:3 size:lg" video-current="title">${this.title}</h2>` : ``}
+                ${this.hasArtist === true ? `<p class="" video-current="artist">${this.artist}</p>` : ``}
+            </div>
+        </div>
+        ${this.hasPlaylist === true ? `<video-playlist
+                  class=""
+                  video-playlist:appearance="${this.appearance}"></video-playlist>` : ``}
+       `}
+    </div>
+    `;
+    }
+}
+customElements.define(`video-player`, CpxVideoPlayer);
+
+},{"../../element":"7TddR","../../utils/video":"dmuKk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aolqF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxVideoControls
+ * @description
+ * VideoPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */ parcelHelpers.export(exports, "CpxVideoControls", ()=>CpxVideoControls);
+var _element = require("../../element");
+var _icons = require("../../utils/icons");
+class CpxVideoControls extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("video-controls:class") || "";
+        this.position = this.getAttribute("video-controls:position") || "bottom-inside";
+        this.hasPlayPause = eval(this.getAttribute("video-controls:has-play-pause")) || true;
+        this.hasPrev = eval(this.getAttribute("video-controls:has-prev")) || true;
+        this.hasNext = eval(this.getAttribute("video-controls:has-next")) || true;
+        this.hasMuteUnmute = eval(this.getAttribute("video-controls:has-mute-unmute")) || true;
+        this.hasVolume = eval(this.getAttribute("video-controls:has-volume")) || true;
+        this.hasProgress = eval(this.getAttribute("video-controls:has-progress")) || true;
+    }
+    render() {
+        this.innerHTML = `
+    <div video-controls class="
+    ${this.position === "bottom-inside" ? `position:absolute bottom:0 left:0 right:0 p:4` : ``}
+    ${this.position === "bottom-outside" ? `position:relative` : ``}
+    ${this.classNames}">
+    ${this.initialContent !== "" ? this.initialContent : `
+        ${this.hasProgress === true ? `
+              <div class="mb:2">
+                <video-control video-control:class="w:full" video-control:type="progress-bar"></video-control>
+              </div>
+              ` : ``}
+        
+        <section class="display:flex items:center gap:4">
+          ${this.hasPrev === true ? `
+              <video-control class="" video-control:type="prev">
+                ${(0, _icons.Icon).backward}
+              </video-control>
+                ` : ``}
+          ${this.hasPlayPause === true ? `
+              <video-control class="" video-control:type="play-pause">
+                ${(0, _icons.Icon).play}
+              </video-control>
+                ` : ``}
+          ${this.hasNext === true ? `
+              <video-control class="" video-control:type="next">
+                ${(0, _icons.Icon).forward}
+              </video-control>
+                ` : ``}
+
+          ${this.hasMuteUnmute === true ? `
+              <video-control class="" video-control:type="mute-unmute">
+                ${(0, _icons.Icon).speakerWave}
+              </video-control>
+                ` : ``}
+          ${this.hasVolume === true ? `
+              <div class="h:full display:flex items:center">
+                  <video-control class="h:full display:flex items:center" video-control:type="volume"></video-control>
+              </div>
+                ` : ``}
+        </section>
+        `}
+    </div>
+    `;
+    }
+}
+customElements.define(`video-controls`, CpxVideoControls);
+
+},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ccmNe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxVideoControl", ()=>CpxVideoControl);
+var _element = require("../../element");
+var _icons = require("../../utils/icons");
+class CpxVideoControl extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("video-control:class") || "";
+        this.type = this.getAttribute("video-control:type") || "play-pause";
+        this.icon = this.getAttribute("video-control:icon") || "play";
+        this.size = this.getAttribute("video-control:size") || "9";
+        this.hasIcon = eval(this.getAttribute("video-control:has-icon")) || true;
+        this.hasText = eval(this.getAttribute("video-control:has-text")) || false;
+    }
+    connectedCallback() {
+        this.render();
+        this.addClickHandler();
+        this.addDeleteOnClick();
+    }
+    render() {
+        this.innerHTML = `  
+            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="${this.classNames}" video-control="${this.type}">` : `
+                <button 
+                click:delete
+                class="size:${this.size} w:${this.size} h:${this.size} ${this.classNames}"
+                video-control="${this.type}">
+                ${this.initialContent !== "" ? this.initialContent : `
+                    <section class="">
+                        ${this.hasIcon ? `${this.type === "play-pause" ? `   <div  class="">
+                                            ${this.querySelector("button").getAttribute("video-current-state") === "play" ? (0, _icons.Icon).pause : (0, _icons.Icon).play}
+                                        </div>` : ``}
+                                <div class="">
+                                    ${(0, _icons.Icon)[this.icon]}
+                                </div>
+                                    ` : ""}
+                        ${this.hasText ? `
+                                <div class="">
+                                    ${this.type}
+                                </div>
+                                ` : ""}
+                    </section>
+                    `}  
+                </button>
+                `}
+            
+        `;
+    }
+}
+customElements.define(`video-control`, CpxVideoControl);
+
+},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bdhwF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxVideoPlaylist
+ * @description
+ * VideoPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */ parcelHelpers.export(exports, "CpxVideoPlaylist", ()=>CpxVideoPlaylist);
+var _element = require("../../element");
+class CpxVideoPlaylist extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("video-playlist:class") || "";
+        this.baseUrl = this.getAttribute("video-playlist:url") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:url") : "https://api.coverr.co/videos/");
+        this.apiKey = this.getAttribute("video-playlist:api-key") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:api-key") : "45e2e6d3f93979c3e38af50d42150752");
+        this.poster = this.getAttribute(`video-playlist:poster`) || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:poster") : "https://placehold.co/100");
+        this.getVideo = (identifier = "1")=>{
+            return `${this.baseUrl}/${identifier}?api_key=${this.apiKey}`;
+        };
+        this.playlist = [
+            {
+                title: "Video 1",
+                id: "1",
+                artist: "Artist 1",
+                cover: "https://placehold.co/16x9",
+                url: `${this.getVideo("curvy-mountain-road-zcxbgh2l")}`
+            },
+            {
+                title: "Video 2",
+                id: "2",
+                artist: "Artist 2",
+                cover: "https://placehold.co/16x9",
+                url: `${this.getVideo("curvy-mountain-road-zcxbgh2l")}`
+            }
+        ];
+        console.log(this.playlist);
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+        <div video-playlist class="${this.classNames}">
+            ${this.initialContent !== "" ? `${this.initialContent}` : `
+                ${this.playlist.map((video, index)=>{
+            return `
+                  <video-playlist-item
+                    class=""
+                    video-playlist-item:title="${video.title}"
+                    video-playlist-item:artist="${video.artist}"
+                    video-playlist-item:url="${video.url}"></video-playlist-item>`;
+        }).join("")}
+                `}      
+        </div>
+    `;
+    }
+}
+customElements.define(`video-playlist`, CpxVideoPlaylist);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cFIQP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxVideoPlaylistItem
+ * @description
+ * VideoPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="VideoPlayer Title" audio-player:artist="VideoPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */ parcelHelpers.export(exports, "CpxVideoPlaylistItem", ()=>CpxVideoPlaylistItem);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("video-playlist-item:class") || "";
+        this.videoPoster = this.getAttribute("video-playlist-item:poster") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:poster") : "https://placehold.co/100");
+        this.videoUrl = this.getAttribute("video-playlist-item:url") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:url") : "https://api.coverr.co/videos/");
+        this.apiKey = this.getAttribute("video-playlist-item:api-key") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:api-key") : "45e2e6d3f93979c3e38af50d42150752");
+        this.videoTitle = this.getAttribute("video-playlist-item:title") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:title") : "Video Title");
+        this.videoArtist = this.getAttribute("video-playlist-item:artist") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:artist") : "Artist");
+        this.videoId = this.getAttribute("video-playlist-item:id");
+    }
+    render() {
+        this.innerHTML = `
+        <button click:storage:local:set(currentvideo,${(0, _index.Cpx).String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:gray-300 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
+          ${this.initialContent !== "" ? this.initialContent : `<section class="display:flex">
+                        <div class="display:flex">
+                            <img video-playlist-item="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
+                            <p video-playlist-item="title">${this.videoTitle}</p>
+                        </div>
+                        <p class="" video-playlist-item="artist">${this.videoArtist}</p>
+                   </section>
+                    `}
+        </button>
+    `;
+    }
+}
+customElements.define(`video-playlist-item`, CpxVideoPlaylistItem);
+
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DB", ()=>DB);
@@ -13783,10 +13783,12 @@ class ComponentRoot extends (0, _app.Cpx).Element {
     // }
     render() {
         this.innerHTML = `
-        <section class="root">
-            <app-nav class="root__nav"></app-nav>
-            <main class="root__main">
-                ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
+        <section style="" class="">
+            <header class="position:sticky top:0 p:4 w:full bg:gray-200 display:flex gap:4 content:between">
+            <app-nav class=""></app-nav>
+            </header>
+            <main class="">
+                ${this.state.has("page") ? `<app-page-${this.state.get("page")} class=""></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>
         </section>
         `;
@@ -13820,15 +13822,15 @@ class ComponentNav extends (0, _app.Cpx).Element {
         return (0, _app.DB).NAVIGATIONS[this.nav].map((item)=>{
             // console.log(item);
             return `
-          <li class="nav__item">
+          <li class="">
             <button class="button--primary" click:state:set(${item.type},${item.page})>${item.title}</button>
           </li>`;
         }).join("");
     }
     render() {
         this.innerHTML = `
-        <nav class="nav">
-            <ul class="nav__list">
+        <nav class="">
+            <ul class="display:flex gap:4 list:none">
                 ${this.getNav()}
             </ul>
         </nav>

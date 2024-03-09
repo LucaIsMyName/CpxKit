@@ -28,7 +28,7 @@ export class ComponentNav extends Cpx.Element {
       .map((item: any): string => {
         // console.log(item);
         return `
-          <li class="nav__item">
+          <li class="">
             <button class="button--primary" click:state:set(${item.type},${item.page})>${item.title}</button>
           </li>`;
       })
@@ -37,8 +37,8 @@ export class ComponentNav extends Cpx.Element {
 
   render() {
     this.innerHTML = `
-        <nav class="nav">
-            <ul class="nav__list">
+        <nav class="">
+            <ul class="display:flex gap:4 list:none">
                 ${this.getNav()}
             </ul>
         </nav>

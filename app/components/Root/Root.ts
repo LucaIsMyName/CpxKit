@@ -35,10 +35,12 @@ export class ComponentRoot extends Cpx.Element {
 
   render() {
     this.innerHTML = `
-        <section class="root">
-            <app-nav class="root__nav"></app-nav>
-            <main class="root__main">
-                ${this.state.has("page") ? `<app-page-${this.state.get("page")} class="root__page"></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
+        <section style="" class="">
+            <header class="position:sticky top:0 p:4 w:full bg:gray-200 display:flex gap:4 content:between">
+            <app-nav class=""></app-nav>
+            </header>
+            <main class="">
+                ${this.state.has("page") ? `<app-page-${this.state.get("page")} class=""></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>
         </section>
         `;

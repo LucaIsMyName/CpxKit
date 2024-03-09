@@ -18,7 +18,7 @@ export class CpxAudioControl extends CpxElement {
     this.type = this.getAttribute("audio-control:type") || "play-pause";
     this.icon = this.getAttribute("audio-control:icon") || "play";
     this.size = this.getAttribute("audio-control:size") || "16";
-    this.color = this.getAttribute("audio-control:color") || "gray-700";
+    this.color = this.getAttribute("audio-control:color") || "gray-dark-700";
     this.hasIcon = this.getAttribute("audio-control:has-icon") || true;
     this.hasText = this.getAttribute("audio-control:has-text") || true;
   }
@@ -52,7 +52,7 @@ export class CpxAudioControl extends CpxElement {
                         ${
                           evalText
                             ? `
-                                <div class="">
+                                <div class="size:sm">
                                     ${this.type}
                                 </div>
                                 `
