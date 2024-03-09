@@ -10,7 +10,6 @@ import { Icon } from "../../utils/icons";
  * </audio-player>
  */
 export class CpxVideoControls extends CpxElement {
-  appearance: string;
   classNames: string;
   position: string;
   hasPlayPause: boolean | null;
@@ -22,9 +21,8 @@ export class CpxVideoControls extends CpxElement {
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("video-controls:appearance") || "default";
     this.classNames = this.getAttribute("video-controls:class") || "";
-    this.position = this.getAttribute("video-controls:position") || "bottom-outside";
+    this.position = this.getAttribute("video-controls:position") || "bottom-inside";
     this.hasPlayPause = eval(this.getAttribute("video-controls:has-play-pause")) || true;
     this.hasPrev = eval(this.getAttribute("video-controls:has-prev")) || true;
     this.hasNext = eval(this.getAttribute("video-controls:has-next")) || true;
@@ -35,7 +33,18 @@ export class CpxVideoControls extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <div video-controls class="video-controls video-controls--${this.appearance} video-controls--${this.position} ${this.classNames}">
+    <div video-controls class="
+    ${
+      this.position === "bottom-inside"
+        ? `position:absolute bottom:0 left:0 right:0 p:4`
+        : ``
+    }
+    ${
+      this.position === "bottom-outside"
+        ? `position:relative`
+        : ``
+    }
+    ${this.classNames}">
     ${
       this.initialContent !== ""
         ? this.initialContent
@@ -43,18 +52,18 @@ export class CpxVideoControls extends CpxElement {
         ${
           this.hasProgress === true
             ? `
-              <div class="video-controls__progress-container">
-                <video-control class="video-controls__progress-bar" video-control:type="progress-bar"></video-control>
+              <div class="mb:2">
+                <video-control video-control:class="w:full" video-control:type="progress-bar"></video-control>
               </div>
               `
             : ``
         }
         
-        <section class="video-controls__bottom">
+        <section class="display:flex items:center gap:4">
           ${
             this.hasPrev === true
               ? `
-              <video-control class="video-controls__prev" video-control:type="prev">
+              <video-control class="" video-control:type="prev">
                 ${Icon.backward}
               </video-control>
                 `
@@ -63,7 +72,7 @@ export class CpxVideoControls extends CpxElement {
           ${
             this.hasPlayPause === true
               ? `
-              <video-control class="video-controls__play-pause" video-control:type="play-pause">
+              <video-control class="" video-control:type="play-pause">
                 ${Icon.play}
               </video-control>
                 `
@@ -72,7 +81,7 @@ export class CpxVideoControls extends CpxElement {
           ${
             this.hasNext === true
               ? `
-              <video-control class="video-controls__next" video-control:type="next">
+              <video-control class="" video-control:type="next">
                 ${Icon.forward}
               </video-control>
                 `
@@ -82,7 +91,7 @@ export class CpxVideoControls extends CpxElement {
           ${
             this.hasMuteUnmute === true
               ? `
-              <video-control class="video-controls__mute-unmute" video-control:type="mute-unmute">
+              <video-control class="" video-control:type="mute-unmute">
                 ${Icon.speakerWave}
               </video-control>
                 `
@@ -91,8 +100,8 @@ export class CpxVideoControls extends CpxElement {
           ${
             this.hasVolume === true
               ? `
-              <div class="video-controls__volume-container">
-                  <video-control class="video-controls__volume" video-control:type="volume"></video-control>
+              <div class="h:full display:flex items:center">
+                  <video-control class="h:full display:flex items:center" video-control:type="volume"></video-control>
               </div>
                 `
               : ``

@@ -10,7 +10,6 @@ import { Cpx } from "../../index";
  * </audio-player>
  */
 export class CpxVideoPlaylist extends CpxElement {
-  appearance: string;
   classNames: string;
   getVideo: Function;
   playlist: any;
@@ -20,7 +19,6 @@ export class CpxVideoPlaylist extends CpxElement {
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("video-playlist:appearance") || "default";
     this.classNames = this.getAttribute("video-playlist:class") || "";
     this.baseUrl = this.getAttribute("video-playlist:url") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:url") : "https://api.coverr.co/videos/");
     this.apiKey = this.getAttribute("video-playlist:api-key") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:api-key") : "45e2e6d3f93979c3e38af50d42150752");
@@ -54,7 +52,7 @@ export class CpxVideoPlaylist extends CpxElement {
 
   render() {
     this.innerHTML = `
-        <div video-playlist class="video-playlist ${this.classNames}">
+        <div video-playlist class="${this.classNames}">
             ${
               this.initialContent !== ""
                 ? `${this.initialContent}`
@@ -63,8 +61,7 @@ export class CpxVideoPlaylist extends CpxElement {
                   .map((video: any, index: number) => {
                     return `
                   <video-playlist-item
-                    class="video-playlist__item"
-                    video-playlist-item:appearance="${this.appearance}"
+                    class=""
                     video-playlist-item:title="${video.title}"
                     video-playlist-item:artist="${video.artist}"
                     video-playlist-item:url="${video.url}"></video-playlist-item>`;

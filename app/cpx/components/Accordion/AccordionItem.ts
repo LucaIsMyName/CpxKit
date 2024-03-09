@@ -1,32 +1,32 @@
 import { CpxElement } from "../../element";
 import { Id } from "../../utils/id";
-import { Cpx } from "../../index";
+import { Icon } from "../../utils/icons";
 
 export class CpxAccordionItem extends CpxElement {
   classNames: string;
   title: string;
+  titleType: string;
+
   constructor() {
     super();
     this.classNames = this.getAttribute("accordion-item:class") || "";
     this.title = this.getAttribute("accordion-item:title") || "Accordion Item Title";
+    this.titleType = this.getAttribute("accordion-item:title:type") || "h3";
   }
 
-  connectedCallback() {
-    this.render();
-  }
 
   render() {
     this.innerHTML = `
-    <details class="accordion-item" accordion-item:id="${Id.Generate.hex(6)}" class="accordion-item ${this.classNames}">
-        <summary class="accordion-item__title">
-            <div class="accordion-item__text">${this.title}</div>
-            <div class="accordion-item__icon">
-              ${this.querySelector("details")?.hasAttribute("open") === true ? `${Cpx.Icon.chevronUp}` : ``}
-              ${this.querySelector("details")?.hasAttribute("open") === false ? `${Cpx.Icon.chevronDown}` : ``}
+    <details accordion-item:id="${Id.Generate.hex(6)}" class="${this.classNames} mb:4 border-b-width:1 border-color:gray-400 py:2 mt:4">
+        <summary class="cursor:pointer display:flex items:center  ">
+            <div class="">${this.title}</div>
+            <div class="w:6 h:6">
+              ${this.querySelector("details")?.hasAttribute("open") === true ? `${Icon.chevronUp}` : ``}
+              ${this.querySelector("details")?.hasAttribute("open") === false ? `${Icon.chevronDown}` : ``}
             </div>
         </summary>
-        <div class="accordion-item__content">
-          ${this.initialContent}
+        <div class="py:4">
+          <text-element>${this.initialContent}</text-element>
         </div>
     </details>
         `;

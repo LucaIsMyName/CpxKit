@@ -25,7 +25,7 @@ export class CpxSliderItem extends CpxElement implements Element {
 
   render() {
     this.innerHTML = `
-        <section class="slider-item swiper-slide ${this.classNames}">
+        <section class="swiper-slide ${this.classNames}">
             ${
               this.initialContent !== ""
                 ? `${this.initialContent}`

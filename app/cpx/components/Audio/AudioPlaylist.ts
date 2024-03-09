@@ -22,7 +22,6 @@ export class CpxAudioPlaylist extends CpxElement {
   playlist: Array<Object>;
   constructor() {
     super();
-    this.appearance = this.getAttribute("audio-player:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
     this.classNames = this.getAttribute("audio-player:class") || "";
     this.title = this.getAttribute("audio-player:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
     this.artist = this.getAttribute("audio-player:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
@@ -52,7 +51,7 @@ export class CpxAudioPlaylist extends CpxElement {
     let evalAlbum = eval(this.hasAlbum);
   
     this.innerHTML = `
-        <div audio-playlist class="audio-playlist audio-playlist--${this.appearance} ${this.classNames}">
+        <div audio-playlist class="flex:full shrink:1 display:flex direction:col justify-content:center ${this.classNames}">
           ${
             this.initialContent !== ""
               ? `${this.initialContent}`
@@ -60,7 +59,6 @@ export class CpxAudioPlaylist extends CpxElement {
               ${this.playlist.map((track: any, index: number) => {
                 return `
                     <audio-playlist-item
-                      audio-playlist-item:style="${this.appearance}"
                       audio-playlist-item:title="${track.title}"
                       audio-playlist-item:artist="${track.artist}"
                       audio-playlist-item:album="${track.album}"

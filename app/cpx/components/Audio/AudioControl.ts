@@ -9,13 +9,16 @@ export class CpxAudioControl extends CpxElement {
   hasIcon: any;
   hasText: any;
   icon: string;
+  size: string;
+  color: string;
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("audio-control:appearance") || document.querySelector("audio-player").getAttribute("audio-player:appearance") || "default";
     this.classNames = this.getAttribute("audio-control:class") || "";
     this.type = this.getAttribute("audio-control:type") || "play-pause";
     this.icon = this.getAttribute("audio-control:icon") || "play";
+    this.size = this.getAttribute("audio-control:size") || "16";
+    this.color = this.getAttribute("audio-control:color") || "gray-700";
     this.hasIcon = this.getAttribute("audio-control:has-icon") || true;
     this.hasText = this.getAttribute("audio-control:has-text") || true;
   }
@@ -27,20 +30,20 @@ export class CpxAudioControl extends CpxElement {
     this.innerHTML = `  
             ${
               this.type === "progress-bar" || this.type === "volume"
-                ? `<input type="range" class="audio-control audio-control--${this.appearance} ${this.classNames}" audio-control="${this.type}">`
+                ? `<input type="range" class="color:${this.color} ${this.classNames}" audio-control="${this.type}">`
                 : `
                 <button 
-                class="audio-control audio-control--${this.appearance} ${this.classNames}"
+                class="color:${this.color} size:${this.size} h:${this.size} ${this.classNames}"
                 audio-control="${this.type}">
                 ${
                   this.initialContent !== ""
                     ? this.initialContent
                     : `
-                    <section class="audio-control__inner-container">
+                    <section class="">
                         ${
                           evalIcon
                             ? `
-                                <div class="audio-control__icon">
+                                <div class="w:${this.size} h:${this.size}">
                                     ${Icon[this.icon]}
                                 </div>
                                     `
@@ -49,7 +52,7 @@ export class CpxAudioControl extends CpxElement {
                         ${
                           evalText
                             ? `
-                                <div class="audio-control__text">
+                                <div class="">
                                     ${this.type}
                                 </div>
                                 `

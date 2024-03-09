@@ -43,7 +43,7 @@ export class CpxAccordionGroup extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <section accordion-group:id="${Id.Generate.hex(12)}" class="accordion-group ${this.classNames}">
+    <section accordion-group:id="${Id.Generate.hex(12)}" class="display:block ${this.classNames}">
         ${this.initialContent}
     </section>
         `;

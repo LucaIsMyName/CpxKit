@@ -27,9 +27,9 @@ export class CpxTextElement extends CpxElement {
     this.fontFamily = this.getAttribute("text-element:font-family") || "sans";
     this.fontWeight = this.getAttribute("text-element:font-weight") || "normal";
     this.fontStyle = this.getAttribute("text-element:font-style") || "normal";
-    this.fontSize = this.getAttribute("text-element:font-size") || "sm";
-    this.lineHeight = this.getAttribute("text-element:line-height") || "inherit";
-    this.letterSpacing = this.getAttribute("text-element:letter-spacing") || "inherit";
+    this.fontSize = this.getAttribute("text-element:size") || "sm";
+    this.lineHeight = this.getAttribute("text-element:line-height") || "1";
+    this.letterSpacing = this.getAttribute("text-element:tracking") || "sm";
   }
 
   connectedCallback() {
@@ -38,7 +38,15 @@ export class CpxTextElement extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <${this.type} class="text-element text-element--text-align-${this.align} text-element--font-size-${this.fontSize} text-element--font-weight-${this.fontWeight} text-element--font-style-${this.fontStyle} text-element--font-family-${this.fontFamily} text-element--line-height-${this.lineHeight} text-element--letter-spacing-${this.letterSpacing} ${this.classNames}">
+    <${this.type} class="
+    align:${this.align}
+    size:${this.fontSize}
+    weight:${this.fontWeight}
+    font-style:${this.fontStyle}
+    font-family:${this.fontFamily}
+    line-height:${this.lineHeight}
+    tracking:${this.letterSpacing}
+    ${this.classNames}">
         ${this.initialContent}
     </${this.type}>
         `;

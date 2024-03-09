@@ -11,6 +11,8 @@ export class CpxBadgeElement extends CpxElement implements Element {
   classNames: string;
   size: string;
   color: string;
+  bgColor: string;
+  borderColor: string;
   fontFamily: string;
   fontWeight: string;
   letterSpacing: string;
@@ -23,13 +25,15 @@ export class CpxBadgeElement extends CpxElement implements Element {
     super();
     this.classNames = this.getAttribute("badge-element:class") || "";
     this.size = this.getAttribute("badge-element:size") || "xs";
-    this.color = this.getAttribute("badge-element:color") || "gray";
+    this.color = this.getAttribute("badge-element:color") || "gray-700";
+    this.bgColor = this.getAttribute("badge-element:bg") || "gray-200";
+    this.borderColor = this.getAttribute("badge-element:border-color") || "gray-600";
     this.fontFamily = this.getAttribute("badge-element:font-family") || "sans";
-    this.fontWeight = this.getAttribute("badge-element:font-weight") || "normal";
-    this.letterSpacing = this.getAttribute("badge-element:letter-spacing") || "md";
-    this.textTransform = this.getAttribute("badge-element:text-transform") || "normal";
-    this.borderRadius = this.getAttribute("badge-element:border-radius") || "pill";
-    this.padding = this.getAttribute("badge-element:padding") || "sm";
+    this.fontWeight = this.getAttribute("badge-element:weight") || "normal";
+    this.letterSpacing = this.getAttribute("badge-element:tracking") || "sm";
+    this.textTransform = this.getAttribute("badge-element:transform") || "none";
+    this.borderRadius = this.getAttribute("badge-element:radius") || "pill";
+    this.padding = this.getAttribute("badge-element:padding") || "2";
     this.action = eval(this.getAttribute("badge-element:action")) || false;
   }
 
@@ -43,19 +47,7 @@ export class CpxBadgeElement extends CpxElement implements Element {
               `
             : `tabindex="-1"`
         }
-        class="
-        badge-element
-        badge-element--font-size-${this.size}
-        badge-element--color-${this.color}
-        badge-element--font-family-${this.fontFamily}
-        badge-element--font-weight-${this.fontWeight}
-        badge-element--letter-spacing-${this.letterSpacing}
-        badge-element--text-transform-${this.textTransform}
-        badge-element--border-radius-${this.borderRadius}
-        badge-element--padding-${this.padding}
-        ${this.classNames}"
-        
-        >
+        class="size:${this.size} color:${this.color} bg:${this.bgColor} border-width:1 border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${(eval(this.padding)*2)} py:${(eval(this.padding)*1)} ${this.classNames}">
             <span>${this.initialContent}</span>
         </button>
         `;

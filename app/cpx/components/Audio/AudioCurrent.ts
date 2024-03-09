@@ -36,7 +36,7 @@ export class CpxAudioCurrent extends CpxElement {
     let evalCover = eval(this.hasCover);
     
     this.innerHTML = `
-        <div class="audio-current audio-current--${this.appearance} ${this.classNames}">
+        <div class=" ${this.classNames}">
             ${
               this.initialContent !== ""
                 ? this.initialContent
@@ -44,15 +44,15 @@ export class CpxAudioCurrent extends CpxElement {
                 ${
                   evalCover === true
                     ? `
-                      <img class="audio-current__image mb:4" audio-current="cover">`
+                      <img class="mb:4 max-w:xxs" audio-current="cover">`
                     : ``
                 }
                 ${
                   evalTitle === true || evalArtist === true
                     ? `
-                    <div class="audio-current__text">
-                      ${evalTitle === true ? `<text-element class="audio-current__title" audio-current="title">${this.title}</text-element>` : ``}
-                      ${evalArtist === true ? `<text-element class="audio-current__title" audio-current="artist">${this.artist}</text-element>` : ``}
+                    <div class="">
+                      ${evalTitle === true ? `<p class="align:center size:lg" audio-current="title">${this.title}</p>` : ``}
+                      ${evalArtist === true ? `<p class="size:md align:center" audio-current="artist">${this.artist}</p>` : ``}
                     </div>
                     `
                     : ``

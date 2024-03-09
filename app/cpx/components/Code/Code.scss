@@ -1,228 +1,78 @@
-.code {
-    &-block {
-        --font-size: 1rem;
+pre code.hljs {
+    padding: 0;
+}
 
-        [code-block\:theme="dark"] & {
-            --color-text: var(--white);
-            --color-background: var(--gray-900);
-            --color-border: var(--gray-800);
-            --color-acccent: var(--gray-600);
-        }
+.hljs {
+    color: var(--gray-600);
+    background: transparent;
+    padding: 0;
 
-        --color-text: var(--black);
-        --color-background: var(--gray-200);
-        --color-border: var(--gray-300);
-        --color-acccent: var(--gray-400);
-
-        --color-hjs-comment: var(--gray-500);
-        --color-hjs-keyword: var(--blue-700);
-        --color-hjs-literal: var(--red-700);
-        --color-hjs-meta: var(--gray-500);
-        --color-hjs-number: var(--purple);
-        --color-hjs-regexp: var(--green);
-        --color-hjs-string: var(--green-800);
-        --color-hjs-title: var(--blue);
-        --color-hjs-type: var(--blue);
-        --color-hjs-variable: var(--red-700);
-        --color-hjs-function: var(--blue-800);
-        --color-hjs-params: var(--purple);
-
-        background-color: var(--color-background);
-        padding: 1em;
-        margin: 0;
-        overflow-x: auto;
-        border-radius: 0.33em;
-        border: var(--px) solid var(--color-border);
-
-        pre code.hljs {
-            padding: 0;
-        }
-
-        :is(pre) {
-            margin: 0;
-            padding: 0;
-            font-size: 1em;
-            line-height: 1.5;
-            color: var(--black);
-            font-family: serif;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            text-align: left;
-        }
-
-        code {
-            background: transparent;
-        }
-
-        &__code {
-            margin-top: 0.75em;
-
-            span {
-                font-family: var(--font-mono);
-            }
-        }
-
-        &__copy {
-            width: 1em;
-            height: 1em;
-            position: relative;
-
-            svg {
-                width: 1em;
-                height: 1em;
-                aspect-ratio: 1/1;
-            }
-
-            &-alert {
-                position: absolute;
-                right: 2em;
-                top: 0;
-                font-size: var(--font-xs);
-                color: var(--gray-500);
-                line-height: 1.5;
-            }
-
-            button * {
-                pointer-events: none;
-            }
-
-            svg {
-                color: var(--gray-700);
-
-                [code-block\:theme="dark"] & {
-                    color: var(--gray-300);
-                }
-
-                button:hover & {
-                    color: var(--gray-700);
-                }
-            }
-        }
-
-        &__lang {
-            font-size: var(--font-xs);
-            color: var(--color-accent);
-            margin: 0;
-            font-family: var(--font-mono);
-        }
-
-        &__header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 0.75em;
-            border-bottom: var(--px) solid var(--color-border);
-            background-color: var(--color-background);
-            border-top-left-radius: var(--4);
-            border-top-right-radius: var(--4);
-            color: var(--black);
-            font-size: 1.25em;
-
-            [code-block\:theme="dark"] & {
-                color: var(--white)
-            }
-
-            &__column {
-                display: flex;
-                align-items: center;
-                gap: 0.5em;
-            }
-
-
-        }
-
-        &__title {
-            font-size: var(--font-lg);
-            font-weight: var(--font-semibold);
-            margin: 0;
-        }
-
-        // hioghlight.js
-        .hljs {
-            color: var(--gray-700);
-            font-size: var(--font-sm);
-            font-weight: var(--font-normal);
-
-            [code-block\:theme="dark"] & {
-                color: var(--gray-200)
-            }
-
-            &-string {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-string);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-string: var(--green-200)
-                }
-            }
-
-            &-title {
-                font-weight: var(--font-normal);
-
-                &.function_ {
-                    font-weight: 700;
-                    color: var(--color-hjs-function);
-                }
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-function: var(--sky-200)
-                }
-            }
-
-            &-variable {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-variable);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-variable: var(--red-300)
-                }
-            }
-
-            &-keyword {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-keyword);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-keyword: var(--lime-300)
-                }
-            }
-
-            &-built_in {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-keyword);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-keyword: var(--blue-200)
-                }
-            }
-
-            &-type {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-type);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-type: var(--blue-400)
-                }
-            }
-
-            &-params {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-params);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-params: var(--purple-200)
-                }
-            }
-
-            &-literal {
-                font-weight: var(--font-normal);
-                color: var(--color-hjs-literal);
-
-                [code-block\:theme="dark"] & {
-                    --color-hjs-literal: var(--lime-200)
-                }
-            }
-        }
-
+    code {
+        padding: 0;
     }
+
+    &-variable {
+        color:var(--red-600);
+    }
+
+    &-keyword {
+        color: var(--red-800);
+    }
+
+    &-function {
+        color: var(--blue-500);
+    }
+
+    &-string {
+        color: var(--gray-700);
+    }
+
+    &-number {
+        color: var(--pink-700);
+    }
+
+    &-comment {
+        color: var(--gray-500);
+    }
+
+    &-built_in {
+        color: var(--sky-800);
+    }
+
+    &-literal {
+        color: var(--sky-800);
+    }
+
+    &-type {
+        color: var(--blue-500);
+    }
+
+    &-params {
+        color: var(--gray-600);
+    }
+
+    &-meta {
+        color: var(--gray-600);
+    }
+
+    &-meta-string {
+        color: var(--pink-600);
+    }
+
+    &-attribute {
+        color: #a6e22e;
+    }
+
+    &-selector-tag {
+        color: #a6e22e;
+    }
+
+    &-selector-id {
+        color: #a6e22e;
+    }
+
+    &-selector-class {
+        color: #a6e22e;
+    }
+
 }

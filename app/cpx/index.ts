@@ -15,6 +15,7 @@ import { String } from "./utils/string";
 import { Copy as copyAPI } from "./utils/copy";
 import { audioAPI } from "./utils/audio";
 import { videoAPI } from "./utils/video";
+import { Object } from "./utils/object";
 
 // Cpx Utility Components
 import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
@@ -23,8 +24,10 @@ import { BadgeElement } from "./components/Badge";
 import { CodeBlock } from "./components/Code";
 import { DropDown } from "./components/DropDown";
 import { SliderContainer, SliderItem, runSlider as sliderAPI } from "./components/Slider";
+import { ParseMarkdown } from "./components/Parse";
 import { PictureElement } from "./components/Picture";
 import { SuspenseAll } from "./components/Suspense";
+import { SkeletonElement } from "./components/Skeleton";
 import { TextElement } from "./components/Text/index";
 import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tab/index";
 import { VideoPlayer, VideoControls, VideoControl, VideoPlaylist, VideoPlaylistItem } from "./components/Video";
@@ -44,8 +47,10 @@ export interface CpxInterface {
     CodeBlock: typeof Element;
     SliderContainer: typeof Element;
     SliderItem: typeof Element;
+    ParseMarkdown: typeof Element;
     PictureElement: typeof Element;
     SuspenseAll: typeof Element;
+    SkeletonElement: typeof Element;
     TextElement: typeof Element;
     TabContainer: typeof Element;
     TabHeader: typeof Element;
@@ -61,7 +66,7 @@ export interface CpxInterface {
     audioAPI: Function;
     videoAPI: Function;
     sliderAPI: Function;
-    copyAPI: Function;
+    copyAPI: Object;
   };
   define: Function;
   Config: typeof Config;
@@ -75,6 +80,7 @@ export interface CpxInterface {
   Icon: typeof Icon;
   Id: typeof Id;
   String: typeof String;
+  Object: typeof Object;
 }
 /**
  * @class Cpx
@@ -101,10 +107,14 @@ const Components = {
   //Slider
   SliderContainer,
   SliderItem,
+  // Parse
+  ParseMarkdown,
   // Picture
   PictureElement,
   // Suspense
   SuspenseAll,
+  // Skeleton
+  SkeletonElement,
   // Text
   TextElement,
   // Tab
@@ -128,10 +138,15 @@ const Functions = {
 };
 
 export const Cpx: CpxInterface = {
+  // Base Element
   Element,
+  // Utility Components
   Components,
+  // API to use in UI and FrontEnd
   Functions,
+  // Define Custom Elements
   define,
+  // Config
   Config,
   // PlugIns & Utilities
   State,
@@ -143,4 +158,5 @@ export const Cpx: CpxInterface = {
   Icon,
   Id,
   String,
+  Object,
 };

@@ -6,6 +6,7 @@ export class CpxSuspenseAll extends CpxElement implements Element {
   bounceDuration: number;
   debounceTimeout: number | null;
   hasIcon: boolean;
+  isInline: boolean;
 
   constructor() {
     super();
@@ -35,7 +36,7 @@ export class CpxSuspenseAll extends CpxElement implements Element {
     this.debounce(() => {
       const content = this.initialContent || "";
       this.innerHTML = `
-        <div class="suspense-all ${this.classNames}">
+        <div class=" ${this.classNames}">
           ${content}
         </div>
       `;
@@ -45,11 +46,11 @@ export class CpxSuspenseAll extends CpxElement implements Element {
   render() {
     // Display loading screen initially
     this.innerHTML = `
-    <section class="suspense-all ${this.classNames}">
+    <section class="h:available display:grid place-content:cneter${this.classNames}">
       ${
         this.hasIcon === true
           ? `
-            <div class="suspense-all__icon">${Icon.arrowPath}</div>
+            <div class="w:9 h:9 bg:gray-500">${Icon.arrowPath}</div>
           `
           : ``
       }

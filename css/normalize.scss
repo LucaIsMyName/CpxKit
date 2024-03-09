@@ -7,7 +7,10 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    text-align:start
+    text-align:start;
+    border-style: solid;
+    border-width: 0;
+    border-color: currentColor;
 }
 
 /**
@@ -422,8 +425,7 @@ template {
 }
 
 :where(button) {
-    background-color: transparent;
-    border: none;
+    background: transparent;
     cursor: pointer;
     padding: 0;
     margin: 0;

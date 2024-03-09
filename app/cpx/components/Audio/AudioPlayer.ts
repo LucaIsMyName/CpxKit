@@ -26,7 +26,6 @@ export class CpxAudioPlayer extends CpxElement {
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("audio-player:appearance") || "default";
     this.classNames = this.getAttribute("audio-player:class") || "";
     this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
     this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
@@ -73,7 +72,7 @@ export class CpxAudioPlayer extends CpxElement {
     let evalHasCurrent = eval(this.hasCurrent);
 
     this.innerHTML = `
-    <section class="audio-player audio-player--${this.appearance} ${this.classNames}" audio>
+    <section class="{sm}display:flex p:4 gap:8 items:center radius:sm bg:gray-200 border-width:1 border-color:gray-400 ${this.classNames}" audio>
     ${
       this.initialContent !== ""
         ? `${this.initialContent}`
@@ -81,13 +80,13 @@ export class CpxAudioPlayer extends CpxElement {
         ${
           evalHasCurrent === true || evalHasControls === true
             ? `
-            <div class="audio-player__column">
-              ${evalHasCurrent === true ? `<audio-current audio-current:has-title="${evalHasTitle}" audio-current:has-artist="${evalHasArtist}" audio-current:has-cover="${evalHasCover}" class="audio-player__current"></audio-current>` : ``}
-              ${evalHasControls === true ? `<audio-controls class="audio-player__controls"></audio-controls>` : ``}
+            <div class="w:full max-w:xs">
+              ${evalHasCurrent === true ? `<audio-current class="" audio-current:has-title="${evalHasTitle}" audio-current:has-artist="${evalHasArtist}" audio-current:has-cover="${evalHasCover}"></audio-current>` : ``}
+              ${evalHasControls === true ? `<audio-controls class=""></audio-controls>` : ``}
             </div>`
             : ``
         }
-        ${evalHasPlaylist === true ? `<audio-playlist class="audio-player__column audio-player__playlist" class=""></audio-playlist>` : ``}
+        ${evalHasPlaylist === true ? `<audio-playlist class="w:full shrink:1 "></audio-playlist>` : ``}
         `
     }
     </section>

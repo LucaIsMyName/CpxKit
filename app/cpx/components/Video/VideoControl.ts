@@ -2,20 +2,20 @@ import { CpxElement } from "../../element";
 import { Icon } from "../../utils/icons";
 
 export class CpxVideoControl extends CpxElement {
-  appearance: string;
   classNames: string;
   type: string;
   url: string;
   icon: string;
+  size: string;
   hasIcon: boolean;
   hasText: boolean;
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("video-control:appearance") || document.querySelector("video-player").getAttribute("video-player:appearance") || "default";
     this.classNames = this.getAttribute("video-control:class") || "";
     this.type = this.getAttribute("video-control:type") || "play-pause";
     this.icon = this.getAttribute("video-control:icon") || "play";
+    this.size = this.getAttribute("video-control:size") || "9";
     this.hasIcon = eval(this.getAttribute("video-control:has-icon")) || true;
     this.hasText = eval(this.getAttribute("video-control:has-text")) || false;
   }
@@ -30,27 +30,27 @@ export class CpxVideoControl extends CpxElement {
     this.innerHTML = `  
             ${
               this.type === "progress-bar" || this.type === "volume"
-                ? `<input type="range" class="video-control video-control--${this.appearance} video-control--slider ${this.classNames}" video-control="${this.type}">`
+                ? `<input type="range" class="${this.classNames}" video-control="${this.type}">`
                 : `
                 <button 
                 click:delete
-                class="video-control video-control--${this.appearance} ${this.classNames}"
+                class="size:${this.size} w:${this.size} h:${this.size} ${this.classNames}"
                 video-control="${this.type}">
                 ${
                   this.initialContent !== ""
                     ? this.initialContent
                     : `
-                    <section class="video-control__inner-container">
+                    <section class="">
                         ${
                           this.hasIcon
                             ? `${
                                 this.type === "play-pause"
-                                  ? `   <div  class="video-control__icon">
+                                  ? `   <div  class="">
                                             ${this.querySelector("button").getAttribute("video-current-state") === "play" ? Icon.pause : Icon.play}
                                         </div>`
                                   : ``
                               }
-                                <div class="video-control__icon">
+                                <div class="">
                                     ${Icon[this.icon]}
                                 </div>
                                     `
@@ -59,7 +59,7 @@ export class CpxVideoControl extends CpxElement {
                         ${
                           this.hasText
                             ? `
-                                <div class="video-control__text">
+                                <div class="">
                                     ${this.type}
                                 </div>
                                 `

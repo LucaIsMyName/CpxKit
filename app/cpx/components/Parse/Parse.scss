@@ -1,0 +1,132 @@
+.parse {
+    &-markdown {
+        --font-size: var(--font-sm);
+        --spacing: 1em;
+        --color: var(--gray-700);
+        --background-color: var(--white);
+        --accent-color: var(--blue-800);
+
+        &--styles {
+            &-true {
+                font-size: var(--font-size);
+
+                :where(h1) {
+                    font-size: var(--font-3xl);
+                    margin-top: var(--spacing);
+                    margin-bottom: calc(var(--spacing)/2);
+                }
+
+                :where(h2) {
+                    font-size: var(--font-2xl);
+                    margin-top: var(--spacing);
+                    margin-bottom: calc(var(--spacing)/2);
+                }
+
+                :where(h3) {
+                    font-size: var(--font-xl);
+                    margin-top: var(--spacing);
+                    margin-bottom: calc(var(--spacing)/2);
+                }
+
+                :where(h4) {
+                    font-size: var(--font-lg);
+                    margin-top: var(--spacing);
+                    margin-bottom: calc(var(--spacing)/2);
+                }
+
+                :where(h5) {
+                    font-size: var(--font-md);
+                    margin-top: var(--spacing);
+                    margin-bottom: calc(var(--spacing)/2);
+                }
+
+                :where(h6) {
+                    font-size: var(--font-sm);
+                    margin-top: var(--spacing);
+                    margin-bottom: calc(var(--spacing)/2);
+                }
+
+                :where(p) {
+                    font-size: 1em;
+                    margin-top: 0;
+                    margin-bottom: var(--spacing);
+                }
+
+                :where(ul) {
+                    font-size: 1em;
+                    margin-top: 0;
+                    margin-bottom: var(--spacing);
+                    list-style: none;
+
+                    & li::before {
+                        content: "•";
+                        margin-right: var(--spacing);
+                    }
+                }
+
+                :where(ol) {
+                    font-size: var(--font-size);
+                    margin-top: 0;
+                    margin-bottom: var(--spacing);
+                    list-style: none;
+
+                    & li::before {
+                        content: counter(li) ". ";
+                        counter-increment: li;
+                    }
+                }
+
+                :where(li) {
+                    font-size: var(--font-size);
+                    margin-top: 0;
+                    margin-bottom: calc(var(--spacing)/2);
+                    position: relative;
+                    margin-left: var(--spacing);
+
+                    &::before {
+                        position: absolute;
+                        left: calc(var(--spacing)*-1);
+                    }
+
+                }
+
+                :where(blockquote) {
+                    margin-top: 0;
+                    margin-bottom: var(--spacing);
+                    padding: calc(var(--spacing)/2) var(--spacing);
+                    border-left: var(--px) solid var(--gray-300);
+                    background-color: var(--white);
+                }
+
+                :where(pre) {
+                    margin-top: 0;
+                    margin-bottom: var(--spacing);
+                    padding: calc(var(--spacing)/1.5);
+                    border-bottom: var(--px) solid var(--gray-300);
+                    background-color: var(--gray-300);
+                    border-radius: var(--2);
+                    color: var(--black);
+                    font-size: var(--font-size);
+                }
+
+                :where(code) {
+                    padding: (0.33em/2);
+                    border-radius: var(--relative-1);
+                    background-color: var(--gray-300);
+                    color: var(--black);
+                    font-size: 0.8em;
+                }
+
+                :where(a) {
+                    color: var(--color-accent);
+                    text-decoration: underline;
+                }
+
+                :where(img) {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}

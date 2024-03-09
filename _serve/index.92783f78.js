@@ -672,6 +672,7 @@ var _string = require("./utils/string");
 var _copy = require("./utils/copy");
 var _audio = require("./utils/audio");
 var _video = require("./utils/video");
+var _object = require("./utils/object");
 // Cpx Utility Components
 var _index = require("./components/Accordion/index");
 var _index1 = require("./components/Audio/index");
@@ -679,8 +680,10 @@ var _badge = require("./components/Badge");
 var _code = require("./components/Code");
 var _dropDown = require("./components/DropDown");
 var _slider = require("./components/Slider");
+var _parse = require("./components/Parse");
 var _picture = require("./components/Picture");
 var _suspense = require("./components/Suspense");
+var _skeleton = require("./components/Skeleton");
 var _index2 = require("./components/Text/index");
 var _index3 = require("./components/Tab/index");
 var _video1 = require("./components/Video");
@@ -708,10 +711,14 @@ var _video1 = require("./components/Video");
     SliderContainer: //Slider
     (0, _slider.SliderContainer),
     SliderItem: (0, _slider.SliderItem),
+    ParseMarkdown: // Parse
+    (0, _parse.ParseMarkdown),
     PictureElement: // Picture
     (0, _picture.PictureElement),
     SuspenseAll: // Suspense
     (0, _suspense.SuspenseAll),
+    SkeletonElement: // Skeleton
+    (0, _skeleton.SkeletonElement),
     TextElement: // Text
     (0, _index2.TextElement),
     TabContainer: // Tab
@@ -733,11 +740,16 @@ const Functions = {
     copyAPI: (0, _copy.Copy)
 };
 const Cpx = {
-    Element: (0, _element.CpxElement),
+    Element: // Base Element
+    (0, _element.CpxElement),
+    // Utility Components
     Components,
+    // API to use in UI and FrontEnd
     Functions,
-    define: (0, _element1.define),
-    Config: (0, _config.Config),
+    define: // Define Custom Elements
+    (0, _element1.define),
+    Config: // Config
+    (0, _config.Config),
     State: // PlugIns & Utilities
     (0, _state.State),
     Storage: (0, _storage.Storage),
@@ -747,10 +759,11 @@ const Cpx = {
     Json: (0, _json.Json),
     Icon: (0, _icons.Icon),
     Id: (0, _id.Id),
-    String: (0, _string.String)
+    String: (0, _string.String),
+    Object: (0, _object.Object)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Text/index":"6N7g9","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/audio":"8K745","./utils/video":"dmuKk"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Suspense":"kLJ9V","./components/Text/index":"6N7g9","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Skeleton":"1hvL3","./utils/object":"bshMI","./components/Picture":"gOZMd","./components/Parse":"1CUIs"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -2252,189 +2265,7 @@ const Copy = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fVDc8":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "AccordionGroup", ()=>(0, _accordionGroup.CpxAccordionGroup));
-parcelHelpers.export(exports, "AccordionItem", ()=>(0, _accordionItem.CpxAccordionItem));
-var _accordionGroup = require("./AccordionGroup");
-var _accordionItem = require("./AccordionItem");
-
-},{"./AccordionGroup":"cE22T","./AccordionItem":"9BBKi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cE22T":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxAccordionGroup
- * @extends CpxElement
- * @description
- * This is the base class for all custom elements in the app. It extends the native HTMLElement class and adds a few extra features.
- * @property {string} ID - A random number that is generated when the element is created. This is used to identify the element in the DOM.
- * @property {string} initialContent - The initial content of the element. This is used to store the content of the element before it is rendered.
- * @property {any} storage - A reference to the Storage class. This is used to store data in the browser's local storage.
- * @property {any} state - A reference to the State class. This is used to store the state of the component.
- */ parcelHelpers.export(exports, "CpxAccordionGroup", ()=>CpxAccordionGroup);
-var _element = require("../../element");
-var _id = require("../../utils/id");
-class CpxAccordionGroup extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("accordion-group:class") || "";
-    }
-    connectedCallback() {
-        this.render();
-        this.animateAccordionContent();
-    }
-    animateAccordionContent() {
-        /**
-     * If any <summary> is clicked, expland the correspong details element and close ALL other that are open  inside the same <accorion-group> element, leave all other <accordion-group> element untouched
-     */ this.addEventListener("click", (e)=>{
-            if (e.target.tagName === "SUMMARY") {
-                const accordionGroup = e.target.closest("accordion-group");
-                const details = e.target.closest("details");
-                const allDetails = accordionGroup.querySelectorAll("details");
-                allDetails.forEach((detail)=>{
-                    if (detail !== details) detail.removeAttribute("open");
-                });
-                this.render();
-            }
-        });
-    }
-    render() {
-        this.innerHTML = `
-    <section accordion-group:id="${(0, _id.Id).Generate.hex(12)}" class="accordion-group ${this.classNames}">
-        ${this.initialContent}
-    </section>
-        `;
-    }
-}
-customElements.define(`accordion-group`, CpxAccordionGroup);
-
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9BBKi":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CpxAccordionItem", ()=>CpxAccordionItem);
-var _element = require("../../element");
-var _id = require("../../utils/id");
-var _index = require("../../index");
-class CpxAccordionItem extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("accordion-item:class") || "";
-        this.title = this.getAttribute("accordion-item:title") || "Accordion Item Title";
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <details class="accordion-item" accordion-item:id="${(0, _id.Id).Generate.hex(6)}" class="accordion-item ${this.classNames}">
-        <summary class="accordion-item__title">
-            <div class="accordion-item__text">${this.title}</div>
-            <div class="accordion-item__icon">
-              ${this.querySelector("details")?.hasAttribute("open") === true ? `${(0, _index.Cpx).Icon.chevronUp}` : ``}
-              ${this.querySelector("details")?.hasAttribute("open") === false ? `${(0, _index.Cpx).Icon.chevronDown}` : ``}
-            </div>
-        </summary>
-        <div class="accordion-item__content">
-          ${this.initialContent}
-        </div>
-    </details>
-        `;
-    }
-}
-customElements.define(`accordion-item`, CpxAccordionItem);
-
-},{"../../element":"7TddR","../../utils/id":"UhlEf","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4F7iZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "AudioPlayer", ()=>(0, _audioPlayer.CpxAudioPlayer));
-parcelHelpers.export(exports, "AudioCurrent", ()=>(0, _audioCurrent.CpxAudioCurrent));
-parcelHelpers.export(exports, "AudioPlaylist", ()=>(0, _audioPlaylist.CpxAudioPlaylist));
-parcelHelpers.export(exports, "AudioPlaylistItem", ()=>(0, _audioPlaylistItem.CpxAudioPlaylistItem));
-parcelHelpers.export(exports, "AudioControls", ()=>(0, _audioControls.CpxAudioControls));
-parcelHelpers.export(exports, "AudioControl", ()=>(0, _audioControl.CpxAudioControl));
-var _audioPlayer = require("./AudioPlayer");
-var _audioCurrent = require("./AudioCurrent");
-var _audioPlaylist = require("./AudioPlaylist");
-var _audioPlaylistItem = require("./AudioPlaylistItem");
-var _audioControls = require("./AudioControls");
-var _audioControl = require("./AudioControl");
-
-},{"./AudioPlayer":"c5wpY","./AudioCurrent":"6ezGA","./AudioPlaylist":"8Yy21","./AudioPlaylistItem":"gcaDD","./AudioControls":"fJL4o","./AudioControl":"kxtUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c5wpY":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @class CpxAudioPlayer
- * @description
- * AudioPlayer Component
- * @example
- * <audio-player audio-player:appearance="default" audio-player:title="AudioPlayer Title" audio-player:artist="AudioPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
- * </audio-player>
- */ parcelHelpers.export(exports, "CpxAudioPlayer", ()=>CpxAudioPlayer);
-var _element = require("../../element");
-var _audio = require("../../utils/audio");
-class CpxAudioPlayer extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.appearance = this.getAttribute("audio-player:appearance") || "default";
-        this.classNames = this.getAttribute("audio-player:class") || "";
-        this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
-        this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
-        this.album = this.getAttribute("audio-player:album") || "AudioPlayer Album Title";
-        this.hasPlaylist = this.getAttribute("audio-player:has-playlist") || true;
-        this.hasControls = this.getAttribute("audio-player:has-controls") || true;
-        this.hasTitle = this.getAttribute("audio-player:has-title") || true;
-        this.hasArtist = this.getAttribute("audio-player:has-artist") || true;
-        this.hasCover = this.getAttribute("audio-player:has-cover") || true;
-        this.hasCurrent = this.getAttribute("audio-player:has-current") || true;
-        this.playlist = [
-            {
-                title: "Song 1",
-                artist: "Artist 1",
-                album: "Album 1",
-                cover: "https://placehold.co/600",
-                url: "../dist/song-1.mp3"
-            },
-            {
-                title: "Song 2",
-                artist: "Artist 2",
-                album: "Album 2",
-                cover: "https://placehold.co/601",
-                url: "../dist/song-2.mp3"
-            }
-        ];
-    }
-    returnPlaylist() {
-        return this.playlist;
-    }
-    connectedCallback() {
-        this.render();
-        (0, _audio.audioAPI)();
-    }
-    render() {
-        let evalHasPlaylist = eval(this.hasPlaylist);
-        let evalHasControls = eval(this.hasControls);
-        let evalHasTitle = eval(this.hasTitle);
-        let evalHasArtist = eval(this.hasArtist);
-        let evalHasCover = eval(this.hasCover);
-        let evalHasCurrent = eval(this.hasCurrent);
-        this.innerHTML = `
-    <section class="audio-player audio-player--${this.appearance} ${this.classNames}" audio>
-    ${this.initialContent !== "" ? `${this.initialContent}` : `
-        ${evalHasCurrent === true || evalHasControls === true ? `
-            <div class="audio-player__column">
-              ${evalHasCurrent === true ? `<audio-current audio-current:has-title="${evalHasTitle}" audio-current:has-artist="${evalHasArtist}" audio-current:has-cover="${evalHasCover}" class="audio-player__current"></audio-current>` : ``}
-              ${evalHasControls === true ? `<audio-controls class="audio-player__controls"></audio-controls>` : ``}
-            </div>` : ``}
-        ${evalHasPlaylist === true ? `<audio-playlist class="audio-player__column audio-player__playlist" class=""></audio-playlist>` : ``}
-        `}
-    </section>
-    `;
-    }
-}
-customElements.define(`audio-player`, CpxAudioPlayer);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../utils/audio":"8K745"}],"8K745":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8K745":[function(require,module,exports) {
 /**
  * @name runAudio()
  * @version 1.0
@@ -2620,7 +2451,350 @@ function audioAPI() {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6ezGA":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dmuKk":[function(require,module,exports) {
+/**
+ * @name runVideo()
+ * @version 1.0
+ * @description provides an API to insert a video player element on a website by just adding HTML attributes to elements
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "videoAPI", ()=>videoAPI);
+function videoAPI() {
+    function initializeVideoPlayer(player) {
+        // Container Elements for Controls and Playlist
+        const controls = player.querySelector("[video-controls]");
+        // Elements where the current Video Infos are rendered in
+        const currentVideoTitle = player.querySelector("[video-current='title']");
+        const currentVideoPoster = player.querySelector("[video-current='poster']");
+        const currentVideoUrl = player.querySelector("[video-current='url']");
+        const currentVideoArtist = player.querySelector("[video-current='artist']");
+        // Controls
+        const playPauseButton = controls.querySelector('[video-control="play-pause"]');
+        const prevButton = controls.querySelector('[video-control="prev"]');
+        const nextButton = controls.querySelector('[video-control="next"]');
+        const volumeInput = controls.querySelector('[video-control="volume"]');
+        const muteUnmuteButton = controls.querySelector('[video-control="mute-unmute"]');
+        const progressBar = controls.querySelector('[video-control="progress-bar"]');
+        const playlist = player.querySelector("[video-playlist]");
+        const videoItems = Array.from(playlist.querySelectorAll("[video-playlist-item][video-playlist-item-url]"));
+        let currentVideoIndex = 0;
+        let video = player.querySelector("video");
+        function initializeControl(selector, action) {
+            const control = controls.querySelector(selector);
+            if (control) action(control);
+        }
+        function loadVideoDetails(index) {
+            const videoItem = videoItems[index];
+            if (!videoItem) {
+                console.error("Video item is undefined. Index:", index);
+                return;
+            }
+            const videoURL = videoItem.getAttribute("video-playlist-item-url");
+            if (!videoURL) {
+                console.error("Video URL is missing for index:", index);
+                return;
+            }
+            video.src = videoURL;
+            /**
+       * @name loadVideoDetails
+       * @param {number} index
+       * @description
+       * Load the video details from the playlist
+       */ const videoTitle = videoItem.querySelector('[video-playlist-item="title"]');
+            const videoArtist = videoItem.querySelector('[video-playlist-item="artist"]');
+            const videoPoster = videoItem.querySelector('[video-playlist-item="poster"]');
+            const videoUrl = videoItem.querySelector('[video-playlist-item="url"]');
+            if (videoTitle) currentVideoTitle.textContent = videoTitle.textContent;
+            else console.log("Video title not found for index:", index);
+            if (videoArtist) currentVideoArtist.textContent = videoArtist.textContent;
+            else console.log("Video artist not found for index:", index);
+            if (videoPoster) currentVideoPoster.textContent = videoPoster.textContent;
+            else console.log("Video poster not found for index:", index);
+            if (videoUrl) currentVideoUrl.src = videoUrl.textContent;
+            else console.log("Video poster not found for index:", index);
+            playPauseButton.setAttribute("video-current-state", "pause");
+        }
+        videoItems.forEach((videoItem, index)=>{
+            videoItem.addEventListener("click", ()=>{
+                currentVideoIndex = index;
+                loadVideoDetails(index);
+                playPauseButton.setAttribute("video-current-state", "play");
+                video.play();
+            });
+        });
+        function loadAndPlayVideo(index) {
+            currentVideoIndex = index;
+            loadVideoDetails(index);
+            video.play().then(()=>{
+                playPauseButton.setAttribute("video-current-state", "play");
+            }).catch((error)=>{});
+        }
+        initializeControl('[video-control="play-pause"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                if (video.paused) {
+                    video.play();
+                    control.setAttribute("video-current-state", "play");
+                } else {
+                    video.pause();
+                    control.setAttribute("video-current-state", "pause");
+                }
+            });
+        });
+        initializeControl('[video-control="prev"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentVideoIndex = (currentVideoIndex - 1 + videoItems.length) % videoItems.length;
+                loadAndPlayVideo(currentVideoIndex);
+            });
+        });
+        initializeControl('[video-control="next"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentVideoIndex = (currentVideoIndex + 1) % videoItems.length;
+                loadAndPlayVideo(currentVideoIndex);
+            });
+        });
+        // Function to update volume
+        function updateVolume() {
+            video.volume = volumeInput.value / 100;
+        }
+        // Function to toggle mute/unmute
+        function toggleMuteUnmute() {
+            video.muted = !video.muted;
+            if (!video.muted) muteUnmuteButton.setAttribute("video-muted", "false");
+            else muteUnmuteButton.setAttribute("video-muted", "true");
+        }
+        progressBar.value = 0;
+        function updateProgressBar() {
+            const duration = video.duration;
+            if (duration > 0) progressBar.value = video.currentTime / duration * 100;
+        }
+        // Attach timeupdate event listener to video element
+        video.addEventListener("timeupdate", updateProgressBar);
+        function seekVideo(event) {
+            const progressBarRect = progressBar.getBoundingClientRect();
+            const seekTime = (event.clientX - progressBarRect.left) / progressBarRect.width * video.duration;
+            video.currentTime = seekTime;
+        }
+        // Add event listeners
+        initializeControl('[video-control="volume"]', (control)=>{
+            control.addEventListener("click", updateVolume);
+        });
+        initializeControl('[video-control="mute-unmute"]', (control)=>{
+            control.addEventListener("click", toggleMuteUnmute);
+        });
+        initializeControl('[video-control="progress-bar"]', (control)=>{
+            control.addEventListener("click", seekVideo);
+        });
+        initializeControl('[video-control="progress-bar"]', (control)=>{
+            control.addEventListener("input", (event)=>{
+                const duration = video.duration;
+                if (duration > 0) {
+                    const value = event.target.value;
+                    video.currentTime = value / 100 * duration;
+                }
+            });
+        });
+        initializeControl('[video-control="prev"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentVideoIndex = (currentVideoIndex + videoItems.length) % videoItems.length;
+                loadAndPlayVideo(currentVideoIndex);
+            });
+        });
+        initializeControl('[video-control="next"]', (control)=>{
+            control.addEventListener("click", ()=>{
+                currentVideoIndex = currentVideoIndex % videoItems.length;
+                loadAndPlayVideo(currentVideoIndex);
+            });
+        });
+        // Initialize the player with the first video
+        loadAndPlayVideo(currentVideoIndex);
+    }
+    // Initialize all video players on the page
+    const videoPlayers = document.querySelectorAll("[video]");
+    videoPlayers.forEach((player)=>{
+        initializeVideoPlayer(player);
+    });
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fVDc8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AccordionGroup", ()=>(0, _accordionGroup.CpxAccordionGroup));
+parcelHelpers.export(exports, "AccordionItem", ()=>(0, _accordionItem.CpxAccordionItem));
+var _accordionGroup = require("./AccordionGroup");
+var _accordionItem = require("./AccordionItem");
+
+},{"./AccordionGroup":"cE22T","./AccordionItem":"9BBKi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cE22T":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxAccordionGroup
+ * @extends CpxElement
+ * @description
+ * This is the base class for all custom elements in the app. It extends the native HTMLElement class and adds a few extra features.
+ * @property {string} ID - A random number that is generated when the element is created. This is used to identify the element in the DOM.
+ * @property {string} initialContent - The initial content of the element. This is used to store the content of the element before it is rendered.
+ * @property {any} storage - A reference to the Storage class. This is used to store data in the browser's local storage.
+ * @property {any} state - A reference to the State class. This is used to store the state of the component.
+ */ parcelHelpers.export(exports, "CpxAccordionGroup", ()=>CpxAccordionGroup);
+var _element = require("../../element");
+var _id = require("../../utils/id");
+class CpxAccordionGroup extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("accordion-group:class") || "";
+    }
+    connectedCallback() {
+        this.render();
+        this.animateAccordionContent();
+    }
+    animateAccordionContent() {
+        /**
+     * If any <summary> is clicked, expland the correspong details element and close ALL other that are open  inside the same <accorion-group> element, leave all other <accordion-group> element untouched
+     */ this.addEventListener("click", (e)=>{
+            if (e.target.tagName === "SUMMARY") {
+                const accordionGroup = e.target.closest("accordion-group");
+                const details = e.target.closest("details");
+                const allDetails = accordionGroup.querySelectorAll("details");
+                allDetails.forEach((detail)=>{
+                    if (detail !== details) detail.removeAttribute("open");
+                });
+                this.render();
+            }
+        });
+    }
+    render() {
+        this.innerHTML = `
+    <section accordion-group:id="${(0, _id.Id).Generate.hex(12)}" class="display:block ${this.classNames}">
+        ${this.initialContent}
+    </section>
+        `;
+    }
+}
+customElements.define(`accordion-group`, CpxAccordionGroup);
+
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9BBKi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxAccordionItem", ()=>CpxAccordionItem);
+var _element = require("../../element");
+var _id = require("../../utils/id");
+var _icons = require("../../utils/icons");
+class CpxAccordionItem extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("accordion-item:class") || "";
+        this.title = this.getAttribute("accordion-item:title") || "Accordion Item Title";
+        this.titleType = this.getAttribute("accordion-item:title:type") || "h3";
+    }
+    render() {
+        this.innerHTML = `
+    <details accordion-item:id="${(0, _id.Id).Generate.hex(6)}" class="${this.classNames} mb:4 border-b-width:1 border-color:gray-400 py:2 mt:4">
+        <summary class="cursor:pointer display:flex items:center  ">
+            <div class="">${this.title}</div>
+            <div class="w:6 h:6">
+              ${this.querySelector("details")?.hasAttribute("open") === true ? `${(0, _icons.Icon).chevronUp}` : ``}
+              ${this.querySelector("details")?.hasAttribute("open") === false ? `${(0, _icons.Icon).chevronDown}` : ``}
+            </div>
+        </summary>
+        <div class="py:4">
+          <text-element>${this.initialContent}</text-element>
+        </div>
+    </details>
+        `;
+    }
+}
+customElements.define(`accordion-item`, CpxAccordionItem);
+
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../utils/icons":"bLiR6"}],"4F7iZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AudioPlayer", ()=>(0, _audioPlayer.CpxAudioPlayer));
+parcelHelpers.export(exports, "AudioCurrent", ()=>(0, _audioCurrent.CpxAudioCurrent));
+parcelHelpers.export(exports, "AudioPlaylist", ()=>(0, _audioPlaylist.CpxAudioPlaylist));
+parcelHelpers.export(exports, "AudioPlaylistItem", ()=>(0, _audioPlaylistItem.CpxAudioPlaylistItem));
+parcelHelpers.export(exports, "AudioControls", ()=>(0, _audioControls.CpxAudioControls));
+parcelHelpers.export(exports, "AudioControl", ()=>(0, _audioControl.CpxAudioControl));
+var _audioPlayer = require("./AudioPlayer");
+var _audioCurrent = require("./AudioCurrent");
+var _audioPlaylist = require("./AudioPlaylist");
+var _audioPlaylistItem = require("./AudioPlaylistItem");
+var _audioControls = require("./AudioControls");
+var _audioControl = require("./AudioControl");
+
+},{"./AudioPlayer":"c5wpY","./AudioCurrent":"6ezGA","./AudioPlaylist":"8Yy21","./AudioPlaylistItem":"gcaDD","./AudioControls":"fJL4o","./AudioControl":"kxtUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c5wpY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @class CpxAudioPlayer
+ * @description
+ * AudioPlayer Component
+ * @example
+ * <audio-player audio-player:appearance="default" audio-player:title="AudioPlayer Title" audio-player:artist="AudioPlayer Artist Title" audio-player:album="AudioPlayer Album Title">
+ * </audio-player>
+ */ parcelHelpers.export(exports, "CpxAudioPlayer", ()=>CpxAudioPlayer);
+var _element = require("../../element");
+var _audio = require("../../utils/audio");
+class CpxAudioPlayer extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("audio-player:class") || "";
+        this.title = this.getAttribute("audio-player:title") || "AudioPlayer Title";
+        this.artist = this.getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
+        this.album = this.getAttribute("audio-player:album") || "AudioPlayer Album Title";
+        this.hasPlaylist = this.getAttribute("audio-player:has-playlist") || true;
+        this.hasControls = this.getAttribute("audio-player:has-controls") || true;
+        this.hasTitle = this.getAttribute("audio-player:has-title") || true;
+        this.hasArtist = this.getAttribute("audio-player:has-artist") || true;
+        this.hasCover = this.getAttribute("audio-player:has-cover") || true;
+        this.hasCurrent = this.getAttribute("audio-player:has-current") || true;
+        this.playlist = [
+            {
+                title: "Song 1",
+                artist: "Artist 1",
+                album: "Album 1",
+                cover: "https://placehold.co/600",
+                url: "../dist/song-1.mp3"
+            },
+            {
+                title: "Song 2",
+                artist: "Artist 2",
+                album: "Album 2",
+                cover: "https://placehold.co/601",
+                url: "../dist/song-2.mp3"
+            }
+        ];
+    }
+    returnPlaylist() {
+        return this.playlist;
+    }
+    connectedCallback() {
+        this.render();
+        (0, _audio.audioAPI)();
+    }
+    render() {
+        let evalHasPlaylist = eval(this.hasPlaylist);
+        let evalHasControls = eval(this.hasControls);
+        let evalHasTitle = eval(this.hasTitle);
+        let evalHasArtist = eval(this.hasArtist);
+        let evalHasCover = eval(this.hasCover);
+        let evalHasCurrent = eval(this.hasCurrent);
+        this.innerHTML = `
+    <section class="{sm}display:flex p:4 gap:8 items:center radius:sm bg:gray-200 border-width:1 border-color:gray-400 ${this.classNames}" audio>
+    ${this.initialContent !== "" ? `${this.initialContent}` : `
+        ${evalHasCurrent === true || evalHasControls === true ? `
+            <div class="w:full max-w:xs">
+              ${evalHasCurrent === true ? `<audio-current class="" audio-current:has-title="${evalHasTitle}" audio-current:has-artist="${evalHasArtist}" audio-current:has-cover="${evalHasCover}"></audio-current>` : ``}
+              ${evalHasControls === true ? `<audio-controls class=""></audio-controls>` : ``}
+            </div>` : ``}
+        ${evalHasPlaylist === true ? `<audio-playlist class="w:full shrink:1 "></audio-playlist>` : ``}
+        `}
+    </section>
+    `;
+    }
+}
+customElements.define(`audio-player`, CpxAudioPlayer);
+
+},{"../../element":"7TddR","../../utils/audio":"8K745","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6ezGA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -2649,14 +2823,14 @@ class CpxAudioCurrent extends (0, _element.CpxElement) {
         let evalArtist = eval(this.hasArtist);
         let evalCover = eval(this.hasCover);
         this.innerHTML = `
-        <div class="audio-current audio-current--${this.appearance} ${this.classNames}">
+        <div class=" ${this.classNames}">
             ${this.initialContent !== "" ? this.initialContent : `
                 ${evalCover === true ? `
-                      <img class="audio-current__image mb:4" audio-current="cover">` : ``}
+                      <img class="mb:4 max-w:xxs" audio-current="cover">` : ``}
                 ${evalTitle === true || evalArtist === true ? `
-                    <div class="audio-current__text">
-                      ${evalTitle === true ? `<text-element class="audio-current__title" audio-current="title">${this.title}</text-element>` : ``}
-                      ${evalArtist === true ? `<text-element class="audio-current__title" audio-current="artist">${this.artist}</text-element>` : ``}
+                    <div class="">
+                      ${evalTitle === true ? `<p class="align:center size:lg" audio-current="title">${this.title}</p>` : ``}
+                      ${evalArtist === true ? `<p class="size:md align:center" audio-current="artist">${this.artist}</p>` : ``}
                     </div>
                     ` : ``}
                 
@@ -2683,7 +2857,6 @@ var _element = require("../../element");
 class CpxAudioPlaylist extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("audio-player:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
         this.classNames = this.getAttribute("audio-player:class") || "";
         this.title = this.getAttribute("audio-player:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlayer ITitle";
         this.artist = this.getAttribute("audio-player:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlayer Artist Title";
@@ -2711,12 +2884,11 @@ class CpxAudioPlaylist extends (0, _element.CpxElement) {
         let evalArtist = eval(this.hasArtist);
         let evalAlbum = eval(this.hasAlbum);
         this.innerHTML = `
-        <div audio-playlist class="audio-playlist audio-playlist--${this.appearance} ${this.classNames}">
+        <div audio-playlist class="flex:full shrink:1 display:flex direction:col justify-content:center ${this.classNames}">
           ${this.initialContent !== "" ? `${this.initialContent}` : `
               ${this.playlist.map((track, index)=>{
             return `
                     <audio-playlist-item
-                      audio-playlist-item:style="${this.appearance}"
                       audio-playlist-item:title="${track.title}"
                       audio-playlist-item:artist="${track.artist}"
                       audio-playlist-item:album="${track.album}"
@@ -2746,7 +2918,6 @@ var _element = require("../../element");
 class CpxAudioPlaylistItem extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("audio-playlist-item:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
         this.classNames = this.getAttribute("audio-playlist-item:class") || "";
         this.title = this.getAttribute("audio-playlist-item:title") || document.querySelector("audio-playlist").getAttribute("audio-playlist:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlaylistItem ITitle";
         this.artist = this.getAttribute("audio-playlist-item:artist") || document.querySelector("audio-playlist").getAttribute("audio-playlist:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlaylistItem Artist Title";
@@ -2761,15 +2932,15 @@ class CpxAudioPlaylistItem extends (0, _element.CpxElement) {
         let evalArtist = eval(this.hasArtist);
         let evalAlbum = eval(this.hasAlbum);
         this.innerHTML = `
-        <button class="audio-playlist-item audio-playlist-item--${this.appearance} ${this.classNames}" audio-track audio-track-url="${this.url}>
+        <button class="w:full p:2 mb:2 display:flex radius:sm items:center justify-content:between gap:4 border-width:1 border-color:gray-400 mb ${this.classNames}" audio-track audio-track-url="${this.url}>
           ${this.initialContent !== "" ? `${this.initialContent}` : `
               ${evalTitle === true ? `
-                    <p class="audio-playlist-item__title" audio-track="title">${this.title}</p>
+                    <p class="" audio-track="title">${this.title}</p>
                   ` : ``}
-                <section class="audio-playlist-item__meta">
-                    ${evalArtist === true ? `<p class="audio-playlist-item__artist" audio-track="artist">${this.artist}</p>` : ``}
-                    ${evalAlbum === true ? `<p class="audio-playlist-item__album" audio-track="album">${this.album}</p>` : ``}
-                </section>
+              <section class="display:flex items:center gap:4">
+                  ${evalArtist === true ? `<p class="size:xs line-height:0" audio-track="artist">${this.artist}</p>` : ``}
+                  ${evalAlbum === true ? `<p class="size:xs line-height:0" audio-track="album">${this.album}</p>` : ``}
+              </section>
             `}
         </button>
     `;
@@ -2792,8 +2963,8 @@ var _index = require("../../index");
 class CpxAudioControls extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("audio-controls:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
         this.classNames = this.getAttribute("audio-controls:class") || "";
+        this.color = this.getAttribute("audio-controls:color") || "gray-400";
         this.hasPlayPause = this.getAttribute("audio-controls:has-play-pause") || document.querySelector("audio-player").getAttribute("audio-player:has-play-pause") || true;
         this.hasPrev = this.getAttribute("audio-controls:has-prev") || document.querySelector("audio-player").getAttribute("audio-player:has-prev") || true;
         this.hasNext = this.getAttribute("audio-controls:has-next") || document.querySelector("audio-player").getAttribute("audio-player:has-next") || true;
@@ -2813,33 +2984,33 @@ class CpxAudioControls extends (0, _element.CpxElement) {
         let evalProgress = eval(this.hasProgress);
         let evalVolume = eval(this.hasVolume);
         this.innerHTML = `  
-            <div class="audio-controls audio-controls--${this.appearance} ${this.classNames}" audio-controls>
+            <div class="display:flex direction:col gap:3 text-align:center items:center ${this.classNames}" audio-controls>
                 ${this.initialContent !== "" ? this.initialContent : ` 
                         ${evalProgress === true ? `
-                            <div class="audio-controls__progress-container">
-                                <audio-control class="audio-controls__progress-slider" audio-control:type="progress-bar">
+                            <div class="w:auto">
+                                <audio-control audio-control:class="display:block w:full" audio-control:type="progress-bar" audio-control:color=${this.color}></audio-control>
                             </div>` : ``}
                         
-                        <div class="audio-controls__playback-controls-row">
+                        <div class="display:flex gap:3 justify-content:center">
                             ${evalPrev === true ? `
-                                <audio-control class="audio-controls__prev" audio-control="prev">
+                                <audio-control class="" audio-control:color="${this.color} audio-control="prev">
                                     ${this.iconPrev}
                                 </audio-control>
                                     ` : ``}
                             ${evalPlayPause === true ? `
-                                <audio-control class="audio-controls__play-pause" audio-control="play-pause">
+                                <audio-control class="" audio-control:color="${this.color} audio-control="play-pause">
                                     ${this.iconPlay}
                                 </audio-control>
                                 ` : ``}
                             ${evalNext === true ? `
-                                  <audio-control class="audio-controls__next" audio-control="next">
+                                  <audio-control class="" audio-control:color="${this.color} audio-control="next">
                                       ${this.iconNext}
                                   </audio-control>
                                         ` : ``}
                         </div>
                         ${evalVolume === true ? `
-                              <div class="audio-controls__volume-container">
-                                  <audio-control class="audio-controls__volume-slider" audio-control:type="volume">
+                              <div class="w:auto">
+                                  <audio-control audio-control:class="display:block w:full max-w:16" class="w:auto" audio-control:type="volume"></audio-control>
                               </div>` : ``}`}  
             </div>
         `;
@@ -2856,10 +3027,11 @@ var _icons = require("../../utils/icons");
 class CpxAudioControl extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("audio-control:appearance") || document.querySelector("audio-player").getAttribute("audio-player:appearance") || "default";
         this.classNames = this.getAttribute("audio-control:class") || "";
         this.type = this.getAttribute("audio-control:type") || "play-pause";
         this.icon = this.getAttribute("audio-control:icon") || "play";
+        this.size = this.getAttribute("audio-control:size") || "16";
+        this.color = this.getAttribute("audio-control:color") || "gray-700";
         this.hasIcon = this.getAttribute("audio-control:has-icon") || true;
         this.hasText = this.getAttribute("audio-control:has-text") || true;
     }
@@ -2867,19 +3039,19 @@ class CpxAudioControl extends (0, _element.CpxElement) {
         let evalIcon = eval(this.hasIcon);
         let evalText = eval(this.hasText);
         this.innerHTML = `  
-            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="audio-control audio-control--${this.appearance} ${this.classNames}" audio-control="${this.type}">` : `
+            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="color:${this.color} ${this.classNames}" audio-control="${this.type}">` : `
                 <button 
-                class="audio-control audio-control--${this.appearance} ${this.classNames}"
+                class="color:${this.color} size:${this.size} h:${this.size} ${this.classNames}"
                 audio-control="${this.type}">
                 ${this.initialContent !== "" ? this.initialContent : `
-                    <section class="audio-control__inner-container">
+                    <section class="">
                         ${evalIcon ? `
-                                <div class="audio-control__icon">
+                                <div class="w:${this.size} h:${this.size}">
                                     ${(0, _icons.Icon)[this.icon]}
                                 </div>
                                     ` : ""}
                         ${evalText ? `
-                                <div class="audio-control__text">
+                                <div class="">
                                     ${this.type}
                                 </div>
                                 ` : ""}
@@ -2915,13 +3087,15 @@ class CpxBadgeElement extends (0, _element.CpxElement) {
         super();
         this.classNames = this.getAttribute("badge-element:class") || "";
         this.size = this.getAttribute("badge-element:size") || "xs";
-        this.color = this.getAttribute("badge-element:color") || "gray";
+        this.color = this.getAttribute("badge-element:color") || "gray-700";
+        this.bgColor = this.getAttribute("badge-element:bg") || "gray-200";
+        this.borderColor = this.getAttribute("badge-element:border-color") || "gray-600";
         this.fontFamily = this.getAttribute("badge-element:font-family") || "sans";
-        this.fontWeight = this.getAttribute("badge-element:font-weight") || "normal";
-        this.letterSpacing = this.getAttribute("badge-element:letter-spacing") || "md";
-        this.textTransform = this.getAttribute("badge-element:text-transform") || "normal";
-        this.borderRadius = this.getAttribute("badge-element:border-radius") || "pill";
-        this.padding = this.getAttribute("badge-element:padding") || "sm";
+        this.fontWeight = this.getAttribute("badge-element:weight") || "normal";
+        this.letterSpacing = this.getAttribute("badge-element:tracking") || "sm";
+        this.textTransform = this.getAttribute("badge-element:transform") || "none";
+        this.borderRadius = this.getAttribute("badge-element:radius") || "pill";
+        this.padding = this.getAttribute("badge-element:padding") || "2";
         this.action = eval(this.getAttribute("badge-element:action")) || false;
     }
     render() {
@@ -2930,19 +3104,7 @@ class CpxBadgeElement extends (0, _element.CpxElement) {
         ${this.action !== false ? `
               onclick="${this.action}"
               ` : `tabindex="-1"`}
-        class="
-        badge-element
-        badge-element--font-size-${this.size}
-        badge-element--color-${this.color}
-        badge-element--font-family-${this.fontFamily}
-        badge-element--font-weight-${this.fontWeight}
-        badge-element--letter-spacing-${this.letterSpacing}
-        badge-element--text-transform-${this.textTransform}
-        badge-element--border-radius-${this.borderRadius}
-        badge-element--padding-${this.padding}
-        ${this.classNames}"
-        
-        >
+        class="size:${this.size} color:${this.color} bg:${this.bgColor} border-width:1 border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${eval(this.padding) * 2} py:${eval(this.padding) * 1} ${this.classNames}">
             <span>${this.initialContent}</span>
         </button>
         `;
@@ -2977,6 +3139,7 @@ var _bashDefault = parcelHelpers.interopDefault(_bash);
 (0, _coreDefault.default).registerLanguage("javascript", (0, _javascriptDefault.default)); // Register JavaScript language
 (0, _coreDefault.default).registerLanguage("php", (0, _phpDefault.default)); // Register PHP language
 (0, _coreDefault.default).registerLanguage("bash", (0, _bashDefault.default)); // Register Bash language
+(0, _coreDefault.default).registerLanguage("shell", (0, _bashDefault.default)); // Register Shell language
 class CpxCodeBlock extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -2998,8 +3161,8 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
     }
     highlightSyntax() {
         if (this.lang) {
-            const codeElement = this.querySelector(".code-block__code");
-            if (codeElement) (0, _coreDefault.default).highlightBlock(codeElement); // Highlight the code block
+            const codeElement = this.querySelector("[hljs-area]");
+            if (codeElement) (0, _coreDefault.default).highlightElement(codeElement); // Highlight the code block
         }
     }
     insertCopiedText() {
@@ -3007,8 +3170,8 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
         if (copyButton) copyButton.addEventListener("click", ()=>{
             const copiedText = document.createElement("p");
             copiedText.textContent = "Copied";
-            copiedText.classList.add("code-block__copied");
-            copyButton.appendChild(copiedText).classList.add("code-block__copy-alert");
+            copiedText.classList.add("");
+            copyButton.appendChild(copiedText).classList.add("");
             setTimeout(()=>{
                 copiedText.remove();
             }, 2000);
@@ -3018,21 +3181,21 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
     getHeader() {
         return `
     ${this.hasHeader === true && this.hasCopyButton === true ? `
-        <header class="code-block__header">
+        <header class="p:4 w:full display:flex gap:4 justify-content:between align-items:center border-b-width:1 border-color:gray-400">
             ${this.hasHeader === true ? `
-                  <div class="code-block__header__column">
-                      <section class="code-block__title">${this.title}</section>
+                  <div class="display:flex gap:4 align-items:center">
+                      <section class="size:md weigth:semibold">${this.title}</section>
                       <badge-element
                       badge-element:border-radius="xs"
                       badge-element:padding="sm"
                       badge-element:font-family="mono"
                       badge-element:color="${this.theme}"
-                      class="code-block__lang">.${this.lang}</badge-element>
+                      class="">.${this.lang}</badge-element>
                   </div>
                   ` : ``}
             ${this.hasCopyButton === true ? `
-                  <section class="code-block__header__column code-block__copy">
-                      <button copy-clipboard="trigger">
+                  <section class="">
+                      <button class="w:6 h:6" copy-clipboard="trigger">
                         ${(0, _icons.Icon).clipboard}
                       </button>
                   </section>
@@ -3042,9 +3205,9 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `  
-            <section class="code-block code-block--${this.appearance}">
+            <section class="bg:gray-300 color:gray-900 border-radius:md radius:md overflow:hidden ${this.classNames}">
                 ${this.getHeader()}
-                <pre class="code-block__pre"><code class="code-block__code ${this.classNames}" copy-clipboard="target">${(0, _index.Cpx).String.trimWhitespace(this.initialContent)}</code></pre>
+                <pre class="p:4"><code class="font-family:mono language-${this.lang}" copy-clipboard="target" hljs-area>${(0, _index.Cpx).String.trimWhitespace(this.initialContent)}</code></pre>
             </section>
         `;
     }
@@ -10425,7 +10588,7 @@ class CpxSliderItem extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-        <section class="slider-item swiper-slide ${this.classNames}">
+        <section class="swiper-slide ${this.classNames}">
             ${this.initialContent !== "" ? `${this.initialContent}` : `<picture-element 
                       picture-element:url="${this.url}"
                       picture-element:alt="${this.title}"
@@ -10435,55 +10598,6 @@ class CpxSliderItem extends (0, _element.CpxElement) {
     }
 }
 customElements.define(`slider-item`, CpxSliderItem);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gOZMd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PictureElement", ()=>(0, _pictureElement.CpxPictureElement));
-var _pictureElement = require("./PictureElement");
-
-},{"./PictureElement":"11clR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"11clR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Picture Element
- * @description
- * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
- * @example
- * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
- */ parcelHelpers.export(exports, "CpxPictureElement", ()=>CpxPictureElement);
-var _element = require("../../element");
-class CpxPictureElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("picture-element:class") || "";
-        this.width = this.getAttribute("picture-element:width") || "600";
-        this.height = this.getAttribute("picture-element:height") || "600";
-        this.aspectRatio = this.getAttribute("picture-element:aspect-ratio") || "1/1";
-        this.alt = this.getAttribute("picture-element:alt") || "";
-        this.url = this.getAttribute("picture-element:url") || "https://via.placeholder.com/150";
-        this.urlImgBig = this.getAttribute("picture-element:screen:xl:url") || false;
-        this.urlImgMedium = this.getAttribute("picture-element:screen:md:url") || false;
-        this.screenBig = this.getAttribute("picture-element:screen:xl") || "1240px";
-        this.screenMedium = this.getAttribute("picture-element:screen:md") || "720px";
-        this.loading = this.getAttribute("picture-element:loading") || "lazy";
-    }
-    render() {
-        this.innerHTML = `  
-        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class="picture-element ${this.classNames}">
-        <suspense-all>
-            <picture> 
-              ${this.urlImgBig !== false ? `<source media="(min-width:${this.screenBig})" srcset="${this.urlImgBig}?as=webp?width=${this.screenBig}">` : ``}
-              ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
-                <img loading="${this.loading}" class="picture-element__img" src="${this.url}" alt="${this.alt}">
-            </picture>
-            ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
-            </suspense-all>
-          </figure>
-        `;
-    }
-}
-customElements.define(`picture-element`, CpxPictureElement);
 
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kLJ9V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -10523,7 +10637,7 @@ class CpxSuspenseAll extends (0, _element.CpxElement) {
         this.debounce(()=>{
             const content = this.initialContent || "";
             this.innerHTML = `
-        <div class="suspense-all ${this.classNames}">
+        <div class=" ${this.classNames}">
           ${content}
         </div>
       `;
@@ -10532,9 +10646,9 @@ class CpxSuspenseAll extends (0, _element.CpxElement) {
     render() {
         // Display loading screen initially
         this.innerHTML = `
-    <section class="suspense-all ${this.classNames}">
+    <section class="h:available display:grid place-content:cneter${this.classNames}">
       ${this.hasIcon === true ? `
-            <div class="suspense-all__icon">${(0, _icons.Icon).arrowPath}</div>
+            <div class="w:9 h:9 bg:gray-500">${(0, _icons.Icon).arrowPath}</div>
           ` : ``}
     </section>`;
     }
@@ -10568,16 +10682,24 @@ class CpxTextElement extends (0, _element.CpxElement) {
         this.fontFamily = this.getAttribute("text-element:font-family") || "sans";
         this.fontWeight = this.getAttribute("text-element:font-weight") || "normal";
         this.fontStyle = this.getAttribute("text-element:font-style") || "normal";
-        this.fontSize = this.getAttribute("text-element:font-size") || "sm";
-        this.lineHeight = this.getAttribute("text-element:line-height") || "inherit";
-        this.letterSpacing = this.getAttribute("text-element:letter-spacing") || "inherit";
+        this.fontSize = this.getAttribute("text-element:size") || "sm";
+        this.lineHeight = this.getAttribute("text-element:line-height") || "1";
+        this.letterSpacing = this.getAttribute("text-element:tracking") || "sm";
     }
     connectedCallback() {
         this.render();
     }
     render() {
         this.innerHTML = `
-    <${this.type} class="text-element text-element--text-align-${this.align} text-element--font-size-${this.fontSize} text-element--font-weight-${this.fontWeight} text-element--font-style-${this.fontStyle} text-element--font-family-${this.fontFamily} text-element--line-height-${this.lineHeight} text-element--letter-spacing-${this.letterSpacing} ${this.classNames}">
+    <${this.type} class="
+    align:${this.align}
+    size:${this.fontSize}
+    weight:${this.fontWeight}
+    font-style:${this.fontStyle}
+    font-family:${this.fontFamily}
+    line-height:${this.lineHeight}
+    tracking:${this.letterSpacing}
+    ${this.classNames}">
         ${this.initialContent}
     </${this.type}>
         `;
@@ -10740,7 +10862,6 @@ var _video = require("../../utils/video");
 class CpxVideoPlayer extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("video-player:appearance") || "default";
         this.classNames = this.getAttribute("video-player:class") || "";
         this.poster = this.getAttribute(`video-player:poster`) || `https://placehold.co/1600x900`;
         this.title = this.getAttribute(`video-player:title`) || `videoPlayer Title`;
@@ -10757,28 +10878,24 @@ class CpxVideoPlayer extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <div class="video-player ${this.classNames}" video>
+    <div class=" ${this.classNames}" video>
     ${this.initialContent !== "" ? `${this.initialContent}` : `
-        <div class="video-player__column">
-            <section class="video-player__video-container">
-                <img 
-                    class="video-player__poster"
-                    video-current="cover" src="${this.poster}">
+        <div class="">
+            <section class="position:relative">
                 <video 
-                    class="video-player__video"
+                    class="w:full bg:gray-300"
                     video-current>
                 </video>
                 ${this.hasControls === true ? `<video-controls
-                    video-controls:appearance="${this.appearance}"
                     video-controls:position="${this.controlsPosition}"></video-controls>` : ``}
             </section>
-            <div class="video-player__meta my-4">
-                ${this.hasTitle === true ? `<h2 class="video-player__title mb-2" video-current="title">${this.title}</h2>` : ``}
-                ${this.hasArtist === true ? `<p class="video-player__artist" video-current="artist">${this.artist}</p>` : ``}
+            <div class=" my-4">
+                ${this.hasTitle === true ? `<h2 class="my:3 size:lg" video-current="title">${this.title}</h2>` : ``}
+                ${this.hasArtist === true ? `<p class="" video-current="artist">${this.artist}</p>` : ``}
             </div>
         </div>
         ${this.hasPlaylist === true ? `<video-playlist
-                  class="video-player__column"
+                  class=""
                   video-playlist:appearance="${this.appearance}"></video-playlist>` : ``}
        `}
     </div>
@@ -10787,171 +10904,7 @@ class CpxVideoPlayer extends (0, _element.CpxElement) {
 }
 customElements.define(`video-player`, CpxVideoPlayer);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../utils/video":"dmuKk"}],"dmuKk":[function(require,module,exports) {
-/**
- * @name runVideo()
- * @version 1.0
- * @description provides an API to insert a video player element on a website by just adding HTML attributes to elements
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "videoAPI", ()=>videoAPI);
-function videoAPI() {
-    function initializeVideoPlayer(player) {
-        // Container Elements for Controls and Playlist
-        const controls = player.querySelector("[video-controls]");
-        // Elements where the current Video Infos are rendered in
-        const currentVideoTitle = player.querySelector("[video-current='title']");
-        const currentVideoPoster = player.querySelector("[video-current='poster']");
-        const currentVideoUrl = player.querySelector("[video-current='url']");
-        const currentVideoArtist = player.querySelector("[video-current='artist']");
-        // Controls
-        const playPauseButton = controls.querySelector('[video-control="play-pause"]');
-        const prevButton = controls.querySelector('[video-control="prev"]');
-        const nextButton = controls.querySelector('[video-control="next"]');
-        const volumeInput = controls.querySelector('[video-control="volume"]');
-        const muteUnmuteButton = controls.querySelector('[video-control="mute-unmute"]');
-        const progressBar = controls.querySelector('[video-control="progress-bar"]');
-        const playlist = player.querySelector("[video-playlist]");
-        const videoItems = Array.from(playlist.querySelectorAll("[video-playlist-item][video-playlist-item-url]"));
-        let currentVideoIndex = 0;
-        let video = player.querySelector("video");
-        function initializeControl(selector, action) {
-            const control = controls.querySelector(selector);
-            if (control) action(control);
-        }
-        function loadVideoDetails(index) {
-            const videoItem = videoItems[index];
-            if (!videoItem) {
-                console.error("Video item is undefined. Index:", index);
-                return;
-            }
-            const videoURL = videoItem.getAttribute("video-playlist-item-url");
-            if (!videoURL) {
-                console.error("Video URL is missing for index:", index);
-                return;
-            }
-            video.src = videoURL;
-            /**
-       * @name loadVideoDetails
-       * @param {number} index
-       * @description
-       * Load the video details from the playlist
-       */ const videoTitle = videoItem.querySelector('[video-playlist-item="title"]');
-            const videoArtist = videoItem.querySelector('[video-playlist-item="artist"]');
-            const videoPoster = videoItem.querySelector('[video-playlist-item="poster"]');
-            const videoUrl = videoItem.querySelector('[video-playlist-item="url"]');
-            if (videoTitle) currentVideoTitle.textContent = videoTitle.textContent;
-            else console.log("Video title not found for index:", index);
-            if (videoArtist) currentVideoArtist.textContent = videoArtist.textContent;
-            else console.log("Video artist not found for index:", index);
-            if (videoPoster) currentVideoPoster.textContent = videoPoster.textContent;
-            else console.log("Video poster not found for index:", index);
-            if (videoUrl) currentVideoUrl.src = videoUrl.textContent;
-            else console.log("Video poster not found for index:", index);
-            playPauseButton.setAttribute("video-current-state", "pause");
-        }
-        videoItems.forEach((videoItem, index)=>{
-            videoItem.addEventListener("click", ()=>{
-                currentVideoIndex = index;
-                loadVideoDetails(index);
-                playPauseButton.setAttribute("video-current-state", "play");
-                video.play();
-            });
-        });
-        function loadAndPlayVideo(index) {
-            currentVideoIndex = index;
-            loadVideoDetails(index);
-            video.play().then(()=>{
-                playPauseButton.setAttribute("video-current-state", "play");
-            }).catch((error)=>{});
-        }
-        initializeControl('[video-control="play-pause"]', (control)=>{
-            control.addEventListener("click", ()=>{
-                if (video.paused) {
-                    video.play();
-                    control.setAttribute("video-current-state", "play");
-                } else {
-                    video.pause();
-                    control.setAttribute("video-current-state", "pause");
-                }
-            });
-        });
-        initializeControl('[video-control="prev"]', (control)=>{
-            control.addEventListener("click", ()=>{
-                currentVideoIndex = (currentVideoIndex - 1 + videoItems.length) % videoItems.length;
-                loadAndPlayVideo(currentVideoIndex);
-            });
-        });
-        initializeControl('[video-control="next"]', (control)=>{
-            control.addEventListener("click", ()=>{
-                currentVideoIndex = (currentVideoIndex + 1) % videoItems.length;
-                loadAndPlayVideo(currentVideoIndex);
-            });
-        });
-        // Function to update volume
-        function updateVolume() {
-            video.volume = volumeInput.value / 100;
-        }
-        // Function to toggle mute/unmute
-        function toggleMuteUnmute() {
-            video.muted = !video.muted;
-            if (!video.muted) muteUnmuteButton.setAttribute("video-muted", "false");
-            else muteUnmuteButton.setAttribute("video-muted", "true");
-        }
-        progressBar.value = 0;
-        function updateProgressBar() {
-            const duration = video.duration;
-            if (duration > 0) progressBar.value = video.currentTime / duration * 100;
-        }
-        // Attach timeupdate event listener to video element
-        video.addEventListener("timeupdate", updateProgressBar);
-        function seekVideo(event) {
-            const progressBarRect = progressBar.getBoundingClientRect();
-            const seekTime = (event.clientX - progressBarRect.left) / progressBarRect.width * video.duration;
-            video.currentTime = seekTime;
-        }
-        // Add event listeners
-        initializeControl('[video-control="volume"]', (control)=>{
-            control.addEventListener("click", updateVolume);
-        });
-        initializeControl('[video-control="mute-unmute"]', (control)=>{
-            control.addEventListener("click", toggleMuteUnmute);
-        });
-        initializeControl('[video-control="progress-bar"]', (control)=>{
-            control.addEventListener("click", seekVideo);
-        });
-        initializeControl('[video-control="progress-bar"]', (control)=>{
-            control.addEventListener("input", (event)=>{
-                const duration = video.duration;
-                if (duration > 0) {
-                    const value = event.target.value;
-                    video.currentTime = value / 100 * duration;
-                }
-            });
-        });
-        initializeControl('[video-control="prev"]', (control)=>{
-            control.addEventListener("click", ()=>{
-                currentVideoIndex = (currentVideoIndex + videoItems.length) % videoItems.length;
-                loadAndPlayVideo(currentVideoIndex);
-            });
-        });
-        initializeControl('[video-control="next"]', (control)=>{
-            control.addEventListener("click", ()=>{
-                currentVideoIndex = currentVideoIndex % videoItems.length;
-                loadAndPlayVideo(currentVideoIndex);
-            });
-        });
-        // Initialize the player with the first video
-        loadAndPlayVideo(currentVideoIndex);
-    }
-    // Initialize all video players on the page
-    const videoPlayers = document.querySelectorAll("[video]");
-    videoPlayers.forEach((player)=>{
-        initializeVideoPlayer(player);
-    });
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aolqF":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/video":"dmuKk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aolqF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -10967,9 +10920,8 @@ var _icons = require("../../utils/icons");
 class CpxVideoControls extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("video-controls:appearance") || "default";
         this.classNames = this.getAttribute("video-controls:class") || "";
-        this.position = this.getAttribute("video-controls:position") || "bottom-outside";
+        this.position = this.getAttribute("video-controls:position") || "bottom-inside";
         this.hasPlayPause = eval(this.getAttribute("video-controls:has-play-pause")) || true;
         this.hasPrev = eval(this.getAttribute("video-controls:has-prev")) || true;
         this.hasNext = eval(this.getAttribute("video-controls:has-next")) || true;
@@ -10979,39 +10931,42 @@ class CpxVideoControls extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <div video-controls class="video-controls video-controls--${this.appearance} video-controls--${this.position} ${this.classNames}">
+    <div video-controls class="
+    ${this.position === "bottom-inside" ? `position:absolute bottom:0 left:0 right:0 p:4` : ``}
+    ${this.position === "bottom-outside" ? `position:relative` : ``}
+    ${this.classNames}">
     ${this.initialContent !== "" ? this.initialContent : `
         ${this.hasProgress === true ? `
-              <div class="video-controls__progress-container">
-                <video-control class="video-controls__progress-bar" video-control:type="progress-bar"></video-control>
+              <div class="mb:2">
+                <video-control video-control:class="w:full" video-control:type="progress-bar"></video-control>
               </div>
               ` : ``}
         
-        <section class="video-controls__bottom">
+        <section class="display:flex items:center gap:4">
           ${this.hasPrev === true ? `
-              <video-control class="video-controls__prev" video-control:type="prev">
+              <video-control class="" video-control:type="prev">
                 ${(0, _icons.Icon).backward}
               </video-control>
                 ` : ``}
           ${this.hasPlayPause === true ? `
-              <video-control class="video-controls__play-pause" video-control:type="play-pause">
+              <video-control class="" video-control:type="play-pause">
                 ${(0, _icons.Icon).play}
               </video-control>
                 ` : ``}
           ${this.hasNext === true ? `
-              <video-control class="video-controls__next" video-control:type="next">
+              <video-control class="" video-control:type="next">
                 ${(0, _icons.Icon).forward}
               </video-control>
                 ` : ``}
 
           ${this.hasMuteUnmute === true ? `
-              <video-control class="video-controls__mute-unmute" video-control:type="mute-unmute">
+              <video-control class="" video-control:type="mute-unmute">
                 ${(0, _icons.Icon).speakerWave}
               </video-control>
                 ` : ``}
           ${this.hasVolume === true ? `
-              <div class="video-controls__volume-container">
-                  <video-control class="video-controls__volume" video-control:type="volume"></video-control>
+              <div class="h:full display:flex items:center">
+                  <video-control class="h:full display:flex items:center" video-control:type="volume"></video-control>
               </div>
                 ` : ``}
         </section>
@@ -11031,10 +10986,10 @@ var _icons = require("../../utils/icons");
 class CpxVideoControl extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("video-control:appearance") || document.querySelector("video-player").getAttribute("video-player:appearance") || "default";
         this.classNames = this.getAttribute("video-control:class") || "";
         this.type = this.getAttribute("video-control:type") || "play-pause";
         this.icon = this.getAttribute("video-control:icon") || "play";
+        this.size = this.getAttribute("video-control:size") || "9";
         this.hasIcon = eval(this.getAttribute("video-control:has-icon")) || true;
         this.hasText = eval(this.getAttribute("video-control:has-text")) || false;
     }
@@ -11045,22 +11000,22 @@ class CpxVideoControl extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `  
-            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="video-control video-control--${this.appearance} video-control--slider ${this.classNames}" video-control="${this.type}">` : `
+            ${this.type === "progress-bar" || this.type === "volume" ? `<input type="range" class="${this.classNames}" video-control="${this.type}">` : `
                 <button 
                 click:delete
-                class="video-control video-control--${this.appearance} ${this.classNames}"
+                class="size:${this.size} w:${this.size} h:${this.size} ${this.classNames}"
                 video-control="${this.type}">
                 ${this.initialContent !== "" ? this.initialContent : `
-                    <section class="video-control__inner-container">
-                        ${this.hasIcon ? `${this.type === "play-pause" ? `   <div  class="video-control__icon">
+                    <section class="">
+                        ${this.hasIcon ? `${this.type === "play-pause" ? `   <div  class="">
                                             ${this.querySelector("button").getAttribute("video-current-state") === "play" ? (0, _icons.Icon).pause : (0, _icons.Icon).play}
                                         </div>` : ``}
-                                <div class="video-control__icon">
+                                <div class="">
                                     ${(0, _icons.Icon)[this.icon]}
                                 </div>
                                     ` : ""}
                         ${this.hasText ? `
-                                <div class="video-control__text">
+                                <div class="">
                                     ${this.type}
                                 </div>
                                 ` : ""}
@@ -11089,7 +11044,6 @@ var _element = require("../../element");
 class CpxVideoPlaylist extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("video-playlist:appearance") || "default";
         this.classNames = this.getAttribute("video-playlist:class") || "";
         this.baseUrl = this.getAttribute("video-playlist:url") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:url") : "https://api.coverr.co/videos/");
         this.apiKey = this.getAttribute("video-playlist:api-key") || (this.closest("video-player") ? this.closest("video-player").getAttribute("video-player:api-key") : "45e2e6d3f93979c3e38af50d42150752");
@@ -11120,13 +11074,12 @@ class CpxVideoPlaylist extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-        <div video-playlist class="video-playlist ${this.classNames}">
+        <div video-playlist class="${this.classNames}">
             ${this.initialContent !== "" ? `${this.initialContent}` : `
                 ${this.playlist.map((video, index)=>{
             return `
                   <video-playlist-item
-                    class="video-playlist__item"
-                    video-playlist-item:appearance="${this.appearance}"
+                    class=""
                     video-playlist-item:title="${video.title}"
                     video-playlist-item:artist="${video.artist}"
                     video-playlist-item:url="${video.url}"></video-playlist-item>`;
@@ -11154,7 +11107,6 @@ var _index = require("../../index");
 class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.appearance = this.getAttribute("video-playlist-item:appearance") || "default";
         this.classNames = this.getAttribute("video-playlist-item:class") || "";
         this.videoPoster = this.getAttribute("video-playlist-item:poster") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:poster") : "https://placehold.co/100");
         this.videoUrl = this.getAttribute("video-playlist-item:url") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:url") : "https://api.coverr.co/videos/");
@@ -11165,13 +11117,13 @@ class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-        <button click:storage:local:set(currentvideo,${(0, _index.Cpx).String.toHtml(this.videoTitle)}) class="video-playlist-item video-playlist-item--${this.appearance} ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
-          ${this.initialContent !== "" ? this.initialContent : `<section class="video-playlist-item__row">
-                        <div class="video-playlist-item__left">
+        <button click:storage:local:set(currentvideo,${(0, _index.Cpx).String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:gray-300 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
+          ${this.initialContent !== "" ? this.initialContent : `<section class="display:flex">
+                        <div class="display:flex">
                             <img video-playlist-item="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
                             <p video-playlist-item="title">${this.videoTitle}</p>
                         </div>
-                        <p class="video-playlist-item__right" video-playlist-item="artist">${this.videoArtist}</p>
+                        <p class="" video-playlist-item="artist">${this.videoArtist}</p>
                    </section>
                     `}
         </button>
@@ -11180,7 +11132,2249 @@ class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
 }
 customElements.define(`video-playlist-item`, CpxVideoPlaylistItem);
 
-},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1hvL3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SkeletonElement", ()=>(0, _skeletonElement.CpxSkeletonElement));
+var _skeletonElement = require("./SkeletonElement");
+
+},{"./SkeletonElement":"1N0Ef","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1N0Ef":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Picture Element
+ * @description
+ * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * @example
+ * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ */ parcelHelpers.export(exports, "CpxSkeletonElement", ()=>CpxSkeletonElement);
+var _element = require("../../element");
+class CpxSkeletonElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("skeleton-element:class") || "";
+        this.display = this.getAttribute("skeleton-element:display") || "inline-block";
+        this.color = this.getAttribute("skeleton-element:color") || "gray-300";
+        this.borderRadius = this.getAttribute("skeleton-element:border-radius") || "sm";
+        this.width = this.getAttribute("skeleton-element:width") || "lg";
+        this.height = this.getAttribute("skeleton-element:height") || "5";
+    }
+    render() {
+        this.innerHTML = `  
+        <div class="h:${this.height} w:full max-w:${this.width} display:${this.display}  radius:${this.borderRadius} bg:${this.color} ${this.classNames}">
+        </div>
+        `;
+    }
+}
+customElements.define(`skeleton-element`, CpxSkeletonElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bshMI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Object", ()=>Object);
+const Object = {
+    /**
+   * @name create
+   * @param elementType
+   * @returns {HTMLElement}
+   * @description Create a new element
+   * @example
+   * const newElement = Object.create("div");
+   */ create: (elementType = "div")=>{
+        return document.createElement(elementType);
+    },
+    /**
+   * @name insert
+   * @param element
+   * @param parent
+   * @description Insert an element into the DOM
+   * @example
+   * Object.insert(newElement, parentElement);
+   */ insert: (element, parent = document.querySelector("body"))=>{
+        parent.appendChild(element);
+    },
+    /**
+   * @name remove
+   * @param element
+   * @param parent
+   * @description Remove an element from the DOM
+   * @example
+   * Object.remove(newElement, parentElement);
+   */ remove: (element, parent)=>{
+        if (parent) parent.removeChild(element);
+        else element.remove();
+    },
+    Add: {
+        /**
+     * @name attribute
+     * @param element 
+     * @param attribute 
+     * @param value 
+     * @description Add an attribute to an element
+     * @example
+     * Object.Add.attribute(newElement, "id", "new-id");
+     */ attribute: (element, attribute, value)=>{
+            element.setAttribute(attribute, value);
+        },
+        /**
+     * @name id
+     * @param element 
+     * @param id
+     * @description Add an id to an element
+     * @example
+     * Object.Add.id(newElement, "new-id"); 
+     */ id: (element, id)=>{
+            element.id = id;
+        },
+        /**
+     * @name class
+     * @param element 
+     * @param className 
+     * @description Add a class to an element
+     * @example
+     * Object.Add.class(newElement, "new-class");
+     */ class: (element, className)=>{
+            element.classList.add(className);
+        }
+    },
+    Delete: {
+        /**
+     * @name attribute
+     * @param element 
+     * @param attribute 
+     * @description Remove an attribute from an element
+     * @example
+     * Object.Delete.attribute(newElement, "id");
+     */ attribute: (element, attribute)=>{
+            element.removeAttribute(attribute);
+        },
+        /**
+     * @name id
+     * @param element 
+     * @description Remove an id from an element
+     * @example
+     * Object.Delete.id(newElement);
+     */ id: (element)=>{
+            element.id = "";
+        },
+        /**
+     * @name class
+     * @param element 
+     * @param className
+     * @description Remove a class from an element
+     * @example
+     * Object.Delete.class(newElement, "new-class"); 
+     */ class: (element, className)=>{
+            element.classList.remove(className);
+        }
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gOZMd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PictureElement", ()=>(0, _pictureElement.CpxPictureElement));
+var _pictureElement = require("./PictureElement");
+
+},{"./PictureElement":"11clR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"11clR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Picture Element
+ * @description
+ * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * @example
+ * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ */ parcelHelpers.export(exports, "CpxPictureElement", ()=>CpxPictureElement);
+var _element = require("../../element");
+class CpxPictureElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("picture-element:class") || "";
+        this.width = this.getAttribute("picture-element:width") || "600";
+        this.height = this.getAttribute("picture-element:height") || "600";
+        this.aspectRatio = this.getAttribute("picture-element:aspect-ratio") || "1/1";
+        this.alt = this.getAttribute("picture-element:alt") || "";
+        this.url = this.getAttribute("picture-element:url") || "https://via.placeholder.com/150";
+        this.urlImgBig = this.getAttribute("picture-element:screen:xl:url") || false;
+        this.urlImgMedium = this.getAttribute("picture-element:screen:md:url") || false;
+        this.screenBig = this.getAttribute("picture-element:screen:xl") || "1240px";
+        this.screenMedium = this.getAttribute("picture-element:screen:md") || "720px";
+        this.loading = this.getAttribute("picture-element:loading") || "lazy";
+    }
+    render() {
+        this.innerHTML = `  
+        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class="picture-element ${this.classNames}">
+        <suspense-all>
+            <picture> 
+              ${this.urlImgBig !== false ? `<source media="(min-width:${this.screenBig})" srcset="${this.urlImgBig}?as=webp?width=${this.screenBig}">` : ``}
+              ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
+                <img loading="${this.loading}" class="picture-element__img" src="${this.url}" alt="${this.alt}">
+            </picture>
+            ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
+            </suspense-all>
+          </figure>
+        `;
+    }
+}
+customElements.define(`picture-element`, CpxPictureElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1CUIs":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ParseMarkdown", ()=>(0, _parseMarkdown.CpxParseMarkdown));
+var _parseMarkdown = require("./ParseMarkdown");
+
+},{"./ParseMarkdown":"bOLIv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bOLIv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Log the behavior of marked
+parcelHelpers.export(exports, "CpxParseMarkdown", ()=>CpxParseMarkdown);
+var _element = require("../../element");
+var _marked = require("marked");
+class CpxParseMarkdown extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("parse-markdown:class") || "";
+        this.sourceUrl = this.getAttribute("parse-markdown:url") || "";
+        this.hasBaseStyles = this.getAttribute("parse-markdown:styles") || false;
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        const evalBaseStyles = eval(this.hasBaseStyles);
+        if (this.initialContent !== "") fetch(this.initialContent).then((response)=>response.text()).then((markdownContent)=>{
+            // Parse the Markdown content using marked
+            this.innerHTML = `
+          <div class="parse-markdown parse-markdown--styles-${evalBaseStyles.toString()} ${this.classNames}">
+            ${_marked.parse(markdownContent)}
+          </div>
+        `;
+        }).catch((error)=>{
+            console.error("Error fetching Markdown Initial Content:", error);
+        });
+        // Check if sourceUrl is provided
+        if (!this.sourceUrl) {
+            console.error("No source URL provided for Markdown content.");
+            return;
+        }
+        // Fetch the Markdown content from the source URL
+        fetch(this.sourceUrl).then((response)=>response.text()).then((markdownContent)=>{
+            // Parse the Markdown content using marked
+            this.innerHTML = `
+          <div class="parse-markdown parse-markdown--styles-${evalBaseStyles.toString()} ${this.classNames}">
+            ${_marked.parse(markdownContent)}
+          </div>
+        `;
+        }).catch((error)=>{
+            console.error("Error fetching Markdown content:", error);
+        });
+    }
+}
+customElements.define(`parse-markdown`, CpxParseMarkdown);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","marked":"4duqf"}],"4duqf":[function(require,module,exports) {
+/**
+ * marked v12.0.1 - a markdown parser
+ * Copyright (c) 2011-2024, Christopher Jeffrey. (MIT Licensed)
+ * https://github.com/markedjs/marked
+ */ /**
+ * DO NOT EDIT THIS FILE
+ * The code in this file is generated from files in ./src/
+ */ (function(global, factory) {
+    factory(exports);
+})(this, function(exports1) {
+    "use strict";
+    /**
+     * Gets the original marked default options.
+     */ function _getDefaults() {
+        return {
+            async: false,
+            breaks: false,
+            extensions: null,
+            gfm: true,
+            hooks: null,
+            pedantic: false,
+            renderer: null,
+            silent: false,
+            tokenizer: null,
+            walkTokens: null
+        };
+    }
+    exports1.defaults = _getDefaults();
+    function changeDefaults(newDefaults) {
+        exports1.defaults = newDefaults;
+    }
+    /**
+     * Helpers
+     */ const escapeTest = /[&<>"']/;
+    const escapeReplace = new RegExp(escapeTest.source, "g");
+    const escapeTestNoEncode = /[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/;
+    const escapeReplaceNoEncode = new RegExp(escapeTestNoEncode.source, "g");
+    const escapeReplacements = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    };
+    const getEscapeReplacement = (ch)=>escapeReplacements[ch];
+    function escape$1(html, encode) {
+        if (encode) {
+            if (escapeTest.test(html)) return html.replace(escapeReplace, getEscapeReplacement);
+        } else {
+            if (escapeTestNoEncode.test(html)) return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
+        }
+        return html;
+    }
+    const unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig;
+    function unescape(html) {
+        // explicitly match decimal, hex, and named HTML entities
+        return html.replace(unescapeTest, (_, n)=>{
+            n = n.toLowerCase();
+            if (n === "colon") return ":";
+            if (n.charAt(0) === "#") return n.charAt(1) === "x" ? String.fromCharCode(parseInt(n.substring(2), 16)) : String.fromCharCode(+n.substring(1));
+            return "";
+        });
+    }
+    const caret = /(^|[^\[])\^/g;
+    function edit(regex, opt) {
+        let source = typeof regex === "string" ? regex : regex.source;
+        opt = opt || "";
+        const obj = {
+            replace: (name, val)=>{
+                let valSource = typeof val === "string" ? val : val.source;
+                valSource = valSource.replace(caret, "$1");
+                source = source.replace(name, valSource);
+                return obj;
+            },
+            getRegex: ()=>{
+                return new RegExp(source, opt);
+            }
+        };
+        return obj;
+    }
+    function cleanUrl(href) {
+        try {
+            href = encodeURI(href).replace(/%25/g, "%");
+        } catch (e) {
+            return null;
+        }
+        return href;
+    }
+    const noopTest = {
+        exec: ()=>null
+    };
+    function splitCells(tableRow, count) {
+        // ensure that every cell-delimiting pipe has a space
+        // before it to distinguish it from an escaped pipe
+        const row = tableRow.replace(/\|/g, (match, offset, str)=>{
+            let escaped = false;
+            let curr = offset;
+            while(--curr >= 0 && str[curr] === "\\")escaped = !escaped;
+            if (escaped) // odd number of slashes means | is escaped
+            // so we leave it alone
+            return "|";
+            else // add space before unescaped |
+            return " |";
+        }), cells = row.split(/ \|/);
+        let i = 0;
+        // First/last cell in a row cannot be empty if it has no leading/trailing pipe
+        if (!cells[0].trim()) cells.shift();
+        if (cells.length > 0 && !cells[cells.length - 1].trim()) cells.pop();
+        if (count) {
+            if (cells.length > count) cells.splice(count);
+            else while(cells.length < count)cells.push("");
+        }
+        for(; i < cells.length; i++)// leading or trailing whitespace is ignored per the gfm spec
+        cells[i] = cells[i].trim().replace(/\\\|/g, "|");
+        return cells;
+    }
+    /**
+     * Remove trailing 'c's. Equivalent to str.replace(/c*$/, '').
+     * /c*$/ is vulnerable to REDOS.
+     *
+     * @param str
+     * @param c
+     * @param invert Remove suffix of non-c chars instead. Default falsey.
+     */ function rtrim(str, c, invert) {
+        const l = str.length;
+        if (l === 0) return "";
+        // Length of suffix matching the invert condition.
+        let suffLen = 0;
+        // Step left until we fail to match the invert condition.
+        while(suffLen < l){
+            const currChar = str.charAt(l - suffLen - 1);
+            if (currChar === c && !invert) suffLen++;
+            else if (currChar !== c && invert) suffLen++;
+            else break;
+        }
+        return str.slice(0, l - suffLen);
+    }
+    function findClosingBracket(str, b) {
+        if (str.indexOf(b[1]) === -1) return -1;
+        let level = 0;
+        for(let i = 0; i < str.length; i++){
+            if (str[i] === "\\") i++;
+            else if (str[i] === b[0]) level++;
+            else if (str[i] === b[1]) {
+                level--;
+                if (level < 0) return i;
+            }
+        }
+        return -1;
+    }
+    function outputLink(cap, link, raw, lexer) {
+        const href = link.href;
+        const title = link.title ? escape$1(link.title) : null;
+        const text = cap[1].replace(/\\([\[\]])/g, "$1");
+        if (cap[0].charAt(0) !== "!") {
+            lexer.state.inLink = true;
+            const token = {
+                type: "link",
+                raw,
+                href,
+                title,
+                text,
+                tokens: lexer.inlineTokens(text)
+            };
+            lexer.state.inLink = false;
+            return token;
+        }
+        return {
+            type: "image",
+            raw,
+            href,
+            title,
+            text: escape$1(text)
+        };
+    }
+    function indentCodeCompensation(raw, text) {
+        const matchIndentToCode = raw.match(/^(\s+)(?:```)/);
+        if (matchIndentToCode === null) return text;
+        const indentToCode = matchIndentToCode[1];
+        return text.split("\n").map((node)=>{
+            const matchIndentInNode = node.match(/^\s+/);
+            if (matchIndentInNode === null) return node;
+            const [indentInNode] = matchIndentInNode;
+            if (indentInNode.length >= indentToCode.length) return node.slice(indentToCode.length);
+            return node;
+        }).join("\n");
+    }
+    /**
+     * Tokenizer
+     */ class _Tokenizer {
+        options;
+        rules;
+        lexer;
+        constructor(options){
+            this.options = options || exports1.defaults;
+        }
+        space(src) {
+            const cap = this.rules.block.newline.exec(src);
+            if (cap && cap[0].length > 0) return {
+                type: "space",
+                raw: cap[0]
+            };
+        }
+        code(src) {
+            const cap = this.rules.block.code.exec(src);
+            if (cap) {
+                const text = cap[0].replace(/^ {1,4}/gm, "");
+                return {
+                    type: "code",
+                    raw: cap[0],
+                    codeBlockStyle: "indented",
+                    text: !this.options.pedantic ? rtrim(text, "\n") : text
+                };
+            }
+        }
+        fences(src) {
+            const cap = this.rules.block.fences.exec(src);
+            if (cap) {
+                const raw = cap[0];
+                const text = indentCodeCompensation(raw, cap[3] || "");
+                return {
+                    type: "code",
+                    raw,
+                    lang: cap[2] ? cap[2].trim().replace(this.rules.inline.anyPunctuation, "$1") : cap[2],
+                    text
+                };
+            }
+        }
+        heading(src) {
+            const cap = this.rules.block.heading.exec(src);
+            if (cap) {
+                let text = cap[2].trim();
+                // remove trailing #s
+                if (/#$/.test(text)) {
+                    const trimmed = rtrim(text, "#");
+                    if (this.options.pedantic) text = trimmed.trim();
+                    else if (!trimmed || / $/.test(trimmed)) // CommonMark requires space before trailing #s
+                    text = trimmed.trim();
+                }
+                return {
+                    type: "heading",
+                    raw: cap[0],
+                    depth: cap[1].length,
+                    text,
+                    tokens: this.lexer.inline(text)
+                };
+            }
+        }
+        hr(src) {
+            const cap = this.rules.block.hr.exec(src);
+            if (cap) return {
+                type: "hr",
+                raw: cap[0]
+            };
+        }
+        blockquote(src) {
+            const cap = this.rules.block.blockquote.exec(src);
+            if (cap) {
+                const text = rtrim(cap[0].replace(/^ *>[ \t]?/gm, ""), "\n");
+                const top = this.lexer.state.top;
+                this.lexer.state.top = true;
+                const tokens = this.lexer.blockTokens(text);
+                this.lexer.state.top = top;
+                return {
+                    type: "blockquote",
+                    raw: cap[0],
+                    tokens,
+                    text
+                };
+            }
+        }
+        list(src) {
+            let cap = this.rules.block.list.exec(src);
+            if (cap) {
+                let bull = cap[1].trim();
+                const isordered = bull.length > 1;
+                const list = {
+                    type: "list",
+                    raw: "",
+                    ordered: isordered,
+                    start: isordered ? +bull.slice(0, -1) : "",
+                    loose: false,
+                    items: []
+                };
+                bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
+                if (this.options.pedantic) bull = isordered ? bull : "[*+-]";
+                // Get next list item
+                const itemRegex = new RegExp(`^( {0,3}${bull})((?:[\t ][^\\n]*)?(?:\\n|$))`);
+                let raw = "";
+                let itemContents = "";
+                let endsWithBlankLine = false;
+                // Check if current bullet point can start a new List Item
+                while(src){
+                    let endEarly = false;
+                    if (!(cap = itemRegex.exec(src))) break;
+                    if (this.rules.block.hr.test(src)) break;
+                    raw = cap[0];
+                    src = src.substring(raw.length);
+                    let line = cap[2].split("\n", 1)[0].replace(/^\t+/, (t)=>" ".repeat(3 * t.length));
+                    let nextLine = src.split("\n", 1)[0];
+                    let indent = 0;
+                    if (this.options.pedantic) {
+                        indent = 2;
+                        itemContents = line.trimStart();
+                    } else {
+                        indent = cap[2].search(/[^ ]/); // Find first non-space char
+                        indent = indent > 4 ? 1 : indent; // Treat indented code blocks (> 4 spaces) as having only 1 indent
+                        itemContents = line.slice(indent);
+                        indent += cap[1].length;
+                    }
+                    let blankLine = false;
+                    if (!line && /^ *$/.test(nextLine)) {
+                        raw += nextLine + "\n";
+                        src = src.substring(nextLine.length + 1);
+                        endEarly = true;
+                    }
+                    if (!endEarly) {
+                        const nextBulletRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:[*+-]|\\d{1,9}[.)])((?:[ \t][^\\n]*)?(?:\\n|$))`);
+                        const hrRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`);
+                        const fencesBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:\`\`\`|~~~)`);
+                        const headingBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}#`);
+                        // Check if following lines should be included in List Item
+                        while(src){
+                            const rawLine = src.split("\n", 1)[0];
+                            nextLine = rawLine;
+                            // Re-align to follow commonmark nesting rules
+                            if (this.options.pedantic) nextLine = nextLine.replace(/^ {1,4}(?=( {4})*[^ ])/g, "  ");
+                            // End list item if found code fences
+                            if (fencesBeginRegex.test(nextLine)) break;
+                            // End list item if found start of new heading
+                            if (headingBeginRegex.test(nextLine)) break;
+                            // End list item if found start of new bullet
+                            if (nextBulletRegex.test(nextLine)) break;
+                            // Horizontal rule found
+                            if (hrRegex.test(src)) break;
+                            if (nextLine.search(/[^ ]/) >= indent || !nextLine.trim()) itemContents += "\n" + nextLine.slice(indent);
+                            else {
+                                // not enough indentation
+                                if (blankLine) break;
+                                // paragraph continuation unless last line was a different block level element
+                                if (line.search(/[^ ]/) >= 4) break;
+                                if (fencesBeginRegex.test(line)) break;
+                                if (headingBeginRegex.test(line)) break;
+                                if (hrRegex.test(line)) break;
+                                itemContents += "\n" + nextLine;
+                            }
+                            if (!blankLine && !nextLine.trim()) blankLine = true;
+                            raw += rawLine + "\n";
+                            src = src.substring(rawLine.length + 1);
+                            line = nextLine.slice(indent);
+                        }
+                    }
+                    if (!list.loose) {
+                        // If the previous item ended with a blank line, the list is loose
+                        if (endsWithBlankLine) list.loose = true;
+                        else if (/\n *\n *$/.test(raw)) endsWithBlankLine = true;
+                    }
+                    let istask = null;
+                    let ischecked;
+                    // Check for task list items
+                    if (this.options.gfm) {
+                        istask = /^\[[ xX]\] /.exec(itemContents);
+                        if (istask) {
+                            ischecked = istask[0] !== "[ ] ";
+                            itemContents = itemContents.replace(/^\[[ xX]\] +/, "");
+                        }
+                    }
+                    list.items.push({
+                        type: "list_item",
+                        raw,
+                        task: !!istask,
+                        checked: ischecked,
+                        loose: false,
+                        text: itemContents,
+                        tokens: []
+                    });
+                    list.raw += raw;
+                }
+                // Do not consume newlines at end of final item. Alternatively, make itemRegex *start* with any newlines to simplify/speed up endsWithBlankLine logic
+                list.items[list.items.length - 1].raw = raw.trimEnd();
+                list.items[list.items.length - 1].text = itemContents.trimEnd();
+                list.raw = list.raw.trimEnd();
+                // Item child tokens handled here at end because we needed to have the final item to trim it first
+                for(let i = 0; i < list.items.length; i++){
+                    this.lexer.state.top = false;
+                    list.items[i].tokens = this.lexer.blockTokens(list.items[i].text, []);
+                    if (!list.loose) {
+                        // Check if list should be loose
+                        const spacers = list.items[i].tokens.filter((t)=>t.type === "space");
+                        const hasMultipleLineBreaks = spacers.length > 0 && spacers.some((t)=>/\n.*\n/.test(t.raw));
+                        list.loose = hasMultipleLineBreaks;
+                    }
+                }
+                // Set all items to loose if list is loose
+                if (list.loose) for(let i = 0; i < list.items.length; i++)list.items[i].loose = true;
+                return list;
+            }
+        }
+        html(src) {
+            const cap = this.rules.block.html.exec(src);
+            if (cap) {
+                const token = {
+                    type: "html",
+                    block: true,
+                    raw: cap[0],
+                    pre: cap[1] === "pre" || cap[1] === "script" || cap[1] === "style",
+                    text: cap[0]
+                };
+                return token;
+            }
+        }
+        def(src) {
+            const cap = this.rules.block.def.exec(src);
+            if (cap) {
+                const tag = cap[1].toLowerCase().replace(/\s+/g, " ");
+                const href = cap[2] ? cap[2].replace(/^<(.*)>$/, "$1").replace(this.rules.inline.anyPunctuation, "$1") : "";
+                const title = cap[3] ? cap[3].substring(1, cap[3].length - 1).replace(this.rules.inline.anyPunctuation, "$1") : cap[3];
+                return {
+                    type: "def",
+                    tag,
+                    raw: cap[0],
+                    href,
+                    title
+                };
+            }
+        }
+        table(src) {
+            const cap = this.rules.block.table.exec(src);
+            if (!cap) return;
+            if (!/[:|]/.test(cap[2])) // delimiter row must have a pipe (|) or colon (:) otherwise it is a setext heading
+            return;
+            const headers = splitCells(cap[1]);
+            const aligns = cap[2].replace(/^\||\| *$/g, "").split("|");
+            const rows = cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, "").split("\n") : [];
+            const item = {
+                type: "table",
+                raw: cap[0],
+                header: [],
+                align: [],
+                rows: []
+            };
+            if (headers.length !== aligns.length) // header and align columns must be equal, rows can be different.
+            return;
+            for (const align of aligns){
+                if (/^ *-+: *$/.test(align)) item.align.push("right");
+                else if (/^ *:-+: *$/.test(align)) item.align.push("center");
+                else if (/^ *:-+ *$/.test(align)) item.align.push("left");
+                else item.align.push(null);
+            }
+            for (const header of headers)item.header.push({
+                text: header,
+                tokens: this.lexer.inline(header)
+            });
+            for (const row of rows)item.rows.push(splitCells(row, item.header.length).map((cell)=>{
+                return {
+                    text: cell,
+                    tokens: this.lexer.inline(cell)
+                };
+            }));
+            return item;
+        }
+        lheading(src) {
+            const cap = this.rules.block.lheading.exec(src);
+            if (cap) return {
+                type: "heading",
+                raw: cap[0],
+                depth: cap[2].charAt(0) === "=" ? 1 : 2,
+                text: cap[1],
+                tokens: this.lexer.inline(cap[1])
+            };
+        }
+        paragraph(src) {
+            const cap = this.rules.block.paragraph.exec(src);
+            if (cap) {
+                const text = cap[1].charAt(cap[1].length - 1) === "\n" ? cap[1].slice(0, -1) : cap[1];
+                return {
+                    type: "paragraph",
+                    raw: cap[0],
+                    text,
+                    tokens: this.lexer.inline(text)
+                };
+            }
+        }
+        text(src) {
+            const cap = this.rules.block.text.exec(src);
+            if (cap) return {
+                type: "text",
+                raw: cap[0],
+                text: cap[0],
+                tokens: this.lexer.inline(cap[0])
+            };
+        }
+        escape(src) {
+            const cap = this.rules.inline.escape.exec(src);
+            if (cap) return {
+                type: "escape",
+                raw: cap[0],
+                text: escape$1(cap[1])
+            };
+        }
+        tag(src) {
+            const cap = this.rules.inline.tag.exec(src);
+            if (cap) {
+                if (!this.lexer.state.inLink && /^<a /i.test(cap[0])) this.lexer.state.inLink = true;
+                else if (this.lexer.state.inLink && /^<\/a>/i.test(cap[0])) this.lexer.state.inLink = false;
+                if (!this.lexer.state.inRawBlock && /^<(pre|code|kbd|script)(\s|>)/i.test(cap[0])) this.lexer.state.inRawBlock = true;
+                else if (this.lexer.state.inRawBlock && /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap[0])) this.lexer.state.inRawBlock = false;
+                return {
+                    type: "html",
+                    raw: cap[0],
+                    inLink: this.lexer.state.inLink,
+                    inRawBlock: this.lexer.state.inRawBlock,
+                    block: false,
+                    text: cap[0]
+                };
+            }
+        }
+        link(src) {
+            const cap = this.rules.inline.link.exec(src);
+            if (cap) {
+                const trimmedUrl = cap[2].trim();
+                if (!this.options.pedantic && /^</.test(trimmedUrl)) {
+                    // commonmark requires matching angle brackets
+                    if (!/>$/.test(trimmedUrl)) return;
+                    // ending angle bracket cannot be escaped
+                    const rtrimSlash = rtrim(trimmedUrl.slice(0, -1), "\\");
+                    if ((trimmedUrl.length - rtrimSlash.length) % 2 === 0) return;
+                } else {
+                    // find closing parenthesis
+                    const lastParenIndex = findClosingBracket(cap[2], "()");
+                    if (lastParenIndex > -1) {
+                        const start = cap[0].indexOf("!") === 0 ? 5 : 4;
+                        const linkLen = start + cap[1].length + lastParenIndex;
+                        cap[2] = cap[2].substring(0, lastParenIndex);
+                        cap[0] = cap[0].substring(0, linkLen).trim();
+                        cap[3] = "";
+                    }
+                }
+                let href = cap[2];
+                let title = "";
+                if (this.options.pedantic) {
+                    // split pedantic href and title
+                    const link = /^([^'"]*[^\s])\s+(['"])(.*)\2/.exec(href);
+                    if (link) {
+                        href = link[1];
+                        title = link[3];
+                    }
+                } else title = cap[3] ? cap[3].slice(1, -1) : "";
+                href = href.trim();
+                if (/^</.test(href)) {
+                    if (this.options.pedantic && !/>$/.test(trimmedUrl)) // pedantic allows starting angle bracket without ending angle bracket
+                    href = href.slice(1);
+                    else href = href.slice(1, -1);
+                }
+                return outputLink(cap, {
+                    href: href ? href.replace(this.rules.inline.anyPunctuation, "$1") : href,
+                    title: title ? title.replace(this.rules.inline.anyPunctuation, "$1") : title
+                }, cap[0], this.lexer);
+            }
+        }
+        reflink(src, links) {
+            let cap;
+            if ((cap = this.rules.inline.reflink.exec(src)) || (cap = this.rules.inline.nolink.exec(src))) {
+                const linkString = (cap[2] || cap[1]).replace(/\s+/g, " ");
+                const link = links[linkString.toLowerCase()];
+                if (!link) {
+                    const text = cap[0].charAt(0);
+                    return {
+                        type: "text",
+                        raw: text,
+                        text
+                    };
+                }
+                return outputLink(cap, link, cap[0], this.lexer);
+            }
+        }
+        emStrong(src, maskedSrc, prevChar = "") {
+            let match = this.rules.inline.emStrongLDelim.exec(src);
+            if (!match) return;
+            // _ can't be between two alphanumerics. \p{L}\p{N} includes non-english alphabet/numbers as well
+            if (match[3] && prevChar.match(/[\p{L}\p{N}]/u)) return;
+            const nextChar = match[1] || match[2] || "";
+            if (!nextChar || !prevChar || this.rules.inline.punctuation.exec(prevChar)) {
+                // unicode Regex counts emoji as 1 char; spread into array for proper count (used multiple times below)
+                const lLength = [
+                    ...match[0]
+                ].length - 1;
+                let rDelim, rLength, delimTotal = lLength, midDelimTotal = 0;
+                const endReg = match[0][0] === "*" ? this.rules.inline.emStrongRDelimAst : this.rules.inline.emStrongRDelimUnd;
+                endReg.lastIndex = 0;
+                // Clip maskedSrc to same section of string as src (move to lexer?)
+                maskedSrc = maskedSrc.slice(-1 * src.length + lLength);
+                while((match = endReg.exec(maskedSrc)) != null){
+                    rDelim = match[1] || match[2] || match[3] || match[4] || match[5] || match[6];
+                    if (!rDelim) continue; // skip single * in __abc*abc__
+                    rLength = [
+                        ...rDelim
+                    ].length;
+                    if (match[3] || match[4]) {
+                        delimTotal += rLength;
+                        continue;
+                    } else if (match[5] || match[6]) {
+                        if (lLength % 3 && !((lLength + rLength) % 3)) {
+                            midDelimTotal += rLength;
+                            continue; // CommonMark Emphasis Rules 9-10
+                        }
+                    }
+                    delimTotal -= rLength;
+                    if (delimTotal > 0) continue; // Haven't found enough closing delimiters
+                    // Remove extra characters. *a*** -> *a*
+                    rLength = Math.min(rLength, rLength + delimTotal + midDelimTotal);
+                    // char length can be >1 for unicode characters;
+                    const lastCharLength = [
+                        ...match[0]
+                    ][0].length;
+                    const raw = src.slice(0, lLength + match.index + lastCharLength + rLength);
+                    // Create `em` if smallest delimiter has odd char count. *a***
+                    if (Math.min(lLength, rLength) % 2) {
+                        const text = raw.slice(1, -1);
+                        return {
+                            type: "em",
+                            raw,
+                            text,
+                            tokens: this.lexer.inlineTokens(text)
+                        };
+                    }
+                    // Create 'strong' if smallest delimiter has even char count. **a***
+                    const text = raw.slice(2, -2);
+                    return {
+                        type: "strong",
+                        raw,
+                        text,
+                        tokens: this.lexer.inlineTokens(text)
+                    };
+                }
+            }
+        }
+        codespan(src) {
+            const cap = this.rules.inline.code.exec(src);
+            if (cap) {
+                let text = cap[2].replace(/\n/g, " ");
+                const hasNonSpaceChars = /[^ ]/.test(text);
+                const hasSpaceCharsOnBothEnds = /^ /.test(text) && / $/.test(text);
+                if (hasNonSpaceChars && hasSpaceCharsOnBothEnds) text = text.substring(1, text.length - 1);
+                text = escape$1(text, true);
+                return {
+                    type: "codespan",
+                    raw: cap[0],
+                    text
+                };
+            }
+        }
+        br(src) {
+            const cap = this.rules.inline.br.exec(src);
+            if (cap) return {
+                type: "br",
+                raw: cap[0]
+            };
+        }
+        del(src) {
+            const cap = this.rules.inline.del.exec(src);
+            if (cap) return {
+                type: "del",
+                raw: cap[0],
+                text: cap[2],
+                tokens: this.lexer.inlineTokens(cap[2])
+            };
+        }
+        autolink(src) {
+            const cap = this.rules.inline.autolink.exec(src);
+            if (cap) {
+                let text, href;
+                if (cap[2] === "@") {
+                    text = escape$1(cap[1]);
+                    href = "mailto:" + text;
+                } else {
+                    text = escape$1(cap[1]);
+                    href = text;
+                }
+                return {
+                    type: "link",
+                    raw: cap[0],
+                    text,
+                    href,
+                    tokens: [
+                        {
+                            type: "text",
+                            raw: text,
+                            text
+                        }
+                    ]
+                };
+            }
+        }
+        url(src) {
+            let cap;
+            if (cap = this.rules.inline.url.exec(src)) {
+                let text, href;
+                if (cap[2] === "@") {
+                    text = escape$1(cap[0]);
+                    href = "mailto:" + text;
+                } else {
+                    // do extended autolink path validation
+                    let prevCapZero;
+                    do {
+                        prevCapZero = cap[0];
+                        cap[0] = this.rules.inline._backpedal.exec(cap[0])?.[0] ?? "";
+                    }while (prevCapZero !== cap[0]);
+                    text = escape$1(cap[0]);
+                    if (cap[1] === "www.") href = "http://" + cap[0];
+                    else href = cap[0];
+                }
+                return {
+                    type: "link",
+                    raw: cap[0],
+                    text,
+                    href,
+                    tokens: [
+                        {
+                            type: "text",
+                            raw: text,
+                            text
+                        }
+                    ]
+                };
+            }
+        }
+        inlineText(src) {
+            const cap = this.rules.inline.text.exec(src);
+            if (cap) {
+                let text;
+                if (this.lexer.state.inRawBlock) text = cap[0];
+                else text = escape$1(cap[0]);
+                return {
+                    type: "text",
+                    raw: cap[0],
+                    text
+                };
+            }
+        }
+    }
+    /**
+     * Block-Level Grammar
+     */ const newline = /^(?: *(?:\n|$))+/;
+    const blockCode = /^( {4}[^\n]+(?:\n(?: *(?:\n|$))*)?)+/;
+    const fences = /^ {0,3}(`{3,}(?=[^`\n]*(?:\n|$))|~{3,})([^\n]*)(?:\n|$)(?:|([\s\S]*?)(?:\n|$))(?: {0,3}\1[~`]* *(?=\n|$)|$)/;
+    const hr = /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/;
+    const heading = /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/;
+    const bullet = /(?:[*+-]|\d{1,9}[.)])/;
+    const lheading = edit(/^(?!bull |blockCode|fences|blockquote|heading|html)((?:.|\n(?!\s*?\n|bull |blockCode|fences|blockquote|heading|html))+?)\n {0,3}(=+|-+) *(?:\n+|$)/).replace(/bull/g, bullet) // lists can interrupt
+    .replace(/blockCode/g, / {4}/) // indented code blocks can interrupt
+    .replace(/fences/g, / {0,3}(?:`{3,}|~{3,})/) // fenced code blocks can interrupt
+    .replace(/blockquote/g, / {0,3}>/) // blockquote can interrupt
+    .replace(/heading/g, / {0,3}#{1,6}/) // ATX heading can interrupt
+    .replace(/html/g, / {0,3}<[^\n>]+>\n/) // block html can interrupt
+    .getRegex();
+    const _paragraph = /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/;
+    const blockText = /^[^\n]+/;
+    const _blockLabel = /(?!\s*\])(?:\\.|[^\[\]\\])+/;
+    const def = edit(/^ {0,3}\[(label)\]: *(?:\n *)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n *)?| *\n *)(title))? *(?:\n+|$)/).replace("label", _blockLabel).replace("title", /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/).getRegex();
+    const list = edit(/^( {0,3}bull)([ \t][^\n]+?)?(?:\n|$)/).replace(/bull/g, bullet).getRegex();
+    const _tag = "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul";
+    const _comment = /<!--(?:-?>|[\s\S]*?(?:-->|$))/;
+    const html = edit("^ {0,3}(?:<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)|comment[^\\n]*(\\n+|$)|<\\?[\\s\\S]*?(?:\\?>\\n*|$)|<![A-Z][\\s\\S]*?(?:>\\n*|$)|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n *)+\\n|$)|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$))", "i").replace("comment", _comment).replace("tag", _tag).replace("attribute", / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/).getRegex();
+    const paragraph = edit(_paragraph).replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "") // setex headings don't interrupt commonmark paragraphs
+    .replace("|table", "").replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ") // only lists starting from 1 can interrupt
+    .replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag) // pars can be interrupted by type (6) html blocks
+    .getRegex();
+    const blockquote = edit(/^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/).replace("paragraph", paragraph).getRegex();
+    /**
+     * Normal Block Grammar
+     */ const blockNormal = {
+        blockquote,
+        code: blockCode,
+        def,
+        fences,
+        heading,
+        hr,
+        html,
+        lheading,
+        list,
+        newline,
+        paragraph,
+        table: noopTest,
+        text: blockText
+    };
+    /**
+     * GFM Block Grammar
+     */ const gfmTable = edit("^ *([^\\n ].*)\\n {0,3}((?:\\| *)?:?-+:? *(?:\\| *:?-+:? *)*(?:\\| *)?)(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)") // Cells
+    .replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("blockquote", " {0,3}>").replace("code", " {4}[^\\n]").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ") // only lists starting from 1 can interrupt
+    .replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag) // tables can be interrupted by type (6) html blocks
+    .getRegex();
+    const blockGfm = {
+        ...blockNormal,
+        table: gfmTable,
+        paragraph: edit(_paragraph).replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "") // setex headings don't interrupt commonmark paragraphs
+        .replace("table", gfmTable) // interrupt paragraphs with table
+        .replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ") // only lists starting from 1 can interrupt
+        .replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag) // pars can be interrupted by type (6) html blocks
+        .getRegex()
+    };
+    /**
+     * Pedantic grammar (original John Gruber's loose markdown specification)
+     */ const blockPedantic = {
+        ...blockNormal,
+        html: edit("^ *(?:comment *(?:\\n|\\s*$)|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)|<tag(?:\"[^\"]*\"|'[^']*'|\\s[^'\"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))").replace("comment", _comment).replace(/tag/g, "(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b").getRegex(),
+        def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,
+        heading: /^(#{1,6})(.*)(?:\n+|$)/,
+        fences: noopTest,
+        lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
+        paragraph: edit(_paragraph).replace("hr", hr).replace("heading", " *#{1,6} *[^\n]").replace("lheading", lheading).replace("|table", "").replace("blockquote", " {0,3}>").replace("|fences", "").replace("|list", "").replace("|html", "").replace("|tag", "").getRegex()
+    };
+    /**
+     * Inline-Level Grammar
+     */ const escape = /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/;
+    const inlineCode = /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/;
+    const br = /^( {2,}|\\)\n(?!\s*$)/;
+    const inlineText = /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/;
+    // list of unicode punctuation marks, plus any missing characters from CommonMark spec
+    const _punctuation = "\\p{P}\\p{S}";
+    const punctuation = edit(/^((?![*_])[\spunctuation])/, "u").replace(/punctuation/g, _punctuation).getRegex();
+    // sequences em should skip over [title](link), `code`, <html>
+    const blockSkip = /\[[^[\]]*?\]\([^\(\)]*?\)|`[^`]*?`|<[^<>]*?>/g;
+    const emStrongLDelim = edit(/^(?:\*+(?:((?!\*)[punct])|[^\s*]))|^_+(?:((?!_)[punct])|([^\s_]))/, "u").replace(/punct/g, _punctuation).getRegex();
+    const emStrongRDelimAst = edit("^[^_*]*?__[^_*]*?\\*[^_*]*?(?=__)|[^*]+(?=[^*])|(?!\\*)[punct](\\*+)(?=[\\s]|$)|[^punct\\s](\\*+)(?!\\*)(?=[punct\\s]|$)|(?!\\*)[punct\\s](\\*+)(?=[^punct\\s])|[\\s](\\*+)(?!\\*)(?=[punct])|(?!\\*)[punct](\\*+)(?!\\*)(?=[punct])|[^punct\\s](\\*+)(?=[^punct\\s])", "gu") // (6) a***a can be either Left or Right Delimiter
+    .replace(/punct/g, _punctuation).getRegex();
+    // (6) Not allowed for _
+    const emStrongRDelimUnd = edit("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)[punct](_+)(?=[\\s]|$)|[^punct\\s](_+)(?!_)(?=[punct\\s]|$)|(?!_)[punct\\s](_+)(?=[^punct\\s])|[\\s](_+)(?!_)(?=[punct])|(?!_)[punct](_+)(?!_)(?=[punct])", "gu") // (5) #___# can be either Left or Right Delimiter
+    .replace(/punct/g, _punctuation).getRegex();
+    const anyPunctuation = edit(/\\([punct])/, "gu").replace(/punct/g, _punctuation).getRegex();
+    const autolink = edit(/^<(scheme:[^\s\x00-\x1f<>]*|email)>/).replace("scheme", /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/).replace("email", /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/).getRegex();
+    const _inlineComment = edit(_comment).replace("(?:-->|$)", "-->").getRegex();
+    const tag = edit("^comment|^</[a-zA-Z][\\w:-]*\\s*>|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>|^<\\?[\\s\\S]*?\\?>|^<![a-zA-Z]+\\s[\\s\\S]*?>|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>") // CDATA section
+    .replace("comment", _inlineComment).replace("attribute", /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/).getRegex();
+    const _inlineLabel = /(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/;
+    const link = edit(/^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/).replace("label", _inlineLabel).replace("href", /<(?:\\.|[^\n<>\\])+>|[^\s\x00-\x1f]*/).replace("title", /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/).getRegex();
+    const reflink = edit(/^!?\[(label)\]\[(ref)\]/).replace("label", _inlineLabel).replace("ref", _blockLabel).getRegex();
+    const nolink = edit(/^!?\[(ref)\](?:\[\])?/).replace("ref", _blockLabel).getRegex();
+    const reflinkSearch = edit("reflink|nolink(?!\\()", "g").replace("reflink", reflink).replace("nolink", nolink).getRegex();
+    /**
+     * Normal Inline Grammar
+     */ const inlineNormal = {
+        _backpedal: noopTest,
+        anyPunctuation,
+        autolink,
+        blockSkip,
+        br,
+        code: inlineCode,
+        del: noopTest,
+        emStrongLDelim,
+        emStrongRDelimAst,
+        emStrongRDelimUnd,
+        escape,
+        link,
+        nolink,
+        punctuation,
+        reflink,
+        reflinkSearch,
+        tag,
+        text: inlineText,
+        url: noopTest
+    };
+    /**
+     * Pedantic Inline Grammar
+     */ const inlinePedantic = {
+        ...inlineNormal,
+        link: edit(/^!?\[(label)\]\((.*?)\)/).replace("label", _inlineLabel).getRegex(),
+        reflink: edit(/^!?\[(label)\]\s*\[([^\]]*)\]/).replace("label", _inlineLabel).getRegex()
+    };
+    /**
+     * GFM Inline Grammar
+     */ const inlineGfm = {
+        ...inlineNormal,
+        escape: edit(escape).replace("])", "~|])").getRegex(),
+        url: edit(/^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/, "i").replace("email", /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/).getRegex(),
+        _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
+        del: /^(~~?)(?=[^\s~])([\s\S]*?[^\s~])\1(?=[^~]|$)/,
+        text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/
+    };
+    /**
+     * GFM + Line Breaks Inline Grammar
+     */ const inlineBreaks = {
+        ...inlineGfm,
+        br: edit(br).replace("{2,}", "*").getRegex(),
+        text: edit(inlineGfm.text).replace("\\b_", "\\b_| {2,}\\n").replace(/\{2,\}/g, "*").getRegex()
+    };
+    /**
+     * exports
+     */ const block = {
+        normal: blockNormal,
+        gfm: blockGfm,
+        pedantic: blockPedantic
+    };
+    const inline = {
+        normal: inlineNormal,
+        gfm: inlineGfm,
+        breaks: inlineBreaks,
+        pedantic: inlinePedantic
+    };
+    /**
+     * Block Lexer
+     */ class _Lexer {
+        tokens;
+        options;
+        state;
+        tokenizer;
+        inlineQueue;
+        constructor(options){
+            // TokenList cannot be created in one go
+            this.tokens = [];
+            this.tokens.links = Object.create(null);
+            this.options = options || exports1.defaults;
+            this.options.tokenizer = this.options.tokenizer || new _Tokenizer();
+            this.tokenizer = this.options.tokenizer;
+            this.tokenizer.options = this.options;
+            this.tokenizer.lexer = this;
+            this.inlineQueue = [];
+            this.state = {
+                inLink: false,
+                inRawBlock: false,
+                top: true
+            };
+            const rules = {
+                block: block.normal,
+                inline: inline.normal
+            };
+            if (this.options.pedantic) {
+                rules.block = block.pedantic;
+                rules.inline = inline.pedantic;
+            } else if (this.options.gfm) {
+                rules.block = block.gfm;
+                if (this.options.breaks) rules.inline = inline.breaks;
+                else rules.inline = inline.gfm;
+            }
+            this.tokenizer.rules = rules;
+        }
+        /**
+         * Expose Rules
+         */ static get rules() {
+            return {
+                block,
+                inline
+            };
+        }
+        /**
+         * Static Lex Method
+         */ static lex(src, options) {
+            const lexer = new _Lexer(options);
+            return lexer.lex(src);
+        }
+        /**
+         * Static Lex Inline Method
+         */ static lexInline(src, options) {
+            const lexer = new _Lexer(options);
+            return lexer.inlineTokens(src);
+        }
+        /**
+         * Preprocessing
+         */ lex(src) {
+            src = src.replace(/\r\n|\r/g, "\n");
+            this.blockTokens(src, this.tokens);
+            for(let i = 0; i < this.inlineQueue.length; i++){
+                const next = this.inlineQueue[i];
+                this.inlineTokens(next.src, next.tokens);
+            }
+            this.inlineQueue = [];
+            return this.tokens;
+        }
+        blockTokens(src, tokens = []) {
+            if (this.options.pedantic) src = src.replace(/\t/g, "    ").replace(/^ +$/gm, "");
+            else src = src.replace(/^( *)(\t+)/gm, (_, leading, tabs)=>{
+                return leading + "    ".repeat(tabs.length);
+            });
+            let token;
+            let lastToken;
+            let cutSrc;
+            let lastParagraphClipped;
+            while(src){
+                if (this.options.extensions && this.options.extensions.block && this.options.extensions.block.some((extTokenizer)=>{
+                    if (token = extTokenizer.call({
+                        lexer: this
+                    }, src, tokens)) {
+                        src = src.substring(token.raw.length);
+                        tokens.push(token);
+                        return true;
+                    }
+                    return false;
+                })) continue;
+                // newline
+                if (token = this.tokenizer.space(src)) {
+                    src = src.substring(token.raw.length);
+                    if (token.raw.length === 1 && tokens.length > 0) // if there's a single \n as a spacer, it's terminating the last line,
+                    // so move it there so that we don't get unnecessary paragraph tags
+                    tokens[tokens.length - 1].raw += "\n";
+                    else tokens.push(token);
+                    continue;
+                }
+                // code
+                if (token = this.tokenizer.code(src)) {
+                    src = src.substring(token.raw.length);
+                    lastToken = tokens[tokens.length - 1];
+                    // An indented code block cannot interrupt a paragraph.
+                    if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
+                        lastToken.raw += "\n" + token.raw;
+                        lastToken.text += "\n" + token.text;
+                        this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+                    } else tokens.push(token);
+                    continue;
+                }
+                // fences
+                if (token = this.tokenizer.fences(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // heading
+                if (token = this.tokenizer.heading(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // hr
+                if (token = this.tokenizer.hr(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // blockquote
+                if (token = this.tokenizer.blockquote(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // list
+                if (token = this.tokenizer.list(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // html
+                if (token = this.tokenizer.html(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // def
+                if (token = this.tokenizer.def(src)) {
+                    src = src.substring(token.raw.length);
+                    lastToken = tokens[tokens.length - 1];
+                    if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
+                        lastToken.raw += "\n" + token.raw;
+                        lastToken.text += "\n" + token.raw;
+                        this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+                    } else if (!this.tokens.links[token.tag]) this.tokens.links[token.tag] = {
+                        href: token.href,
+                        title: token.title
+                    };
+                    continue;
+                }
+                // table (gfm)
+                if (token = this.tokenizer.table(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // lheading
+                if (token = this.tokenizer.lheading(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // top-level paragraph
+                // prevent paragraph consuming extensions by clipping 'src' to extension start
+                cutSrc = src;
+                if (this.options.extensions && this.options.extensions.startBlock) {
+                    let startIndex = Infinity;
+                    const tempSrc = src.slice(1);
+                    let tempStart;
+                    this.options.extensions.startBlock.forEach((getStartIndex)=>{
+                        tempStart = getStartIndex.call({
+                            lexer: this
+                        }, tempSrc);
+                        if (typeof tempStart === "number" && tempStart >= 0) startIndex = Math.min(startIndex, tempStart);
+                    });
+                    if (startIndex < Infinity && startIndex >= 0) cutSrc = src.substring(0, startIndex + 1);
+                }
+                if (this.state.top && (token = this.tokenizer.paragraph(cutSrc))) {
+                    lastToken = tokens[tokens.length - 1];
+                    if (lastParagraphClipped && lastToken.type === "paragraph") {
+                        lastToken.raw += "\n" + token.raw;
+                        lastToken.text += "\n" + token.text;
+                        this.inlineQueue.pop();
+                        this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+                    } else tokens.push(token);
+                    lastParagraphClipped = cutSrc.length !== src.length;
+                    src = src.substring(token.raw.length);
+                    continue;
+                }
+                // text
+                if (token = this.tokenizer.text(src)) {
+                    src = src.substring(token.raw.length);
+                    lastToken = tokens[tokens.length - 1];
+                    if (lastToken && lastToken.type === "text") {
+                        lastToken.raw += "\n" + token.raw;
+                        lastToken.text += "\n" + token.text;
+                        this.inlineQueue.pop();
+                        this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+                    } else tokens.push(token);
+                    continue;
+                }
+                if (src) {
+                    const errMsg = "Infinite loop on byte: " + src.charCodeAt(0);
+                    if (this.options.silent) {
+                        console.error(errMsg);
+                        break;
+                    } else throw new Error(errMsg);
+                }
+            }
+            this.state.top = true;
+            return tokens;
+        }
+        inline(src, tokens = []) {
+            this.inlineQueue.push({
+                src,
+                tokens
+            });
+            return tokens;
+        }
+        /**
+         * Lexing/Compiling
+         */ inlineTokens(src, tokens = []) {
+            let token, lastToken, cutSrc;
+            // String with links masked to avoid interference with em and strong
+            let maskedSrc = src;
+            let match;
+            let keepPrevChar, prevChar;
+            // Mask out reflinks
+            if (this.tokens.links) {
+                const links = Object.keys(this.tokens.links);
+                if (links.length > 0) {
+                    while((match = this.tokenizer.rules.inline.reflinkSearch.exec(maskedSrc)) != null)if (links.includes(match[0].slice(match[0].lastIndexOf("[") + 1, -1))) maskedSrc = maskedSrc.slice(0, match.index) + "[" + "a".repeat(match[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex);
+                }
+            }
+            // Mask out other blocks
+            while((match = this.tokenizer.rules.inline.blockSkip.exec(maskedSrc)) != null)maskedSrc = maskedSrc.slice(0, match.index) + "[" + "a".repeat(match[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
+            // Mask out escaped characters
+            while((match = this.tokenizer.rules.inline.anyPunctuation.exec(maskedSrc)) != null)maskedSrc = maskedSrc.slice(0, match.index) + "++" + maskedSrc.slice(this.tokenizer.rules.inline.anyPunctuation.lastIndex);
+            while(src){
+                if (!keepPrevChar) prevChar = "";
+                keepPrevChar = false;
+                // extensions
+                if (this.options.extensions && this.options.extensions.inline && this.options.extensions.inline.some((extTokenizer)=>{
+                    if (token = extTokenizer.call({
+                        lexer: this
+                    }, src, tokens)) {
+                        src = src.substring(token.raw.length);
+                        tokens.push(token);
+                        return true;
+                    }
+                    return false;
+                })) continue;
+                // escape
+                if (token = this.tokenizer.escape(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // tag
+                if (token = this.tokenizer.tag(src)) {
+                    src = src.substring(token.raw.length);
+                    lastToken = tokens[tokens.length - 1];
+                    if (lastToken && token.type === "text" && lastToken.type === "text") {
+                        lastToken.raw += token.raw;
+                        lastToken.text += token.text;
+                    } else tokens.push(token);
+                    continue;
+                }
+                // link
+                if (token = this.tokenizer.link(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // reflink, nolink
+                if (token = this.tokenizer.reflink(src, this.tokens.links)) {
+                    src = src.substring(token.raw.length);
+                    lastToken = tokens[tokens.length - 1];
+                    if (lastToken && token.type === "text" && lastToken.type === "text") {
+                        lastToken.raw += token.raw;
+                        lastToken.text += token.text;
+                    } else tokens.push(token);
+                    continue;
+                }
+                // em & strong
+                if (token = this.tokenizer.emStrong(src, maskedSrc, prevChar)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // code
+                if (token = this.tokenizer.codespan(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // br
+                if (token = this.tokenizer.br(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // del (gfm)
+                if (token = this.tokenizer.del(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // autolink
+                if (token = this.tokenizer.autolink(src)) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // url (gfm)
+                if (!this.state.inLink && (token = this.tokenizer.url(src))) {
+                    src = src.substring(token.raw.length);
+                    tokens.push(token);
+                    continue;
+                }
+                // text
+                // prevent inlineText consuming extensions by clipping 'src' to extension start
+                cutSrc = src;
+                if (this.options.extensions && this.options.extensions.startInline) {
+                    let startIndex = Infinity;
+                    const tempSrc = src.slice(1);
+                    let tempStart;
+                    this.options.extensions.startInline.forEach((getStartIndex)=>{
+                        tempStart = getStartIndex.call({
+                            lexer: this
+                        }, tempSrc);
+                        if (typeof tempStart === "number" && tempStart >= 0) startIndex = Math.min(startIndex, tempStart);
+                    });
+                    if (startIndex < Infinity && startIndex >= 0) cutSrc = src.substring(0, startIndex + 1);
+                }
+                if (token = this.tokenizer.inlineText(cutSrc)) {
+                    src = src.substring(token.raw.length);
+                    if (token.raw.slice(-1) !== "_") prevChar = token.raw.slice(-1);
+                    keepPrevChar = true;
+                    lastToken = tokens[tokens.length - 1];
+                    if (lastToken && lastToken.type === "text") {
+                        lastToken.raw += token.raw;
+                        lastToken.text += token.text;
+                    } else tokens.push(token);
+                    continue;
+                }
+                if (src) {
+                    const errMsg = "Infinite loop on byte: " + src.charCodeAt(0);
+                    if (this.options.silent) {
+                        console.error(errMsg);
+                        break;
+                    } else throw new Error(errMsg);
+                }
+            }
+            return tokens;
+        }
+    }
+    /**
+     * Renderer
+     */ class _Renderer {
+        options;
+        constructor(options){
+            this.options = options || exports1.defaults;
+        }
+        code(code, infostring, escaped) {
+            const lang = (infostring || "").match(/^\S*/)?.[0];
+            code = code.replace(/\n$/, "") + "\n";
+            if (!lang) return "<pre><code>" + (escaped ? code : escape$1(code, true)) + "</code></pre>\n";
+            return '<pre><code class="language-' + escape$1(lang) + '">' + (escaped ? code : escape$1(code, true)) + "</code></pre>\n";
+        }
+        blockquote(quote) {
+            return `<blockquote>\n${quote}</blockquote>\n`;
+        }
+        html(html, block) {
+            return html;
+        }
+        heading(text, level, raw) {
+            // ignore IDs
+            return `<h${level}>${text}</h${level}>\n`;
+        }
+        hr() {
+            return "<hr>\n";
+        }
+        list(body, ordered, start) {
+            const type = ordered ? "ol" : "ul";
+            const startatt = ordered && start !== 1 ? ' start="' + start + '"' : "";
+            return "<" + type + startatt + ">\n" + body + "</" + type + ">\n";
+        }
+        listitem(text, task, checked) {
+            return `<li>${text}</li>\n`;
+        }
+        checkbox(checked) {
+            return "<input " + (checked ? 'checked="" ' : "") + 'disabled="" type="checkbox">';
+        }
+        paragraph(text) {
+            return `<p>${text}</p>\n`;
+        }
+        table(header, body) {
+            if (body) body = `<tbody>${body}</tbody>`;
+            return "<table>\n<thead>\n" + header + "</thead>\n" + body + "</table>\n";
+        }
+        tablerow(content) {
+            return `<tr>\n${content}</tr>\n`;
+        }
+        tablecell(content, flags) {
+            const type = flags.header ? "th" : "td";
+            const tag = flags.align ? `<${type} align="${flags.align}">` : `<${type}>`;
+            return tag + content + `</${type}>\n`;
+        }
+        /**
+         * span level renderer
+         */ strong(text) {
+            return `<strong>${text}</strong>`;
+        }
+        em(text) {
+            return `<em>${text}</em>`;
+        }
+        codespan(text) {
+            return `<code>${text}</code>`;
+        }
+        br() {
+            return "<br>";
+        }
+        del(text) {
+            return `<del>${text}</del>`;
+        }
+        link(href, title, text) {
+            const cleanHref = cleanUrl(href);
+            if (cleanHref === null) return text;
+            href = cleanHref;
+            let out = '<a href="' + href + '"';
+            if (title) out += ' title="' + title + '"';
+            out += ">" + text + "</a>";
+            return out;
+        }
+        image(href, title, text) {
+            const cleanHref = cleanUrl(href);
+            if (cleanHref === null) return text;
+            href = cleanHref;
+            let out = `<img src="${href}" alt="${text}"`;
+            if (title) out += ` title="${title}"`;
+            out += ">";
+            return out;
+        }
+        text(text) {
+            return text;
+        }
+    }
+    /**
+     * TextRenderer
+     * returns only the textual part of the token
+     */ class _TextRenderer {
+        // no need for block level renderers
+        strong(text) {
+            return text;
+        }
+        em(text) {
+            return text;
+        }
+        codespan(text) {
+            return text;
+        }
+        del(text) {
+            return text;
+        }
+        html(text) {
+            return text;
+        }
+        text(text) {
+            return text;
+        }
+        link(href, title, text) {
+            return "" + text;
+        }
+        image(href, title, text) {
+            return "" + text;
+        }
+        br() {
+            return "";
+        }
+    }
+    /**
+     * Parsing & Compiling
+     */ class _Parser {
+        options;
+        renderer;
+        textRenderer;
+        constructor(options){
+            this.options = options || exports1.defaults;
+            this.options.renderer = this.options.renderer || new _Renderer();
+            this.renderer = this.options.renderer;
+            this.renderer.options = this.options;
+            this.textRenderer = new _TextRenderer();
+        }
+        /**
+         * Static Parse Method
+         */ static parse(tokens, options) {
+            const parser = new _Parser(options);
+            return parser.parse(tokens);
+        }
+        /**
+         * Static Parse Inline Method
+         */ static parseInline(tokens, options) {
+            const parser = new _Parser(options);
+            return parser.parseInline(tokens);
+        }
+        /**
+         * Parse Loop
+         */ parse(tokens, top = true) {
+            let out = "";
+            for(let i = 0; i < tokens.length; i++){
+                const token = tokens[i];
+                // Run any renderer extensions
+                if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
+                    const genericToken = token;
+                    const ret = this.options.extensions.renderers[genericToken.type].call({
+                        parser: this
+                    }, genericToken);
+                    if (ret !== false || ![
+                        "space",
+                        "hr",
+                        "heading",
+                        "code",
+                        "table",
+                        "blockquote",
+                        "list",
+                        "html",
+                        "paragraph",
+                        "text"
+                    ].includes(genericToken.type)) {
+                        out += ret || "";
+                        continue;
+                    }
+                }
+                switch(token.type){
+                    case "space":
+                        continue;
+                    case "hr":
+                        out += this.renderer.hr();
+                        continue;
+                    case "heading":
+                        {
+                            const headingToken = token;
+                            out += this.renderer.heading(this.parseInline(headingToken.tokens), headingToken.depth, unescape(this.parseInline(headingToken.tokens, this.textRenderer)));
+                            continue;
+                        }
+                    case "code":
+                        {
+                            const codeToken = token;
+                            out += this.renderer.code(codeToken.text, codeToken.lang, !!codeToken.escaped);
+                            continue;
+                        }
+                    case "table":
+                        {
+                            const tableToken = token;
+                            let header = "";
+                            // header
+                            let cell = "";
+                            for(let j = 0; j < tableToken.header.length; j++)cell += this.renderer.tablecell(this.parseInline(tableToken.header[j].tokens), {
+                                header: true,
+                                align: tableToken.align[j]
+                            });
+                            header += this.renderer.tablerow(cell);
+                            let body = "";
+                            for(let j = 0; j < tableToken.rows.length; j++){
+                                const row = tableToken.rows[j];
+                                cell = "";
+                                for(let k = 0; k < row.length; k++)cell += this.renderer.tablecell(this.parseInline(row[k].tokens), {
+                                    header: false,
+                                    align: tableToken.align[k]
+                                });
+                                body += this.renderer.tablerow(cell);
+                            }
+                            out += this.renderer.table(header, body);
+                            continue;
+                        }
+                    case "blockquote":
+                        {
+                            const blockquoteToken = token;
+                            const body = this.parse(blockquoteToken.tokens);
+                            out += this.renderer.blockquote(body);
+                            continue;
+                        }
+                    case "list":
+                        {
+                            const listToken = token;
+                            const ordered = listToken.ordered;
+                            const start = listToken.start;
+                            const loose = listToken.loose;
+                            let body = "";
+                            for(let j = 0; j < listToken.items.length; j++){
+                                const item = listToken.items[j];
+                                const checked = item.checked;
+                                const task = item.task;
+                                let itemBody = "";
+                                if (item.task) {
+                                    const checkbox = this.renderer.checkbox(!!checked);
+                                    if (loose) {
+                                        if (item.tokens.length > 0 && item.tokens[0].type === "paragraph") {
+                                            item.tokens[0].text = checkbox + " " + item.tokens[0].text;
+                                            if (item.tokens[0].tokens && item.tokens[0].tokens.length > 0 && item.tokens[0].tokens[0].type === "text") item.tokens[0].tokens[0].text = checkbox + " " + item.tokens[0].tokens[0].text;
+                                        } else item.tokens.unshift({
+                                            type: "text",
+                                            text: checkbox + " "
+                                        });
+                                    } else itemBody += checkbox + " ";
+                                }
+                                itemBody += this.parse(item.tokens, loose);
+                                body += this.renderer.listitem(itemBody, task, !!checked);
+                            }
+                            out += this.renderer.list(body, ordered, start);
+                            continue;
+                        }
+                    case "html":
+                        {
+                            const htmlToken = token;
+                            out += this.renderer.html(htmlToken.text, htmlToken.block);
+                            continue;
+                        }
+                    case "paragraph":
+                        {
+                            const paragraphToken = token;
+                            out += this.renderer.paragraph(this.parseInline(paragraphToken.tokens));
+                            continue;
+                        }
+                    case "text":
+                        {
+                            let textToken = token;
+                            let body = textToken.tokens ? this.parseInline(textToken.tokens) : textToken.text;
+                            while(i + 1 < tokens.length && tokens[i + 1].type === "text"){
+                                textToken = tokens[++i];
+                                body += "\n" + (textToken.tokens ? this.parseInline(textToken.tokens) : textToken.text);
+                            }
+                            out += top ? this.renderer.paragraph(body) : body;
+                            continue;
+                        }
+                    default:
+                        {
+                            const errMsg = 'Token with "' + token.type + '" type was not found.';
+                            if (this.options.silent) {
+                                console.error(errMsg);
+                                return "";
+                            } else throw new Error(errMsg);
+                        }
+                }
+            }
+            return out;
+        }
+        /**
+         * Parse Inline Tokens
+         */ parseInline(tokens, renderer) {
+            renderer = renderer || this.renderer;
+            let out = "";
+            for(let i = 0; i < tokens.length; i++){
+                const token = tokens[i];
+                // Run any renderer extensions
+                if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
+                    const ret = this.options.extensions.renderers[token.type].call({
+                        parser: this
+                    }, token);
+                    if (ret !== false || ![
+                        "escape",
+                        "html",
+                        "link",
+                        "image",
+                        "strong",
+                        "em",
+                        "codespan",
+                        "br",
+                        "del",
+                        "text"
+                    ].includes(token.type)) {
+                        out += ret || "";
+                        continue;
+                    }
+                }
+                switch(token.type){
+                    case "escape":
+                        {
+                            const escapeToken = token;
+                            out += renderer.text(escapeToken.text);
+                            break;
+                        }
+                    case "html":
+                        {
+                            const tagToken = token;
+                            out += renderer.html(tagToken.text);
+                            break;
+                        }
+                    case "link":
+                        {
+                            const linkToken = token;
+                            out += renderer.link(linkToken.href, linkToken.title, this.parseInline(linkToken.tokens, renderer));
+                            break;
+                        }
+                    case "image":
+                        {
+                            const imageToken = token;
+                            out += renderer.image(imageToken.href, imageToken.title, imageToken.text);
+                            break;
+                        }
+                    case "strong":
+                        {
+                            const strongToken = token;
+                            out += renderer.strong(this.parseInline(strongToken.tokens, renderer));
+                            break;
+                        }
+                    case "em":
+                        {
+                            const emToken = token;
+                            out += renderer.em(this.parseInline(emToken.tokens, renderer));
+                            break;
+                        }
+                    case "codespan":
+                        {
+                            const codespanToken = token;
+                            out += renderer.codespan(codespanToken.text);
+                            break;
+                        }
+                    case "br":
+                        out += renderer.br();
+                        break;
+                    case "del":
+                        {
+                            const delToken = token;
+                            out += renderer.del(this.parseInline(delToken.tokens, renderer));
+                            break;
+                        }
+                    case "text":
+                        {
+                            const textToken = token;
+                            out += renderer.text(textToken.text);
+                            break;
+                        }
+                    default:
+                        {
+                            const errMsg = 'Token with "' + token.type + '" type was not found.';
+                            if (this.options.silent) {
+                                console.error(errMsg);
+                                return "";
+                            } else throw new Error(errMsg);
+                        }
+                }
+            }
+            return out;
+        }
+    }
+    class _Hooks {
+        options;
+        constructor(options){
+            this.options = options || exports1.defaults;
+        }
+        static passThroughHooks = new Set([
+            "preprocess",
+            "postprocess",
+            "processAllTokens"
+        ]);
+        /**
+         * Process markdown before marked
+         */ preprocess(markdown) {
+            return markdown;
+        }
+        /**
+         * Process HTML after marked is finished
+         */ postprocess(html) {
+            return html;
+        }
+        /**
+         * Process all tokens before walk tokens
+         */ processAllTokens(tokens) {
+            return tokens;
+        }
+    }
+    class Marked {
+        defaults = _getDefaults();
+        options = this.setOptions;
+        parse = this.#parseMarkdown(_Lexer.lex, _Parser.parse);
+        parseInline = this.#parseMarkdown(_Lexer.lexInline, _Parser.parseInline);
+        Parser = _Parser;
+        Renderer = _Renderer;
+        TextRenderer = _TextRenderer;
+        Lexer = _Lexer;
+        Tokenizer = _Tokenizer;
+        Hooks = _Hooks;
+        constructor(...args){
+            this.use(...args);
+        }
+        /**
+         * Run callback for every token
+         */ walkTokens(tokens, callback) {
+            let values = [];
+            for (const token of tokens){
+                values = values.concat(callback.call(this, token));
+                switch(token.type){
+                    case "table":
+                        {
+                            const tableToken = token;
+                            for (const cell of tableToken.header)values = values.concat(this.walkTokens(cell.tokens, callback));
+                            for (const row of tableToken.rows)for (const cell of row)values = values.concat(this.walkTokens(cell.tokens, callback));
+                            break;
+                        }
+                    case "list":
+                        {
+                            const listToken = token;
+                            values = values.concat(this.walkTokens(listToken.items, callback));
+                            break;
+                        }
+                    default:
+                        {
+                            const genericToken = token;
+                            if (this.defaults.extensions?.childTokens?.[genericToken.type]) this.defaults.extensions.childTokens[genericToken.type].forEach((childTokens)=>{
+                                const tokens = genericToken[childTokens].flat(Infinity);
+                                values = values.concat(this.walkTokens(tokens, callback));
+                            });
+                            else if (genericToken.tokens) values = values.concat(this.walkTokens(genericToken.tokens, callback));
+                        }
+                }
+            }
+            return values;
+        }
+        use(...args) {
+            const extensions = this.defaults.extensions || {
+                renderers: {},
+                childTokens: {}
+            };
+            args.forEach((pack)=>{
+                // copy options to new object
+                const opts = {
+                    ...pack
+                };
+                // set async to true if it was set to true before
+                opts.async = this.defaults.async || opts.async || false;
+                // ==-- Parse "addon" extensions --== //
+                if (pack.extensions) {
+                    pack.extensions.forEach((ext)=>{
+                        if (!ext.name) throw new Error("extension name required");
+                        if ("renderer" in ext) {
+                            const prevRenderer = extensions.renderers[ext.name];
+                            if (prevRenderer) // Replace extension with func to run new extension but fall back if false
+                            extensions.renderers[ext.name] = function(...args) {
+                                let ret = ext.renderer.apply(this, args);
+                                if (ret === false) ret = prevRenderer.apply(this, args);
+                                return ret;
+                            };
+                            else extensions.renderers[ext.name] = ext.renderer;
+                        }
+                        if ("tokenizer" in ext) {
+                            if (!ext.level || ext.level !== "block" && ext.level !== "inline") throw new Error("extension level must be 'block' or 'inline'");
+                            const extLevel = extensions[ext.level];
+                            if (extLevel) extLevel.unshift(ext.tokenizer);
+                            else extensions[ext.level] = [
+                                ext.tokenizer
+                            ];
+                            if (ext.start) {
+                                if (ext.level === "block") {
+                                    if (extensions.startBlock) extensions.startBlock.push(ext.start);
+                                    else extensions.startBlock = [
+                                        ext.start
+                                    ];
+                                } else if (ext.level === "inline") {
+                                    if (extensions.startInline) extensions.startInline.push(ext.start);
+                                    else extensions.startInline = [
+                                        ext.start
+                                    ];
+                                }
+                            }
+                        }
+                        if ("childTokens" in ext && ext.childTokens) extensions.childTokens[ext.name] = ext.childTokens;
+                    });
+                    opts.extensions = extensions;
+                }
+                // ==-- Parse "overwrite" extensions --== //
+                if (pack.renderer) {
+                    const renderer = this.defaults.renderer || new _Renderer(this.defaults);
+                    for(const prop in pack.renderer){
+                        if (!(prop in renderer)) throw new Error(`renderer '${prop}' does not exist`);
+                        if (prop === "options") continue;
+                        const rendererProp = prop;
+                        const rendererFunc = pack.renderer[rendererProp];
+                        const prevRenderer = renderer[rendererProp];
+                        // Replace renderer with func to run extension, but fall back if false
+                        renderer[rendererProp] = (...args)=>{
+                            let ret = rendererFunc.apply(renderer, args);
+                            if (ret === false) ret = prevRenderer.apply(renderer, args);
+                            return ret || "";
+                        };
+                    }
+                    opts.renderer = renderer;
+                }
+                if (pack.tokenizer) {
+                    const tokenizer = this.defaults.tokenizer || new _Tokenizer(this.defaults);
+                    for(const prop in pack.tokenizer){
+                        if (!(prop in tokenizer)) throw new Error(`tokenizer '${prop}' does not exist`);
+                        if ([
+                            "options",
+                            "rules",
+                            "lexer"
+                        ].includes(prop)) continue;
+                        const tokenizerProp = prop;
+                        const tokenizerFunc = pack.tokenizer[tokenizerProp];
+                        const prevTokenizer = tokenizer[tokenizerProp];
+                        // Replace tokenizer with func to run extension, but fall back if false
+                        // @ts-expect-error cannot type tokenizer function dynamically
+                        tokenizer[tokenizerProp] = (...args)=>{
+                            let ret = tokenizerFunc.apply(tokenizer, args);
+                            if (ret === false) ret = prevTokenizer.apply(tokenizer, args);
+                            return ret;
+                        };
+                    }
+                    opts.tokenizer = tokenizer;
+                }
+                // ==-- Parse Hooks extensions --== //
+                if (pack.hooks) {
+                    const hooks = this.defaults.hooks || new _Hooks();
+                    for(const prop in pack.hooks){
+                        if (!(prop in hooks)) throw new Error(`hook '${prop}' does not exist`);
+                        if (prop === "options") continue;
+                        const hooksProp = prop;
+                        const hooksFunc = pack.hooks[hooksProp];
+                        const prevHook = hooks[hooksProp];
+                        if (_Hooks.passThroughHooks.has(prop)) // @ts-expect-error cannot type hook function dynamically
+                        hooks[hooksProp] = (arg)=>{
+                            if (this.defaults.async) return Promise.resolve(hooksFunc.call(hooks, arg)).then((ret)=>{
+                                return prevHook.call(hooks, ret);
+                            });
+                            const ret = hooksFunc.call(hooks, arg);
+                            return prevHook.call(hooks, ret);
+                        };
+                        else // @ts-expect-error cannot type hook function dynamically
+                        hooks[hooksProp] = (...args)=>{
+                            let ret = hooksFunc.apply(hooks, args);
+                            if (ret === false) ret = prevHook.apply(hooks, args);
+                            return ret;
+                        };
+                    }
+                    opts.hooks = hooks;
+                }
+                // ==-- Parse WalkTokens extensions --== //
+                if (pack.walkTokens) {
+                    const walkTokens = this.defaults.walkTokens;
+                    const packWalktokens = pack.walkTokens;
+                    opts.walkTokens = function(token) {
+                        let values = [];
+                        values.push(packWalktokens.call(this, token));
+                        if (walkTokens) values = values.concat(walkTokens.call(this, token));
+                        return values;
+                    };
+                }
+                this.defaults = {
+                    ...this.defaults,
+                    ...opts
+                };
+            });
+            return this;
+        }
+        setOptions(opt) {
+            this.defaults = {
+                ...this.defaults,
+                ...opt
+            };
+            return this;
+        }
+        lexer(src, options) {
+            return _Lexer.lex(src, options ?? this.defaults);
+        }
+        parser(tokens, options) {
+            return _Parser.parse(tokens, options ?? this.defaults);
+        }
+        #parseMarkdown(lexer, parser) {
+            return (src, options)=>{
+                const origOpt = {
+                    ...options
+                };
+                const opt = {
+                    ...this.defaults,
+                    ...origOpt
+                };
+                // Show warning if an extension set async to true but the parse was called with async: false
+                if (this.defaults.async === true && origOpt.async === false) {
+                    if (!opt.silent) console.warn("marked(): The async option was set to true by an extension. The async: false option sent to parse will be ignored.");
+                    opt.async = true;
+                }
+                const throwError = this.#onError(!!opt.silent, !!opt.async);
+                // throw error in case of non string input
+                if (typeof src === "undefined" || src === null) return throwError(new Error("marked(): input parameter is undefined or null"));
+                if (typeof src !== "string") return throwError(new Error("marked(): input parameter is of type " + Object.prototype.toString.call(src) + ", string expected"));
+                if (opt.hooks) opt.hooks.options = opt;
+                if (opt.async) return Promise.resolve(opt.hooks ? opt.hooks.preprocess(src) : src).then((src)=>lexer(src, opt)).then((tokens)=>opt.hooks ? opt.hooks.processAllTokens(tokens) : tokens).then((tokens)=>opt.walkTokens ? Promise.all(this.walkTokens(tokens, opt.walkTokens)).then(()=>tokens) : tokens).then((tokens)=>parser(tokens, opt)).then((html)=>opt.hooks ? opt.hooks.postprocess(html) : html).catch(throwError);
+                try {
+                    if (opt.hooks) src = opt.hooks.preprocess(src);
+                    let tokens = lexer(src, opt);
+                    if (opt.hooks) tokens = opt.hooks.processAllTokens(tokens);
+                    if (opt.walkTokens) this.walkTokens(tokens, opt.walkTokens);
+                    let html = parser(tokens, opt);
+                    if (opt.hooks) html = opt.hooks.postprocess(html);
+                    return html;
+                } catch (e) {
+                    return throwError(e);
+                }
+            };
+        }
+        #onError(silent, async) {
+            return (e)=>{
+                e.message += "\nPlease report this to https://github.com/markedjs/marked.";
+                if (silent) {
+                    const msg = "<p>An error occurred:</p><pre>" + escape$1(e.message + "", true) + "</pre>";
+                    if (async) return Promise.resolve(msg);
+                    return msg;
+                }
+                if (async) return Promise.reject(e);
+                throw e;
+            };
+        }
+    }
+    const markedInstance = new Marked();
+    function marked(src, opt) {
+        return markedInstance.parse(src, opt);
+    }
+    /**
+     * Sets the default options.
+     *
+     * @param options Hash of options
+     */ marked.options = marked.setOptions = function(options) {
+        markedInstance.setOptions(options);
+        marked.defaults = markedInstance.defaults;
+        changeDefaults(marked.defaults);
+        return marked;
+    };
+    /**
+     * Gets the original marked default options.
+     */ marked.getDefaults = _getDefaults;
+    marked.defaults = exports1.defaults;
+    /**
+     * Use Extension
+     */ marked.use = function(...args) {
+        markedInstance.use(...args);
+        marked.defaults = markedInstance.defaults;
+        changeDefaults(marked.defaults);
+        return marked;
+    };
+    /**
+     * Run callback for every token
+     */ marked.walkTokens = function(tokens, callback) {
+        return markedInstance.walkTokens(tokens, callback);
+    };
+    /**
+     * Compiles markdown to HTML without enclosing `p` tag.
+     *
+     * @param src String of markdown source to be compiled
+     * @param options Hash of options
+     * @return String of compiled HTML
+     */ marked.parseInline = markedInstance.parseInline;
+    /**
+     * Expose
+     */ marked.Parser = _Parser;
+    marked.parser = _Parser.parse;
+    marked.Renderer = _Renderer;
+    marked.TextRenderer = _TextRenderer;
+    marked.Lexer = _Lexer;
+    marked.lexer = _Lexer.lex;
+    marked.Tokenizer = _Tokenizer;
+    marked.Hooks = _Hooks;
+    marked.parse = marked;
+    const options = marked.options;
+    const setOptions = marked.setOptions;
+    const use = marked.use;
+    const walkTokens = marked.walkTokens;
+    const parseInline = marked.parseInline;
+    const parse = marked;
+    const parser = _Parser.parse;
+    const lexer = _Lexer.lex;
+    exports1.Hooks = _Hooks;
+    exports1.Lexer = _Lexer;
+    exports1.Marked = Marked;
+    exports1.Parser = _Parser;
+    exports1.Renderer = _Renderer;
+    exports1.TextRenderer = _TextRenderer;
+    exports1.Tokenizer = _Tokenizer;
+    exports1.getDefaults = _getDefaults;
+    exports1.lexer = lexer;
+    exports1.marked = marked;
+    exports1.options = options;
+    exports1.parse = parse;
+    exports1.parseInline = parseInline;
+    exports1.parser = parser;
+    exports1.setOptions = setOptions;
+    exports1.use = use;
+    exports1.walkTokens = walkTokens;
+});
+
+},{}],"bjCHj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DB", ()=>DB);
@@ -11668,7 +13862,7 @@ class PageHome extends (0, _app.Cpx).Element {
     render() {
         this.innerHTML = `
             <div style="text-align:center">
-                <text-element text-element:type=h1>Home</text-element>
+                <text-element text-element:type="h1">Home</text-element>
             </div>
         `;
     }
@@ -11691,7 +13885,6 @@ class PageAbout extends (0, _app.Cpx).Element {
     constructor(){
         super();
         this.state = (0, _app.Cpx).State;
-        this.copyToElement = (0, _app.Cpx).Functions.copyAPI.toElement;
         this.state = (0, _app.Cpx).State;
         this.copyToElement = (0, _app.Cpx).Functions.copyAPI.toElement;
     }
@@ -11706,6 +13899,28 @@ class PageAbout extends (0, _app.Cpx).Element {
     render() {
         this.innerHTML = `
             <div style="text-align:center;max-width:768px;margin-inline:auto">
+              <accordion-group>
+                <accordion-item accordion-item:title="Accordion 1" accordion-item:open=true>
+                  <text-element text-element:type="p">Accordion 1 Content</text-element>
+                </accordion-item>
+                <accordion-item accordion-item:title="Accordion 2">
+                  <text-element text-element:type="p">Accordion 2 Content</text-element>
+                </accordion-item>
+                <accordion-item accordion-item:title="Accordion 3">
+                  <text-element text-element:type="p">Accordion 3 Content</text-element>
+                </accordion-item>
+              </accordion-group>
+
+            <skeleton-element 
+              skeleton-element:display="block"
+              skeleton-element:color="gray-400"></skeleton-element>
+            <skeleton-element 
+              skeleton-element:display="block"
+              skeleton-element:color="gray-700"
+              skeleton-element:width="md"
+              skeleton-element:height="10"></skeleton-element>
+            <code-block code-block:lang="js">
+            console.log('test')</code-block>
               <section copy-element="trigger">CopyButton</section>
               <section copy-element="target">Target Area
               </section>
@@ -11715,22 +13930,26 @@ class PageAbout extends (0, _app.Cpx).Element {
                   
             <div>
                   <badge-element
-                    badge-element:color="green">My Badge</badge-element>
+                  badge-element:bg="green-600 " 
+                  badge-element:color="green-500">My Badge</badge-element>
                   <badge-element
-                    badge-element:color="red">My Badge</badge-element>
+                  badge-element:bg="green-600 " 
+                  badge-element:color="red">My Badge</badge-element>
                   <badge-element
-                    badge-element:color="yellow">My Badge</badge-element>
+                  badge-element:bg="green-600 " 
+                  badge-element:color="yellow">My Badge</badge-element>
               </div>
-              <audio-player audio-player:has-playlist=true></audio-player>
+              <audio-player audio-player:has-album=true></audio-player>
               <video-player></video-player>
               <div>
                   <badge-element
-                    badge-element:color="purple"
+                    badge-element:color="purple-500"
                     badge-element:size=md
                     >My Badge</badge-element>
                   <badge-element
-                    badge-element:color="sky"
-                    badge-element:size=md
+                    badge-element:color="black-500"
+                    badge-element:size=xxs
+                    badge-element:padding=2
                     badge-element:action="console.log('test')"
                     >Sky Badge</badge-element>
                   <badge-element
@@ -11742,8 +13961,8 @@ class PageAbout extends (0, _app.Cpx).Element {
                   code-block:has-header="false" 
                   code-block:has-copy-button="false" 
                   code-block:title="myFiles" 
-                  code-block:lang="bash" 
-                  code-block:theme=light>
+                  code-block:lang="js" 
+                  >
                   
 console.log('test');
 const myVar = 'test';

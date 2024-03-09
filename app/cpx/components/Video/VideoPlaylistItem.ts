@@ -10,7 +10,6 @@ import { Cpx } from "../../index";
  * </audio-player>
  */
 export class CpxVideoPlaylistItem extends CpxElement {
-  appearance: string;
   classNames: string;
   getVideo: Function;
   playlist: any;
@@ -23,7 +22,6 @@ export class CpxVideoPlaylistItem extends CpxElement {
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("video-playlist-item:appearance") || "default";
     this.classNames = this.getAttribute("video-playlist-item:class") || "";
     this.videoPoster = this.getAttribute("video-playlist-item:poster") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:poster") : "https://placehold.co/100");
     this.videoUrl = this.getAttribute("video-playlist-item:url") || (this.closest("video-playlist") ? this.closest("video-playlist").getAttribute("video-playlist:url") : "https://api.coverr.co/videos/");
@@ -35,16 +33,16 @@ export class CpxVideoPlaylistItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-        <button click:storage:local:set(currentvideo,${Cpx.String.toHtml(this.videoTitle)}) class="video-playlist-item video-playlist-item--${this.appearance} ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
+        <button click:storage:local:set(currentvideo,${Cpx.String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:gray-300 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
           ${
             this.initialContent !== ""
               ? this.initialContent
-              : `<section class="video-playlist-item__row">
-                        <div class="video-playlist-item__left">
+              : `<section class="display:flex">
+                        <div class="display:flex">
                             <img video-playlist-item="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
                             <p video-playlist-item="title">${this.videoTitle}</p>
                         </div>
-                        <p class="video-playlist-item__right" video-playlist-item="artist">${this.videoArtist}</p>
+                        <p class="" video-playlist-item="artist">${this.videoArtist}</p>
                    </section>
                     `
           }

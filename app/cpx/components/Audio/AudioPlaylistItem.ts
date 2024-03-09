@@ -18,7 +18,6 @@ export class CpxAudioPlaylistItem extends CpxElement {
 
   constructor() {
     super();
-    this.appearance = this.getAttribute("audio-playlist-item:style") || document.querySelector("audio-player").getAttribute("audio-player:style") || "default";
     this.classNames = this.getAttribute("audio-playlist-item:class") || "";
     this.title = this.getAttribute("audio-playlist-item:title") || document.querySelector("audio-playlist").getAttribute("audio-playlist:title") || document.querySelector("audio-player").getAttribute("audio-player:title") || "AudioPlaylistItem ITitle";
     this.artist = this.getAttribute("audio-playlist-item:artist") || document.querySelector("audio-playlist").getAttribute("audio-playlist:artist") || document.querySelector("audio-player").getAttribute("audio-player:artist") || "AudioPlaylistItem Artist Title";
@@ -35,7 +34,7 @@ export class CpxAudioPlaylistItem extends CpxElement {
     let evalAlbum = eval(this.hasAlbum);
 
     this.innerHTML = `
-        <button class="audio-playlist-item audio-playlist-item--${this.appearance} ${this.classNames}" audio-track audio-track-url="${this.url}>
+        <button class="w:full p:2 mb:2 display:flex radius:sm items:center justify-content:between gap:4 border-width:1 border-color:gray-400 mb ${this.classNames}" audio-track audio-track-url="${this.url}>
           ${
             this.initialContent !== ""
               ? `${this.initialContent}`
@@ -43,14 +42,14 @@ export class CpxAudioPlaylistItem extends CpxElement {
               ${
                 evalTitle === true
                   ? `
-                    <p class="audio-playlist-item__title" audio-track="title">${this.title}</p>
+                    <p class="" audio-track="title">${this.title}</p>
                   `
                   : ``
               }
-                <section class="audio-playlist-item__meta">
-                    ${evalArtist === true ? `<p class="audio-playlist-item__artist" audio-track="artist">${this.artist}</p>` : ``}
-                    ${evalAlbum === true ? `<p class="audio-playlist-item__album" audio-track="album">${this.album}</p>` : ``}
-                </section>
+              <section class="display:flex items:center gap:4">
+                  ${evalArtist === true ? `<p class="size:xs line-height:0" audio-track="artist">${this.artist}</p>` : ``}
+                  ${evalAlbum === true ? `<p class="size:xs line-height:0" audio-track="album">${this.album}</p>` : ``}
+              </section>
             `
           }
         </button>

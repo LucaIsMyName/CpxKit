@@ -14,6 +14,7 @@ import bash from "highlight.js/lib/languages/bash";
 hljs.registerLanguage("javascript", javascript); // Register JavaScript language
 hljs.registerLanguage("php", php); // Register PHP language
 hljs.registerLanguage("bash", bash); // Register Bash language
+hljs.registerLanguage("shell", bash); // Register Shell language
 
 export class CpxCodeBlock extends CpxElement {
   classNames: string;
@@ -46,9 +47,9 @@ export class CpxCodeBlock extends CpxElement {
 
   highlightSyntax() {
     if (this.lang) {
-      const codeElement = this.querySelector(".code-block__code");
+      const codeElement = this.querySelector("[hljs-area]");
       if (codeElement) {
-        hljs.highlightBlock(codeElement); // Highlight the code block
+        hljs.highlightElement(codeElement); // Highlight the code block
       }
     }
   }
@@ -59,8 +60,8 @@ export class CpxCodeBlock extends CpxElement {
         copyButton.addEventListener("click", () => {
             const copiedText = document.createElement("p");
             copiedText.textContent = "Copied";
-            copiedText.classList.add("code-block__copied");
-            copyButton.appendChild(copiedText).classList.add("code-block__copy-alert");
+            copiedText.classList.add("");
+            copyButton.appendChild(copiedText).classList.add("");
 
             setTimeout(() => {
                 copiedText.remove();
@@ -77,18 +78,18 @@ export class CpxCodeBlock extends CpxElement {
     ${
       this.hasHeader === true && this.hasCopyButton === true
         ? `
-        <header class="code-block__header">
+        <header class="p:4 w:full display:flex gap:4 justify-content:between align-items:center border-b-width:1 border-color:gray-400">
             ${
               this.hasHeader === true
                 ? `
-                  <div class="code-block__header__column">
-                      <section class="code-block__title">${this.title}</section>
+                  <div class="display:flex gap:4 align-items:center">
+                      <section class="size:md weigth:semibold">${this.title}</section>
                       <badge-element
                       badge-element:border-radius="xs"
                       badge-element:padding="sm"
                       badge-element:font-family="mono"
                       badge-element:color="${this.theme}"
-                      class="code-block__lang">.${this.lang}</badge-element>
+                      class="">.${this.lang}</badge-element>
                   </div>
                   `
                 : ``
@@ -96,8 +97,8 @@ export class CpxCodeBlock extends CpxElement {
             ${
               this.hasCopyButton === true
                 ? `
-                  <section class="code-block__header__column code-block__copy">
-                      <button copy-clipboard="trigger">
+                  <section class="">
+                      <button class="w:6 h:6" copy-clipboard="trigger">
                         ${Icon.clipboard}
                       </button>
                   </section>
@@ -112,9 +113,9 @@ export class CpxCodeBlock extends CpxElement {
 
   render() {
     this.innerHTML = `  
-            <section class="code-block code-block--${this.appearance}">
+            <section class="bg:gray-300 color:gray-900 border-radius:md radius:md overflow:hidden ${this.classNames}">
                 ${this.getHeader()}
-                <pre class="code-block__pre"><code class="code-block__code ${this.classNames}" copy-clipboard="target">${Cpx.String.trimWhitespace(this.initialContent)}</code></pre>
+                <pre class="p:4"><code class="font-family:mono language-${this.lang}" copy-clipboard="target" hljs-area>${Cpx.String.trimWhitespace(this.initialContent)}</code></pre>
             </section>
         `;
   }
