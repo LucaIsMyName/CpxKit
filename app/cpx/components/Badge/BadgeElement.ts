@@ -13,6 +13,7 @@ export class CpxBadgeElement extends CpxElement implements Element {
   color: string;
   bgColor: string;
   borderColor: string;
+  borderWidth: string;
   fontFamily: string;
   fontWeight: string;
   letterSpacing: string;
@@ -27,7 +28,8 @@ export class CpxBadgeElement extends CpxElement implements Element {
     this.size = this.getAttribute("badge-element:size") || "xs";
     this.color = this.getAttribute("badge-element:color") || "gray-700";
     this.bgColor = this.getAttribute("badge-element:bg") || "gray-200";
-    this.borderColor = this.getAttribute("badge-element:border-color") || "gray-600";
+    this.borderColor = this.getAttribute("badge-element:border-color") || "shade-xl";
+    this.borderWidth = this.getAttribute("badge-element:border-width") || "1";
     this.fontFamily = this.getAttribute("badge-element:font-family") || "sans";
     this.fontWeight = this.getAttribute("badge-element:weight") || "normal";
     this.letterSpacing = this.getAttribute("badge-element:tracking") || "sm";
@@ -47,7 +49,7 @@ export class CpxBadgeElement extends CpxElement implements Element {
             `
             : `tabindex="-1"`
         }
-        class="size:${this.size} color:${this.color} bg:${this.bgColor} border-width:1 border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${eval(this.padding) * 2} py:${eval(this.padding) * 1} ${this.classNames}">
+        class="${this.action !== false ? '' : `cursor:default`} size:${this.size} color:${this.color} bg:${this.bgColor} border-width:${this.borderWidth} border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${eval(this.padding) * 2} py:${eval(this.padding) * 1} ${this.classNames}">
             <span>${this.initialContent}</span>
         </button>
         `;

@@ -10,11 +10,22 @@ import "highlight.js/styles/default.css"; // Import the default highlight.js sty
 import javascript from "highlight.js/lib/languages/javascript";
 import php from "highlight.js/lib/languages/php";
 import bash from "highlight.js/lib/languages/bash";
+import css from "highlight.js/lib/languages/css";
+import c from "highlight.js/lib/languages/c";
+import cpp from "highlight.js/lib/languages/cpp";
+import java from "highlight.js/lib/languages/java";
+import typescript from "highlight.js/lib/languages/typescript";
 
-hljs.registerLanguage("javascript", javascript); // Register JavaScript language
-hljs.registerLanguage("php", php); // Register PHP language
-hljs.registerLanguage("bash", bash); // Register Bash language
-hljs.registerLanguage("shell", bash); // Register Shell language
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("shell", bash);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("c", c);
+hljs.registerLanguage("cpp", cpp);
+hljs.registerLanguage("java", java);
+hljs.registerLanguage("typescript", typescript);
+
 
 export class CpxCodeBlock extends CpxElement {
   classNames: string;

@@ -14,7 +14,7 @@ import { runSlider } from "./runSlider";
 export class CpxSliderContainer extends CpxElement implements Element {
   slider: Function;
   classNames: string;
-  
+
   constructor() {
     super();
     this.classNames = this.getAttribute("slider-container:class") || "";
@@ -23,8 +23,8 @@ export class CpxSliderContainer extends CpxElement implements Element {
 
   render() {
     this.innerHTML = `
-        <section class="slider-container ${this.classNames}">
-            <div class="slider-container__wrapper swiper-wrapper">
+        <section class="${this.classNames}">
+            <div class="swiper-wrapper">
                 ${this.initialContent !== "" ? `${this.initialContent}` : ``}
             </div>
         </section>

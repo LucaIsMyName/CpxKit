@@ -21,7 +21,7 @@ export class CpxSkeletonElement extends CpxElement {
     this.classNames = this.getAttribute("skeleton-element:class") || "";
     this.display = this.getAttribute("skeleton-element:display") || "inline-block";
     this.color = this.getAttribute("skeleton-element:color") || "gray-300";
-    this.borderRadius = this.getAttribute("skeleton-element:border-radius") || "sm";
+    this.borderRadius = this.getAttribute("skeleton-element:radius") || "sm";
     this.width = this.getAttribute("skeleton-element:width") || "lg";
     this.height = this.getAttribute("skeleton-element:height") || "5";
   }
