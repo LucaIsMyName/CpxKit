@@ -1,4 +1,5 @@
 import { CpxElement } from "../../element";
+import { Cpx } from "../../index";
 import { Id } from "../../utils/id";
 /**
  * @class CpxTabContainer
@@ -19,7 +20,6 @@ export class CpxTabContainer extends CpxElement {
   borderColor: string;
   padding: number;
 
-
   constructor() {
     super();
     this.classNames = this.getAttribute("tab-container:class") || "";
@@ -27,7 +27,7 @@ export class CpxTabContainer extends CpxElement {
     this.size = this.getAttribute("tab-container:size") || "sm";
     this.weight = this.getAttribute("tab-container:weight") || "normal";
     this.borderWidth = parseInt(this.getAttribute("tab-container:border-width")) || 0;
-    this.radius = this.getAttribute("tab-container:radius") || 'none';
+    this.radius = this.getAttribute("tab-container:radius") || "none";
     this.color = this.getAttribute("tab-container:color") || "inherit";
     this.bgColor = this.getAttribute("tab-container:bg-color") || "transparent";
     this.borderColor = this.getAttribute("tab-container:border-color") || "transparent";
@@ -42,7 +42,8 @@ export class CpxTabContainer extends CpxElement {
     this.innerHTML = `
     <section
       tab-container:id="${this.tabContainerId}"
-      class="
+      class="${Cpx.String.trimWhitespace(
+        `
         overflow:hidden
         ${this.padding !== 0 ? `p:${this.padding}` : ""}
         ${this.color !== "inherit" ? `color:${this.color}` : ""}
@@ -52,7 +53,9 @@ export class CpxTabContainer extends CpxElement {
         ${this.radius !== "none" ? `radius:${this.radius}` : ""}
         ${this.size !== "sm" ? `size:${this.size}` : ""}
         ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
-        ${this.classNames}">
+        ${this.classNames}`,
+        "all"
+      )}">
         ${this.initialContent}
     </section>
         `;

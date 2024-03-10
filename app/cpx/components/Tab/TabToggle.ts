@@ -1,5 +1,6 @@
 // tab-toggle.js
 import { CpxElement } from "../../element";
+import { Cpx } from "../../index";
 
 export class CpxTabToggle extends CpxElement {
   tabToggleId: any;
@@ -25,7 +26,7 @@ export class CpxTabToggle extends CpxElement {
     this.size = this.getAttribute("tab-toggle:size") || "sm";
     this.weight = this.getAttribute("tab-toggle:weight") || "normal";
     this.borderWidth = parseInt(this.getAttribute("tab-toggle:border-width")) || 0;
-    this.radius = this.getAttribute("tab-toggle:radius") || 'none';
+    this.radius = this.getAttribute("tab-toggle:radius") || "none";
   }
 
   connectedCallback() {
@@ -60,16 +61,20 @@ export class CpxTabToggle extends CpxElement {
   render() {
     this.innerHTML = `
       <button
-        class="
-        ${this.padding !== 0 ? `p:${this.padding}` : ``}
-        ${this.color !== "inherit" ? `color:${this.color}` : ``}
-        ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ``}
-        ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ``}
-        ${this.size !== "sm" ? `size:${this.size}` : ``}
-        ${this.weight !== "normal" ? `weight:${this.weight}` : ``}
-        ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ``}
-        ${this.radius !== "none" ? `radius:${this.radius}` : ``}
-        ${this.classNames}"
+        class="${Cpx.String.trimWhitespace(
+        `
+            ${this.padding !== 0 ? `p:${this.padding}` : ``}
+            ${this.color !== "inherit" ? `color:${this.color}` : ``}
+            ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ``}
+            ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ``}
+            ${this.size !== "sm" ? `size:${this.size}` : ``}
+            ${this.weight !== "normal" ? `weight:${this.weight}` : ``}
+            ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ``}
+            ${this.radius !== "none" ? `radius:${this.radius}` : ``}
+            ${this.classNames}
+        `,
+          "all"
+        )}"
         id="${this.tabToggleId}">
           ${this.initialContent}
       </button>

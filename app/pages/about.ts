@@ -27,7 +27,32 @@ export class PageAbout extends Cpx.Element {
   }
   render() {
     this.innerHTML = `
-    <slider-container>
+    <avatar-list avatar-element:gap=6 avatar-element:gap:is-inverted=true>
+    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    </avatar-list> 
+    
+    <icon-element
+      icon-element:is-inline="false"
+      icon-element:icon="backward"
+      icon-element:svg:stroke="currentColor"
+      icon-element:svg:stroke-width="3"
+      icon-element:url="https://placehold.co/100"
+      icon-element:width="16"
+      icon-element:height="16"
+      icon-element:bg="text-500"
+      ></icon-element>
+      <icon-element
+      icon-element:icon="backward"
+      icon-element:svg:stroke="currentColor"
+      icon-element:svg:stroke-width="1"
+      icon-element:url="https://placehold.co/100"
+      icon-element:width="16"
+      icon-element:height="16"
+      icon-element:bg="text-500"
+      ></icon-element>
+    <slider-container slider-container:slides-per-view=2 slider-container:slides-per-view:medium=3 slider-container:loop=false slider-container:direction=horizontal>
       <slider-item>
         <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 1">
       </slider-item>
@@ -48,14 +73,14 @@ export class PageAbout extends Cpx.Element {
 
      <dropdown-container
       dropdown-container:position:y=bottom
-      dropdown-container:event:hover=true
-      dropdown-container:event:focus=true
+      dropdown-container:event:hover="true"
+      dropdown-container:event:focus="true"
       dropdown-container:title="Header2">
-        <dropdown-item>
+        <section>
               Dropdown Content<br>
               Yo<br>
               pwk,DSÜQPKDWÜW
-        </dropdown-item>
+        </section>
     </dropdown-container>
     </section>
 
@@ -142,13 +167,14 @@ export class PageAbout extends Cpx.Element {
                     badge-element:size=md
                     >My Badge</badge-element>
                   <badge-element
-                    badge-element:color="black-500"
-                    badge-element:size=xxs
+                    badge-element:color="text-500"
+                    badge-element:bg="success-200"
+                    badge-element:size=xs
                     badge-element:padding=2
                     badge-element:action="console.log('test')"
                     >Sky Badge</badge-element>
                   <badge-element
-                    badge-element:color="pink"
+                    badge-element:bg="warning-100"
                     badge-element:size=md
                     >My Badge</badge-element>
               </div>

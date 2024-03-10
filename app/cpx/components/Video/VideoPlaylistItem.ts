@@ -33,7 +33,7 @@ export class CpxVideoPlaylistItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-        <button click:storage:local:set(currentvideo,${Cpx.String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:gray-300 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
+        <button click:storage:local:set(currentvideo,${Cpx.String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:light-100 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
           ${
             this.initialContent !== ""
               ? this.initialContent

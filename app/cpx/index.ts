@@ -20,9 +20,11 @@ import { Object } from "./utils/object";
 // Cpx Utility Components
 import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
 import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl } from "./components/Audio/index";
+import { AvatarElement, AvatarList } from "./components/Avatar";
 import { BadgeElement } from "./components/Badge";
 import { CodeBlock } from "./components/Code";
 import { DropDownContainer, DropDownItem, DropDownTrigger } from "./components/DropDown";
+import { IconElement } from "./components/Icon";
 import { SliderContainer, SliderItem, runSlider as sliderAPI } from "./components/Slider";
 import { ParseMarkdown } from "./components/Parse";
 import { PictureElement } from "./components/Picture";
@@ -41,10 +43,13 @@ export interface CpxInterface {
     AudioPlaylist: typeof Element;
     AudioControls: typeof Element;
     AudioControl: typeof Element;
+    AvatarElement: typeof Element;
+    AvatarList: typeof Element;
     BadgeElement: typeof Element;
     DropDownContainer: typeof Element;
     DropDownItem: typeof Element;
     DropDownTrigger: typeof Element;
+    IconElement: typeof Element;
     CodeBlock: typeof Element;
     SliderContainer: typeof Element;
     SliderItem: typeof Element;
@@ -98,12 +103,17 @@ const Components = {
   AudioPlaylist,
   AudioControls,
   AudioControl,
+  // Avatar
+  AvatarElement,
+  AvatarList,
   // Badge
   BadgeElement,
   // DropDown
   DropDownContainer,
   DropDownItem,
   DropDownTrigger,
+  // Icon
+  IconElement,
   // Code
   CodeBlock,
   //Slider

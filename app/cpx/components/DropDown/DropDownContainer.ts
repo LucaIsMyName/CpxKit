@@ -19,7 +19,6 @@ export class CpxDropDownContainer extends CpxElement {
   triggerBgColor: string;
   triggerColor: string;
 
-
   constructor() {
     super();
     this.classNames = this.getAttribute("dropdown-container:class") || "";
@@ -41,39 +40,61 @@ export class CpxDropDownContainer extends CpxElement {
     this.triggerBgColor = this.getAttribute("dropdown-container:trigger:bg-color") || "transparent";
     this.triggerColor = this.getAttribute("dropdown-container:trigger:color") || "text-500";
   }
-
-  connectedCallback() {
+  /**
+   * @description
+   * Handle the mouse enter event.
+   * @returns {void}
+   * @example
+   * this.handleMouseEnter();
+   * @memberof CpxDropDownContainer
+   * @method
+   * @name handleMouseEnter
+   * @returns {void}
+   */
+  connectedCallback(): void {
     this.render();
     this.dropdownContent = this.querySelector("dropdown-item");
     if (this.dropdownContent) {
       this.dropdownContent.style.display = "none";
-      if (this.eventHover === true || "true") {
+      if (this.eventHover === true) {
         this.addEventListener("mouseenter", this.handleMouseEnter.bind(this));
         this.addEventListener("mouseleave", this.handleMouseLeave.bind(this));
       }
-      if (this.eventClick === true || "true") {
+      if (this.eventClick === true) {
         this.addEventListener("click", this.handleClick.bind(this));
       }
-      if (this.eventFocus === true || "true") {
+      if (this.eventFocus === true) {
         this.addEventListener("focus", this.handleMouseEnter.bind(this));
         this.addEventListener("blur", this.handleMouseLeave.bind(this));
       }
     }
   }
-
-  handleMouseEnter() {
+  /**
+   * @description
+   * Handle the mouse enter event.
+   * @returns {void}
+   */
+  handleMouseEnter(): void {
     if (this.dropdownContent) {
       this.dropdownContent.style.display = "block";
     }
   }
-
-  handleMouseLeave() {
+  /**
+   * @description
+   * Handle the mouse leave event.
+   * @returns {void}
+   */
+  handleMouseLeave(): void {
     if (this.dropdownContent) {
       this.dropdownContent.style.display = "none";
     }
   }
-
-  handleClick() {
+  /**
+   * @description
+   * Handle the click event.
+   * @returns {void}
+   */
+  handleClick(): void {
     if (this.dropdownContent) {
       this.dropdownContent.style.display = this.dropdownContent.style.display === "block" ? "none" : "block";
     }
@@ -82,17 +103,19 @@ export class CpxDropDownContainer extends CpxElement {
   render() {
     this.innerHTML = `
       <div dropdown="container" class="position:relative ${this.classNames}">
-          <dropdown-trigger class="${Cpx.String.trimWhitespace(`
+          <dropdown-trigger class="${Cpx.String.trimWhitespace(
+            `
             ${this.triggerPadding !== 0 ? `p:${this.triggerPadding}` : ""}
             ${this.triggerBorderRadius !== "none" ? `br:${this.triggerBorderRadius}` : ""}
             ${this.triggerBorderWidth !== 0 ? `bw:${this.triggerBorderWidth}` : ""}
             ${this.triggerBorderColor !== "transparent" ? `bc:${this.triggerBorderColor}` : ""}
             ${this.triggerBgColor !== "transparent" ? `bg:${this.triggerBgColor}` : ""}
             ${this.triggerColor !== "text-500" ? `color:${this.triggerColor}` : ""}
-         `, 'all' )}" dropdown-trigger:title="">${this.title}</dropdown-trigger>
+         `,
+            "all"
+          )}" dropdown-trigger:title="">${this.title}</dropdown-trigger>
           <dropdown-item style="${Cpx.String.trimWhitespace(
-            `
-              z-index: 1000;
+            ` z-index: 1000;
               position: absolute; 
               display: none; 
               ${this.positionX}: 0; 

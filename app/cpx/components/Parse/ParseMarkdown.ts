@@ -27,8 +27,13 @@ export class CpxParseMarkdown extends CpxElement {
       console.error("No source URL provided for Markdown content.");
       return;
     }
-
-    // Fetch the Markdown content from the source URL
+    
+    /**
+     * @description
+     * Fetch the Markdown content from the source URL
+     * and parse it using marked
+     * @returns {void}
+     */
     fetch(this.sourceUrl)
       .then((response) => response.text())
       .then((markdownContent) => {

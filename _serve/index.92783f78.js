@@ -676,9 +676,11 @@ var _object = require("./utils/object");
 // Cpx Utility Components
 var _index = require("./components/Accordion/index");
 var _index1 = require("./components/Audio/index");
+var _avatar = require("./components/Avatar");
 var _badge = require("./components/Badge");
 var _code = require("./components/Code");
 var _dropDown = require("./components/DropDown");
+var _icon = require("./components/Icon");
 var _slider = require("./components/Slider");
 var _parse = require("./components/Parse");
 var _picture = require("./components/Picture");
@@ -701,12 +703,17 @@ var _video1 = require("./components/Video");
     AudioPlaylist: (0, _index1.AudioPlaylist),
     AudioControls: (0, _index1.AudioControls),
     AudioControl: (0, _index1.AudioControl),
+    AvatarElement: // Avatar
+    (0, _avatar.AvatarElement),
+    AvatarList: (0, _avatar.AvatarList),
     BadgeElement: // Badge
     (0, _badge.BadgeElement),
     DropDownContainer: // DropDown
     (0, _dropDown.DropDownContainer),
     DropDownItem: (0, _dropDown.DropDownItem),
     DropDownTrigger: (0, _dropDown.DropDownTrigger),
+    IconElement: // Icon
+    (0, _icon.IconElement),
     CodeBlock: // Code
     (0, _code.CodeBlock),
     SliderContainer: //Slider
@@ -762,7 +769,7 @@ const Cpx = {
     Object: (0, _object.Object)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Icon":"dqus8","./components/Avatar":"3DbAV"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -3286,7 +3293,7 @@ var _typescriptDefault = parcelHelpers.interopDefault(_typescript);
 class CpxCodeBlock extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.ID = this.getAttribute("id") || (0, _index.Cpx).Id.Generate.hex(6).replace(" ", "");
+        this.ID = this.getAttribute("component:id") || (0, _index.Cpx).Id.Generate.hex(6).replace(" ", "");
         this.classNames = this.getAttribute("code-block:class") || "";
         this.title = this.getAttribute("code-block:title") || "Code";
         this.lang = this.getAttribute("code-block:lang") || "js";
@@ -3295,7 +3302,7 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
         this.borderRadius = this.getAttribute("code-block:radius") || "sm";
         this.borderWidth = parseInt(this.getAttribute("code-block:border-width")) || 1;
         this.color = this.getAttribute("code-block:color") || "text-500";
-        this.bgColor = this.getAttribute("code-block:bg-color") || "shade-xxs";
+        this.bgColor = this.getAttribute("code-block:bg") || "shade-xxs";
         this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl";
         this.padding = parseInt(this.getAttribute("code-block:padding")) || 4;
     }
@@ -9941,28 +9948,51 @@ class CpxDropDownContainer extends (0, _element.CpxElement) {
         this.triggerBgColor = this.getAttribute("dropdown-container:trigger:bg-color") || "transparent";
         this.triggerColor = this.getAttribute("dropdown-container:trigger:color") || "text-500";
     }
-    connectedCallback() {
+    /**
+   * @description
+   * Handle the mouse enter event.
+   * @returns {void}
+   * @example
+   * this.handleMouseEnter();
+   * @memberof CpxDropDownContainer
+   * @method
+   * @name handleMouseEnter
+   * @returns {void}
+   */ connectedCallback() {
         this.render();
         this.dropdownContent = this.querySelector("dropdown-item");
         if (this.dropdownContent) {
             this.dropdownContent.style.display = "none";
-            this.eventHover;
-            this.addEventListener("mouseenter", this.handleMouseEnter.bind(this));
-            this.addEventListener("mouseleave", this.handleMouseLeave.bind(this));
-            this.eventClick;
-            this.addEventListener("click", this.handleClick.bind(this));
-            this.eventFocus;
-            this.addEventListener("focus", this.handleMouseEnter.bind(this));
-            this.addEventListener("blur", this.handleMouseLeave.bind(this));
+            if (this.eventHover === true) {
+                this.addEventListener("mouseenter", this.handleMouseEnter.bind(this));
+                this.addEventListener("mouseleave", this.handleMouseLeave.bind(this));
+            }
+            if (this.eventClick === true) this.addEventListener("click", this.handleClick.bind(this));
+            if (this.eventFocus === true) {
+                this.addEventListener("focus", this.handleMouseEnter.bind(this));
+                this.addEventListener("blur", this.handleMouseLeave.bind(this));
+            }
         }
     }
-    handleMouseEnter() {
+    /**
+   * @description
+   * Handle the mouse enter event.
+   * @returns {void}
+   */ handleMouseEnter() {
         if (this.dropdownContent) this.dropdownContent.style.display = "block";
     }
-    handleMouseLeave() {
+    /**
+   * @description
+   * Handle the mouse leave event.
+   * @returns {void}
+   */ handleMouseLeave() {
         if (this.dropdownContent) this.dropdownContent.style.display = "none";
     }
-    handleClick() {
+    /**
+   * @description
+   * Handle the click event.
+   * @returns {void}
+   */ handleClick() {
         if (this.dropdownContent) this.dropdownContent.style.display = this.dropdownContent.style.display === "block" ? "none" : "block";
     }
     render() {
@@ -9976,8 +10006,7 @@ class CpxDropDownContainer extends (0, _element.CpxElement) {
             ${this.triggerBgColor !== "transparent" ? `bg:${this.triggerBgColor}` : ""}
             ${this.triggerColor !== "text-500" ? `color:${this.triggerColor}` : ""}
          `, "all")}" dropdown-trigger:title="">${this.title}</dropdown-trigger>
-          <dropdown-item style="${(0, _index.Cpx).String.trimWhitespace(`
-              z-index: 1000;
+          <dropdown-item style="${(0, _index.Cpx).String.trimWhitespace(` z-index: 1000;
               position: absolute; 
               display: none; 
               ${this.positionX}: 0; 
@@ -10091,7 +10120,11 @@ class CpxSliderContainer extends (0, _element.CpxElement) {
         super.connectedCallback();
         this.initSlider();
     }
-    initSlider() {
+    /**
+   * Initialize the Swiper slider
+   * @description
+   * This method initializes the Swiper slider with the provided options and breakpoints.
+   */ initSlider() {
         const sliderDirection = this.getAttribute("slider-container:direction") || "horizontal";
         const sliderLoop = this.getAttribute("slider-container:loop") !== "false"; // Defaults to true unless explicitly set to false
         const container = this.querySelector(`.swiper-container-${this.ID}`); // Get the container element
@@ -10104,18 +10137,9 @@ class CpxSliderContainer extends (0, _element.CpxElement) {
         new (0, _swiperDefault.default)(container, {
             direction: sliderDirection,
             loop: sliderLoop,
-            pagination: {
-                el: `.slider-pagination`
-            },
-            navigation: {
-                nextEl: `.slider-navigation-next`,
-                prevEl: `.slider-navigation-prev`
-            },
+            slidesPerView: slidesPerView,
+            spaceBetween: spaceBetween,
             breakpoints: {
-                560: {
-                    slidesPerView: slidesPerView,
-                    spaceBetween: spaceBetween
-                },
                 768: {
                     slidesPerView: slidesPerViewMedium || slidesPerView,
                     spaceBetween: spaceBetweenMedium || spaceBetween
@@ -10125,21 +10149,28 @@ class CpxSliderContainer extends (0, _element.CpxElement) {
                     spaceBetween: spaceBetweenLarge || spaceBetweenMedium || spaceBetween
                 }
             },
+            pagination: {
+                el: `.swiper-pagination`
+            },
+            navigation: {
+                nextEl: `.swiper-navigation-next`,
+                prevEl: `.swiper-navigation-prev`
+            },
             scrollbar: {
-                el: `.slider-scrollbar`
+                el: `.swiper-scrollbar`
             }
         });
     }
     render() {
         this.innerHTML = `
-      <div id="${this.ID}" class="position:relative swiper-container-${this.ID} ${this.classNames}">
-        <div class="swiper-wrapper">
-          ${this.innerHTML}
-        </div>
-        <div id="pagination-${this.ID}" class="slider-pagination "></div>
-        <div id="navigation-prev-${this.ID}" class="slider-navigation-prev position:absolute bottom:0 left:0 w:8 h:9 bg:text-500 z:50"></div>
-        <div id="navigation-next-${this.ID}" class="slider-navigation-next position:absolute bottom:0 right:0 w:8 h:9 bg:text-500 z:50"></div>
-        <div id="scrollbar-${this.ID}" class="slider-scrollbar"></div>
+      <div id="${this.ID}" class="swiper-slider position:relative swiper-container-${this.ID} ${this.classNames}">
+          <div class="swiper-wrapper">
+            ${this.initialContent}
+          </div>
+          <div id="pagination-${this.ID}" class="swiper-pagination slider-pagination "></div>
+          <div id="navigation-prev-${this.ID}" class="swiper-navigation-prev slider-navigation-prev"></div>
+          <div id="navigation-next-${this.ID}" class="swiper-navigation-next slider-navigation-next"></div>
+          <div id="scrollbar-${this.ID}" class="swiper-scrollbar slider-scrollbar"></div>
       </div>
     `;
     }
@@ -13632,8 +13663,12 @@ class CpxParseMarkdown extends (0, _element.CpxElement) {
             console.error("No source URL provided for Markdown content.");
             return;
         }
-        // Fetch the Markdown content from the source URL
-        fetch(this.sourceUrl).then((response)=>response.text()).then((markdownContent)=>{
+        /**
+     * @description
+     * Fetch the Markdown content from the source URL
+     * and parse it using marked
+     * @returns {void}
+     */ fetch(this.sourceUrl).then((response)=>response.text()).then((markdownContent)=>{
             // Parse the Markdown content using marked
             this.innerHTML = `
           <div class="parse-markdown parse-markdown--styles-${evalBaseStyles.toString()} ${this.classNames}">
@@ -15681,15 +15716,13 @@ class CpxPictureElement extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `  
-        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class="picture-element ${this.classNames}">
-        <suspense-all>
+        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class=" ${this.classNames}">
             <picture> 
               ${this.urlImgBig !== false ? `<source media="(min-width:${this.screenBig})" srcset="${this.urlImgBig}?as=webp?width=${this.screenBig}">` : ``}
               ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
-                <img loading="${this.loading}" class="picture-element__img" src="${this.url}" alt="${this.alt}">
+                <img loading="${this.loading}" class="w:${this.width} h:${this.height}" src="${this.url}" alt="${this.alt}">
             </picture>
             ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
-            </suspense-all>
           </figure>
         `;
     }
@@ -15811,6 +15844,7 @@ parcelHelpers.defineInteropFlag(exports);
  * <tab-container tab-container:id="tab-container-id">
  */ parcelHelpers.export(exports, "CpxTabContainer", ()=>CpxTabContainer);
 var _element = require("../../element");
+var _index = require("../../index");
 var _id = require("../../utils/id");
 class CpxTabContainer extends (0, _element.CpxElement) {
     constructor(){
@@ -15833,7 +15867,7 @@ class CpxTabContainer extends (0, _element.CpxElement) {
         this.innerHTML = `
     <section
       tab-container:id="${this.tabContainerId}"
-      class="
+      class="${(0, _index.Cpx).String.trimWhitespace(`
         overflow:hidden
         ${this.padding !== 0 ? `p:${this.padding}` : ""}
         ${this.color !== "inherit" ? `color:${this.color}` : ""}
@@ -15843,7 +15877,7 @@ class CpxTabContainer extends (0, _element.CpxElement) {
         ${this.radius !== "none" ? `radius:${this.radius}` : ""}
         ${this.size !== "sm" ? `size:${this.size}` : ""}
         ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
-        ${this.classNames}">
+        ${this.classNames}`, "all")}">
         ${this.initialContent}
     </section>
         `;
@@ -15851,11 +15885,12 @@ class CpxTabContainer extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-container`, CpxTabContainer);
 
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D8G5":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"4D8G5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
 var _element = require("../../element");
+var _index = require("../../index");
 class CpxTabHeader extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -15876,7 +15911,7 @@ class CpxTabHeader extends (0, _element.CpxElement) {
         this.innerHTML = `
     <section 
       tab-header:id="${this.tabHeaderId} " 
-      class="
+      class="${(0, _index.Cpx).String.trimWhitespace(`
         display:flex
         ${this.padding !== 0 ? `p:${this.padding}` : ""}
         ${this.color !== "inherit" ? `color:${this.color}` : ""}
@@ -15888,7 +15923,7 @@ class CpxTabHeader extends (0, _element.CpxElement) {
         ${this.size !== "sm" ? `size:${this.size}` : ""}
         ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
         ${this.gap !== 0 ? `gap:${this.gap}` : ""}
-        ${this.classNames}">
+        ${this.classNames}`, "all")}">
         ${this.initialContent}
     </section>
         `;
@@ -15896,12 +15931,13 @@ class CpxTabHeader extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-header`, CpxTabHeader);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBlXm":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"dBlXm":[function(require,module,exports) {
 // tab-content.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
 var _element = require("../../element");
+var _index = require("../../index");
 class CpxTabContent extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -15919,7 +15955,11 @@ class CpxTabContent extends (0, _element.CpxElement) {
     connectedCallback() {
         this.render();
     }
-    render() {
+    /**
+   * @description
+   * Render the tab content element.
+   * @returns {void}
+   */ render() {
         const activeTabToggle = document.querySelector(`tab-toggle[tab-toggle\\:active="true"]`);
         const activeTabContent = document.querySelector(`tab-content[tab-content\\:id="${activeTabToggle.getAttribute("tab-toggle:id")}"]`);
         if (activeTabContent === this) activeTabContent.classList.add("display:block");
@@ -15927,7 +15967,7 @@ class CpxTabContent extends (0, _element.CpxElement) {
         this.innerHTML = `
       <section 
         tab-content:id="${this.tabContentId}"
-        class="
+        class="${(0, _index.Cpx).String.trimWhitespace(`
           ${this.padding !== 0 ? `p:${this.padding}` : ""}
           ${this.color !== "inherit" ? `color:${this.color}` : ""}
           ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
@@ -15936,7 +15976,9 @@ class CpxTabContent extends (0, _element.CpxElement) {
           ${this.radius !== "none" ? `radius:${this.radius}` : ""}
           ${this.size !== "sm" ? `size:${this.size}` : ""}
           ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
-          ${this.classNames}">
+          ${this.classNames}
+          `, "all")}
+          ">
           ${this.initialContent}
       </section>
     `;
@@ -15944,12 +15986,13 @@ class CpxTabContent extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-content`, CpxTabContent);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ircPr":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"ircPr":[function(require,module,exports) {
 // tab-toggle.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
 var _element = require("../../element");
+var _index = require("../../index");
 class CpxTabToggle extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -15993,16 +16036,17 @@ class CpxTabToggle extends (0, _element.CpxElement) {
     render() {
         this.innerHTML = `
       <button
-        class="
-        ${this.padding !== 0 ? `p:${this.padding}` : ``}
-        ${this.color !== "inherit" ? `color:${this.color}` : ``}
-        ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ``}
-        ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ``}
-        ${this.size !== "sm" ? `size:${this.size}` : ``}
-        ${this.weight !== "normal" ? `weight:${this.weight}` : ``}
-        ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ``}
-        ${this.radius !== "none" ? `radius:${this.radius}` : ``}
-        ${this.classNames}"
+        class="${(0, _index.Cpx).String.trimWhitespace(`
+            ${this.padding !== 0 ? `p:${this.padding}` : ``}
+            ${this.color !== "inherit" ? `color:${this.color}` : ``}
+            ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ``}
+            ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ``}
+            ${this.size !== "sm" ? `size:${this.size}` : ``}
+            ${this.weight !== "normal" ? `weight:${this.weight}` : ``}
+            ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ``}
+            ${this.radius !== "none" ? `radius:${this.radius}` : ``}
+            ${this.classNames}
+        `, "all")}"
         id="${this.tabToggleId}">
           ${this.initialContent}
       </button>
@@ -16011,7 +16055,7 @@ class CpxTabToggle extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-toggle`, CpxTabToggle);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bg3EL":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"bg3EL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "VideoPlayer", ()=>(0, _videoPlayer.CpxVideoPlayer));
@@ -16296,7 +16340,7 @@ class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-        <button click:storage:local:set(currentvideo,${(0, _index.Cpx).String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:gray-300 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
+        <button click:storage:local:set(currentvideo,${(0, _index.Cpx).String.toHtml(this.videoTitle)}) class="w:full p:3 border-width:1 border-color:light-100 radius:sm mb:2 ${this.classNames}" video-playlist-item video-playlist-item-url="${this.videoUrl}">
           ${this.initialContent !== "" ? this.initialContent : `<section class="display:flex">
                         <div class="display:flex">
                             <img video-playlist-item="cover" src="${this.videoPoster}" alt="${this.videoTitle}" />
@@ -16311,7 +16355,186 @@ class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
 }
 customElements.define(`video-playlist-item`, CpxVideoPlaylistItem);
 
-},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dqus8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "IconElement", ()=>(0, _iconElement.CpxIconElement));
+var _iconElement = require("./IconElement");
+
+},{"./IconElement":"fPT43","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPT43":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @description
+ * The Icon Element is a custom element that allows you to display an icon from the Cpx Icon Library.
+ * @example
+ * <icon-element icon-element:icon="play" icon-element:width="8" icon-element:height="8" icon-element:color="black" icon-element:bg-color="white" icon-element:border-color="black" icon-element:border-radius="0" icon-element:border-width="1" icon-element:is-inline="true" icon-element:svg:stroke="currentColor" icon-element:svg:fill="none" icon-element:svg:stroke-width="2"></icon-element>
+ */ parcelHelpers.export(exports, "CpxIconElement", ()=>CpxIconElement);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxIconElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("icon-element:class") || "";
+        this.url = this.getAttribute("icon-element:url") || "";
+        this.alt = this.getAttribute("icon-element:alt") || "icon";
+        this.width = this.getAttribute("icon-element:width") || "8";
+        this.height = this.getAttribute("icon-element:height") || "8";
+        this.icon = this.getAttribute("icon-element:icon") || "play";
+        this.color = this.getAttribute("icon-element:color") || "black";
+        this.bgColor = this.getAttribute("icon-element:bg-color") || "white";
+        this.borderColor = this.getAttribute("icon-element:border-color") || "black";
+        this.borderRadius = this.getAttribute("icon-element:border-radius") || "0";
+        this.borderWidth = eval(this.getAttribute("icon-element:border-width")) || 1;
+        this.isInline = this.getAttribute("icon-element:is-inline") || true;
+        this.stroke = this.getAttribute("icon-element:svg:stroke") || "currentColor";
+        this.fill = this.getAttribute("icon-element:svg:fill") || "none";
+        this.strokeWidth = parseInt(this.getAttribute("icon-element:svg:stroke-width")) || "2";
+        this.setAttribute("class", `w:${this.width} h:${this.height}`);
+    }
+    connectedCallback() {
+        this.render();
+        this.isInline;
+        this.changeSvgAttributes();
+    }
+    /**
+   * @description
+   * Change the stroke, fill, and stroke-width attributes of the svg element.
+   * @returns {void}
+   * @example
+   * this.changeSvgAttributes();
+   */ changeSvgAttributes() {
+        const allSvgTags = [
+            "svg",
+            "path",
+            "circle",
+            "rect",
+            "line",
+            "polyline",
+            "polygon",
+            "ellipse"
+        ];
+        const allAttributes = [
+            "stroke",
+            "fill",
+            "stroke-width"
+        ];
+        const svg = this.querySelector("svg");
+        console.log(this.isInline, "this.isInline");
+        // Look for all stroke, stroke-width, and fill attributes and change them
+        if (svg) allSvgTags.forEach((tag)=>{
+            const elements = svg.getElementsByTagName(tag);
+            if (elements.length > 0) for(let i = 0; i < elements.length; i++){
+                const element = elements[i];
+                allAttributes.forEach((attr)=>{
+                    if (element.hasAttribute(attr)) {
+                        if (attr === "stroke") element.setAttribute(attr, this.stroke);
+                        else if (attr === "fill") element.setAttribute(attr, this.fill);
+                        else if (attr === "stroke-width") element.setAttribute(attr, this.strokeWidth.toString());
+                    }
+                });
+            }
+        });
+    }
+    /**
+   * @description
+   * Render the Icon Element.
+   * @returns {void}
+   */ render() {
+        this.innerHTML = `
+        <section>
+            ${eval(this.isInline) === true ? ` <figure title="${this.alt}" class="w:${this.width} h:${this.height}">
+                        ${(0, _index.Cpx).Icon[this.icon]}
+                    </figure>
+                ` : `
+                <picture-element picture-element:width="${this.width}" picture-element:height:"${this.height}" picture-element:url="${this.url}" picture-element:alt="${this.alt}" ></picture-element>
+                `}
+        </section>
+        `;
+    }
+}
+customElements.define(`icon-element`, CpxIconElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"3DbAV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AvatarElement", ()=>(0, _avatarElement.CpxAvatarElement));
+parcelHelpers.export(exports, "AvatarList", ()=>(0, _avatarList.CpxAvatarList));
+var _avatarElement = require("./AvatarElement");
+var _avatarList = require("./AvatarList");
+
+},{"./AvatarElement":"eIWaJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./AvatarList":"lhNTV"}],"eIWaJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Avatar Element
+ */ parcelHelpers.export(exports, "CpxAvatarElement", ()=>CpxAvatarElement);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxAvatarElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("avatar-element:class") || "";
+        this.size = this.getAttribute("avatar-element:size") || 12;
+        this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
+        this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
+        this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
+        this.alt = this.getAttribute("avatar-element:alt") || "";
+        this.url = this.getAttribute("avatar-element:url") || "https://via.placeholder.com/150";
+        this.setAttribute("class", `display:block w:${this.size} h:${this.size}`);
+    }
+    render() {
+        this.innerHTML = `  
+        <section class="${(0, _index.Cpx).String.trimWhitespace(`
+            overflow:hidden
+            ${this.borderRadius !== "none" ? `radius:${this.borderRadius}` : ""}
+            ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+            ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+            ${this.borderWidth !== 0 ? `outline-width:${parseInt(this.borderWidth) / 2}` : ""}
+            ${this.borderColor !== "transparent" ? `outline-color:${this.borderColor}` : ""}
+            outline-offset:2
+            w:${this.size}
+            h:${this.size}
+            ${this.classNames}">
+            <picture-element picture-element:width=${this.size} picture-element:height=${this.size} picture-element:alt="${this.alt}" picture-element:url="${this.url}"></picture-element>
+        </section>
+        `, "all")}`;
+    }
+}
+customElements.define(`avatar-element`, CpxAvatarElement);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"lhNTV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Avatar Element
+ */ parcelHelpers.export(exports, "CpxAvatarList", ()=>CpxAvatarList);
+var _element = require("../../element");
+class CpxAvatarList extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("avatar-element:class") || "";
+        this.size = this.getAttribute("avatar-element:size") || 12;
+        this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
+        this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
+        this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
+        this.gap = parseInt(this.getAttribute("avatar-element:gap")) || 2;
+        this.gapIsInverted = this.getAttribute("avatar-element:gap:is-inverted") === "true" ? true : false;
+        this.alt = this.getAttribute("avatar-element:alt") || "";
+        this.url = this.getAttribute("avatar-element:url") || "https://via.placeholder.com/150";
+        this.setAttribute("class", `display:block`);
+    }
+    render() {
+        this.innerHTML = `  
+        <section class="display:flex ${this.gap !== 0 ? `mr:${this.gapIsInverted === true ? `-` : ``}${this.gap}>*` : ``}">
+            ${this.initialContent}
+        </section>
+        `;
+    }
+}
+customElements.define(`avatar-list`, CpxAvatarList);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DB", ()=>DB);
@@ -16840,7 +17063,32 @@ class PageAbout extends (0, _app.Cpx).Element {
     }
     render() {
         this.innerHTML = `
-    <slider-container>
+    <avatar-list avatar-element:gap=6 avatar-element:gap:is-inverted=true>
+    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    </avatar-list> 
+    
+    <icon-element
+      icon-element:is-inline="false"
+      icon-element:icon="backward"
+      icon-element:svg:stroke="currentColor"
+      icon-element:svg:stroke-width="3"
+      icon-element:url="https://placehold.co/100"
+      icon-element:width="16"
+      icon-element:height="16"
+      icon-element:bg="text-500"
+      ></icon-element>
+      <icon-element
+      icon-element:icon="backward"
+      icon-element:svg:stroke="currentColor"
+      icon-element:svg:stroke-width="1"
+      icon-element:url="https://placehold.co/100"
+      icon-element:width="16"
+      icon-element:height="16"
+      icon-element:bg="text-500"
+      ></icon-element>
+    <slider-container slider-container:slides-per-view=2 slider-container:slides-per-view:medium=3 slider-container:loop=false slider-container:direction=horizontal>
       <slider-item>
         <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 1">
       </slider-item>
@@ -16861,14 +17109,14 @@ class PageAbout extends (0, _app.Cpx).Element {
 
      <dropdown-container
       dropdown-container:position:y=bottom
-      dropdown-container:event:hover=true
-      dropdown-container:event:focus=true
+      dropdown-container:event:hover="true"
+      dropdown-container:event:focus="true"
       dropdown-container:title="Header2">
-        <dropdown-item>
+        <section>
               Dropdown Content<br>
               Yo<br>
               pwk,DS\xdcQPKDW\xdcW
-        </dropdown-item>
+        </section>
     </dropdown-container>
     </section>
 
@@ -16952,13 +17200,14 @@ class PageAbout extends (0, _app.Cpx).Element {
                     badge-element:size=md
                     >My Badge</badge-element>
                   <badge-element
-                    badge-element:color="black-500"
-                    badge-element:size=xxs
+                    badge-element:color="text-500"
+                    badge-element:bg="success-200"
+                    badge-element:size=xs
                     badge-element:padding=2
                     badge-element:action="console.log('test')"
                     >Sky Badge</badge-element>
                   <badge-element
-                    badge-element:color="pink"
+                    badge-element:bg="warning-100"
                     badge-element:size=md
                     >My Badge</badge-element>
               </div>

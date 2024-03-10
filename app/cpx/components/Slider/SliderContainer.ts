@@ -15,7 +15,11 @@ export class CpxSliderContainer extends CpxElement {
     super.connectedCallback();
     this.initSlider();
   }
-
+  /**
+   * Initialize the Swiper slider
+   * @description
+   * This method initializes the Swiper slider with the provided options and breakpoints.
+   */
   initSlider() {
     const sliderDirection = this.getAttribute("slider-container:direction") || "horizontal";
     const sliderLoop = this.getAttribute("slider-container:loop") !== "false"; // Defaults to true unless explicitly set to false
@@ -26,21 +30,13 @@ export class CpxSliderContainer extends CpxElement {
     const spaceBetween = eval(this.getAttribute("slider-container:space-between")) || 0;
     const spaceBetweenMedium = eval(this.getAttribute("slider-container:space-between:medium")) || eval(this.getAttribute("slider-container:space-between"));
     const spaceBetweenLarge = eval(this.getAttribute("slider-container:space-between:large")) || eval(this.getAttribute("slider-container:space-between:medium")) || eval(this.getAttribute("slider-container:space-between"));
+    
     new Swiper(container, {
       direction: sliderDirection,
       loop: sliderLoop,
-      pagination: {
-        el: `.slider-pagination`,
-      },
-      navigation: {
-        nextEl: `.slider-navigation-next`,
-        prevEl: `.slider-navigation-prev`,
-      },
+      slidesPerView: slidesPerView,
+      spaceBetween: spaceBetween,
       breakpoints: {
-        560: {
-          slidesPerView: slidesPerView,
-          spaceBetween: spaceBetween,
-        },
         768: {
           slidesPerView: slidesPerViewMedium || slidesPerView,
           spaceBetween: spaceBetweenMedium || spaceBetween,
@@ -50,22 +46,29 @@ export class CpxSliderContainer extends CpxElement {
           spaceBetween: spaceBetweenLarge || spaceBetweenMedium || spaceBetween,
         },
       },
+      pagination: {
+        el: `.swiper-pagination`,
+      },
+      navigation: {
+        nextEl: `.swiper-navigation-next`,
+        prevEl: `.swiper-navigation-prev`,
+      },
       scrollbar: {
-        el: `.slider-scrollbar`,
+        el: `.swiper-scrollbar`,
       },
     });
   }
 
   render() {
     this.innerHTML = `
-      <div id="${this.ID}" class="position:relative swiper-container-${this.ID} ${this.classNames}">
-        <div class="swiper-wrapper">
-          ${this.innerHTML}
-        </div>
-        <div id="pagination-${this.ID}" class="slider-pagination "></div>
-        <div id="navigation-prev-${this.ID}" class="slider-navigation-prev position:absolute bottom:0 left:0 w:8 h:9 bg:text-500 z:50"></div>
-        <div id="navigation-next-${this.ID}" class="slider-navigation-next position:absolute bottom:0 right:0 w:8 h:9 bg:text-500 z:50"></div>
-        <div id="scrollbar-${this.ID}" class="slider-scrollbar"></div>
+      <div id="${this.ID}" class="swiper-slider position:relative swiper-container-${this.ID} ${this.classNames}">
+          <div class="swiper-wrapper">
+            ${this.initialContent}
+          </div>
+          <div id="pagination-${this.ID}" class="swiper-pagination slider-pagination "></div>
+          <div id="navigation-prev-${this.ID}" class="swiper-navigation-prev slider-navigation-prev"></div>
+          <div id="navigation-next-${this.ID}" class="swiper-navigation-next slider-navigation-next"></div>
+          <div id="scrollbar-${this.ID}" class="swiper-scrollbar slider-scrollbar"></div>
       </div>
     `;
   }

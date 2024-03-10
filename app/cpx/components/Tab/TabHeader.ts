@@ -1,4 +1,5 @@
 import { CpxElement } from "../../element";
+import { Cpx } from "../../index";
 
 export class CpxTabHeader extends CpxElement {
   tabHeaderId: any;
@@ -10,7 +11,7 @@ export class CpxTabHeader extends CpxElement {
   bgColor: string;
   borderColor: string;
   size: string;
-  borderWidth: number;
+  borderWidth: number | string;
   radius: string;
   weight: string;
 
@@ -26,7 +27,7 @@ export class CpxTabHeader extends CpxElement {
     this.borderColor = this.getAttribute("tab-header:border-color") || "transparent";
     this.size = this.getAttribute("tab-header:size") || "sm";
     this.weight = this.getAttribute("tab-header:weight") || "normal";
-    this.radius = this.getAttribute("tab-header:radius") || 'none';
+    this.radius = this.getAttribute("tab-header:radius") || "none";
     this.borderWidth = parseInt(this.getAttribute("tab-header:border-width")) || 0;
   }
 
@@ -34,7 +35,7 @@ export class CpxTabHeader extends CpxElement {
     this.innerHTML = `
     <section 
       tab-header:id="${this.tabHeaderId} " 
-      class="
+      class="${Cpx.String.trimWhitespace(`
         display:flex
         ${this.padding !== 0 ? `p:${this.padding}` : ""}
         ${this.color !== "inherit" ? `color:${this.color}` : ""}
@@ -46,7 +47,9 @@ export class CpxTabHeader extends CpxElement {
         ${this.size !== "sm" ? `size:${this.size}` : ""}
         ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
         ${this.gap !== 0 ? `gap:${this.gap}` : ""}
-        ${this.classNames}">
+        ${this.classNames}`,
+        "all"
+      )}">
         ${this.initialContent}
     </section>
         `;

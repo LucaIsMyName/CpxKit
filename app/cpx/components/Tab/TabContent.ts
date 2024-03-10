@@ -1,5 +1,6 @@
 // tab-content.js
 import { CpxElement } from "../../element";
+import { Cpx } from "../../index";
 
 export class CpxTabContent extends CpxElement {
   tabContentId: any;
@@ -20,7 +21,7 @@ export class CpxTabContent extends CpxElement {
     this.size = this.getAttribute("tab-content:size") || "sm";
     this.weight = this.getAttribute("tab-content:weight") || "normal";
     this.borderWidth = parseInt(this.getAttribute("tab-content:border-width")) || 0;
-    this.radius = this.getAttribute("tab-content:radius") || 'none';
+    this.radius = this.getAttribute("tab-content:radius") || "none";
     this.color = this.getAttribute("tab-content:color") || "inherit";
     this.bgColor = this.getAttribute("tab-content:bg-color") || "transparent";
     this.borderColor = this.getAttribute("tab-content:border-color") || "transparent";
@@ -30,8 +31,12 @@ export class CpxTabContent extends CpxElement {
   connectedCallback() {
     this.render();
   }
-
-  render() {
+  /**
+   * @description
+   * Render the tab content element.
+   * @returns {void}
+   */
+  render(): void {
     const activeTabToggle = document.querySelector(`tab-toggle[tab-toggle\\:active="true"]`);
     const activeTabContent = document.querySelector(`tab-content[tab-content\\:id="${activeTabToggle.getAttribute("tab-toggle:id")}"]`);
     if (activeTabContent === this) {
@@ -42,7 +47,8 @@ export class CpxTabContent extends CpxElement {
     this.innerHTML = `
       <section 
         tab-content:id="${this.tabContentId}"
-        class="
+        class="${Cpx.String.trimWhitespace(
+          `
           ${this.padding !== 0 ? `p:${this.padding}` : ""}
           ${this.color !== "inherit" ? `color:${this.color}` : ""}
           ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
@@ -51,7 +57,11 @@ export class CpxTabContent extends CpxElement {
           ${this.radius !== "none" ? `radius:${this.radius}` : ""}
           ${this.size !== "sm" ? `size:${this.size}` : ""}
           ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
-          ${this.classNames}">
+          ${this.classNames}
+          `,
+          "all"
+        )}
+          ">
           ${this.initialContent}
       </section>
     `;

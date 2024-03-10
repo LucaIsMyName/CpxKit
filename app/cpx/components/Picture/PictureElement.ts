@@ -20,6 +20,7 @@ export class CpxPictureElement extends CpxElement {
   height: string;
   aspectRatio: string;
   loading: string;
+  
   constructor() {
     super();
     this.classNames = this.getAttribute("picture-element:class") || "";
@@ -37,15 +38,13 @@ export class CpxPictureElement extends CpxElement {
 
   render() {
     this.innerHTML = `  
-        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class="picture-element ${this.classNames}">
-        <suspense-all>
+        <figure title="${this.alt}" style="--aspect-ratio:${this.aspectRatio}" class=" ${this.classNames}">
             <picture> 
               ${this.urlImgBig !== false ? `<source media="(min-width:${this.screenBig})" srcset="${this.urlImgBig}?as=webp?width=${this.screenBig}">` : ``}
               ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
-                <img loading="${this.loading}" class="picture-element__img" src="${this.url}" alt="${this.alt}">
+                <img loading="${this.loading}" class="w:${this.width} h:${this.height}" src="${this.url}" alt="${this.alt}">
             </picture>
             ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
-            </suspense-all>
           </figure>
         `;
   }

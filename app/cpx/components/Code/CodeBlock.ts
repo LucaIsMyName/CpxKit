@@ -42,7 +42,7 @@ export class CpxCodeBlock extends CpxElement {
 
   constructor() {
     super();
-    this.ID = this.getAttribute("id") || Cpx.Id.Generate.hex(6).replace(" ", "");
+    this.ID = this.getAttribute("component:id") || Cpx.Id.Generate.hex(6).replace(" ", "");
     this.classNames = this.getAttribute("code-block:class") || "";
     this.title = this.getAttribute("code-block:title") || "Code";
     this.lang = this.getAttribute("code-block:lang") || "js";
@@ -51,7 +51,7 @@ export class CpxCodeBlock extends CpxElement {
     this.borderRadius = this.getAttribute("code-block:radius") || "sm";
     this.borderWidth = parseInt(this.getAttribute("code-block:border-width")) || 1;
     this.color = this.getAttribute("code-block:color") || "text-500";
-    this.bgColor = this.getAttribute("code-block:bg-color") || "shade-xxs";
+    this.bgColor = this.getAttribute("code-block:bg") || "shade-xxs";
     this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl";
     this.padding = parseInt(this.getAttribute("code-block:padding")) || 4;
   }
