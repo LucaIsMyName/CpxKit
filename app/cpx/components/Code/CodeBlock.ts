@@ -29,23 +29,31 @@ hljs.registerLanguage("typescript", typescript);
 
 export class CpxCodeBlock extends CpxElement {
   classNames: string;
-  appearance: string;
   lang: string;
   title: string;
   hasCopyButton: boolean;
   hasHeader: boolean;
-  theme: string;
+  borderRadius: string;
+  borderWidth: number;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+  padding: number;
 
   constructor() {
     super();
     this.ID = this.getAttribute("id") || Cpx.Id.Generate.hex(6).replace(" ", "");
     this.classNames = this.getAttribute("code-block:class") || "";
-    this.appearance = this.getAttribute("code-block:appearance") || "default";
     this.title = this.getAttribute("code-block:title") || "Code";
     this.lang = this.getAttribute("code-block:lang") || "js";
     this.hasCopyButton = eval(this.getAttribute("code-block:has-copy-button")) || true;
     this.hasHeader = eval(this.getAttribute("code-block:has-header")) || true;
-    this.theme = this.getAttribute("code-block:theme") || "light";
+    this.borderRadius = this.getAttribute("code-block:radius") || "sm";
+    this.borderWidth = parseInt(this.getAttribute("code-block:border-width")) || 1;
+    this.color = this.getAttribute("code-block:color") || "text-500";
+    this.bgColor = this.getAttribute("code-block:bg-color") || "shade-xxs";
+    this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl";
+    this.padding = parseInt(this.getAttribute("code-block:padding")) || 4;
   }
 
   connectedCallback() {
@@ -89,7 +97,7 @@ export class CpxCodeBlock extends CpxElement {
     ${
       this.hasHeader === true && this.hasCopyButton === true
         ? `
-        <header class="p:4 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:gray-400">
+        <header class=" w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:${this.borderColor} pb:4">
             ${
               this.hasHeader === true
                 ? ` 
@@ -100,9 +108,9 @@ export class CpxCodeBlock extends CpxElement {
                       badge-element:padding="1"
                       badge-element:size="xs"
                       badge-element:font-family="mono"
-                      badge-element:color="gray-dark-800"
-                      badge-element:border-color="gray-900"
-                      badge-element:bg="${this.theme}"
+                      badge-element:color="dark-300"
+                      badge-element:border-color="light-900"
+                      badge-element:bg=transparent
                       class="">.${this.lang}</badge-element>
                   </div>
                   `
@@ -127,9 +135,18 @@ export class CpxCodeBlock extends CpxElement {
 
   render() {
     this.innerHTML = `  
-            <section class="bg:gray-300 color:gray-900 border-radius:md radius:md overflow:hidden ${this.classNames}">
+            <section class="
+              ${this.padding !== 0 ? `p:${this.padding}` : ""}
+              ${this.color !== "transparent" ? `color:${this.color}` : ""}
+              ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+              ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+              ${this.borderRadius !== "none" ? `radius:${this.borderRadius}` : ""}
+              ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+
+              overflow:hidden
+              ${this.classNames}">
                 ${this.getHeader()}
-                <pre class="p:4"><code class="font-family:mono language-${this.lang}" copy-clipboard="target" hljs-area>${Cpx.String.trimWhitespace(this.initialContent)}</code></pre>
+                <pre class="mt:4"><code class="font-family:mono language-${this.lang}" copy-clipboard="target" hljs-area>${Cpx.String.trimWhitespace(this.initialContent)}</code></pre>
             </section>
         `;
   }

@@ -1,5 +1,5 @@
 import { CpxElement } from "../../element";
-
+import { Cpx } from "../../index";
 /**
  * @class CpxAudioPlaylistItem
  *
@@ -34,7 +34,18 @@ export class CpxAudioPlaylistItem extends CpxElement {
     let evalAlbum = eval(this.hasAlbum);
 
     this.innerHTML = `
-        <button class="w:full p:2 mb:2 display:flex radius:sm items:center justify-content:between gap:4 border-width:1 border-color:gray-400 mb ${this.classNames}" audio-track audio-track-url="${this.url}>
+        <button class="${Cpx.String.trimWhitespace(`
+          w:full
+          p:2
+          display:flex
+          radius:sm
+          items:center
+          content:between
+          gap:4
+          border-width:1
+          border-color:gray-400
+          ${this.classNames}
+          `,`all`)}" audio-track audio-track-url="${this.url}">
           ${
             this.initialContent !== ""
               ? `${this.initialContent}`
@@ -42,13 +53,13 @@ export class CpxAudioPlaylistItem extends CpxElement {
               ${
                 evalTitle === true
                   ? `
-                    <p class="" audio-track="title">${this.title}</p>
+                    <div audio-track="title">${this.title}</div>
                   `
                   : ``
               }
               <section class="display:flex items:center gap:4">
-                  ${evalArtist === true ? `<p class="size:xs line-height:0" audio-track="artist">${this.artist}</p>` : ``}
-                  ${evalAlbum === true ? `<p class="size:xs line-height:0" audio-track="album">${this.album}</p>` : ``}
+                  ${evalArtist === true ? `<div class="size:xs line-height:0" audio-track="artist">${this.artist}</div>` : ``}
+                  ${evalAlbum === true ? `<div class="size:xs line-height:0" audio-track="album">${this.album}</div>` : ``}
               </section>
             `
           }

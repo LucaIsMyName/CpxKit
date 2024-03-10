@@ -7,6 +7,7 @@ $mediaQueries: (
     "2xl": "96rem",
     "print": "print",
 );
+
 $colors: (
     "blue": #2da1ff,
     "red": #ee616d,
@@ -33,6 +34,18 @@ $colors: (
     "sky": #6ccff6,
     "light-blue": #87e5ef,
     "light-green": #7bcf7b,
+    "text": #252525,
+    "background": #e6e6e6,
+    "accent": #1e92f1,
+    "border": #c6c4c1,
+    "muted": #9c9c9c,
+    "success": #75e375,
+    "info": #2da1ff,
+    "warning": #fff066,
+    "danger": #ee616d,
+    "light": #e7e7e7,
+    "dark": #2d2d2d,
+    "transparent": transparent,
 );
 
 :root {
@@ -71,38 +84,22 @@ $colors: (
     --32: 8rem;
 
     --relative-0: 0;
-    --relative-1: 0.25em;
-    --relative-2: 0.5em;
-    --relative-3: 0.75em;
-    --relative-4: 1em;
-    --relative-5: 1.25em;
-    --relative-6: 1.5em;
-    --relative-7: 1.75em;
-    --relative-8: 2em;
-    --relative-9: 2.25em;
-    --relative-10: 2.5em;
-    --relative-11: 2.75em;
-    --relative-12: 3em;
-    --relative-13: 3.25em;
+    --relative-1: 0.125em;
+    --relative-2: 0.1625em;
+    --relative-3: 0.2em;
+    --relative-4: 0.25em;
+    --relative-5: 0.33em;
+    --relative-6: 0.5em;
+    --relative-7: 0.66em;
+    --relative-8: 1em;
+    --relative-9: 1.33em;
+    --relative-10: 1.66em;
+    --relative-11: 2em;
+    --relative-12: 2.5em;
+    --relative-13: 3em;
     --relative-14: 3.5em;
-    --relative-15: 3.75em;
-    --relative-16: 4em;
-    --relative-17: 4.25em;
-    --relative-18: 4.5em;
-    --relative-19: 4.75em;
-    --relative-20: 5em;
-    --relative-21: 5.25em;
-    --relative-22: 5.5em;
-    --relative-23: 5.75em;
-    --relative-24: 6em;
-    --relative-25: 6.25em;
-    --relative-26: 6.5em;
-    --relative-27: 6.75em;
-    --relative-28: 7em;
-    --relative-29: 7.25em;
-    --relative-30: 7.5em;
-    --relative-31: 7.75em;
-    --relative-32: 8em;
+    --relative-15: 4em;
+    --relative-16: 6em;
 
     --size-0: 0;
     --size-1: 1rem;
@@ -164,7 +161,7 @@ $colors: (
 
     --font-sans: system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --font-display: system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-mono: system-ui-mono, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    --font-mono: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     --font-serif: serif;
 
     --font-xxs: 0.625rem;
@@ -333,27 +330,6 @@ $colors: (
     --transparent: transparent;
     --current: currentColor;
     --inherit: inherit;
-    --white-50: rgba(245, 245, 245, 0.5);
-    --black-50: rgba(7, 7, 7, 0.5);
-    --white-100: rgba(245, 245, 245, 0.1);
-    --black-100: rgba(7, 7, 7, 0.1);
-    --white-200: rgba(245, 245, 245, 0.2);
-    --black-200: rgba(7, 7, 7, 0.2);
-    --white-300: rgba(245, 245, 245, 0.3);
-    --black-300: rgba(7, 7, 7, 0.3);
-    --white-400: rgba(245, 245, 245, 0.4);
-    --black-400: rgba(7, 7, 7, 0.4);
-    --white-500: rgba(245, 245, 245, 0.5);
-    --black-500: rgba(7, 7, 7, 0.5);
-    --white-600: rgba(245, 245, 245, 0.6);
-    --black-600: rgba(7, 7, 7, 0.6);
-    --white-700: rgba(245, 245, 245, 0.7);
-    --black-700: rgba(7, 7, 7, 0.7);
-    --white-800: rgba(245, 245, 245, 0.8);
-    --black-800: rgba(7, 7, 7, 0.8);
-    --white-900: rgba(245, 245, 245, 0.9);
-    --black-900: rgba(7, 7, 7, 0.9);
-
     --shade-xxs: rgba(0, 0, 0, 0.01);
     --shade-xs: rgba(0, 0, 0, 0.025);
     --shade-sm: rgba(0, 0, 0, 0.05);
@@ -378,27 +354,17 @@ $colors: (
             $shade-name: #{$color}-#{$i * 100};
 
             @if ($i < 5) {
-                @if $color == 'gray' and $color == 'gray-cool' and $color == 'gray-warm'{
-                    $shade-value: darken($value, $i * 1%);
-                    --#{$shade-name}: #{$shade-value};
-                }
-
-                @else {
-                    $shade-value: darken($value, $i * 2.5%);
-                    --#{$shade-name}: #{$shade-value};
-                }
+                $shade-value: lighten($value, $i / 5%);
+                --#{$shade-name}: #{$shade-value};
             }
 
-            @else {
-                @if $color == 'gray' and $color == 'gray-cool' and $color == 'gray-warm'{
-                    $shade-value: darken($value, $i * 10%);
-                    --#{$shade-name}: #{$shade-value};
-                }
+            @if ($i ==5) {
+                --#{$shade-name}: #{$value};
+            }
 
-                @else {
-                    $shade-value: darken($value, $i * 2.5%);
-                    --#{$shade-name}: #{$shade-value};
-                }
+            @if ($i > 5) {
+                $shade-value: darken($value, $i * 5%);
+                --#{$shade-name}: #{$shade-value};
             }
         }
     }

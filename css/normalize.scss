@@ -13,6 +13,8 @@
     border-color: currentColor;
 }
 
+
+
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -35,6 +37,7 @@
 body {
     margin: 0;
     font-size: 100%;
+    font-family: var(--font-sans);
 }
 
 /**
@@ -53,7 +56,7 @@ main {
 
 :where(h1, h2, h3, h4, h5, h6, p, small, span, strong, em, a, ul, ol, li, div, img, input, button, textarea, select, form, label, table, thead, tbody, tr, th, td, hr, nav, header, footer, section, article, main, aside, figure, figcaption, blockquote, pre, code, video, audio, canvas, iframe, details, summary, fieldset, legend, progress, meter, time, mark, output, datalist, menu, menuitem, menuitem, summary, details, summary, template) {
     font-size: var(--font-sm);
-    font-family: var(--font-sans);
+    // font-family: var(--font-sans);
     margin: 0;
     padding: 0;
 }

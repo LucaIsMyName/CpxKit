@@ -36,7 +36,7 @@ export class ComponentRoot extends Cpx.Element {
   render() {
     this.innerHTML = `
         <section style="" class="">
-            <header class="position:sticky top:0 p:4 w:full bg:gray-200 display:flex gap:4 content:between">
+            <header class="position:sticky top:0 p:4 w:full bg:light-100 display:flex gap:4 content:between">
             <app-nav class=""></app-nav>
             </header>
             <main class="">

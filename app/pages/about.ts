@@ -27,6 +27,72 @@ export class PageAbout extends Cpx.Element {
   }
   render() {
     this.innerHTML = `
+    <slider-container>
+      <slider-item>
+        <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 1">
+      </slider-item>
+      <slider-item>
+        <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 2">
+      </slider-item>
+      </slider-container>
+
+
+      <section class="display:flex">
+    <dropdown-container dropdown-container:position:y=top dropwdown-container:event:hover=true dropdown:title="Header">
+      <dropdown-item>
+          Dropdown Content<br>
+          Yo<br>
+          pwk,DSÜQPKDWÜW
+        </dropdown-item>
+    </dropdown-container>
+
+     <dropdown-container
+      dropdown-container:position:y=bottom
+      dropdown-container:event:hover=true
+      dropdown-container:event:focus=true
+      dropdown-container:title="Header2">
+        <dropdown-item>
+              Dropdown Content<br>
+              Yo<br>
+              pwk,DSÜQPKDWÜW
+        </dropdown-item>
+    </dropdown-container>
+    </section>
+
+    <div>
+   ${Cpx.String.trimWhitespace(
+     ` <pre>
+    
+   hello   
+      ,y
+
+      edwesdf</pre>`,
+     "all"
+   )}
+    <pre>hello   
+    ,y
+
+    edwesdf</pre>
+</div>
+    <tab-container tab-container:padding=4>
+      <tab-header>
+        <tab-toggle tab-toggle:id="1" tab-toggle:active=true>Toggle 1</tab-toggle>
+        <tab-toggle tab-toggle:id="2">Toggle 2</tab-toggle>
+        <tab-toggle tab-toggle:id="3">Toggle 3</tab-toggle>
+      </tab-header>
+      <tab-content tab-content:id="1">
+        <p >Tab 1 Content</p>
+      </tab-content>
+      <tab-content tab-content:id="2">
+        <p >Tab 2 Content</p>
+      </tab-content>
+
+      <tab-content tab-content:id="3">
+        <p >Tab 3 Content</p>
+      </tab-content>
+    </tab-container>
+
+
             <div style="text-align:center;max-width:768px;margin-inline:auto">
               <accordion-group>
                 <accordion-item accordion-item:title="Accordion 1" accordion-item:open=true>
@@ -42,10 +108,10 @@ export class PageAbout extends Cpx.Element {
 
             <skeleton-element 
               skeleton-element:display="block"
-              skeleton-element:color="gray-400"></skeleton-element>
+              skeleton-element:color="light-400"></skeleton-element>
             <skeleton-element 
               skeleton-element:display="block"
-              skeleton-element:color="gray-700"
+              skeleton-element:color="light-700"
               skeleton-element:width="md"
               skeleton-element:height="10"></skeleton-element>
             <code-block code-block:lang="js">
@@ -59,20 +125,20 @@ export class PageAbout extends Cpx.Element {
                   
             <div>
                   <badge-element
-                  badge-element:bg="green-600 " 
-                  badge-element:color="green-500">My Badge</badge-element>
+                  badge-element:bg="success-600 " 
+                  badge-element:color="text-500">My Badge</badge-element>
                   <badge-element
-                  badge-element:bg="green-600 " 
-                  badge-element:color="red">My Badge</badge-element>
+                  badge-element:bg="success-600 " 
+                  badge-element:color="text-500">My Badge</badge-element>
                   <badge-element
-                  badge-element:bg="green-600 " 
-                  badge-element:color="yellow">My Badge</badge-element>
+                  badge-element:bg="success-600 " 
+                  badge-element:color="text-500">My Badge</badge-element>
               </div>
               <audio-player audio-player:has-album=true></audio-player>
               <video-player></video-player>
               <div>
                   <badge-element
-                    badge-element:color="purple-500"
+                    badge-element:bg="danger-500"
                     badge-element:size=md
                     >My Badge</badge-element>
                   <badge-element

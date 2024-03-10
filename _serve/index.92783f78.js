@@ -684,8 +684,7 @@ var _parse = require("./components/Parse");
 var _picture = require("./components/Picture");
 var _suspense = require("./components/Suspense");
 var _skeleton = require("./components/Skeleton");
-var _index2 = require("./components/Text/index");
-var _index3 = require("./components/Tab/index");
+var _index2 = require("./components/Tab/index");
 var _video1 = require("./components/Video");
 /**
  * @class Cpx
@@ -704,8 +703,10 @@ var _video1 = require("./components/Video");
     AudioControl: (0, _index1.AudioControl),
     BadgeElement: // Badge
     (0, _badge.BadgeElement),
-    DropDown: // DropDown
-    (0, _dropDown.DropDown),
+    DropDownContainer: // DropDown
+    (0, _dropDown.DropDownContainer),
+    DropDownItem: (0, _dropDown.DropDownItem),
+    DropDownTrigger: (0, _dropDown.DropDownTrigger),
     CodeBlock: // Code
     (0, _code.CodeBlock),
     SliderContainer: //Slider
@@ -719,13 +720,11 @@ var _video1 = require("./components/Video");
     (0, _suspense.SuspenseAll),
     SkeletonElement: // Skeleton
     (0, _skeleton.SkeletonElement),
-    TextElement: // Text
-    (0, _index2.TextElement),
     TabContainer: // Tab
-    (0, _index3.TabContainer),
-    TabHeader: (0, _index3.TabHeader),
-    TabContent: (0, _index3.TabContent),
-    TabToggle: (0, _index3.TabToggle),
+    (0, _index2.TabContainer),
+    TabHeader: (0, _index2.TabHeader),
+    TabContent: (0, _index2.TabContent),
+    TabToggle: (0, _index2.TabToggle),
     VideoPlayer: // Video
     (0, _video1.VideoPlayer),
     VideoControls: (0, _video1.VideoControls),
@@ -763,7 +762,7 @@ const Cpx = {
     Object: (0, _object.Object)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Text/index":"6N7g9","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -799,7 +798,9 @@ class CpxElement extends HTMLElement {
         super();
         console.log("Connected Callback");
         this.componentName = this.setAttribute("component:name", this.tagName.toLowerCase());
-        this.ID = this.getAttribute("component:id") || this.setAttribute("component:id", Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0").toString());
+        this.setAttribute("component:id", Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0").toString());
+        this.ID = this.getAttribute("component:id");
+        this.setAttribute("id", this.getAttribute("component:id"));
         this.initialContent = this.innerHTML;
         this.storage = (0, _storage.Storage);
         this.state = (0, _state.State);
@@ -2190,8 +2191,12 @@ const String = {
     removeWhitespace: function removeWhitespace(string) {
         return string.replace(/\s+/g, "");
     },
-    trimWhitespace: function trimWhitespace(string) {
-        return string.replace(/^\s+|\s+$/g, "");
+    trimWhitespace: function trimWhitespace(string, option = "edges") {
+        if (option === "all") {
+            console.log("all");
+            return string.replace(/\s{2,}/g, " ").trim();
+        }
+        if (option === "edges") return string.replace(/^\s+|\s+$/g, "");
     }
 };
 
@@ -2255,12 +2260,9 @@ const Copy = {
         // Listen for clicks on elements with data-copy-trigger attribute
         document.addEventListener(trigger, (event)=>{
             const clickedElement = event.target;
-            console.log("Clicked element:", clickedElement, "Trigger attribute:", triggerAttribute);
-            if (clickedElement.hasAttribute(`${triggerAttribute}`)) {
-                console.log("Copy button clicked");
-                copyToClipboard(); // Call the copy function
-                console.log("Copied to clipboard");
-            } else console.log("No copy button clicked");
+            // console.log("Clicked element:", clickedElement, "Trigger attribute:", triggerAttribute);
+            if (clickedElement.hasAttribute(`${triggerAttribute}`)) // console.log("Copy button clicked");
+            copyToClipboard(); // Call the copy function
         });
     }
 };
@@ -2785,7 +2787,7 @@ class CpxAccordionItem extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `
-    <details accordion-item:id="${(0, _id.Id).Generate.hex(6)}" class="${this.classNames} mb:4 border-b-width:1 border-color:gray-400 py:2 mt:4">
+    <details accordion-item:id="${(0, _id.Id).Generate.hex(6)}" class="${this.classNames} mb:4 border-b-width:1 border-color:light-400 py:2 mt:4">
         <summary class="cursor:pointer display:flex items:center  ">
             <div class="">${this.title}</div>
             <div class="w:6 h:6">
@@ -2981,7 +2983,7 @@ class CpxAudioPlaylist extends (0, _element.CpxElement) {
         let evalArtist = eval(this.hasArtist);
         let evalAlbum = eval(this.hasAlbum);
         this.innerHTML = `
-        <div audio-playlist class="flex:full shrink:1 display:flex direction:col justify-content:center ${this.classNames}">
+        <div audio-playlist class="flex:full mb:2>* shrink:1 display:flex direction:col justify-content:center ${this.classNames}">
           ${this.initialContent !== "" ? `${this.initialContent}` : `
               ${this.playlist.map((track, index)=>{
             return `
@@ -3012,6 +3014,7 @@ parcelHelpers.defineInteropFlag(exports);
  *
  */ parcelHelpers.export(exports, "CpxAudioPlaylistItem", ()=>CpxAudioPlaylistItem);
 var _element = require("../../element");
+var _index = require("../../index");
 class CpxAudioPlaylistItem extends (0, _element.CpxElement) {
     constructor(){
         super();
@@ -3029,14 +3032,25 @@ class CpxAudioPlaylistItem extends (0, _element.CpxElement) {
         let evalArtist = eval(this.hasArtist);
         let evalAlbum = eval(this.hasAlbum);
         this.innerHTML = `
-        <button class="w:full p:2 mb:2 display:flex radius:sm items:center justify-content:between gap:4 border-width:1 border-color:gray-400 mb ${this.classNames}" audio-track audio-track-url="${this.url}>
+        <button class="${(0, _index.Cpx).String.trimWhitespace(`
+          w:full
+          p:2
+          display:flex
+          radius:sm
+          items:center
+          content:between
+          gap:4
+          border-width:1
+          border-color:gray-400
+          ${this.classNames}
+          `, `all`)}" audio-track audio-track-url="${this.url}">
           ${this.initialContent !== "" ? `${this.initialContent}` : `
               ${evalTitle === true ? `
-                    <p class="" audio-track="title">${this.title}</p>
+                    <div audio-track="title">${this.title}</div>
                   ` : ``}
               <section class="display:flex items:center gap:4">
-                  ${evalArtist === true ? `<p class="size:xs line-height:0" audio-track="artist">${this.artist}</p>` : ``}
-                  ${evalAlbum === true ? `<p class="size:xs line-height:0" audio-track="album">${this.album}</p>` : ``}
+                  ${evalArtist === true ? `<div class="size:xs line-height:0" audio-track="artist">${this.artist}</div>` : ``}
+                  ${evalAlbum === true ? `<div class="size:xs line-height:0" audio-track="album">${this.album}</div>` : ``}
               </section>
             `}
         </button>
@@ -3045,7 +3059,7 @@ class CpxAudioPlaylistItem extends (0, _element.CpxElement) {
 }
 customElements.define(`audio-playlist-item`, CpxAudioPlaylistItem);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fJL4o":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"fJL4o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -3179,30 +3193,46 @@ parcelHelpers.defineInteropFlag(exports);
  * </badge-element>
  */ parcelHelpers.export(exports, "CpxBadgeElement", ()=>CpxBadgeElement);
 var _element = require("../../element");
+var _index = require("../../index");
 class CpxBadgeElement extends (0, _element.CpxElement) {
     constructor(){
         super();
         this.classNames = this.getAttribute("badge-element:class") || "";
         this.size = this.getAttribute("badge-element:size") || "xs";
-        this.color = this.getAttribute("badge-element:color") || "gray-700";
-        this.bgColor = this.getAttribute("badge-element:bg") || "gray-200";
+        this.color = this.getAttribute("badge-element:color") || "dark-700";
+        this.bgColor = this.getAttribute("badge-element:bg") || "dark-200";
         this.borderColor = this.getAttribute("badge-element:border-color") || "shade-xl";
-        this.borderWidth = this.getAttribute("badge-element:border-width") || "1";
+        this.borderWidth = parseInt(this.getAttribute("badge-element:border-width")) || 1;
         this.fontFamily = this.getAttribute("badge-element:font-family") || "sans";
         this.fontWeight = this.getAttribute("badge-element:weight") || "normal";
         this.letterSpacing = this.getAttribute("badge-element:tracking") || "sm";
         this.textTransform = this.getAttribute("badge-element:transform") || "none";
         this.borderRadius = this.getAttribute("badge-element:radius") || "pill";
-        this.padding = this.getAttribute("badge-element:padding") || "2";
+        this.padding = parseInt(this.getAttribute("badge-element:padding")) || 2;
         this.action = eval(this.getAttribute("badge-element:action")) || false;
+        this.actionTrigger = this.getAttribute("badge-element:action-trigger") || "click";
     }
     render() {
         this.innerHTML = `
         <button 
         ${this.action !== false ? `
-            onclick="${this.action}"
+            ${this.actionTrigger}="${this.action}"
             ` : `tabindex="-1"`}
-        class="${this.action !== false ? "" : `cursor:default`} size:${this.size} color:${this.color} bg:${this.bgColor} border-width:${this.borderWidth} border-color:${this.borderColor} font-family:${this.fontFamily} weight:${this.fontWeight} tracking:${this.letterSpacing} transform:${this.textTransform} radius:${this.borderRadius} px:${eval(this.padding) * 2} py:${eval(this.padding) * 1} ${this.classNames}">
+        class="${(0, _index.Cpx).String.trimWhitespace(` 
+              ${this.action !== false ? "" : `cursor:default`} 
+              ${this.size !== "xs" ? `size:${this.size}` : ""}
+              ${this.color !== "transparent" ? `color:${this.color}` : ""}
+              ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+              ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+              ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+              ${this.fontFamily !== "sans" ? `font-family:${this.fontFamily}` : ""}
+              ${this.fontWeight !== "normal" ? `weight:${this.fontWeight}` : ""}
+              ${this.letterSpacing !== "sm" ? `tracking:${this.letterSpacing}` : ""}
+              ${this.textTransform !== "none" ? `transform:${this.textTransform}` : ""}
+              radius:${this.borderRadius}
+              ${this.padding !== 0 ? `p:${this.padding}` : ""}
+              ${this.classNames}
+          `, "all")}">
             <span>${this.initialContent}</span>
         </button>
         `;
@@ -3210,7 +3240,7 @@ class CpxBadgeElement extends (0, _element.CpxElement) {
 }
 customElements.define(`badge-element`, CpxBadgeElement);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lX5Z0":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lX5Z0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CodeBlock", ()=>(0, _codeBlock.CpxCodeBlock));
@@ -3258,12 +3288,16 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
         super();
         this.ID = this.getAttribute("id") || (0, _index.Cpx).Id.Generate.hex(6).replace(" ", "");
         this.classNames = this.getAttribute("code-block:class") || "";
-        this.appearance = this.getAttribute("code-block:appearance") || "default";
         this.title = this.getAttribute("code-block:title") || "Code";
         this.lang = this.getAttribute("code-block:lang") || "js";
         this.hasCopyButton = eval(this.getAttribute("code-block:has-copy-button")) || true;
         this.hasHeader = eval(this.getAttribute("code-block:has-header")) || true;
-        this.theme = this.getAttribute("code-block:theme") || "light";
+        this.borderRadius = this.getAttribute("code-block:radius") || "sm";
+        this.borderWidth = parseInt(this.getAttribute("code-block:border-width")) || 1;
+        this.color = this.getAttribute("code-block:color") || "text-500";
+        this.bgColor = this.getAttribute("code-block:bg-color") || "shade-xxs";
+        this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl";
+        this.padding = parseInt(this.getAttribute("code-block:padding")) || 4;
     }
     connectedCallback() {
         super.connectedCallback();
@@ -3294,7 +3328,7 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
     getHeader() {
         return `
     ${this.hasHeader === true && this.hasCopyButton === true ? `
-        <header class="p:4 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:gray-400">
+        <header class=" w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:${this.borderColor} pb:4">
             ${this.hasHeader === true ? ` 
                   <div class="display:flex gap:4 color:black items:center">
                       <section class="size:md weigth:semibold leading:2">${this.title}</section>
@@ -3303,9 +3337,9 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
                       badge-element:padding="1"
                       badge-element:size="xs"
                       badge-element:font-family="mono"
-                      badge-element:color="gray-dark-800"
-                      badge-element:border-color="gray-900"
-                      badge-element:bg="${this.theme}"
+                      badge-element:color="dark-300"
+                      badge-element:border-color="light-900"
+                      badge-element:bg=transparent
                       class="">.${this.lang}</badge-element>
                   </div>
                   ` : ``}
@@ -3321,16 +3355,25 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
     }
     render() {
         this.innerHTML = `  
-            <section class="bg:gray-300 color:gray-900 border-radius:md radius:md overflow:hidden ${this.classNames}">
+            <section class="
+              ${this.padding !== 0 ? `p:${this.padding}` : ""}
+              ${this.color !== "transparent" ? `color:${this.color}` : ""}
+              ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+              ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+              ${this.borderRadius !== "none" ? `radius:${this.borderRadius}` : ""}
+              ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+
+              overflow:hidden
+              ${this.classNames}">
                 ${this.getHeader()}
-                <pre class="p:4"><code class="font-family:mono language-${this.lang}" copy-clipboard="target" hljs-area>${(0, _index.Cpx).String.trimWhitespace(this.initialContent)}</code></pre>
+                <pre class="mt:4"><code class="font-family:mono language-${this.lang}" copy-clipboard="target" hljs-area>${(0, _index.Cpx).String.trimWhitespace(this.initialContent)}</code></pre>
             </section>
         `;
     }
 }
 customElements.define(`code-block`, CpxCodeBlock);
 
-},{"../../element":"7TddR","../../index":"dMUol","../../utils/copy":"1dAm7","../../utils/icons":"bLiR6","highlight.js/lib/core":"gPJXT","highlight.js/styles/default.css":"7qfup","highlight.js/lib/languages/javascript":"hqLug","highlight.js/lib/languages/php":"8wSB8","highlight.js/lib/languages/bash":"iGKR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","highlight.js/lib/languages/css":"4Ia3s","highlight.js/lib/languages/c":"3LN6e","highlight.js/lib/languages/cpp":"a4tLc","highlight.js/lib/languages/java":"1GH02","highlight.js/lib/languages/typescript":"aMCSl"}],"gPJXT":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","../../utils/copy":"1dAm7","../../utils/icons":"bLiR6","highlight.js/lib/core":"gPJXT","highlight.js/styles/default.css":"7qfup","highlight.js/lib/languages/javascript":"hqLug","highlight.js/lib/languages/php":"8wSB8","highlight.js/lib/languages/bash":"iGKR6","highlight.js/lib/languages/css":"4Ia3s","highlight.js/lib/languages/c":"3LN6e","highlight.js/lib/languages/cpp":"a4tLc","highlight.js/lib/languages/java":"1GH02","highlight.js/lib/languages/typescript":"aMCSl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gPJXT":[function(require,module,exports) {
 /* eslint-disable no-multi-assign */ function deepFreeze(obj) {
     if (obj instanceof Map) obj.clear = obj.delete = obj.set = function() {
         throw new Error("map is read-only");
@@ -9865,57 +9908,162 @@ module.exports = typescript;
 },{}],"8vhOB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "DropDown", ()=>(0, _dropDown.CpxDropDown));
-var _dropDown = require("./DropDown");
+parcelHelpers.export(exports, "DropDownContainer", ()=>(0, _dropDownContainer.CpxDropDownContainer));
+parcelHelpers.export(exports, "DropDownItem", ()=>(0, _dropDownItem.CpxDropDownItem));
+parcelHelpers.export(exports, "DropDownTrigger", ()=>(0, _dropDownTrigger.CpxDropDownTrigger));
+var _dropDownContainer = require("./DropDownContainer");
+var _dropDownItem = require("./DropDownItem");
+var _dropDownTrigger = require("./DropDownTrigger");
 
-},{"./DropDown":"eKSuN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eKSuN":[function(require,module,exports) {
+},{"./DropDownContainer":"BAJN0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./DropDownItem":"gOP5y","./DropDownTrigger":"6xHhw"}],"BAJN0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-/**
- * @element drop-down
- * @description A drop-down component that can be used to display content when hovered over.
- * @example
- * <drop-down drop-down:title="DropDown Title" drop-down:content="DropDown Content">
- * </drop-down>
- */ parcelHelpers.export(exports, "CpxDropDown", ()=>CpxDropDown);
+parcelHelpers.export(exports, "CpxDropDownContainer", ()=>CpxDropDownContainer);
 var _element = require("../../element");
-class CpxDropDown extends (0, _element.CpxElement) {
+var _index = require("../../index");
+class CpxDropDownContainer extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.classNames = this.getAttribute("drop-down:class") || "";
-        this.title = this.getAttribute("drop-down:title") || "DropDown Title";
-        this.content = this.initialContent || this.getAttribute("drop-down:content") || "DropDown Content";
+        this.classNames = this.getAttribute("dropdown-container:class") || "";
+        this.positionX = this.getAttribute("dropdown-container:position:x") || "center"; // 'start', 'center', 'end'
+        this.positionY = this.getAttribute("dropdown-container:position:y") || "bottom"; // 'top', 'bottom'
+        this.maxWidth = this.getAttribute("dropdown-container:max-width") || "100%";
+        this.spacingTop = eval(this.getAttribute("dropdown-container:spacing:top")) || 4;
+        this.title = this.getAttribute("dropdown-container:title") || "DropDown Container";
+        this.dropdownContent = null;
+        this.eventClick = eval(this.getAttribute("dropdown-container:event:click")) || true;
+        this.eventFocus = eval(this.getAttribute("dropdown-container:event:focus")) || false;
+        this.eventHover = eval(this.getAttribute("dropdown-container:event:hover")) || false;
+        this.triggerPadding = eval(this.getAttribute("dropdown-container:trigger:padding")) || 0;
+        this.triggerBorderRadius = this.getAttribute("dropdown-container:trigger:border-radius") || "none";
+        this.triggerBorderWidth = eval(this.getAttribute("dropdown-container:trigger:border-width")) || 0;
+        this.triggerBorderColor = this.getAttribute("dropdown-container:trigger:border-color") || "transparent";
+        this.triggerBgColor = this.getAttribute("dropdown-container:trigger:bg-color") || "transparent";
+        this.triggerColor = this.getAttribute("dropdown-container:trigger:color") || "text-500";
     }
     connectedCallback() {
         this.render();
-        this.addMouseHandler();
+        this.dropdownContent = this.querySelector("dropdown-item");
+        if (this.dropdownContent) {
+            this.dropdownContent.style.display = "none";
+            this.eventHover;
+            this.addEventListener("mouseenter", this.handleMouseEnter.bind(this));
+            this.addEventListener("mouseleave", this.handleMouseLeave.bind(this));
+            this.eventClick;
+            this.addEventListener("click", this.handleClick.bind(this));
+            this.eventFocus;
+            this.addEventListener("focus", this.handleMouseEnter.bind(this));
+            this.addEventListener("blur", this.handleMouseLeave.bind(this));
+        }
     }
-    addMouseHandler() {
-        const dropDown = this.querySelector(`[drop-down="toggle"]`);
-        const dropDownEvent = this.querySelector(`[drop-down]`)?.getAttribute("drop-down:event") || "mouseover";
-        dropDown.addEventListener(dropDownEvent, ()=>{
-            dropDown.querySelector(`[drop-down="toggle"]`).style.display = `block`;
-        });
-        dropDown.addEventListener(dropDownEvent === "mouseover" ? "mouseout" : "DOMContentLoaded", ()=>{
-            dropDown.querySelector(`[drop-down="toggle"]`).style.display = `none`;
-        });
+    handleMouseEnter() {
+        if (this.dropdownContent) this.dropdownContent.style.display = "block";
+    }
+    handleMouseLeave() {
+        if (this.dropdownContent) this.dropdownContent.style.display = "none";
+    }
+    handleClick() {
+        if (this.dropdownContent) this.dropdownContent.style.display = this.dropdownContent.style.display === "block" ? "none" : "block";
     }
     render() {
         this.innerHTML = `
-       <div class="drop-down ${this.classNames}">
-          <section class="drop-down__toggle" drop-down="toggle">
-              ${this.title}
-          </section>
-        </div>
-        <section class="drop-down__content" drop-down="content">
-          ${this.content}
-        </section>
-        `;
+      <div dropdown="container" class="position:relative ${this.classNames}">
+          <dropdown-trigger class="${(0, _index.Cpx).String.trimWhitespace(`
+            ${this.triggerPadding !== 0 ? `p:${this.triggerPadding}` : ""}
+            ${this.triggerBorderRadius !== "none" ? `br:${this.triggerBorderRadius}` : ""}
+            ${this.triggerBorderWidth !== 0 ? `bw:${this.triggerBorderWidth}` : ""}
+            ${this.triggerBorderColor !== "transparent" ? `bc:${this.triggerBorderColor}` : ""}
+            ${this.triggerBgColor !== "transparent" ? `bg:${this.triggerBgColor}` : ""}
+            ${this.triggerColor !== "text-500" ? `color:${this.triggerColor}` : ""}
+         `, "all")}" dropdown-trigger:title="">${this.title}</dropdown-trigger>
+          <dropdown-item style="${(0, _index.Cpx).String.trimWhitespace(`
+              z-index: 1000;
+              position: absolute; 
+              display: none; 
+              ${this.positionX}: 0; 
+              ${this.positionY === "bottom" ? "top" : "bottom"}: 100%; 
+              max-width: ${this.maxWidth};
+              padding-${this.positionY === "bottom" ? "top" : "bottom"}:var(--${this.spacingTop})
+            `, "all")}">
+            ${this.initialContent}
+          </dropdown-item>
+      </div>
+    `;
     }
 }
-customElements.define(`drop-down`, CpxDropDown);
+customElements.define("dropdown-container", CpxDropDownContainer);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lta5S":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"gOP5y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxDropDownItem", ()=>CpxDropDownItem);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxDropDownItem extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("dropdown-item:class") || "";
+        this.color = this.getAttribute("dropdown-item:color") || "black";
+        this.bgColor = this.getAttribute("dropdown-item:bg-color") || "white";
+        this.borderColor = this.getAttribute("dropdown-item:border-color") || "black";
+        this.borderRadius = this.getAttribute("dropdown-item:border-radius") || "0";
+        this.borderWidth = eval(this.getAttribute("dropdown-item:border-width")) || 1;
+        this.padding = eval(this.getAttribute("dropdown-item:padding")) || 4;
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.innerHTML = `
+       <section class="${(0, _index.Cpx).String.trimWhitespace(`
+          ${this.color !== "text" ? `color:${this.color}` : ""}
+          ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+          ${this.borderColor !== "current" ? `border-color:${this.borderColor}` : ""}
+          ${this.borderRadius !== "0" ? `border-radius:${this.borderRadius}` : ""}
+       `, "all")} ${this.classNames}" dropdown="content">${this.initialContent}</section>
+    `;
+    }
+}
+customElements.define(`dropdown-item`, CpxDropDownItem);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"6xHhw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxDropDownTrigger", ()=>CpxDropDownTrigger);
+var _ = require("../..");
+var _element = require("../../element");
+class CpxDropDownTrigger extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("dropdown-trigger:class") || "";
+        this.title = this.getAttribute("dropdown-trigger:title") || "DropDown Trigger";
+        this.color = this.getAttribute("dropdown-trigger:color") || "text-500";
+        this.bgColor = this.getAttribute("dropdown-trigger:bg") || "transparent";
+        this.borderColor = this.getAttribute("dropdown-trigger:border-color") || "transparent";
+        this.borderRadius = this.getAttribute("dropdown-trigger:border-radius") || "0";
+        this.borderWidth = eval(this.getAttribute("dropdown-trigger:border-width")) || 1;
+        this.padding = eval(this.getAttribute("dropdown-trigger:padding")) || 4;
+    }
+    render() {
+        this.innerHTML = `
+      <button class="${(0, _.Cpx).String.trimWhitespace(`
+          ${this.classNames}
+          ${this.color !== "text-500" ? `color:${this.color}` : ""}
+          ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+          ${(this.borderColor, `border-color:${this.borderColor}`)}
+          ${this.borderRadius !== "none" ? `border-radius:${this.borderRadius}` : ""}
+          ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+          ${this.padding !== 0 ? `padding:${this.padding}` : ""}
+
+      `, "all")}" dropdown="trigger">
+          ${this.initialContent === "" ? this.title : this.initialContent}
+      </button>
+    `;
+    }
+}
+customElements.define(`dropdown-trigger`, CpxDropDownTrigger);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../..":"dMUol"}],"lta5S":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SliderContainer", ()=>(0, _sliderContainer.CpxSliderContainer));
@@ -9926,64 +10074,79 @@ var _sliderItem = require("./SliderItem");
 var _runSlider = require("./runSlider");
 
 },{"./SliderContainer":"eZxKV","./SliderItem":"lVH9V","./runSlider":"55GrW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eZxKV":[function(require,module,exports) {
-// import Swiper from "swiper";
-// import styles bundle
-// import "swiper/css/bundle";
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-/**
- * @element drop-down
- * @description A drop-down component that can be used to display content when hovered over.
- * @example
- * <drop-down drop-down:title="DropDown Title" drop-down:content="DropDown Content">
- * </drop-down>
- */ parcelHelpers.export(exports, "CpxSliderContainer", ()=>CpxSliderContainer);
+parcelHelpers.export(exports, "CpxSliderContainer", ()=>CpxSliderContainer);
 var _element = require("../../element");
-var _runSlider = require("./runSlider");
+var _swiper = require("swiper");
+var _swiperDefault = parcelHelpers.interopDefault(_swiper);
+var _swiperBundleMinCss = require("swiper/swiper-bundle.min.css");
 class CpxSliderContainer extends (0, _element.CpxElement) {
     constructor(){
         super();
+        this.classList.add(`swiper-container-${this.id}`);
         this.classNames = this.getAttribute("slider-container:class") || "";
-        this.slider = (0, _runSlider.runSlider);
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        this.initSlider();
+    }
+    initSlider() {
+        const sliderDirection = this.getAttribute("slider-container:direction") || "horizontal";
+        const sliderLoop = this.getAttribute("slider-container:loop") !== "false"; // Defaults to true unless explicitly set to false
+        const container = this.querySelector(`.swiper-container-${this.ID}`); // Get the container element
+        const slidesPerView = eval(this.getAttribute("slider-container:slides-per-view")) || 1;
+        const slidesPerViewMedium = eval(this.getAttribute("slider-container:slides-per-view:medium")) || eval(this.getAttribute("slider-container:slides-per-view"));
+        const slidesPerViewLarge = eval(this.getAttribute("slider-container:slides-per-view:large")) || eval(this.getAttribute("slider-container:slides-per-view:medium")) || eval(this.getAttribute("slider-container:slides-per-view"));
+        const spaceBetween = eval(this.getAttribute("slider-container:space-between")) || 0;
+        const spaceBetweenMedium = eval(this.getAttribute("slider-container:space-between:medium")) || eval(this.getAttribute("slider-container:space-between"));
+        const spaceBetweenLarge = eval(this.getAttribute("slider-container:space-between:large")) || eval(this.getAttribute("slider-container:space-between:medium")) || eval(this.getAttribute("slider-container:space-between"));
+        new (0, _swiperDefault.default)(container, {
+            direction: sliderDirection,
+            loop: sliderLoop,
+            pagination: {
+                el: `.slider-pagination`
+            },
+            navigation: {
+                nextEl: `.slider-navigation-next`,
+                prevEl: `.slider-navigation-prev`
+            },
+            breakpoints: {
+                560: {
+                    slidesPerView: slidesPerView,
+                    spaceBetween: spaceBetween
+                },
+                768: {
+                    slidesPerView: slidesPerViewMedium || slidesPerView,
+                    spaceBetween: spaceBetweenMedium || spaceBetween
+                },
+                1440: {
+                    slidesPerView: slidesPerViewLarge || slidesPerViewMedium || slidesPerView,
+                    spaceBetween: spaceBetweenLarge || spaceBetweenMedium || spaceBetween
+                }
+            },
+            scrollbar: {
+                el: `.slider-scrollbar`
+            }
+        });
     }
     render() {
         this.innerHTML = `
-        <section class="${this.classNames}">
-            <div class="swiper-wrapper">
-                ${this.initialContent !== "" ? `${this.initialContent}` : ``}
-            </div>
-        </section>
-        `;
+      <div id="${this.ID}" class="position:relative swiper-container-${this.ID} ${this.classNames}">
+        <div class="swiper-wrapper">
+          ${this.innerHTML}
+        </div>
+        <div id="pagination-${this.ID}" class="slider-pagination "></div>
+        <div id="navigation-prev-${this.ID}" class="slider-navigation-prev position:absolute bottom:0 left:0 w:8 h:9 bg:text-500 z:50"></div>
+        <div id="navigation-next-${this.ID}" class="slider-navigation-next position:absolute bottom:0 right:0 w:8 h:9 bg:text-500 z:50"></div>
+        <div id="scrollbar-${this.ID}" class="slider-scrollbar"></div>
+      </div>
+    `;
     }
 }
 customElements.define(`slider-container`, CpxSliderContainer);
 
-},{"../../element":"7TddR","./runSlider":"55GrW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"55GrW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "runSlider", ()=>runSlider);
-var _swiper = require("swiper");
-var _swiperDefault = parcelHelpers.interopDefault(_swiper);
-function runSlider() {
-    const slider = (direction = "vertical", loop = true)=>{
-        new (0, _swiperDefault.default)(".slider-container", {
-            direction,
-            loop,
-            pagination: {
-                el: "slider-pagination"
-            },
-            navigation: {
-                nextEl: "slider-button[next]",
-                prevEl: "slider-button[prev]"
-            },
-            scrollbar: {
-                el: "slider-scrollbar"
-            }
-        });
-    };
-}
-
-},{"swiper":"iM6UL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iM6UL":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","swiper":"iM6UL","swiper/swiper-bundle.min.css":"girFM"}],"iM6UL":[function(require,module,exports) {
 /**
  * Swiper 11.0.7
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -13411,40 +13574,35 @@ function makeElementsArray(el) {
     ]).filter((e)=>!!e);
 }
 
-},{"./ssr-window.esm.mjs":"th8PY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lVH9V":[function(require,module,exports) {
+},{"./ssr-window.esm.mjs":"th8PY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"girFM":[function() {},{}],"lVH9V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-/**
- * @element drop-down
- * @description A drop-down component that can be used to display content when hovered over.
- * @example
- * <drop-down drop-down:title="DropDown Title" drop-down:content="DropDown Content">
- * </drop-down>
- */ parcelHelpers.export(exports, "CpxSliderItem", ()=>CpxSliderItem);
-// import styles bundle
-// import "swiper/css/bundle";
+parcelHelpers.export(exports, "CpxSliderItem", ()=>CpxSliderItem);
 var _element = require("../../element");
 class CpxSliderItem extends (0, _element.CpxElement) {
     constructor(){
         super();
+        this.classList.add("swiper-slide");
         this.classNames = this.getAttribute("slider-item:class") || "";
         this.url = this.getAttribute("slider-item:url") || "";
         this.title = this.getAttribute("slider-item:title") || "Slider Item Image";
     }
     render() {
         this.innerHTML = `
-        <section class="swiper-slide ${this.classNames}">
-            ${this.initialContent !== "" ? `${this.initialContent}` : `<picture-element 
-                      picture-element:url="${this.url}"
-                      picture-element:alt="${this.title}"
-                      ></picture-element>`}
-        </section>
-        `;
+      <div class="${this.classNames}">
+        ${this.initialContent !== "" ? this.initialContent : `<picture-element 
+                picture-element:url="${this.url}"
+                picture-element:alt="${this.title}"
+              ></picture-element>`}
+      </div>
+    `;
     }
 }
 customElements.define(`slider-item`, CpxSliderItem);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1CUIs":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"55GrW":[function(require,module,exports) {
+
+},{}],"1CUIs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ParseMarkdown", ()=>(0, _parseMarkdown.CpxParseMarkdown));
@@ -15585,7 +15743,7 @@ class CpxSuspenseAll extends (0, _element.CpxElement) {
     render() {
         // Display loading screen initially
         this.innerHTML = `
-    <section class="h:available display:grid place-content:cneter${this.classNames}">
+    <section class="h:available display:grid place-content:center ${this.classNames}">
       ${this.hasIcon === true ? `
             <div class="w:9 h:9 bg:gray-500">${(0, _icons.Icon).arrowPath}</div>
           ` : ``}
@@ -15604,11 +15762,11 @@ var _skeletonElement = require("./SkeletonElement");
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
- * Picture Element
+ * Skeleton Element
  * @description
- * The Picture Element is a custom element that allows you to display an image with multiple sources and sizes.
+ * The Skeleton Element is a custom element that allows you to display a skeleton loading state for an image or element.
  * @example
- * <picture-element picture:url="https://via.placeholder.com/150" picture:url:xl="https://via.placeholder.com/1080" picture:url:md="https://via.placeholder.com/720" picture:breakpoint:xl="1240px" picture:breakpoint:md="720px" alt="Flowers">
+ * <skeleton-element skeleton-element:display="block" skeleton-element:color="light-300" skeleton-element:radius="sm" skeleton-element:width="lg" skeleton-element:height="5">
  */ parcelHelpers.export(exports, "CpxSkeletonElement", ()=>CpxSkeletonElement);
 var _element = require("../../element");
 class CpxSkeletonElement extends (0, _element.CpxElement) {
@@ -15616,71 +15774,19 @@ class CpxSkeletonElement extends (0, _element.CpxElement) {
         super();
         this.classNames = this.getAttribute("skeleton-element:class") || "";
         this.display = this.getAttribute("skeleton-element:display") || "inline-block";
-        this.color = this.getAttribute("skeleton-element:color") || "gray-300";
+        this.color = this.getAttribute("skeleton-element:color") || "light-300";
         this.borderRadius = this.getAttribute("skeleton-element:radius") || "sm";
         this.width = this.getAttribute("skeleton-element:width") || "lg";
         this.height = this.getAttribute("skeleton-element:height") || "5";
     }
     render() {
         this.innerHTML = `  
-        <div class="h:${this.height} w:full max-w:${this.width} display:${this.display}  radius:${this.borderRadius} bg:${this.color} ${this.classNames}">
+        <div class="h:${this.height} w:full max-w:${this.width} max-h:${this.height} display:${this.display} radius:${this.borderRadius} bg:${this.color} ${this.classNames}">
         </div>
         `;
     }
 }
 customElements.define(`skeleton-element`, CpxSkeletonElement);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6N7g9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TextElement", ()=>(0, _textElement.CpxTextElement));
-var _textElement = require("./TextElement");
-
-},{"./TextElement":"Ygver","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Ygver":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @element text-element
- * @class CpxTextElement
- * @description
- * TextElement Component
- * @example
- * <text-element text-element:type="p" text-element:class="text-element--example" text-element:align="center" text-element:font-family="serif" text-element:font-weight="bold" text-element:font-style="italic" text-element:font-size="lg" text-element:line-height="sm" text-element:letter-spacing="sm">
- */ parcelHelpers.export(exports, "CpxTextElement", ()=>CpxTextElement);
-var _element = require("../../element");
-class CpxTextElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.type = this.getAttribute("text-element:type") || "p";
-        this.classNames = this.getAttribute("text-element:class") || "";
-        this.align = this.getAttribute("text-element:align") || "start";
-        this.fontFamily = this.getAttribute("text-element:font-family") || "sans";
-        this.fontWeight = this.getAttribute("text-element:font-weight") || "normal";
-        this.fontStyle = this.getAttribute("text-element:font-style") || "normal";
-        this.fontSize = this.getAttribute("text-element:size") || "sm";
-        this.lineHeight = this.getAttribute("text-element:line-height") || "1";
-        this.letterSpacing = this.getAttribute("text-element:tracking") || "sm";
-    }
-    connectedCallback() {
-        this.render();
-    }
-    render() {
-        this.innerHTML = `
-    <${this.type} class="
-    align:${this.align}
-    size:${this.fontSize}
-    weight:${this.fontWeight}
-    font-style:${this.fontStyle}
-    font-family:${this.fontFamily}
-    line-height:${this.lineHeight}
-    tracking:${this.letterSpacing}
-    ${this.classNames}">
-        ${this.initialContent}
-    </${this.type}>
-        `;
-    }
-}
-customElements.define(`text-element`, CpxTextElement);
 
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lwDpZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -15711,6 +15817,14 @@ class CpxTabContainer extends (0, _element.CpxElement) {
         super();
         this.classNames = this.getAttribute("tab-container:class") || "";
         this.tabContainerId = this.getAttribute("tab-container:id") || (0, _id.Id).Generate.hex(12);
+        this.size = this.getAttribute("tab-container:size") || "sm";
+        this.weight = this.getAttribute("tab-container:weight") || "normal";
+        this.borderWidth = parseInt(this.getAttribute("tab-container:border-width")) || 0;
+        this.radius = this.getAttribute("tab-container:radius") || "none";
+        this.color = this.getAttribute("tab-container:color") || "inherit";
+        this.bgColor = this.getAttribute("tab-container:bg-color") || "transparent";
+        this.borderColor = this.getAttribute("tab-container:border-color") || "transparent";
+        this.padding = parseInt(this.getAttribute("tab-container:padding")) || 0;
     }
     connectedCallback() {
         this.render();
@@ -15719,7 +15833,17 @@ class CpxTabContainer extends (0, _element.CpxElement) {
         this.innerHTML = `
     <section
       tab-container:id="${this.tabContainerId}"
-      class="tab-container ${this.classNames}">
+      class="
+        overflow:hidden
+        ${this.padding !== 0 ? `p:${this.padding}` : ""}
+        ${this.color !== "inherit" ? `color:${this.color}` : ""}
+        ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+        ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+        ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+        ${this.radius !== "none" ? `radius:${this.radius}` : ""}
+        ${this.size !== "sm" ? `size:${this.size}` : ""}
+        ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
+        ${this.classNames}">
         ${this.initialContent}
     </section>
         `;
@@ -15737,15 +15861,34 @@ class CpxTabHeader extends (0, _element.CpxElement) {
         super();
         this.tabHeaderId = this.getAttribute("tab-header:id");
         this.classNames = this.getAttribute("tab-header:class") || "";
-    }
-    connectedCallback() {
-        this.render();
+        this.padding = parseInt(this.getAttribute("tab-header:padding")) || 0;
+        this.gap = parseInt(this.getAttribute("tab-header:gap")) || 0;
+        this.wrap = eval(this.getAttribute("tab-header:wrap")) || false;
+        this.color = this.getAttribute("tab-header:color") || "inherit";
+        this.bgColor = this.getAttribute("tab-header:bg-color") || "transparent";
+        this.borderColor = this.getAttribute("tab-header:border-color") || "transparent";
+        this.size = this.getAttribute("tab-header:size") || "sm";
+        this.weight = this.getAttribute("tab-header:weight") || "normal";
+        this.radius = this.getAttribute("tab-header:radius") || "none";
+        this.borderWidth = parseInt(this.getAttribute("tab-header:border-width")) || 0;
     }
     render() {
         this.innerHTML = `
     <section 
       tab-header:id="${this.tabHeaderId} " 
-      class="tab-header ${this.classNames}">
+      class="
+        display:flex
+        ${this.padding !== 0 ? `p:${this.padding}` : ""}
+        ${this.color !== "inherit" ? `color:${this.color}` : ""}
+        ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+        ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+        flex-wrap:${this.wrap ? "wrap" : "nowrap"}
+        ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+        ${this.radius !== "none" ? `radius:${this.radius}` : ""}
+        ${this.size !== "sm" ? `size:${this.size}` : ""}
+        ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
+        ${this.gap !== 0 ? `gap:${this.gap}` : ""}
+        ${this.classNames}">
         ${this.initialContent}
     </section>
         `;
@@ -15754,6 +15897,7 @@ class CpxTabHeader extends (0, _element.CpxElement) {
 customElements.define(`tab-header`, CpxTabHeader);
 
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBlXm":[function(require,module,exports) {
+// tab-content.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabContent", ()=>CpxTabContent);
@@ -15763,51 +15907,111 @@ class CpxTabContent extends (0, _element.CpxElement) {
         super();
         this.classNames = this.getAttribute("tab-content:class") || "";
         this.tabContentId = this.getAttribute("tab-content:id");
+        this.size = this.getAttribute("tab-content:size") || "sm";
+        this.weight = this.getAttribute("tab-content:weight") || "normal";
+        this.borderWidth = parseInt(this.getAttribute("tab-content:border-width")) || 0;
+        this.radius = this.getAttribute("tab-content:radius") || "none";
+        this.color = this.getAttribute("tab-content:color") || "inherit";
+        this.bgColor = this.getAttribute("tab-content:bg-color") || "transparent";
+        this.borderColor = this.getAttribute("tab-content:border-color") || "transparent";
+        this.padding = parseInt(this.getAttribute("tab-content:padding")) || 0;
     }
     connectedCallback() {
         this.render();
     }
     render() {
+        const activeTabToggle = document.querySelector(`tab-toggle[tab-toggle\\:active="true"]`);
+        const activeTabContent = document.querySelector(`tab-content[tab-content\\:id="${activeTabToggle.getAttribute("tab-toggle:id")}"]`);
+        if (activeTabContent === this) activeTabContent.classList.add("display:block");
+        else this.classList.add("display:none");
         this.innerHTML = `
-    <section 
-      tab-content:id
-      tab-content:is-active
-      class="tab-content ${this.classNames}">
-        ${this.initialContent}
-    </section>
-        `;
+      <section 
+        tab-content:id="${this.tabContentId}"
+        class="
+          ${this.padding !== 0 ? `p:${this.padding}` : ""}
+          ${this.color !== "inherit" ? `color:${this.color}` : ""}
+          ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+          ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+          ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+          ${this.radius !== "none" ? `radius:${this.radius}` : ""}
+          ${this.size !== "sm" ? `size:${this.size}` : ""}
+          ${this.weight !== "normal" ? `weight:${this.weight}` : ""}
+          ${this.classNames}">
+          ${this.initialContent}
+      </section>
+    `;
     }
 }
 customElements.define(`tab-content`, CpxTabContent);
 
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ircPr":[function(require,module,exports) {
+// tab-toggle.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabToggle", ()=>CpxTabToggle);
 var _element = require("../../element");
-var _id = require("../../utils/id");
 class CpxTabToggle extends (0, _element.CpxElement) {
     constructor(){
         super();
-        this.tabToggleId = this.getAttribute("toggle:id") || (0, _id.Id).Generate.int(4);
-        this.classNames = this.getAttribute("toggle:class") || "";
+        this.tabToggleId = this.getAttribute("tab-toggle:id");
+        this.classNames = this.getAttribute("tab-toggle:class") || "";
+        this.handleClick = this.handleClick.bind(this);
+        this.padding = parseInt(this.getAttribute("tab-toggle:padding")) || 0;
+        this.color = this.getAttribute("tab-toggle:color") || "inherit";
+        this.bgColor = this.getAttribute("tab-toggle:bg-color") || "transparent";
+        this.borderColor = this.getAttribute("tab-toggle:border-color") || "transparent";
+        this.size = this.getAttribute("tab-toggle:size") || "sm";
+        this.weight = this.getAttribute("tab-toggle:weight") || "normal";
+        this.borderWidth = parseInt(this.getAttribute("tab-toggle:border-width")) || 0;
+        this.radius = this.getAttribute("tab-toggle:radius") || "none";
     }
     connectedCallback() {
+        this.addEventListener("click", this.handleClick);
         this.render();
+    }
+    disconnectedCallback() {
+        this.removeEventListener("click", this.handleClick);
+    }
+    handleClick() {
+        const tabContentId = this.getAttribute("tab-toggle:id");
+        const tabContent = document.querySelector(`tab-content[tab-content\\:id="${tabContentId}"]`);
+        if (tabContent) {
+            const allTabContents = document.querySelectorAll("tab-content");
+            allTabContents.forEach((content)=>{
+                if (content.getAttribute("tab-content:id") === tabContentId) {
+                    content.classList.remove("display:none");
+                    content.classList.add("display:block");
+                    content.setAttribute("tab-content:active", "true");
+                } else {
+                    content.classList.remove("display:block");
+                    content.classList.add("display:none");
+                    content.setAttribute("tab-content:active", "false");
+                }
+            });
+        }
     }
     render() {
         this.innerHTML = `
-    <button
-      class="tab-toggle ${this.classNames}"
-      tab-toggle:id="${this.tabToggleId}">
-        ${this.initialContent}
-    </button>
-        `;
+      <button
+        class="
+        ${this.padding !== 0 ? `p:${this.padding}` : ``}
+        ${this.color !== "inherit" ? `color:${this.color}` : ``}
+        ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ``}
+        ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ``}
+        ${this.size !== "sm" ? `size:${this.size}` : ``}
+        ${this.weight !== "normal" ? `weight:${this.weight}` : ``}
+        ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ``}
+        ${this.radius !== "none" ? `radius:${this.radius}` : ``}
+        ${this.classNames}"
+        id="${this.tabToggleId}">
+          ${this.initialContent}
+      </button>
+    `;
     }
 }
 customElements.define(`tab-toggle`, CpxTabToggle);
 
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bg3EL":[function(require,module,exports) {
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bg3EL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "VideoPlayer", ()=>(0, _videoPlayer.CpxVideoPlayer));
@@ -15858,7 +16062,7 @@ class CpxVideoPlayer extends (0, _element.CpxElement) {
         <div class="">
             <section class="position:relative">
                 <video 
-                    class="w:full bg:gray-300"
+                    class="w:full bg:light-100"
                     video-current>
                 </video>
                 ${this.hasControls === true ? `<video-controls
@@ -15871,7 +16075,7 @@ class CpxVideoPlayer extends (0, _element.CpxElement) {
         </div>
         ${this.hasPlaylist === true ? `<video-playlist
                   class=""
-                  video-playlist:appearance="${this.appearance}"></video-playlist>` : ``}
+                  ></video-playlist>` : ``}
        `}
     </div>
     `;
@@ -15971,7 +16175,7 @@ class CpxVideoControl extends (0, _element.CpxElement) {
     connectedCallback() {
         this.render();
         this.addClickHandler();
-        this.addDeleteOnClick();
+    // this.addDeleteOnClick();
     }
     render() {
         this.innerHTML = `  
@@ -16517,7 +16721,7 @@ class ComponentRoot extends (0, _app.Cpx).Element {
     render() {
         this.innerHTML = `
         <section style="" class="">
-            <header class="position:sticky top:0 p:4 w:full bg:gray-200 display:flex gap:4 content:between">
+            <header class="position:sticky top:0 p:4 w:full bg:light-100 display:flex gap:4 content:between">
             <app-nav class=""></app-nav>
             </header>
             <main class="">
@@ -16636,6 +16840,69 @@ class PageAbout extends (0, _app.Cpx).Element {
     }
     render() {
         this.innerHTML = `
+    <slider-container>
+      <slider-item>
+        <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 1">
+      </slider-item>
+      <slider-item>
+        <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 2">
+      </slider-item>
+      </slider-container>
+
+
+      <section class="display:flex">
+    <dropdown-container dropdown-container:position:y=top dropwdown-container:event:hover=true dropdown:title="Header">
+      <dropdown-item>
+          Dropdown Content<br>
+          Yo<br>
+          pwk,DS\xdcQPKDW\xdcW
+        </dropdown-item>
+    </dropdown-container>
+
+     <dropdown-container
+      dropdown-container:position:y=bottom
+      dropdown-container:event:hover=true
+      dropdown-container:event:focus=true
+      dropdown-container:title="Header2">
+        <dropdown-item>
+              Dropdown Content<br>
+              Yo<br>
+              pwk,DS\xdcQPKDW\xdcW
+        </dropdown-item>
+    </dropdown-container>
+    </section>
+
+    <div>
+   ${(0, _app.Cpx).String.trimWhitespace(` <pre>
+    
+   hello   
+      ,y
+
+      edwesdf</pre>`, "all")}
+    <pre>hello   
+    ,y
+
+    edwesdf</pre>
+</div>
+    <tab-container tab-container:padding=4>
+      <tab-header>
+        <tab-toggle tab-toggle:id="1" tab-toggle:active=true>Toggle 1</tab-toggle>
+        <tab-toggle tab-toggle:id="2">Toggle 2</tab-toggle>
+        <tab-toggle tab-toggle:id="3">Toggle 3</tab-toggle>
+      </tab-header>
+      <tab-content tab-content:id="1">
+        <p >Tab 1 Content</p>
+      </tab-content>
+      <tab-content tab-content:id="2">
+        <p >Tab 2 Content</p>
+      </tab-content>
+
+      <tab-content tab-content:id="3">
+        <p >Tab 3 Content</p>
+      </tab-content>
+    </tab-container>
+
+
             <div style="text-align:center;max-width:768px;margin-inline:auto">
               <accordion-group>
                 <accordion-item accordion-item:title="Accordion 1" accordion-item:open=true>
@@ -16651,10 +16918,10 @@ class PageAbout extends (0, _app.Cpx).Element {
 
             <skeleton-element 
               skeleton-element:display="block"
-              skeleton-element:color="gray-400"></skeleton-element>
+              skeleton-element:color="light-400"></skeleton-element>
             <skeleton-element 
               skeleton-element:display="block"
-              skeleton-element:color="gray-700"
+              skeleton-element:color="light-700"
               skeleton-element:width="md"
               skeleton-element:height="10"></skeleton-element>
             <code-block code-block:lang="js">
@@ -16668,20 +16935,20 @@ class PageAbout extends (0, _app.Cpx).Element {
                   
             <div>
                   <badge-element
-                  badge-element:bg="green-600 " 
-                  badge-element:color="green-500">My Badge</badge-element>
+                  badge-element:bg="success-600 " 
+                  badge-element:color="text-500">My Badge</badge-element>
                   <badge-element
-                  badge-element:bg="green-600 " 
-                  badge-element:color="red">My Badge</badge-element>
+                  badge-element:bg="success-600 " 
+                  badge-element:color="text-500">My Badge</badge-element>
                   <badge-element
-                  badge-element:bg="green-600 " 
-                  badge-element:color="yellow">My Badge</badge-element>
+                  badge-element:bg="success-600 " 
+                  badge-element:color="text-500">My Badge</badge-element>
               </div>
               <audio-player audio-player:has-album=true></audio-player>
               <video-player></video-player>
               <div>
                   <badge-element
-                    badge-element:color="purple-500"
+                    badge-element:bg="danger-500"
                     badge-element:size=md
                     >My Badge</badge-element>
                   <badge-element

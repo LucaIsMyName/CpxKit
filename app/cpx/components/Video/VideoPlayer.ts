@@ -49,7 +49,7 @@ export class CpxVideoPlayer extends CpxElement {
         <div class="">
             <section class="position:relative">
                 <video 
-                    class="w:full bg:gray-300"
+                    class="w:full bg:light-100"
                     video-current>
                 </video>
                 ${
@@ -68,7 +68,7 @@ export class CpxVideoPlayer extends CpxElement {
           this.hasPlaylist === true
             ? `<video-playlist
                   class=""
-                  video-playlist:appearance="${this.appearance}"></video-playlist>`
+                  ></video-playlist>`
             : ``
         }
        `

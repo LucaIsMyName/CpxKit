@@ -51,7 +51,7 @@ export class CpxAudioPlaylist extends CpxElement {
     let evalAlbum = eval(this.hasAlbum);
   
     this.innerHTML = `
-        <div audio-playlist class="flex:full shrink:1 display:flex direction:col justify-content:center ${this.classNames}">
+        <div audio-playlist class="flex:full mb:2>* shrink:1 display:flex direction:col justify-content:center ${this.classNames}">
           ${
             this.initialContent !== ""
               ? `${this.initialContent}`

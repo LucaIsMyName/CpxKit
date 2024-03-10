@@ -1,3 +1,37 @@
+input[type="range"] {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: calc(var(--px)*2);
+    background-color: var(--light-100);
+    color: var(--light-300);
+    // color: -internal-light-dark(rgb(128, 128, 128), rgb(255, 255, 255));
+    // -webkit-appearance: none;
+    // appearance: none;
+    position: relative;
+
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: calc(var(--px)*2);
+        background: var(--accent-900);
+        border-radius: var(--radius-pill);
+        border: none;
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: calc(var(--px)*2);
+        height: calc(var(--px)*2);
+        background: var(--light-300);
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        // top: 50%;
+        margin-top: calc(var(--px) * -4);
+    }
+}
+
 .button {
 
     @include button;
@@ -5,39 +39,51 @@
     &--primary {
         @include button(1, sans, 3, 2, 1, 1, white, blue-900, blue-500);
     }
+
     &--secondary {
         @include button(1, sans, 3, 2, 1, 1, white, gray-900, gray-500);
     }
+
     &--tertiary {
         @include button(1, sans, 3, 2, 1, 1, white, gray-900, gray-200);
     }
+
     &--danger {
         @include button(1, sans, 3, 2, 1, 1, white, red-900, red-500);
     }
+
     &--warning {
         @include button(1, sans, 3, 2, 1, 1, white, yellow-900, yellow-500);
     }
+
     &--success {
         @include button(1, sans, 3, 2, 1, 1, white, green-900, green-500);
     }
+
     &--info {
         @include button(1, sans, 3, 2, 1, 1, white, blue-900, blue-500);
     }
+
     &--light {
         @include button(1, sans, 3, 2, 1, 1, black, gray-900, gray-200);
     }
+
     &--dark {
         @include button(1, sans, 3, 2, 1, 1, white, gray-900, gray-500);
     }
+
     &--link {
         @include button(1, sans, 3, 2, 1, 1, blue-900, transparent, transparent);
     }
+
     &--outline {
         @include button(1, sans, 3, 2, 1, 1, blue-900, blue-900, transparent);
     }
+
     &--text {
         @include button(1, sans, 0, 0, 0, 0, blue-900, transparent, transparent);
     }
+
     &--icon {
         @include button(1, sans, 0, 0, 0, 0, transparent, transparent, transparent);
     }

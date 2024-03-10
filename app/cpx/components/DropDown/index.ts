@@ -1,3 +1,5 @@
-import { CpxDropDown as DropDown } from "./DropDown";
+import { CpxDropDownContainer as DropDownContainer } from "./DropDownContainer";
+import { CpxDropDownItem as DropDownItem } from "./DropDownItem";
+import { CpxDropDownTrigger as DropDownTrigger } from "./DropDownTrigger";
 
-export { DropDown };
+export { DropDownContainer, DropDownItem, DropDownTrigger };

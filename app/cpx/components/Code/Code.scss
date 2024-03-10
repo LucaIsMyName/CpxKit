@@ -4,45 +4,50 @@ pre code.hljs {
 }
 
 .hljs {
-    color: var(--gray-600);
+    color: var(--text-200);
     background: transparent;
     padding: 0;
-    font-family: var(--font-mono);
+    font-family: var(--font-mono) !important;
+    line-height: 1.5;
 
     code {
         padding: 0;
     }
 
+    &-title {
+        color: var(--success-900);
+    }
+
     &-variable {
-        color:var(--red-600);
+        color:var(--accent-600);
     }
 
     &-keyword {
-        color: var(--red-800);
+        color: var(--accent-800);
     }
 
     &-function {
-        color: var(--blue-500);
+        color: var(--accent-500);
     }
 
     &-string {
-        color: var(--gray-700);
+        color: var(--danger-700);
     }
 
     &-number {
-        color: var(--pink-700);
+        color: var(--warning-900);
     }
 
     &-comment {
-        color: var(--gray-500);
+        color: var(--light-900);
     }
 
     &-built_in {
-        color: var(--sky-800);
+        color: var(--info-800);
     }
 
     &-literal {
-        color: var(--sky-800);
+        color: var(--danger-800);
     }
 
     &-type {
@@ -50,7 +55,7 @@ pre code.hljs {
     }
 
     &-params {
-        color: var(--gray-600);
+        color: var(--accent-700);
     }
 
     &-meta {

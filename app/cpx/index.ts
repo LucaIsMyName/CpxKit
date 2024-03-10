@@ -22,13 +22,12 @@ import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
 import { AudioPlayer, AudioCurrent, AudioPlaylist, AudioControls, AudioControl } from "./components/Audio/index";
 import { BadgeElement } from "./components/Badge";
 import { CodeBlock } from "./components/Code";
-import { DropDown } from "./components/DropDown";
+import { DropDownContainer, DropDownItem, DropDownTrigger } from "./components/DropDown";
 import { SliderContainer, SliderItem, runSlider as sliderAPI } from "./components/Slider";
 import { ParseMarkdown } from "./components/Parse";
 import { PictureElement } from "./components/Picture";
 import { SuspenseAll } from "./components/Suspense";
 import { SkeletonElement } from "./components/Skeleton";
-import { TextElement } from "./components/Text/index";
 import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tab/index";
 import { VideoPlayer, VideoControls, VideoControl, VideoPlaylist, VideoPlaylistItem } from "./components/Video";
 
@@ -43,7 +42,9 @@ export interface CpxInterface {
     AudioControls: typeof Element;
     AudioControl: typeof Element;
     BadgeElement: typeof Element;
-    DropDown: typeof Element;
+    DropDownContainer: typeof Element;
+    DropDownItem: typeof Element;
+    DropDownTrigger: typeof Element;
     CodeBlock: typeof Element;
     SliderContainer: typeof Element;
     SliderItem: typeof Element;
@@ -51,7 +52,6 @@ export interface CpxInterface {
     PictureElement: typeof Element;
     SuspenseAll: typeof Element;
     SkeletonElement: typeof Element;
-    TextElement: typeof Element;
     TabContainer: typeof Element;
     TabHeader: typeof Element;
     TabContent: typeof Element;
@@ -101,7 +101,9 @@ const Components = {
   // Badge
   BadgeElement,
   // DropDown
-  DropDown,
+  DropDownContainer,
+  DropDownItem,
+  DropDownTrigger,
   // Code
   CodeBlock,
   //Slider
@@ -115,8 +117,6 @@ const Components = {
   SuspenseAll,
   // Skeleton
   SkeletonElement,
-  // Text
-  TextElement,
   // Tab
   TabContainer,
   TabHeader,

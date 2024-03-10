@@ -17,7 +17,7 @@ export class CpxAccordionItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-    <details accordion-item:id="${Id.Generate.hex(6)}" class="${this.classNames} mb:4 border-b-width:1 border-color:gray-400 py:2 mt:4">
+    <details accordion-item:id="${Id.Generate.hex(6)}" class="${this.classNames} mb:4 border-b-width:1 border-color:light-400 py:2 mt:4">
         <summary class="cursor:pointer display:flex items:center  ">
             <div class="">${this.title}</div>
             <div class="w:6 h:6">

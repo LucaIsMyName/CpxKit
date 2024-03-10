@@ -3,7 +3,7 @@ export interface StringInterfaces {
   toHtml: (string: string) => string;
   toCamelCase: (string: string) => string;
   removeWhitespace: (string: string) => string;
-  trimWhitespace: (string: string) => string;
+  trimWhitespace: (string: any, option?: any) => string;
 }
 /**
  * String
@@ -43,11 +43,17 @@ export const String: StringInterfaces = {
       .join("");
     return camelCaseString;
   },
-  removeWhitespace: function removeWhitespace(string:string) {
+  removeWhitespace: function removeWhitespace(string: string) {
     return string.replace(/\s+/g, "");
   },
 
-  trimWhitespace: function trimWhitespace(string:string) {
-    return string.replace(/^\s+|\s+$/g, '');
-  }
+  trimWhitespace: function trimWhitespace(string: any, option: any = "edges") {
+    if (option === "all") {
+      console.log("all");
+      return string.replace(/\s{2,}/g, ' ').trim();
+    }
+    if (option === "edges") {
+      return string.replace(/^\s+|\s+$/g, "");
+    }
+  },
 };

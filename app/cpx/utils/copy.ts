@@ -76,13 +76,11 @@ export const Copy = {
     // Listen for clicks on elements with data-copy-trigger attribute
     document.addEventListener(trigger, (event: any) => {
       const clickedElement = event.target;
-      console.log("Clicked element:", clickedElement, "Trigger attribute:", triggerAttribute);
+      // console.log("Clicked element:", clickedElement, "Trigger attribute:", triggerAttribute);
       if (clickedElement.hasAttribute(`${triggerAttribute}`)) {
-        console.log("Copy button clicked");
+        // console.log("Copy button clicked");
         copyToClipboard(); // Call the copy function
-        console.log("Copied to clipboard");
-      } else {
-        console.log("No copy button clicked");
+        // console.log("Copied to clipboard");
       }
     });
   },

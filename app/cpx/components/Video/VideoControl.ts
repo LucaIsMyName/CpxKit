@@ -23,7 +23,7 @@ export class CpxVideoControl extends CpxElement {
   connectedCallback() {
     this.render();
     this.addClickHandler();
-    this.addDeleteOnClick();
+    // this.addDeleteOnClick();
   }
 
   render() {

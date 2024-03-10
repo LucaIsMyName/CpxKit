@@ -47,15 +47,15 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     super();
     console.log("Connected Callback");
     this.componentName = this.setAttribute("component:name", this.tagName.toLowerCase());
-    this.ID =
-      this.getAttribute("component:id") ||
-      this.setAttribute(
-        "component:id",
-        Math.floor(Math.random() * 0xffffff)
-          .toString(16)
-          .padStart(6, "0")
-          .toString()
-      );
+    this.setAttribute(
+      "component:id",
+      Math.floor(Math.random() * 0xffffff)
+        .toString(16)
+        .padStart(6, "0")
+        .toString()
+    );
+    this.ID = this.getAttribute("component:id");
+    this.setAttribute("id", this.getAttribute("component:id"));
     this.initialContent = this.innerHTML;
     this.storage = Storage;
     this.state = State;
