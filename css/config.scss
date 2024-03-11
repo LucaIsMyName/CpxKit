@@ -35,10 +35,10 @@ $colors: (
     "light-blue": #87e5ef,
     "light-green": #7bcf7b,
     "text": #252525,
-    "background": #e6e6e6,
+    "background": #f7f7f7,
     "accent": #1e92f1,
     "border": #c6c4c1,
-    "muted": #9c9c9c,
+    "muted": #949494,
     "success": #75e375,
     "info": #2da1ff,
     "warning": #fff066,
@@ -46,6 +46,70 @@ $colors: (
     "light": #e7e7e7,
     "dark": #2d2d2d,
     "transparent": transparent,
+    "shade-xxs": rgba(0, 0, 0, 0.01),
+    "shade-xs": rgba(0, 0, 0, 0.025),
+    "shade-sm": rgba(0, 0, 0, 0.05),
+    "shade-md": rgba(0, 0, 0, 0.1),
+    "shade-lg": rgba(0, 0, 0, 0.15),
+    "shade-xl": rgba(0, 0, 0, 0.2),
+    "shade-invert-xxs": rgba(255, 255, 255, 0.01),
+    "shade-invert-xs": rgba(255, 255, 255, 0.025),
+    "shade-invert-sm": rgba(255, 255, 255, 0.05),
+    "shade-invert-md": rgba(255, 255, 255, 0.1),
+    "shade-invert-lg": rgba(255, 255, 255, 0.15),
+    "shade-invert-xl": rgba(255, 255, 255, 0.2),
+);
+
+$colors-dark: (
+    "blue": #2c74af,
+    "red": #a33d45,
+    "indigo": #4449b3,
+    "purple": #613594,
+    "pink": #b63e86,
+    "green": #3ec43e,
+    "yellow": #e0d03c,
+    "orange": #e27222,
+    "teal": #2fc7b0,
+    "cyan": #84e6f0,
+    "amber": rgb(249, 195, 49),
+    "emerald": #3ee66b,
+    "oxblood": #da4f6e,
+    "brown": #9e531e,
+    "gray-cool": #c8ddf2,
+    "gray-warm": #e1dcd8,
+    "gray": #ffffff,
+    "gray-dark": #282424,
+    "rose": #d25452,
+    "fuchsia": #e4716f,
+    "violet": #744f9f,
+    "lime": #6ad449,
+    "sky": #4eb5de,
+    "light-blue": #65ccd8,
+    "light-green": #62c062,
+    "text": #e9e9e9,
+    "background": #1d1d1d,
+    "accent": #167fd5,
+    "border": #a4a4a4,
+    "muted": #9c9c9c,
+    "success": #38bc38,
+    "info": #1e83d6,
+    "warning": #daca33,
+    "danger": #d73946,
+    "light": #d2d2d2,
+    "dark": #404040,
+    "transparent": transparent,
+    "shade-xxs": rgba(255, 255, 255, 0.01),
+    "shade-xs": rgba(255, 255, 255, 0.025),
+    "shade-sm": rgba(255, 255, 255, 0.05),
+    "shade-md": rgba(255, 255, 255, 0.1),
+    "shade-lg": rgba(255, 255, 255, 0.15),
+    "shade-xl": rgba(255, 255, 255, 0.2),
+    "shade-invert-xxs": rgba(0, 0, 0, 0.01),
+    "shade-invert-xs": rgba(0, 0, 0, 0.025),
+    "shade-invert-sm": rgba(0, 0, 0, 0.05),
+    "shade-invert-md": rgba(0, 0, 0, 0.1),
+    "shade-invert-lg": rgba(0, 0, 0, 0.15),
+    "shade-invert-xl": rgba(0, 0, 0, 0.2),
 );
 
 :root {
@@ -330,19 +394,10 @@ $colors: (
     --transparent: transparent;
     --current: currentColor;
     --inherit: inherit;
-    --shade-xxs: rgba(0, 0, 0, 0.01);
-    --shade-xs: rgba(0, 0, 0, 0.025);
-    --shade-sm: rgba(0, 0, 0, 0.05);
-    --shade-md: rgba(0, 0, 0, 0.1);
-    --shade-lg: rgba(0, 0, 0, 0.15);
-    --shade-xl: rgba(0, 0, 0, 0.2);
+    --initial: initial;
+}
 
-    --shade-invert-xxs: rgba(255, 255, 255, 0.01);
-    --shade-invert-xs: rgba(255, 255, 255, 0.025);
-    --shade-invert-sm: rgba(255, 255, 255, 0.05);
-    --shade-invert-md: rgba(255, 255, 255, 0.1);
-    --shade-invert-lg: rgba(255, 255, 255, 0.15);
-    --shade-invert-xl: rgba(255, 255, 255, 0.2);
+[theme="light"] {
 
     // Loop through each color in the color map
     @each $color,
@@ -354,7 +409,7 @@ $colors: (
             $shade-name: #{$color}-#{$i * 100};
 
             @if ($i < 5) {
-                $shade-value: lighten($value, $i / 5%);
+                $shade-value: lighten($value, $i / 1%);
                 --#{$shade-name}: #{$shade-value};
             }
 
@@ -363,7 +418,34 @@ $colors: (
             }
 
             @if ($i > 5) {
-                $shade-value: darken($value, $i * 5%);
+                $shade-value: darken($value, $i / 1%);
+                --#{$shade-name}: #{$shade-value};
+            }
+        }
+    }
+}
+
+[theme="dark"] {
+
+    @each $color,
+    $value in $colors-dark {
+
+        // Loop through each increment from 100 to 900 in steps of 100
+        @for $i from 1 through 9 {
+            // Calculate the shade name (e.g., blue-100, blue-200, etc.)
+            $shade-name: #{$color}-#{$i * 100};
+
+            @if ($i < 5) {
+                $shade-value: lighten($value, $i / 1%);
+                --#{$shade-name}: #{$shade-value};
+            }
+
+            @if ($i ==5) {
+                --#{$shade-name}: #{$value};
+            }
+
+            @if ($i > 5) {
+                $shade-value: darken($value, $i / 1%);
                 --#{$shade-name}: #{$shade-value};
             }
         }

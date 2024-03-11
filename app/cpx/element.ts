@@ -74,11 +74,23 @@ export class CpxElement extends HTMLElement implements CpxElementType {
    * @param modalisactive
    * @param modalcontent
    */
-  setInitialState(page: String = "home") {
+  setInitialState(page: String = "home", modalIsActive: boolean = false, modalContent: string = "test") {
     if (!this.state.has("page")) {
       document.addEventListener("DOMContentLoaded", () => {
-        this.state.delete("page");
-        this.state.set("page", page);
+        this.state.delete(`page`);
+        this.state.set(`page`, page);
+      });
+    }
+
+    if (!this.state.has("modalisactive")) {
+      document.addEventListener("DOMContentLoaded", () => {
+        this.state.set(`modalisactive`, `${modalIsActive}`);
+      });
+    }
+
+    if (!this.state.has("modalcontent")) {
+      document.addEventListener("DOMContentLoaded", () => {
+        this.state.set(`modalcontent`, modalContent);
       });
     }
   }
@@ -120,7 +132,7 @@ export class CpxElement extends HTMLElement implements CpxElementType {
    * This method adds event listeners to the component.
    * It is called when the element with the correct attribute is clicked
    */
-  addClickHandler(elements: string = "*"): void {
+  addClickHandler(elements: string = "*", renderContainer: string = "render-container"): void {
     // Get all elements within the component
     const allElements = this.querySelectorAll(elements);
 
@@ -153,7 +165,7 @@ export class CpxElement extends HTMLElement implements CpxElementType {
                   // console.log("Storage Key:", key);
                   this.storage.set(key.trim(), valueString.trim());
                 }
-                const root = document.querySelectorAll(`app-root`); // NOt good, cant be sure that root is <app-root> element
+                const root = document.querySelectorAll(renderContainer);
                 root.forEach((root: any) => {
                   root.render();
                 });

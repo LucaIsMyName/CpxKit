@@ -38,6 +38,8 @@ body {
     margin: 0;
     font-size: 100%;
     font-family: var(--font-sans);
+    color: var(--text-500);
+    background-color: var(--background-500);
 }
 
 /**
@@ -434,7 +436,7 @@ template {
     margin: 0;
     font-size: 1em;
     font-family: var(--font-sans);
-    color: var(--black);
+    color: var(--text-500);
     line-height: 1;
     text-align: left;
     text-decoration: none;

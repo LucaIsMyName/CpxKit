@@ -1,5 +1,4 @@
 import { Cpx, Config } from "../../app";
-
 /**
  * @class ComponentRoot
  * @description
@@ -21,28 +20,64 @@ export class ComponentRoot extends Cpx.Element {
     this.description = this.getAttribute("root:description") || "Root Description";
     this.storage = Cpx.Storage;
     this.state = Cpx.State;
+
+    /**
+     * Set the Color Scheme
+     */
+    // const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)") ? `dark` : `light`;
+    // console.log("Colorscheme: " + prefersDarkScheme);
+    // console.log("User Colorscheme: " + this.storage.Local.get("user-color-scheme"));
+    // console.log("User Colorscheme: " + this.state.get("theme"));
+    // const userPreferedColorScheme = this.state.get("theme") || this.storage.Local.get("user-color-scheme") || prefersDarkScheme;
+    // this.storage.Local.set("user-color-scheme", userPreferedColorScheme);
+    // document.body.setAttribute("theme", userPreferedColorScheme);
+    // this.state.set(`theme`, userPreferedColorScheme);
   }
   connectedCallback() {
     this.setInitialState();
     this.render();
+    this.setThemeColor();
     this.addClickHandler();
   }
 
-  // async fetchData() {
-  //   Cpx.Http.fetch("https://jsonplaceholder.typicode.com/posts");
-  //   this.render()
-  // }
+  setThemeColor() {
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)") ? `dark` : `light`;
+    console.log("Colorscheme: " + prefersDarkScheme);
+    console.log("User Colorscheme: " + this.storage.Local.get("user-color-scheme"));
+    console.log("User Colorscheme: " + this.state.get("theme"));
+    const userPreferedColorScheme = this.state.get("theme") || this.storage.Local.get("user-color-scheme") || prefersDarkScheme;
+    this.storage.Local.set("user-color-scheme", userPreferedColorScheme);
+    document.body.setAttribute("theme", userPreferedColorScheme);
+    if (userPreferedColorScheme !== this.state.get("theme")) {
+      this.state.set(`theme`, userPreferedColorScheme);
+    }
+  }
 
   render() {
     this.innerHTML = `
-        <section style="" class="">
-            <header class="position:sticky top:0 p:4 w:full bg:light-100 display:flex gap:4 content:between">
+          <header class="position:sticky top:0 p:4 w:full bg:${this.state.get("theme") === "dark" ? `dark-800` : `light-200`} display:flex gap:4 content:between">
             <app-nav class=""></app-nav>
-            </header>
+          </header>
+          <render-container>
             <main class="">
                 ${this.state.has("page") ? `<app-page-${this.state.get("page")} class=""></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>
-        </section>
+              ${
+                // Check if the modal is active
+                this.state.get("modalisactive") === "true"
+                  ? `
+                    <modal-container modal-container:is-active="${this.state.get("modalisactive")}" modal-container:content="${this.state.get("modalcontent")}">
+                      <app-page-${this.state.get("modalcontent")}>
+                      </app-page-${this.state.get("modalcontent")}>
+                    </modal-container>
+                  `
+                  : ``
+              }
+          </render-container>
+          <footer class="{sm}display:flex justify:between items:center gap:4 p:4 w:full bg:${this.state.get("theme") === "dark" ? `dark-800` : `light-200`} display:flex gap:4 content:between">
+            <h2>${this.title}</h2>
+            <app-nav class=""></app-nav>
+          </footer>
         `;
   }
 }

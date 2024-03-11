@@ -23,7 +23,6 @@ export class CpxAvatarList extends CpxElement {
     this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
     this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
     this.gap = parseInt(this.getAttribute("avatar-element:gap")) || 2;
-    this.gapIsInverted = this.getAttribute("avatar-element:gap:is-inverted") === "true" ? true : false;
     this.alt = this.getAttribute("avatar-element:alt") || "";
     this.url = this.getAttribute("avatar-element:url") || "https://via.placeholder.com/150";
     this.setAttribute("class", `display:block`);
@@ -31,7 +30,7 @@ export class CpxAvatarList extends CpxElement {
 
   render() {
     this.innerHTML = `  
-        <section class="display:flex ${this.gap !== 0 ? `mr:${this.gapIsInverted === true ? `-` : ``}${this.gap}>*` : ``}">
+        <section class="display:flex ${this.gap !== 0 ? `mr:${this.gap}>*` : ``}">
             ${this.initialContent}
         </section>
         `;

@@ -51,8 +51,8 @@ export class CpxCodeBlock extends CpxElement {
     this.borderRadius = this.getAttribute("code-block:radius") || "sm";
     this.borderWidth = parseInt(this.getAttribute("code-block:border-width")) || 1;
     this.color = this.getAttribute("code-block:color") || "text-500";
-    this.bgColor = this.getAttribute("code-block:bg") || "shade-xxs";
-    this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl";
+    this.bgColor = this.getAttribute("code-block:bg") || "shade-xxs-900";
+    this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl-500";
     this.padding = parseInt(this.getAttribute("code-block:padding")) || 4;
   }
 
@@ -97,20 +97,20 @@ export class CpxCodeBlock extends CpxElement {
     ${
       this.hasHeader === true && this.hasCopyButton === true
         ? `
-        <header class=" w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:${this.borderColor} pb:4">
+        <header class="color:text-900 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:${this.borderColor} pb:4">
             ${
               this.hasHeader === true
                 ? ` 
-                  <div class="display:flex gap:4 color:black items:center">
+                  <div class="display:flex gap:4 items:center">
                       <section class="size:md weigth:semibold leading:2">${this.title}</section>
                       <badge-element
                       badge-element:radius="sm"
                       badge-element:padding="1"
                       badge-element:size="xs"
                       badge-element:font-family="mono"
-                      badge-element:color="dark-300"
-                      badge-element:border-color="light-900"
-                      badge-element:bg=transparent
+                      badge-element:color="text-900"
+                      badge-element:border-color="text-900"
+                      badge-element:bg="shade-invert-sm"
                       class="">.${this.lang}</badge-element>
                   </div>
                   `

@@ -26,11 +26,21 @@ export class PageAbout extends Cpx.Element {
     // Add click event listener to the copy button
   }
   render() {
+    console.log(this.state.get("page"));
     this.innerHTML = `
-    <avatar-list avatar-element:gap=6 avatar-element:gap:is-inverted=true>
-    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
-    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
-    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <br><br>
+    <br><br>
+    <br><br>
+    <p>lrmen2ne <tool-tip tool-tip:offset:x=0 tool-tip:content="This is a tooltip">Tooltip</tool-tip> 2 lwofpwkenfewkndf <tool-tip tool-tip:offset:x=0 tool-tip:content="This is a tooltip 2 loonger texdt sdinj">Tooltip</tool-tip></p>
+     
+    </p>
+    <br><br>
+    <br><br>
+    <br><br>
+    <avatar-list avatar-element:gap="-5">
+    <avatar-element avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element avatar-element:url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element avatar-element:url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
     </avatar-list> 
     
     <icon-element

@@ -673,6 +673,7 @@ var _copy = require("./utils/copy");
 var _audio = require("./utils/audio");
 var _video = require("./utils/video");
 var _object = require("./utils/object");
+var _tooltip = require("./utils/tooltip");
 // Cpx Utility Components
 var _index = require("./components/Accordion/index");
 var _index1 = require("./components/Audio/index");
@@ -684,9 +685,11 @@ var _icon = require("./components/Icon");
 var _slider = require("./components/Slider");
 var _parse = require("./components/Parse");
 var _picture = require("./components/Picture");
+var _render = require("./components/Render");
 var _suspense = require("./components/Suspense");
 var _skeleton = require("./components/Skeleton");
 var _index2 = require("./components/Tab/index");
+var _toolTip = require("./components/ToolTip");
 var _video1 = require("./components/Video");
 /**
  * @class Cpx
@@ -723,6 +726,8 @@ var _video1 = require("./components/Video");
     (0, _parse.ParseMarkdown),
     PictureElement: // Picture
     (0, _picture.PictureElement),
+    RenderContainer: // Render
+    (0, _render.RenderContainer),
     SuspenseAll: // Suspense
     (0, _suspense.SuspenseAll),
     SkeletonElement: // Skeleton
@@ -732,6 +737,8 @@ var _video1 = require("./components/Video");
     TabHeader: (0, _index2.TabHeader),
     TabContent: (0, _index2.TabContent),
     TabToggle: (0, _index2.TabToggle),
+    ToolTip: // Tooltip
+    (0, _toolTip.ToolTip),
     VideoPlayer: // Video
     (0, _video1.VideoPlayer),
     VideoControls: (0, _video1.VideoControls),
@@ -743,7 +750,8 @@ const Functions = {
     audioAPI: (0, _audio.audioAPI),
     videoAPI: (0, _video.videoAPI),
     sliderAPI: (0, _slider.runSlider),
-    copyAPI: (0, _copy.Copy)
+    copyAPI: (0, _copy.Copy),
+    tooltipAPI: (0, _tooltip.Tooltip)
 };
 const Cpx = {
     Element: // Base Element
@@ -769,7 +777,7 @@ const Cpx = {
     Object: (0, _object.Object)
 };
 
-},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Tab/index":"lwDpZ","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Icon":"dqus8","./components/Avatar":"3DbAV"}],"7TddR":[function(require,module,exports) {
+},{"./element":"7TddR","./utils/element":"hxwwf","./config":"74IoG","./utils/storage":"hcLcL","./utils/state":"eqXTg","./utils/http":"g2z9M","./utils/sanitize":"7HptL","./utils/time":"jyJao","./utils/json":"flwVA","./utils/icons":"bLiR6","./utils/id":"UhlEf","./utils/string":"8hamB","./utils/copy":"1dAm7","./utils/audio":"8K745","./utils/video":"dmuKk","./utils/object":"bshMI","./utils/tooltip":"4B9Fz","./components/Accordion/index":"fVDc8","./components/Audio/index":"4F7iZ","./components/Avatar":"3DbAV","./components/Badge":"9lAy8","./components/Code":"lX5Z0","./components/DropDown":"8vhOB","./components/Icon":"dqus8","./components/Slider":"lta5S","./components/Parse":"1CUIs","./components/Picture":"gOZMd","./components/Render":"eJrvd","./components/Suspense":"kLJ9V","./components/Skeleton":"1hvL3","./components/Tab/index":"lwDpZ","./components/ToolTip":"jq0YE","./components/Video":"bg3EL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7TddR":[function(require,module,exports) {
 /**
  * @class Element
  * @extends HTMLElement
@@ -823,10 +831,16 @@ class CpxElement extends HTMLElement {
    * @param page
    * @param modalisactive
    * @param modalcontent
-   */ setInitialState(page = "home") {
+   */ setInitialState(page = "home", modalIsActive = false, modalContent = "test") {
         if (!this.state.has("page")) document.addEventListener("DOMContentLoaded", ()=>{
-            this.state.delete("page");
-            this.state.set("page", page);
+            this.state.delete(`page`);
+            this.state.set(`page`, page);
+        });
+        if (!this.state.has("modalisactive")) document.addEventListener("DOMContentLoaded", ()=>{
+            this.state.set(`modalisactive`, `${modalIsActive}`);
+        });
+        if (!this.state.has("modalcontent")) document.addEventListener("DOMContentLoaded", ()=>{
+            this.state.set(`modalcontent`, modalContent);
         });
     }
     /**
@@ -861,7 +875,7 @@ class CpxElement extends HTMLElement {
    * @description
    * This method adds event listeners to the component.
    * It is called when the element with the correct attribute is clicked
-   */ addClickHandler(elements = "*") {
+   */ addClickHandler(elements = "*", renderContainer = "render-container") {
         // Get all elements within the component
         const allElements = this.querySelectorAll(elements);
         // Loop through each element
@@ -886,7 +900,7 @@ class CpxElement extends HTMLElement {
                             this.state.set(key.trim(), valueString.trim());
                             else if (target === "storage") // console.log("Storage Key:", key);
                             this.storage.set(key.trim(), valueString.trim());
-                            const root = document.querySelectorAll(`app-root`); // NOt good, cant be sure that root is <app-root> element
+                            const root = document.querySelectorAll(renderContainer);
                             root.forEach((root)=>{
                                 root.render();
                             });
@@ -2726,6 +2740,126 @@ const Object = {
     }
 };
 
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4B9Fz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Tooltip", ()=>Tooltip);
+const Tooltip = (//
+tooltipSelector = "tool-tip", appendTo = "body")=>{
+    const tooltipElements = document.querySelectorAll(`${tooltipSelector}`);
+    const tooltipPrefix = tooltipSelector.replace("[", "").replace("]", "");
+    const appendContainer = document.querySelector(appendTo);
+    console.log("Tooltip API", tooltipElements);
+    // Create a single tooltip content element outside of the loop
+    const tooltipDiv = document.createElement("div");
+    tooltipDiv.style.display = "none";
+    tooltipDiv.style.zIndex = "-1";
+    tooltipDiv.classList.add(`bg:light-300`);
+    tooltipDiv.classList.add(`border-width:1`);
+    tooltipDiv.classList.add(`px:2`);
+    tooltipDiv.classList.add(`py:1`);
+    tooltipDiv.classList.add(`border-color:light-500`);
+    tooltipDiv.classList.add(`radius:sm`);
+    tooltipDiv.classList.add(`color:dark-900`);
+    tooltipDiv.style.fontSize = `80%`;
+    tooltipDiv.style.position = "absolute";
+    tooltipDiv.style.zIndex = "9999";
+    // @ts-ignore
+    appendContainer.appendChild(tooltipDiv);
+    console.log(appendContainer, tooltipDiv);
+    // Set up event listeners for show/hide on the single tooltip content element
+    tooltipElements.forEach((element, index)=>{
+        console.log(element, index);
+        const tooltipContent = element.getAttribute(`${tooltipPrefix}:content`);
+        const tooltipId = "tooltip-" + index;
+        element.style.cursor = "pointer";
+        console.log("Tooltip Content", tooltipContent);
+        console.log("Tooltip ID", tooltipId);
+        // Calculate and set the correct left/top position for each tooltip content div
+        const positions = calculateAndShowTooltipPosition(element, tooltipContent, true);
+        if (positions) {
+            const { leftPosition, topPosition } = positions;
+            console.log("Tooltip Position", leftPosition, topPosition);
+            tooltipDiv.style.left = leftPosition + "px";
+            tooltipDiv.style.top = topPosition + "px";
+        }
+        // Style the Tooltip Toggle Element
+        element.style.borderBottom = element.getAttribute(`${tooltipPrefix}:border-bottom`) || "var(--px) dotted var(--dark-100)";
+        element.style.backgroundColor = element.getAttribute(`${tooltipSelector}:bg`) || "transparent";
+        element.style.color = element.getAttribute(`${tooltipPrefix}:color`) || "inherit";
+        element.setAttribute("tabindex", "1");
+        element.setAttribute("aria-describedby", tooltipId);
+        // Set up event listeners for show/hide on each tooltip element
+        element.addEventListener("DOMContentLoaded", ()=>{
+            calculateAndShowTooltipPosition(element, tooltipContent, false, true);
+            hideTooltip();
+        });
+        element.addEventListener("mouseout", ()=>{
+            hideTooltip();
+        });
+        element.addEventListener("click", ()=>{
+            calculateAndShowTooltipPosition(element, tooltipContent);
+        });
+        element.addEventListener("blur", ()=>{
+            hideTooltip();
+        });
+        element.addEventListener("focus", ()=>{
+            calculateAndShowTooltipPosition(element, tooltipContent);
+        });
+        // Modify the event listener to handle mouseover event for more precise tooltip positioning
+        element.addEventListener("mouseover", ()=>{
+            calculateAndShowTooltipPosition(element, tooltipContent);
+        });
+    });
+    /**
+   * Calculate the position of the tooltip content element and show it.
+   * @param element The tooltip element that triggered the tooltip.
+   * @param content The content of the tooltip.
+   * @param returnVar If true, returns the calculated left and top positions.
+   */ function calculateAndShowTooltipPosition(element, content, returnVar = false, calcOnly = false) {
+        const rect = element.getBoundingClientRect();
+        const tooltipOffsetY = parseInt(element.getAttribute(`${tooltipPrefix}:offset:y`)) || 0;
+        const tooltipOffsetX = parseInt(element.getAttribute(`${tooltipPrefix}:offset:x`)) || 0;
+        const tooltipAnchor = element.getAttribute(`${tooltipPrefix}:anchor`) || "top";
+        let leftPosition = rect.left + window.scrollX + element.offsetWidth / 2 - tooltipDiv.offsetWidth / 2 - tooltipOffsetX;
+        let topPosition;
+        if (tooltipAnchor === "bottom") topPosition = rect.bottom + window.scrollY + tooltipOffsetY;
+        else topPosition = rect.top + window.scrollY - tooltipDiv.offsetHeight - tooltipOffsetY;
+        /*
+     * Check if the tooltip is going out of the viewport and adjust its position
+     */ const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        /*
+     * Adjust horizontal position
+     */ if (leftPosition < 0) leftPosition = 0; // Align left edge with viewport
+        else if (leftPosition + tooltipDiv.offsetWidth > viewportWidth) leftPosition = viewportWidth - tooltipDiv.offsetWidth; // Align right edge with viewport
+        // Adjust vertical position
+        if (topPosition < 0) topPosition = rect.bottom + window.scrollY + tooltipOffsetY; // Move to below the element
+        else if (topPosition + tooltipDiv.offsetHeight > viewportHeight) topPosition = rect.top + window.scrollY - tooltipDiv.offsetHeight - tooltipOffsetY; // Move to above the element
+        if (returnVar) return {
+            leftPosition,
+            topPosition
+        };
+        // Apply the calculated positions
+        tooltipDiv.textContent = content;
+        tooltipDiv.style.left = leftPosition + "px";
+        tooltipDiv.style.top = topPosition + "px";
+        tooltipDiv.style.position = "absolute";
+        if (!calcOnly) {
+            tooltipDiv.style.display = "block";
+            tooltipDiv.style.zIndex = "9999";
+            tooltipDiv.setAttribute("aria-hidden", "false");
+        }
+    }
+    /**
+   * Hide the tooltip content element.
+   */ function hideTooltip() {
+        tooltipDiv.style.display = "none";
+        tooltipDiv.setAttribute("aria-hidden", "true");
+        tooltipDiv.style.zIndex = "-1";
+    }
+};
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fVDc8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3066,7 +3200,7 @@ class CpxAudioPlaylistItem extends (0, _element.CpxElement) {
 }
 customElements.define(`audio-playlist-item`, CpxAudioPlaylistItem);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"fJL4o":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fJL4o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -3183,7 +3317,97 @@ class CpxAudioControl extends (0, _element.CpxElement) {
 }
 customElements.define(`audio-control`, CpxAudioControl);
 
-},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9lAy8":[function(require,module,exports) {
+},{"../../element":"7TddR","../../utils/icons":"bLiR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3DbAV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AvatarElement", ()=>(0, _avatarElement.CpxAvatarElement));
+parcelHelpers.export(exports, "AvatarList", ()=>(0, _avatarList.CpxAvatarList));
+var _avatarElement = require("./AvatarElement");
+var _avatarList = require("./AvatarList");
+
+},{"./AvatarElement":"eIWaJ","./AvatarList":"lhNTV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eIWaJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Avatar Element
+ */ parcelHelpers.export(exports, "CpxAvatarElement", ()=>CpxAvatarElement);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxAvatarElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("avatar-element:class") || "";
+        this.size = this.getAttribute("avatar-element:size") || 12;
+        this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
+        this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
+        this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
+        this.alt = this.getAttribute("avatar-element:alt") || "";
+        this.url = this.getAttribute("avatar-element:url") || false;
+        this.setAttribute("class", `display:block w:${this.size} h:${this.size}`);
+    }
+    render() {
+        this.innerHTML = `  
+        <section class="${(0, _index.Cpx).String.trimWhitespace(`
+            overflow:hidden
+            display:grid
+            place-content:center
+            ${this.borderRadius !== "none" ? `radius:${this.borderRadius}` : ""}
+            ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
+            ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
+            ${this.borderWidth !== 0 ? `outline-width:${parseInt(this.borderWidth) / 2}` : ""}
+            ${this.borderColor !== "transparent" ? `outline-color:${this.borderColor}` : ""}
+            outline-offset:2
+            w:${this.size}
+            h:${this.size}
+            ${this.classNames}">
+            ${this.url === false ? `
+                <div style="font-size:calc(var(--${this.size}) / 1.25))" class="display:grid place:center h:${this.size} w:${this.size} bg:${this.state.get("theme") === "dark" ? `dark-800` : `light-200`}">
+                  ${this.alt.trim().charAt(0).toUpperCase()}
+                </div>
+              ` : `
+                <picture-element
+                  picture-element:width=${this.size}
+                  picture-element:height=${this.size}
+                  picture-element:alt="${this.alt}"
+                  picture-element:url="${this.url}"></picture-element>
+                `}
+        </section>
+        `, "all")}`;
+    }
+}
+customElements.define(`avatar-element`, CpxAvatarElement);
+
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lhNTV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Avatar Element
+ */ parcelHelpers.export(exports, "CpxAvatarList", ()=>CpxAvatarList);
+var _element = require("../../element");
+class CpxAvatarList extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("avatar-element:class") || "";
+        this.size = this.getAttribute("avatar-element:size") || 12;
+        this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
+        this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
+        this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
+        this.gap = parseInt(this.getAttribute("avatar-element:gap")) || 2;
+        this.alt = this.getAttribute("avatar-element:alt") || "";
+        this.url = this.getAttribute("avatar-element:url") || "https://via.placeholder.com/150";
+        this.setAttribute("class", `display:block`);
+    }
+    render() {
+        this.innerHTML = `  
+        <section class="display:flex ${this.gap !== 0 ? `mr:${this.gap}>*` : ``}">
+            ${this.initialContent}
+        </section>
+        `;
+    }
+}
+customElements.define(`avatar-list`, CpxAvatarList);
+
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9lAy8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "BadgeElement", ()=>(0, _badgeElement.CpxBadgeElement));
@@ -3302,8 +3526,8 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
         this.borderRadius = this.getAttribute("code-block:radius") || "sm";
         this.borderWidth = parseInt(this.getAttribute("code-block:border-width")) || 1;
         this.color = this.getAttribute("code-block:color") || "text-500";
-        this.bgColor = this.getAttribute("code-block:bg") || "shade-xxs";
-        this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl";
+        this.bgColor = this.getAttribute("code-block:bg") || "shade-xxs-900";
+        this.borderColor = this.getAttribute("code-block:border-color") || "shade-xl-500";
         this.padding = parseInt(this.getAttribute("code-block:padding")) || 4;
     }
     connectedCallback() {
@@ -3335,18 +3559,18 @@ class CpxCodeBlock extends (0, _element.CpxElement) {
     getHeader() {
         return `
     ${this.hasHeader === true && this.hasCopyButton === true ? `
-        <header class=" w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:${this.borderColor} pb:4">
+        <header class="color:text-900 w:full display:flex gap:4 content:between items:center border-b-width:1 border-color:${this.borderColor} pb:4">
             ${this.hasHeader === true ? ` 
-                  <div class="display:flex gap:4 color:black items:center">
+                  <div class="display:flex gap:4 items:center">
                       <section class="size:md weigth:semibold leading:2">${this.title}</section>
                       <badge-element
                       badge-element:radius="sm"
                       badge-element:padding="1"
                       badge-element:size="xs"
                       badge-element:font-family="mono"
-                      badge-element:color="dark-300"
-                      badge-element:border-color="light-900"
-                      badge-element:bg=transparent
+                      badge-element:color="text-900"
+                      badge-element:border-color="text-900"
+                      badge-element:bg="shade-invert-sm"
                       class="">.${this.lang}</badge-element>
                   </div>
                   ` : ``}
@@ -9922,7 +10146,7 @@ var _dropDownContainer = require("./DropDownContainer");
 var _dropDownItem = require("./DropDownItem");
 var _dropDownTrigger = require("./DropDownTrigger");
 
-},{"./DropDownContainer":"BAJN0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./DropDownItem":"gOP5y","./DropDownTrigger":"6xHhw"}],"BAJN0":[function(require,module,exports) {
+},{"./DropDownContainer":"BAJN0","./DropDownItem":"gOP5y","./DropDownTrigger":"6xHhw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"BAJN0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxDropDownContainer", ()=>CpxDropDownContainer);
@@ -10022,7 +10246,7 @@ class CpxDropDownContainer extends (0, _element.CpxElement) {
 }
 customElements.define("dropdown-container", CpxDropDownContainer);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"gOP5y":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gOP5y":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxDropDownItem", ()=>CpxDropDownItem);
@@ -10055,7 +10279,7 @@ class CpxDropDownItem extends (0, _element.CpxElement) {
 }
 customElements.define(`dropdown-item`, CpxDropDownItem);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"6xHhw":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6xHhw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxDropDownTrigger", ()=>CpxDropDownTrigger);
@@ -10092,7 +10316,107 @@ class CpxDropDownTrigger extends (0, _element.CpxElement) {
 }
 customElements.define(`dropdown-trigger`, CpxDropDownTrigger);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../..":"dMUol"}],"lta5S":[function(require,module,exports) {
+},{"../..":"dMUol","../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dqus8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "IconElement", ()=>(0, _iconElement.CpxIconElement));
+var _iconElement = require("./IconElement");
+
+},{"./IconElement":"fPT43","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPT43":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @description
+ * The Icon Element is a custom element that allows you to display an icon from the Cpx Icon Library.
+ * @example
+ * <icon-element icon-element:icon="play" icon-element:width="8" icon-element:height="8" icon-element:color="black" icon-element:bg-color="white" icon-element:border-color="black" icon-element:border-radius="0" icon-element:border-width="1" icon-element:is-inline="true" icon-element:svg:stroke="currentColor" icon-element:svg:fill="none" icon-element:svg:stroke-width="2"></icon-element>
+ */ parcelHelpers.export(exports, "CpxIconElement", ()=>CpxIconElement);
+var _element = require("../../element");
+var _index = require("../../index");
+class CpxIconElement extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.classNames = this.getAttribute("icon-element:class") || "";
+        this.url = this.getAttribute("icon-element:url") || "";
+        this.alt = this.getAttribute("icon-element:alt") || "icon";
+        this.width = this.getAttribute("icon-element:width") || "8";
+        this.height = this.getAttribute("icon-element:height") || "8";
+        this.icon = this.getAttribute("icon-element:icon") || "play";
+        this.color = this.getAttribute("icon-element:color") || "black";
+        this.bgColor = this.getAttribute("icon-element:bg-color") || "white";
+        this.borderColor = this.getAttribute("icon-element:border-color") || "black";
+        this.borderRadius = this.getAttribute("icon-element:border-radius") || "0";
+        this.borderWidth = eval(this.getAttribute("icon-element:border-width")) || 1;
+        this.isInline = this.getAttribute("icon-element:is-inline") || true;
+        this.stroke = this.getAttribute("icon-element:svg:stroke") || "currentColor";
+        this.fill = this.getAttribute("icon-element:svg:fill") || "none";
+        this.strokeWidth = parseInt(this.getAttribute("icon-element:svg:stroke-width")) || "2";
+        this.setAttribute("class", `w:${this.width} h:${this.height}`);
+    }
+    connectedCallback() {
+        this.render();
+        this.isInline;
+        this.changeSvgAttributes();
+    }
+    /**
+   * @description
+   * Change the stroke, fill, and stroke-width attributes of the svg element.
+   * @returns {void}
+   * @example
+   * this.changeSvgAttributes();
+   */ changeSvgAttributes() {
+        const allSvgTags = [
+            "svg",
+            "path",
+            "circle",
+            "rect",
+            "line",
+            "polyline",
+            "polygon",
+            "ellipse"
+        ];
+        const allAttributes = [
+            "stroke",
+            "fill",
+            "stroke-width"
+        ];
+        const svg = this.querySelector("svg");
+        console.log(this.isInline, "this.isInline");
+        // Look for all stroke, stroke-width, and fill attributes and change them
+        if (svg) allSvgTags.forEach((tag)=>{
+            const elements = svg.getElementsByTagName(tag);
+            if (elements.length > 0) for(let i = 0; i < elements.length; i++){
+                const element = elements[i];
+                allAttributes.forEach((attr)=>{
+                    if (element.hasAttribute(attr)) {
+                        if (attr === "stroke") element.setAttribute(attr, this.stroke);
+                        else if (attr === "fill") element.setAttribute(attr, this.fill);
+                        else if (attr === "stroke-width") element.setAttribute(attr, this.strokeWidth.toString());
+                    }
+                });
+            }
+        });
+    }
+    /**
+   * @description
+   * Render the Icon Element.
+   * @returns {void}
+   */ render() {
+        this.innerHTML = `
+        <section>
+            ${eval(this.isInline) === true ? ` <figure title="${this.alt}" class="w:${this.width} h:${this.height}">
+                        ${(0, _index.Cpx).Icon[this.icon]}
+                    </figure>
+                ` : `
+                <picture-element picture-element:width="${this.width}" picture-element:height:"${this.height}" picture-element:url="${this.url}" picture-element:alt="${this.alt}" ></picture-element>
+                `}
+        </section>
+        `;
+    }
+}
+customElements.define(`icon-element`, CpxIconElement);
+
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lta5S":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SliderContainer", ()=>(0, _sliderContainer.CpxSliderContainer));
@@ -10177,7 +10501,7 @@ class CpxSliderContainer extends (0, _element.CpxElement) {
 }
 customElements.define(`slider-container`, CpxSliderContainer);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","swiper":"iM6UL","swiper/swiper-bundle.min.css":"girFM"}],"iM6UL":[function(require,module,exports) {
+},{"../../element":"7TddR","swiper":"iM6UL","swiper/swiper-bundle.min.css":"girFM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iM6UL":[function(require,module,exports) {
 /**
  * Swiper 11.0.7
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -15729,6 +16053,29 @@ class CpxPictureElement extends (0, _element.CpxElement) {
 }
 customElements.define(`picture-element`, CpxPictureElement);
 
+},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eJrvd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "RenderContainer", ()=>(0, _renderContainer.CpxRenderContainer));
+var _renderContainer = require("./RenderContainer");
+
+},{"./RenderContainer":"lPbSh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lPbSh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxRenderContainer", ()=>CpxRenderContainer);
+var _element = require("../../element");
+class CpxRenderContainer extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+    }
+    render() {
+        this.innerHTML = `
+        ${this.initialContent}
+        `;
+    }
+}
+customElements.define(`render-container`, CpxRenderContainer);
+
 },{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kLJ9V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -15885,7 +16232,7 @@ class CpxTabContainer extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-container`, CpxTabContainer);
 
-},{"../../element":"7TddR","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"4D8G5":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","../../utils/id":"UhlEf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D8G5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CpxTabHeader", ()=>CpxTabHeader);
@@ -15931,7 +16278,7 @@ class CpxTabHeader extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-header`, CpxTabHeader);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"dBlXm":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBlXm":[function(require,module,exports) {
 // tab-content.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -15986,7 +16333,7 @@ class CpxTabContent extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-content`, CpxTabContent);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"ircPr":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ircPr":[function(require,module,exports) {
 // tab-toggle.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -16055,7 +16402,36 @@ class CpxTabToggle extends (0, _element.CpxElement) {
 }
 customElements.define(`tab-toggle`, CpxTabToggle);
 
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"bg3EL":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jq0YE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ToolTip", ()=>(0, _toolTip.CpxToolTip));
+var _toolTip = require("./ToolTip");
+
+},{"./ToolTip":"aqUgu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aqUgu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CpxToolTip", ()=>CpxToolTip);
+var _element = require("../../element");
+var _tooltip = require("../../utils/tooltip"); // Import the Tooltip API
+class CpxToolTip extends (0, _element.CpxElement) {
+    constructor(){
+        super();
+        this.setAttribute("tool-tip", "");
+        this.initializeTooltip(); // Initialize the Tooltip API
+    }
+    initializeTooltip() {
+        // Initialize the Tooltip API targeting elements with the 'tool-tip' attribute
+        (0, _tooltip.Tooltip)("[tool-tip]");
+    }
+    render() {
+        // Display the content
+        this.innerHTML = `${this.initialContent}`;
+    }
+}
+customElements.define(`tool-tip`, CpxToolTip);
+
+},{"../../element":"7TddR","../../utils/tooltip":"4B9Fz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bg3EL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "VideoPlayer", ()=>(0, _videoPlayer.CpxVideoPlayer));
@@ -16355,186 +16731,7 @@ class CpxVideoPlaylistItem extends (0, _element.CpxElement) {
 }
 customElements.define(`video-playlist-item`, CpxVideoPlaylistItem);
 
-},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dqus8":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "IconElement", ()=>(0, _iconElement.CpxIconElement));
-var _iconElement = require("./IconElement");
-
-},{"./IconElement":"fPT43","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPT43":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * @description
- * The Icon Element is a custom element that allows you to display an icon from the Cpx Icon Library.
- * @example
- * <icon-element icon-element:icon="play" icon-element:width="8" icon-element:height="8" icon-element:color="black" icon-element:bg-color="white" icon-element:border-color="black" icon-element:border-radius="0" icon-element:border-width="1" icon-element:is-inline="true" icon-element:svg:stroke="currentColor" icon-element:svg:fill="none" icon-element:svg:stroke-width="2"></icon-element>
- */ parcelHelpers.export(exports, "CpxIconElement", ()=>CpxIconElement);
-var _element = require("../../element");
-var _index = require("../../index");
-class CpxIconElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("icon-element:class") || "";
-        this.url = this.getAttribute("icon-element:url") || "";
-        this.alt = this.getAttribute("icon-element:alt") || "icon";
-        this.width = this.getAttribute("icon-element:width") || "8";
-        this.height = this.getAttribute("icon-element:height") || "8";
-        this.icon = this.getAttribute("icon-element:icon") || "play";
-        this.color = this.getAttribute("icon-element:color") || "black";
-        this.bgColor = this.getAttribute("icon-element:bg-color") || "white";
-        this.borderColor = this.getAttribute("icon-element:border-color") || "black";
-        this.borderRadius = this.getAttribute("icon-element:border-radius") || "0";
-        this.borderWidth = eval(this.getAttribute("icon-element:border-width")) || 1;
-        this.isInline = this.getAttribute("icon-element:is-inline") || true;
-        this.stroke = this.getAttribute("icon-element:svg:stroke") || "currentColor";
-        this.fill = this.getAttribute("icon-element:svg:fill") || "none";
-        this.strokeWidth = parseInt(this.getAttribute("icon-element:svg:stroke-width")) || "2";
-        this.setAttribute("class", `w:${this.width} h:${this.height}`);
-    }
-    connectedCallback() {
-        this.render();
-        this.isInline;
-        this.changeSvgAttributes();
-    }
-    /**
-   * @description
-   * Change the stroke, fill, and stroke-width attributes of the svg element.
-   * @returns {void}
-   * @example
-   * this.changeSvgAttributes();
-   */ changeSvgAttributes() {
-        const allSvgTags = [
-            "svg",
-            "path",
-            "circle",
-            "rect",
-            "line",
-            "polyline",
-            "polygon",
-            "ellipse"
-        ];
-        const allAttributes = [
-            "stroke",
-            "fill",
-            "stroke-width"
-        ];
-        const svg = this.querySelector("svg");
-        console.log(this.isInline, "this.isInline");
-        // Look for all stroke, stroke-width, and fill attributes and change them
-        if (svg) allSvgTags.forEach((tag)=>{
-            const elements = svg.getElementsByTagName(tag);
-            if (elements.length > 0) for(let i = 0; i < elements.length; i++){
-                const element = elements[i];
-                allAttributes.forEach((attr)=>{
-                    if (element.hasAttribute(attr)) {
-                        if (attr === "stroke") element.setAttribute(attr, this.stroke);
-                        else if (attr === "fill") element.setAttribute(attr, this.fill);
-                        else if (attr === "stroke-width") element.setAttribute(attr, this.strokeWidth.toString());
-                    }
-                });
-            }
-        });
-    }
-    /**
-   * @description
-   * Render the Icon Element.
-   * @returns {void}
-   */ render() {
-        this.innerHTML = `
-        <section>
-            ${eval(this.isInline) === true ? ` <figure title="${this.alt}" class="w:${this.width} h:${this.height}">
-                        ${(0, _index.Cpx).Icon[this.icon]}
-                    </figure>
-                ` : `
-                <picture-element picture-element:width="${this.width}" picture-element:height:"${this.height}" picture-element:url="${this.url}" picture-element:alt="${this.alt}" ></picture-element>
-                `}
-        </section>
-        `;
-    }
-}
-customElements.define(`icon-element`, CpxIconElement);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"3DbAV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "AvatarElement", ()=>(0, _avatarElement.CpxAvatarElement));
-parcelHelpers.export(exports, "AvatarList", ()=>(0, _avatarList.CpxAvatarList));
-var _avatarElement = require("./AvatarElement");
-var _avatarList = require("./AvatarList");
-
-},{"./AvatarElement":"eIWaJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./AvatarList":"lhNTV"}],"eIWaJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Avatar Element
- */ parcelHelpers.export(exports, "CpxAvatarElement", ()=>CpxAvatarElement);
-var _element = require("../../element");
-var _index = require("../../index");
-class CpxAvatarElement extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("avatar-element:class") || "";
-        this.size = this.getAttribute("avatar-element:size") || 12;
-        this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
-        this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
-        this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
-        this.alt = this.getAttribute("avatar-element:alt") || "";
-        this.url = this.getAttribute("avatar-element:url") || "https://via.placeholder.com/150";
-        this.setAttribute("class", `display:block w:${this.size} h:${this.size}`);
-    }
-    render() {
-        this.innerHTML = `  
-        <section class="${(0, _index.Cpx).String.trimWhitespace(`
-            overflow:hidden
-            ${this.borderRadius !== "none" ? `radius:${this.borderRadius}` : ""}
-            ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
-            ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
-            ${this.borderWidth !== 0 ? `outline-width:${parseInt(this.borderWidth) / 2}` : ""}
-            ${this.borderColor !== "transparent" ? `outline-color:${this.borderColor}` : ""}
-            outline-offset:2
-            w:${this.size}
-            h:${this.size}
-            ${this.classNames}">
-            <picture-element picture-element:width=${this.size} picture-element:height=${this.size} picture-element:alt="${this.alt}" picture-element:url="${this.url}"></picture-element>
-        </section>
-        `, "all")}`;
-    }
-}
-customElements.define(`avatar-element`, CpxAvatarElement);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../index":"dMUol"}],"lhNTV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Avatar Element
- */ parcelHelpers.export(exports, "CpxAvatarList", ()=>CpxAvatarList);
-var _element = require("../../element");
-class CpxAvatarList extends (0, _element.CpxElement) {
-    constructor(){
-        super();
-        this.classNames = this.getAttribute("avatar-element:class") || "";
-        this.size = this.getAttribute("avatar-element:size") || 12;
-        this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
-        this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
-        this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
-        this.gap = parseInt(this.getAttribute("avatar-element:gap")) || 2;
-        this.gapIsInverted = this.getAttribute("avatar-element:gap:is-inverted") === "true" ? true : false;
-        this.alt = this.getAttribute("avatar-element:alt") || "";
-        this.url = this.getAttribute("avatar-element:url") || "https://via.placeholder.com/150";
-        this.setAttribute("class", `display:block`);
-    }
-    render() {
-        this.innerHTML = `  
-        <section class="display:flex ${this.gap !== 0 ? `mr:${this.gapIsInverted === true ? `-` : ``}${this.gap}>*` : ``}">
-            ${this.initialContent}
-        </section>
-        `;
-    }
-}
-customElements.define(`avatar-list`, CpxAvatarList);
-
-},{"../../element":"7TddR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
+},{"../../element":"7TddR","../../index":"dMUol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bjCHj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DB", ()=>DB);
@@ -16931,26 +17128,54 @@ class ComponentRoot extends (0, _app.Cpx).Element {
         this.description = this.getAttribute("root:description") || "Root Description";
         this.storage = (0, _app.Cpx).Storage;
         this.state = (0, _app.Cpx).State;
+    /**
+     * Set the Color Scheme
+     */ // const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)") ? `dark` : `light`;
+    // console.log("Colorscheme: " + prefersDarkScheme);
+    // console.log("User Colorscheme: " + this.storage.Local.get("user-color-scheme"));
+    // console.log("User Colorscheme: " + this.state.get("theme"));
+    // const userPreferedColorScheme = this.state.get("theme") || this.storage.Local.get("user-color-scheme") || prefersDarkScheme;
+    // this.storage.Local.set("user-color-scheme", userPreferedColorScheme);
+    // document.body.setAttribute("theme", userPreferedColorScheme);
+    // this.state.set(`theme`, userPreferedColorScheme);
     }
     connectedCallback() {
         this.setInitialState();
         this.render();
+        this.setThemeColor();
         this.addClickHandler();
     }
-    // async fetchData() {
-    //   Cpx.Http.fetch("https://jsonplaceholder.typicode.com/posts");
-    //   this.render()
-    // }
+    setThemeColor() {
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)") ? `dark` : `light`;
+        console.log("Colorscheme: " + prefersDarkScheme);
+        console.log("User Colorscheme: " + this.storage.Local.get("user-color-scheme"));
+        console.log("User Colorscheme: " + this.state.get("theme"));
+        const userPreferedColorScheme = this.state.get("theme") || this.storage.Local.get("user-color-scheme") || prefersDarkScheme;
+        this.storage.Local.set("user-color-scheme", userPreferedColorScheme);
+        document.body.setAttribute("theme", userPreferedColorScheme);
+        if (userPreferedColorScheme !== this.state.get("theme")) this.state.set(`theme`, userPreferedColorScheme);
+    }
     render() {
         this.innerHTML = `
-        <section style="" class="">
-            <header class="position:sticky top:0 p:4 w:full bg:light-100 display:flex gap:4 content:between">
+          <header class="position:sticky top:0 p:4 w:full bg:${this.state.get("theme") === "dark" ? `dark-800` : `light-200`} display:flex gap:4 content:between">
             <app-nav class=""></app-nav>
-            </header>
+          </header>
+          <render-container>
             <main class="">
                 ${this.state.has("page") ? `<app-page-${this.state.get("page")} class=""></app-page-${this.state.get("page")}>` : `<app-page-home></app-page-home>`}
             </main>
-        </section>
+              ${// Check if the modal is active
+        this.state.get("modalisactive") === "true" ? `
+                    <modal-container modal-container:is-active="${this.state.get("modalisactive")}" modal-container:content="${this.state.get("modalcontent")}">
+                      <app-page-${this.state.get("modalcontent")}>
+                      </app-page-${this.state.get("modalcontent")}>
+                    </modal-container>
+                  ` : ``}
+          </render-container>
+          <footer class="{sm}display:flex justify:between items:center gap:4 p:4 w:full bg:${this.state.get("theme") === "dark" ? `dark-800` : `light-200`} display:flex gap:4 content:between">
+            <h2>${this.title}</h2>
+            <app-nav class=""></app-nav>
+          </footer>
         `;
     }
 }
@@ -16972,6 +17197,7 @@ class ComponentNav extends (0, _app.Cpx).Element {
     constructor(){
         super();
         this.nav = this.getAttribute("nav:type") || "main"; // DB Hook in DB.NAVIGATION[nav]
+        this.state = (0, _app.Cpx).State;
     }
     connectedCallback() {
         this.setInitialState();
@@ -16983,7 +17209,7 @@ class ComponentNav extends (0, _app.Cpx).Element {
             // console.log(item);
             return `
           <li class="">
-            <button class="button--primary" click:state:set(${item.type},${item.page})>${item.title}</button>
+            <button class="px:2 py:1 radius:sm border-width:1 border-" nav nav:type="${item.type}" nav:location="${item.page}" >${item.title}</button>
           </li>`;
         }).join("");
     }
@@ -16996,6 +17222,15 @@ class ComponentNav extends (0, _app.Cpx).Element {
         </nav>
 
         `;
+        const allNavButtons = this.querySelectorAll("[nav]");
+        allNavButtons.forEach((button)=>{
+            button.addEventListener("click", ()=>{
+                const type = button.getAttribute("nav:type");
+                const location = button.getAttribute("nav:location");
+                this.state.set(type, location);
+                document.querySelector("app-root").render();
+            });
+        });
     }
 }
 customElements.define(`${(0, _app.Config).prefix}-nav`, ComponentNav);
@@ -17062,11 +17297,21 @@ class PageAbout extends (0, _app.Cpx).Element {
     // Add click event listener to the copy button
     }
     render() {
+        console.log(this.state.get("page"));
         this.innerHTML = `
-    <avatar-list avatar-element:gap=6 avatar-element:gap:is-inverted=true>
-    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
-    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
-    <avatar-element url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <br><br>
+    <br><br>
+    <br><br>
+    <p>lrmen2ne <tool-tip tool-tip:offset:x=0 tool-tip:content="This is a tooltip">Tooltip</tool-tip> 2 lwofpwkenfewkndf <tool-tip tool-tip:offset:x=0 tool-tip:content="This is a tooltip 2 loonger texdt sdinj">Tooltip</tool-tip></p>
+     
+    </p>
+    <br><br>
+    <br><br>
+    <br><br>
+    <avatar-list avatar-element:gap="-5">
+    <avatar-element avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element avatar-element:url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element avatar-element:url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
     </avatar-list> 
     
     <icon-element

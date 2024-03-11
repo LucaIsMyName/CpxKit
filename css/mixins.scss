@@ -5,9 +5,9 @@
     $padding-y: 2,
     $border-radius: 1,
     $border-width: 1,
-    $color: "black",
-    $border-color: "gray-300",
-    $background-color: "gray-200",
+    $color: "text-500",
+    $border-color: "light-300",
+    $background-color: "transparent",
 ) {
     border-radius: var(--relative-#{$border-radius});
     border: calc(var(--px) * #{$border-width}) solid var(--#{$border-color});

@@ -1,7 +1,6 @@
 import { CpxElement as Element } from "./element";
 import { define } from "./utils/element";
 import { Config } from "./config";
-
 // PlugIns & Utilities
 import { Storage } from "./utils/storage";
 import { State } from "./utils/state";
@@ -16,6 +15,7 @@ import { Copy as copyAPI } from "./utils/copy";
 import { audioAPI } from "./utils/audio";
 import { videoAPI } from "./utils/video";
 import { Object } from "./utils/object";
+import { Tooltip as tooltipAPI } from "./utils/tooltip";
 
 // Cpx Utility Components
 import { AccordionGroup, AccordionItem } from "./components/Accordion/index";
@@ -28,9 +28,11 @@ import { IconElement } from "./components/Icon";
 import { SliderContainer, SliderItem, runSlider as sliderAPI } from "./components/Slider";
 import { ParseMarkdown } from "./components/Parse";
 import { PictureElement } from "./components/Picture";
+import { RenderContainer } from "./components/Render";
 import { SuspenseAll } from "./components/Suspense";
 import { SkeletonElement } from "./components/Skeleton";
 import { TabContainer, TabHeader, TabContent, TabToggle } from "./components/Tab/index";
+import { ToolTip } from "./components/ToolTip";
 import { VideoPlayer, VideoControls, VideoControl, VideoPlaylist, VideoPlaylistItem } from "./components/Video";
 
 export interface CpxInterface {
@@ -55,12 +57,14 @@ export interface CpxInterface {
     SliderItem: typeof Element;
     ParseMarkdown: typeof Element;
     PictureElement: typeof Element;
+    RenderContainer: typeof Element;
     SuspenseAll: typeof Element;
     SkeletonElement: typeof Element;
     TabContainer: typeof Element;
     TabHeader: typeof Element;
     TabContent: typeof Element;
     TabToggle: typeof Element;
+    ToolTip: typeof Element;
     VideoPlayer: typeof Element;
     VideoControls: typeof Element;
     VideoControl: typeof Element;
@@ -72,6 +76,7 @@ export interface CpxInterface {
     videoAPI: Function;
     sliderAPI: Function;
     copyAPI: Object;
+    tooltipAPI: Function;
   };
   define: Function;
   Config: typeof Config;
@@ -86,6 +91,7 @@ export interface CpxInterface {
   Id: typeof Id;
   String: typeof String;
   Object: typeof Object;
+  // Tooltip: typeof Tooltip;
 }
 /**
  * @class Cpx
@@ -123,6 +129,8 @@ const Components = {
   ParseMarkdown,
   // Picture
   PictureElement,
+  // Render
+  RenderContainer,
   // Suspense
   SuspenseAll,
   // Skeleton
@@ -132,6 +140,8 @@ const Components = {
   TabHeader,
   TabContent,
   TabToggle,
+  // Tooltip
+  ToolTip,
   // Video
   VideoPlayer,
   VideoControls,
@@ -145,6 +155,7 @@ const Functions = {
   videoAPI,
   sliderAPI,
   copyAPI,
+  tooltipAPI,
 };
 
 export const Cpx: CpxInterface = {

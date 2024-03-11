@@ -16,6 +16,7 @@ export class ComponentNav extends Cpx.Element {
   constructor() {
     super();
     this.nav = this.getAttribute("nav:type") || "main"; // DB Hook in DB.NAVIGATION[nav]
+    this.state = Cpx.State;
   }
   connectedCallback() {
     this.setInitialState();
@@ -29,7 +30,7 @@ export class ComponentNav extends Cpx.Element {
         // console.log(item);
         return `
           <li class="">
-            <button class="button--primary" click:state:set(${item.type},${item.page})>${item.title}</button>
+            <button class="px:2 py:1 radius:sm border-width:1 border-" nav nav:type="${item.type}" nav:location="${item.page}" >${item.title}</button>
           </li>`;
       })
       .join("");
@@ -44,6 +45,16 @@ export class ComponentNav extends Cpx.Element {
         </nav>
 
         `;
+
+    const allNavButtons = this.querySelectorAll("[nav]");
+    allNavButtons.forEach((button: any) => {
+      button.addEventListener("click", () => {
+        const type = button.getAttribute("nav:type");
+        const location = button.getAttribute("nav:location");
+        this.state.set(type, location);
+        document.querySelector("app-root").render();
+      });
+    });
   }
 }
 customElements.define(`${Config.prefix}-nav`, ComponentNav);
