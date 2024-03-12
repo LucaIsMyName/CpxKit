@@ -91,11 +91,11 @@ class MyComponent extends Cpx.Element {
         `
     }
 }
-
+```
 
 #### Changing State
 
-```ts
+```js
 // Import Cpx
 import { Cpx } from 'Cpx';
 
