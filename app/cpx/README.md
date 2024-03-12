@@ -150,34 +150,34 @@ class MyComponent extends Cpx.Element {
 
 Cpx comes with a set of pre-made mostly headles or easy styleable web components.
 
-### `<accordion-group></accordion-group>`
-### `<accordion-group-item></accordion-group-item>`
-### `<avatar-element></avatar-element>`
-### `<avatar-list></avatar-list>`
-### `<badge-element></badge-element>`
-### `<code-block></code-block>`
-### `<dropdown-container></dropdown-container>`
-### `<dropdown-item></dropdown-item>`
-### `<dropdown-trigger></dropdown-trigger>`
-### `<icon-element></icon-element>`
-### `<parse-markdown></parse-markdown>`
-### `<progress-element></progress-element>`
-### `<picture-element></picture-element>`
-### `<render-element></render-element>`
-### `<skeleton-element></skeleton-element>`
-### `<slider-container></slider-container>`
-### `<slider-item></slider-item>`
-### `<tab-container></tab-container>`
-### `<tab-content></tab-content>`
-### `<tab-header></tab-header>`
-### `<tab-toggle></tab-toggle>`
-### `<slider-item></slider-item>`
-### `<tool-tip></tool-tip>`
-### `<video-player></video-player>`
-### `<video-playlist></video-playlist>`
-### `<video-playlist-item></video-playlist-item>`
-### `<video-controls></video-controls>`
-### `<video-current></video-current>`
+#### `<accordion-group></accordion-group>`
+#### `<accordion-group-item></accordion-group-item>`
+#### `<avatar-element></avatar-element>`
+#### `<avatar-list></avatar-list>`
+#### `<badge-element></badge-element>`
+#### `<code-block></code-block>`
+#### `<dropdown-container></dropdown-container>`
+#### `<dropdown-item></dropdown-item>`
+#### `<dropdown-trigger></dropdown-trigger>`
+#### `<icon-element></icon-element>`
+#### `<parse-markdown></parse-markdown>`
+#### `<progress-element></progress-element>`
+#### `<picture-element></picture-element>`
+#### `<render-element></render-element>`
+#### `<skeleton-element></skeleton-element>`
+#### `<slider-container></slider-container>`
+#### `<slider-item></slider-item>`
+#### `<tab-container></tab-container>`
+#### `<tab-content></tab-content>`
+#### `<tab-header></tab-header>`
+#### `<tab-toggle></tab-toggle>`
+#### `<slider-item></slider-item>`
+#### `<tool-tip></tool-tip>`
+#### `<video-player></video-player>`
+#### `<video-playlist></video-playlist>`
+#### `<video-playlist-item></video-playlist-item>`
+#### `<video-controls></video-controls>`
+#### `<video-current></video-current>`
 
 ### `Cpx.Element`
 - State Management: Allows you to manage state using State.get, State.set, State.has, and State.hasNot.
