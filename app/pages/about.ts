@@ -28,6 +28,8 @@ export class PageAbout extends Cpx.Element {
   render() {
     console.log(this.state.get("page"));
     this.innerHTML = `
+    <chart-element chart-element:type="pie">
+</chart-element>
     <br><br>
     <br><br>
     <br><br>
@@ -36,11 +38,28 @@ export class PageAbout extends Cpx.Element {
     </p>
     <br><br>
     <br><br>
+    <progress-bar
+      progress-bar:start=0
+      progress-bar:end=200
+      progress-bar:unit="%"
+      progress-bar:unit="%" 
+      progress-bar:progress=46
+      progress-bar:progress:color=danger-500
+      progress-bar:progress:color:hover=danger-900
+      progress-bar:progress:color=danger-500
+      progress-bar:bg=shade-lg-900
+      ></progress-bar>
     <br><br>
-    <avatar-list avatar-element:gap="-5">
-    <avatar-element avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
-    <avatar-element avatar-element:url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
-    <avatar-element avatar-element:url="https://via.placeholder.com/150" avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-list avatar-element:gap="1">
+    <avatar-element
+      avatar-element:alt="Avatar"
+      avatar-element:size="12"></avatar-element>
+    <avatar-element
+      avatar-element:url="https://via.placeholder.com/150"
+      avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
+    <avatar-element
+      avatar-element:url="https://via.placeholder.com/150"
+      avatar-element:alt="Avatar" avatar-element:size="12"></avatar-element>
     </avatar-list> 
     
     <icon-element
@@ -62,12 +81,15 @@ export class PageAbout extends Cpx.Element {
       icon-element:height="16"
       icon-element:bg="text-500"
       ></icon-element>
-    <slider-container slider-container:slides-per-view=2 slider-container:slides-per-view:medium=3 slider-container:loop=false slider-container:direction=horizontal>
+    <slider-container slider-container:slides-per-view=1 slider-container:slides-per-view:medium=3 slider-container:loop=false slider-container:direction=horizontal>
       <slider-item>
         <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 1">
       </slider-item>
       <slider-item>
         <img class="w:full" src="https://via.placeholder.com/768x400" alt="Slider Image 2">
+      </slider-item>
+      <slider-item>
+        <div class="w:ful h:available"><p>Slider Content 3</p></div>
       </slider-item>
       </slider-container>
 
@@ -109,20 +131,20 @@ export class PageAbout extends Cpx.Element {
 
     edwesdf</pre>
 </div>
-    <tab-container tab-container:padding=4>
-      <tab-header>
+    <tab-container tab-container:padding=0>
+      <tab-header tab-header:padding=4 tab-header:gap=4>
         <tab-toggle tab-toggle:id="1" tab-toggle:active=true>Toggle 1</tab-toggle>
         <tab-toggle tab-toggle:id="2">Toggle 2</tab-toggle>
         <tab-toggle tab-toggle:id="3">Toggle 3</tab-toggle>
       </tab-header>
-      <tab-content tab-content:id="1">
+      <tab-content tab-content:padding=4 tab-content:id="1">
         <p >Tab 1 Content</p>
       </tab-content>
-      <tab-content tab-content:id="2">
+      <tab-content tab-content:padding=4 tab-content:id="2">
         <p >Tab 2 Content</p>
       </tab-content>
 
-      <tab-content tab-content:id="3">
+      <tab-content tab-content:padding=4 tab-content:id="3">
         <p >Tab 3 Content</p>
       </tab-content>
     </tab-container>
@@ -169,7 +191,7 @@ export class PageAbout extends Cpx.Element {
                   badge-element:bg="success-600 " 
                   badge-element:color="text-500">My Badge</badge-element>
               </div>
-              <audio-player audio-player:has-album=true></audio-player>
+              <audio-player audio-player:has-playlist=true audio-player:has-album=true></audio-player>
               <video-player></video-player>
               <div>
                   <badge-element

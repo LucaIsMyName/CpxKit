@@ -63,6 +63,10 @@ export class CpxAudioPlayer extends CpxElement {
     audioAPI();
   }
 
+  renderHasPlaylist(hasPlaylist: boolean = true) {
+    return hasPlaylist === true ? `<audio-playlist class="w:full shrink:1 "></audio-playlist>` : `<div class="screen-reader"><audio-playlist class="w:full shrink:1 "></audio-playlist></div>`;
+  }
+
   render() {
     let evalHasPlaylist = eval(this.hasPlaylist);
     let evalHasControls = eval(this.hasControls);
@@ -86,7 +90,7 @@ export class CpxAudioPlayer extends CpxElement {
             </div>`
             : ``
         }
-        ${evalHasPlaylist === true ? `<audio-playlist class="w:full shrink:1 "></audio-playlist>` : ``}
+        ${this.renderHasPlaylist(evalHasPlaylist)}
         `
     }
     </section>

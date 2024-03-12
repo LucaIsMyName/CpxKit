@@ -15,7 +15,7 @@ export class CpxSliderItem extends CpxElement {
 
   render() {
     this.innerHTML = `
-      <div class="${this.classNames}">
+      <div class="w:full h:full ${this.classNames}">
         ${
           this.initialContent !== ""
             ? this.initialContent

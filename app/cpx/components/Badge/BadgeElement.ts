@@ -1,5 +1,5 @@
 import { CpxElement } from "../../element";
-import {Cpx} from "../../index";
+import { Cpx } from "../../index";
 
 /**
  * @element badge-element
@@ -52,12 +52,13 @@ export class CpxBadgeElement extends CpxElement implements Element {
             `
             : `tabindex="-1"`
         }
-        class="${Cpx.String.trimWhitespace(` 
-              ${this.action !== false ? '' : `cursor:default`} 
+        class="${Cpx.String.trimWhitespace(
+          ` 
+              ${this.action !== false ? "" : `cursor:default`} 
               ${this.size !== "xs" ? `size:${this.size}` : ""}
-              ${this.color !== 'transparent' ? `color:${this.color}` : ""}
-              ${this.bgColor !== 'transparent' ? `bg:${this.bgColor}` : ""}
-              ${this.borderColor !== 'transparent' ? `border-color:${this.borderColor}` : ""}
+              ${this.color !== "transparent" ? `color:${this.color}` : ""}
+              ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
+              ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
               ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
               ${this.fontFamily !== "sans" ? `font-family:${this.fontFamily}` : ""}
               ${this.fontWeight !== "normal" ? `weight:${this.fontWeight}` : ""}
@@ -66,7 +67,9 @@ export class CpxBadgeElement extends CpxElement implements Element {
               radius:${this.borderRadius}
               ${this.padding !== 0 ? `p:${this.padding}` : ""}
               ${this.classNames}
-          `, "all")}">
+          `,
+          "all"
+        )}">
             <span>${this.initialContent}</span>
         </button>
         `;

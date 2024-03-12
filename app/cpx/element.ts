@@ -17,6 +17,8 @@ interface CpxElementType {
   render: Function;
   storage: any; //?!
   state: any; // ?!
+  ID: Function | number | string | any;
+  initialContent: string;
 }
 /**
  * @class CpxElement
@@ -61,10 +63,6 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     this.state = State;
   }
 
-  reRender() {
-    this.render();
-  }
-
   /**
    * setInitialState
    * @description
@@ -74,7 +72,8 @@ export class CpxElement extends HTMLElement implements CpxElementType {
    * @param modalisactive
    * @param modalcontent
    */
-  setInitialState(page: String = "home", modalIsActive: boolean = false, modalContent: string = "test") {
+
+  setInitialState(page: String = "home", modalIsActive: boolean = false, modalContent: string = "test", theme: string = "light") {
     if (!this.state.has("page")) {
       document.addEventListener("DOMContentLoaded", () => {
         this.state.delete(`page`);
@@ -91,6 +90,12 @@ export class CpxElement extends HTMLElement implements CpxElementType {
     if (!this.state.has("modalcontent")) {
       document.addEventListener("DOMContentLoaded", () => {
         this.state.set(`modalcontent`, modalContent);
+      });
+    }
+
+    if (!this.state.has("theme")) {
+      document.addEventListener("DOMContentLoaded", () => {
+        theme || this.state.set(`theme`, window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" || this.storage.Local.get("theme") || "light");
       });
     }
   }
@@ -114,16 +119,6 @@ export class CpxElement extends HTMLElement implements CpxElementType {
       });
     });
   }
-
-  // addDeleteOnClick(): void {
-  //   const allElements = this.querySelectorAll("[click:delete]");
-  //   allElements.forEach((element: any) => {
-  //     element.addEventListener("click", () => {
-  //       this.innerHTML = '';
-  //       this.render();
-  //     });
-  //   });
-  // }
 
   /**
    * @name addClickHandler
@@ -180,7 +175,7 @@ export class CpxElement extends HTMLElement implements CpxElementType {
   connectedCallback() {
     this.setAttribute("id", this.ID);
     this.render();
-    this.addClickHandler();
+    // this.addClickHandler();
   }
 
   render() {

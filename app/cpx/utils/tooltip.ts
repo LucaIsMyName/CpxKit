@@ -44,6 +44,16 @@ export const Tooltip = (
       tooltipDiv.style.top = topPosition + "px";
     }
 
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:bg`) || "bg:light-300");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:border-color`) || "border-color:light-500");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:border-width`) || "border-width:1");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:color`) || "color:dark-900");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:bg`) || "color:dark-900");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:radius`) || "radius:sm");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:padding:x`) || "px:2");
+    tooltipDiv.classList.add(element.getAttribute(`${tooltipPrefix}:content:padding:y`) || "py:1");
+
+
     // Style the Tooltip Toggle Element
     element.style.borderBottom = element.getAttribute(`${tooltipPrefix}:border-bottom`) || "var(--px) dotted var(--dark-100)";
     element.style.backgroundColor = element.getAttribute(`${tooltipSelector}:bg`) || "transparent";
@@ -52,7 +62,7 @@ export const Tooltip = (
     element.setAttribute("aria-describedby", tooltipId);
 
     // Set up event listeners for show/hide on each tooltip element
-    element.addEventListener("DOMContentLoaded", () => {
+    element.addEventListener("load", () => {
       calculateAndShowTooltipPosition(element, tooltipContent, false, true);
       hideTooltip();
     });

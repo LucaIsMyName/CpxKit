@@ -1892,6 +1892,10 @@ input[type="range"]::-webkit-slider-thumb {
   display: inline-block;
 }
 
+.outline-offset\:none {
+  outline-offset: 0;
+}
+
 .z\:-1 {
   z-index: -1;
 }
@@ -2254,6 +2258,34 @@ input[type="range"]::-webkit-slider-thumb {
 
 .underline-offset\:xxl {
   text-underline-offset: .25em;
+}
+
+.outline-offset\:xxs {
+  outline-offset: .01em;
+}
+
+.outline-offset\:xs {
+  outline-offset: .025em;
+}
+
+.outline-offset\:sm {
+  outline-offset: .05em;
+}
+
+.outline-offset\:md {
+  outline-offset: .1em;
+}
+
+.outline-offset\:lg {
+  outline-offset: .15em;
+}
+
+.outline-offset\:xl {
+  outline-offset: .2em;
+}
+
+.outline-offset\:xxl {
+  outline-offset: .25em;
 }
 
 .decoration\:none {
@@ -9634,6 +9666,934 @@ input[type="range"]::-webkit-slider-thumb {
 
 .border-color\:shade-invert-xxl-900, .border-color\:shade-invert-xxl-900\>\* > *, .border-color\:shade-invert-xxl-900\* *, .border-color\:shade-invert-xxl-900\@hover:where(:hover), .border-color\:shade-invert-xxl-900\@focus:where(:focus), .border-color\:shade-invert-xxl-900\@target:where(:target) {
   border-color: var(--shade-invert-xxl-900);
+}
+
+.outline-color\:transparent, .outline-color\:transparent\>\* > *, .outline-color\:transparent\* *, .outline-color\:transparent\@hover:where(:hover), .outline-color\:transparent\@focus:where(:focus), .outline-color\:transparent\@target:where(:target) {
+  outline-color: #0000;
+}
+
+.outline-color\:current, .outline-color\:current\>\* > *, .outline-color\:current\* *, .outline-color\:current\@hover:where(:hover), .outline-color\:current\@focus:where(:focus), .outline-color\:current\@target:where(:target) {
+  outline-color: currentColor;
+}
+
+.outline-color\:inherit, .outline-color\:inherit\>\* > *, .outline-color\:inherit\* *, .outline-color\:inherit\@hover:where(:hover), .outline-color\:inherit\@focus:where(:focus), .outline-color\:inherit\@target:where(:target) {
+  outline-color: inherit;
+}
+
+.outline-color\:initial, .outline-color\:initial\>\* > *, .outline-color\:initial\* *, .outline-color\:initial\@hover:where(:hover), .outline-color\:initial\@focus:where(:focus), .outline-color\:initial\@target:where(:target) {
+  outline-color: initial;
+}
+
+.outline-color\:unset, .outline-color\:unset\>\* > *, .outline-color\:unset\* *, .outline-color\:unset\@hover:where(:hover), .outline-color\:unset\@focus:where(:focus), .outline-color\:unset\@target:where(:target) {
+  outline-color: unset;
+}
+
+.outline-color\:black, .outline-color\:black\>\* > *, .outline-color\:black\* *, .outline-color\:black\@hover:where(:hover), .outline-color\:black\@focus:where(:focus), .outline-color\:black\@target:where(:target) {
+  outline-color: var(--black);
+}
+
+.outline-color\:white, .outline-color\:white\>\* > *, .outline-color\:white\* *, .outline-color\:white\@hover:where(:hover), .outline-color\:white\@focus:where(:focus), .outline-color\:white\@target:where(:target) {
+  outline-color: var(--white);
+}
+
+.outline-color\:text-100, .outline-color\:text-100\>\* > *, .outline-color\:text-100\* *, .outline-color\:text-100\@hover:where(:hover), .outline-color\:text-100\@focus:where(:focus), .outline-color\:text-100\@target:where(:target) {
+  outline-color: var(--text-100);
+}
+
+.outline-color\:text-200, .outline-color\:text-200\>\* > *, .outline-color\:text-200\* *, .outline-color\:text-200\@hover:where(:hover), .outline-color\:text-200\@focus:where(:focus), .outline-color\:text-200\@target:where(:target) {
+  outline-color: var(--text-200);
+}
+
+.outline-color\:text-300, .outline-color\:text-300\>\* > *, .outline-color\:text-300\* *, .outline-color\:text-300\@hover:where(:hover), .outline-color\:text-300\@focus:where(:focus), .outline-color\:text-300\@target:where(:target) {
+  outline-color: var(--text-300);
+}
+
+.outline-color\:text-400, .outline-color\:text-400\>\* > *, .outline-color\:text-400\* *, .outline-color\:text-400\@hover:where(:hover), .outline-color\:text-400\@focus:where(:focus), .outline-color\:text-400\@target:where(:target) {
+  outline-color: var(--text-400);
+}
+
+.outline-color\:text-500, .outline-color\:text-500\>\* > *, .outline-color\:text-500\* *, .outline-color\:text-500\@hover:where(:hover), .outline-color\:text-500\@focus:where(:focus), .outline-color\:text-500\@target:where(:target) {
+  outline-color: var(--text-500);
+}
+
+.outline-color\:text-600, .outline-color\:text-600\>\* > *, .outline-color\:text-600\* *, .outline-color\:text-600\@hover:where(:hover), .outline-color\:text-600\@focus:where(:focus), .outline-color\:text-600\@target:where(:target) {
+  outline-color: var(--text-600);
+}
+
+.outline-color\:text-700, .outline-color\:text-700\>\* > *, .outline-color\:text-700\* *, .outline-color\:text-700\@hover:where(:hover), .outline-color\:text-700\@focus:where(:focus), .outline-color\:text-700\@target:where(:target) {
+  outline-color: var(--text-700);
+}
+
+.outline-color\:text-800, .outline-color\:text-800\>\* > *, .outline-color\:text-800\* *, .outline-color\:text-800\@hover:where(:hover), .outline-color\:text-800\@focus:where(:focus), .outline-color\:text-800\@target:where(:target) {
+  outline-color: var(--text-800);
+}
+
+.outline-color\:text-900, .outline-color\:text-900\>\* > *, .outline-color\:text-900\* *, .outline-color\:text-900\@hover:where(:hover), .outline-color\:text-900\@focus:where(:focus), .outline-color\:text-900\@target:where(:target) {
+  outline-color: var(--text-900);
+}
+
+.outline-color\:background-100, .outline-color\:background-100\>\* > *, .outline-color\:background-100\* *, .outline-color\:background-100\@hover:where(:hover), .outline-color\:background-100\@focus:where(:focus), .outline-color\:background-100\@target:where(:target) {
+  outline-color: var(--background-100);
+}
+
+.outline-color\:background-200, .outline-color\:background-200\>\* > *, .outline-color\:background-200\* *, .outline-color\:background-200\@hover:where(:hover), .outline-color\:background-200\@focus:where(:focus), .outline-color\:background-200\@target:where(:target) {
+  outline-color: var(--background-200);
+}
+
+.outline-color\:background-300, .outline-color\:background-300\>\* > *, .outline-color\:background-300\* *, .outline-color\:background-300\@hover:where(:hover), .outline-color\:background-300\@focus:where(:focus), .outline-color\:background-300\@target:where(:target) {
+  outline-color: var(--background-300);
+}
+
+.outline-color\:background-400, .outline-color\:background-400\>\* > *, .outline-color\:background-400\* *, .outline-color\:background-400\@hover:where(:hover), .outline-color\:background-400\@focus:where(:focus), .outline-color\:background-400\@target:where(:target) {
+  outline-color: var(--background-400);
+}
+
+.outline-color\:background-500, .outline-color\:background-500\>\* > *, .outline-color\:background-500\* *, .outline-color\:background-500\@hover:where(:hover), .outline-color\:background-500\@focus:where(:focus), .outline-color\:background-500\@target:where(:target) {
+  outline-color: var(--background-500);
+}
+
+.outline-color\:background-600, .outline-color\:background-600\>\* > *, .outline-color\:background-600\* *, .outline-color\:background-600\@hover:where(:hover), .outline-color\:background-600\@focus:where(:focus), .outline-color\:background-600\@target:where(:target) {
+  outline-color: var(--background-600);
+}
+
+.outline-color\:background-700, .outline-color\:background-700\>\* > *, .outline-color\:background-700\* *, .outline-color\:background-700\@hover:where(:hover), .outline-color\:background-700\@focus:where(:focus), .outline-color\:background-700\@target:where(:target) {
+  outline-color: var(--background-700);
+}
+
+.outline-color\:background-800, .outline-color\:background-800\>\* > *, .outline-color\:background-800\* *, .outline-color\:background-800\@hover:where(:hover), .outline-color\:background-800\@focus:where(:focus), .outline-color\:background-800\@target:where(:target) {
+  outline-color: var(--background-800);
+}
+
+.outline-color\:background-900, .outline-color\:background-900\>\* > *, .outline-color\:background-900\* *, .outline-color\:background-900\@hover:where(:hover), .outline-color\:background-900\@focus:where(:focus), .outline-color\:background-900\@target:where(:target) {
+  outline-color: var(--background-900);
+}
+
+.outline-color\:accent-100, .outline-color\:accent-100\>\* > *, .outline-color\:accent-100\* *, .outline-color\:accent-100\@hover:where(:hover), .outline-color\:accent-100\@focus:where(:focus), .outline-color\:accent-100\@target:where(:target) {
+  outline-color: var(--accent-100);
+}
+
+.outline-color\:accent-200, .outline-color\:accent-200\>\* > *, .outline-color\:accent-200\* *, .outline-color\:accent-200\@hover:where(:hover), .outline-color\:accent-200\@focus:where(:focus), .outline-color\:accent-200\@target:where(:target) {
+  outline-color: var(--accent-200);
+}
+
+.outline-color\:accent-300, .outline-color\:accent-300\>\* > *, .outline-color\:accent-300\* *, .outline-color\:accent-300\@hover:where(:hover), .outline-color\:accent-300\@focus:where(:focus), .outline-color\:accent-300\@target:where(:target) {
+  outline-color: var(--accent-300);
+}
+
+.outline-color\:accent-400, .outline-color\:accent-400\>\* > *, .outline-color\:accent-400\* *, .outline-color\:accent-400\@hover:where(:hover), .outline-color\:accent-400\@focus:where(:focus), .outline-color\:accent-400\@target:where(:target) {
+  outline-color: var(--accent-400);
+}
+
+.outline-color\:accent-500, .outline-color\:accent-500\>\* > *, .outline-color\:accent-500\* *, .outline-color\:accent-500\@hover:where(:hover), .outline-color\:accent-500\@focus:where(:focus), .outline-color\:accent-500\@target:where(:target) {
+  outline-color: var(--accent-500);
+}
+
+.outline-color\:accent-600, .outline-color\:accent-600\>\* > *, .outline-color\:accent-600\* *, .outline-color\:accent-600\@hover:where(:hover), .outline-color\:accent-600\@focus:where(:focus), .outline-color\:accent-600\@target:where(:target) {
+  outline-color: var(--accent-600);
+}
+
+.outline-color\:accent-700, .outline-color\:accent-700\>\* > *, .outline-color\:accent-700\* *, .outline-color\:accent-700\@hover:where(:hover), .outline-color\:accent-700\@focus:where(:focus), .outline-color\:accent-700\@target:where(:target) {
+  outline-color: var(--accent-700);
+}
+
+.outline-color\:accent-800, .outline-color\:accent-800\>\* > *, .outline-color\:accent-800\* *, .outline-color\:accent-800\@hover:where(:hover), .outline-color\:accent-800\@focus:where(:focus), .outline-color\:accent-800\@target:where(:target) {
+  outline-color: var(--accent-800);
+}
+
+.outline-color\:accent-900, .outline-color\:accent-900\>\* > *, .outline-color\:accent-900\* *, .outline-color\:accent-900\@hover:where(:hover), .outline-color\:accent-900\@focus:where(:focus), .outline-color\:accent-900\@target:where(:target) {
+  outline-color: var(--accent-900);
+}
+
+.outline-color\:border-100, .outline-color\:border-100\>\* > *, .outline-color\:border-100\* *, .outline-color\:border-100\@hover:where(:hover), .outline-color\:border-100\@focus:where(:focus), .outline-color\:border-100\@target:where(:target) {
+  outline-color: var(--border-100);
+}
+
+.outline-color\:border-200, .outline-color\:border-200\>\* > *, .outline-color\:border-200\* *, .outline-color\:border-200\@hover:where(:hover), .outline-color\:border-200\@focus:where(:focus), .outline-color\:border-200\@target:where(:target) {
+  outline-color: var(--border-200);
+}
+
+.outline-color\:border-300, .outline-color\:border-300\>\* > *, .outline-color\:border-300\* *, .outline-color\:border-300\@hover:where(:hover), .outline-color\:border-300\@focus:where(:focus), .outline-color\:border-300\@target:where(:target) {
+  outline-color: var(--border-300);
+}
+
+.outline-color\:border-400, .outline-color\:border-400\>\* > *, .outline-color\:border-400\* *, .outline-color\:border-400\@hover:where(:hover), .outline-color\:border-400\@focus:where(:focus), .outline-color\:border-400\@target:where(:target) {
+  outline-color: var(--border-400);
+}
+
+.outline-color\:border-500, .outline-color\:border-500\>\* > *, .outline-color\:border-500\* *, .outline-color\:border-500\@hover:where(:hover), .outline-color\:border-500\@focus:where(:focus), .outline-color\:border-500\@target:where(:target) {
+  outline-color: var(--border-500);
+}
+
+.outline-color\:border-600, .outline-color\:border-600\>\* > *, .outline-color\:border-600\* *, .outline-color\:border-600\@hover:where(:hover), .outline-color\:border-600\@focus:where(:focus), .outline-color\:border-600\@target:where(:target) {
+  outline-color: var(--border-600);
+}
+
+.outline-color\:border-700, .outline-color\:border-700\>\* > *, .outline-color\:border-700\* *, .outline-color\:border-700\@hover:where(:hover), .outline-color\:border-700\@focus:where(:focus), .outline-color\:border-700\@target:where(:target) {
+  outline-color: var(--border-700);
+}
+
+.outline-color\:border-800, .outline-color\:border-800\>\* > *, .outline-color\:border-800\* *, .outline-color\:border-800\@hover:where(:hover), .outline-color\:border-800\@focus:where(:focus), .outline-color\:border-800\@target:where(:target) {
+  outline-color: var(--border-800);
+}
+
+.outline-color\:border-900, .outline-color\:border-900\>\* > *, .outline-color\:border-900\* *, .outline-color\:border-900\@hover:where(:hover), .outline-color\:border-900\@focus:where(:focus), .outline-color\:border-900\@target:where(:target) {
+  outline-color: var(--border-900);
+}
+
+.outline-color\:muted-100, .outline-color\:muted-100\>\* > *, .outline-color\:muted-100\* *, .outline-color\:muted-100\@hover:where(:hover), .outline-color\:muted-100\@focus:where(:focus), .outline-color\:muted-100\@target:where(:target) {
+  outline-color: var(--muted-100);
+}
+
+.outline-color\:muted-200, .outline-color\:muted-200\>\* > *, .outline-color\:muted-200\* *, .outline-color\:muted-200\@hover:where(:hover), .outline-color\:muted-200\@focus:where(:focus), .outline-color\:muted-200\@target:where(:target) {
+  outline-color: var(--muted-200);
+}
+
+.outline-color\:muted-300, .outline-color\:muted-300\>\* > *, .outline-color\:muted-300\* *, .outline-color\:muted-300\@hover:where(:hover), .outline-color\:muted-300\@focus:where(:focus), .outline-color\:muted-300\@target:where(:target) {
+  outline-color: var(--muted-300);
+}
+
+.outline-color\:muted-400, .outline-color\:muted-400\>\* > *, .outline-color\:muted-400\* *, .outline-color\:muted-400\@hover:where(:hover), .outline-color\:muted-400\@focus:where(:focus), .outline-color\:muted-400\@target:where(:target) {
+  outline-color: var(--muted-400);
+}
+
+.outline-color\:muted-500, .outline-color\:muted-500\>\* > *, .outline-color\:muted-500\* *, .outline-color\:muted-500\@hover:where(:hover), .outline-color\:muted-500\@focus:where(:focus), .outline-color\:muted-500\@target:where(:target) {
+  outline-color: var(--muted-500);
+}
+
+.outline-color\:muted-600, .outline-color\:muted-600\>\* > *, .outline-color\:muted-600\* *, .outline-color\:muted-600\@hover:where(:hover), .outline-color\:muted-600\@focus:where(:focus), .outline-color\:muted-600\@target:where(:target) {
+  outline-color: var(--muted-600);
+}
+
+.outline-color\:muted-700, .outline-color\:muted-700\>\* > *, .outline-color\:muted-700\* *, .outline-color\:muted-700\@hover:where(:hover), .outline-color\:muted-700\@focus:where(:focus), .outline-color\:muted-700\@target:where(:target) {
+  outline-color: var(--muted-700);
+}
+
+.outline-color\:muted-800, .outline-color\:muted-800\>\* > *, .outline-color\:muted-800\* *, .outline-color\:muted-800\@hover:where(:hover), .outline-color\:muted-800\@focus:where(:focus), .outline-color\:muted-800\@target:where(:target) {
+  outline-color: var(--muted-800);
+}
+
+.outline-color\:muted-900, .outline-color\:muted-900\>\* > *, .outline-color\:muted-900\* *, .outline-color\:muted-900\@hover:where(:hover), .outline-color\:muted-900\@focus:where(:focus), .outline-color\:muted-900\@target:where(:target) {
+  outline-color: var(--muted-900);
+}
+
+.outline-color\:success-100, .outline-color\:success-100\>\* > *, .outline-color\:success-100\* *, .outline-color\:success-100\@hover:where(:hover), .outline-color\:success-100\@focus:where(:focus), .outline-color\:success-100\@target:where(:target) {
+  outline-color: var(--success-100);
+}
+
+.outline-color\:success-200, .outline-color\:success-200\>\* > *, .outline-color\:success-200\* *, .outline-color\:success-200\@hover:where(:hover), .outline-color\:success-200\@focus:where(:focus), .outline-color\:success-200\@target:where(:target) {
+  outline-color: var(--success-200);
+}
+
+.outline-color\:success-300, .outline-color\:success-300\>\* > *, .outline-color\:success-300\* *, .outline-color\:success-300\@hover:where(:hover), .outline-color\:success-300\@focus:where(:focus), .outline-color\:success-300\@target:where(:target) {
+  outline-color: var(--success-300);
+}
+
+.outline-color\:success-400, .outline-color\:success-400\>\* > *, .outline-color\:success-400\* *, .outline-color\:success-400\@hover:where(:hover), .outline-color\:success-400\@focus:where(:focus), .outline-color\:success-400\@target:where(:target) {
+  outline-color: var(--success-400);
+}
+
+.outline-color\:success-500, .outline-color\:success-500\>\* > *, .outline-color\:success-500\* *, .outline-color\:success-500\@hover:where(:hover), .outline-color\:success-500\@focus:where(:focus), .outline-color\:success-500\@target:where(:target) {
+  outline-color: var(--success-500);
+}
+
+.outline-color\:success-600, .outline-color\:success-600\>\* > *, .outline-color\:success-600\* *, .outline-color\:success-600\@hover:where(:hover), .outline-color\:success-600\@focus:where(:focus), .outline-color\:success-600\@target:where(:target) {
+  outline-color: var(--success-600);
+}
+
+.outline-color\:success-700, .outline-color\:success-700\>\* > *, .outline-color\:success-700\* *, .outline-color\:success-700\@hover:where(:hover), .outline-color\:success-700\@focus:where(:focus), .outline-color\:success-700\@target:where(:target) {
+  outline-color: var(--success-700);
+}
+
+.outline-color\:success-800, .outline-color\:success-800\>\* > *, .outline-color\:success-800\* *, .outline-color\:success-800\@hover:where(:hover), .outline-color\:success-800\@focus:where(:focus), .outline-color\:success-800\@target:where(:target) {
+  outline-color: var(--success-800);
+}
+
+.outline-color\:success-900, .outline-color\:success-900\>\* > *, .outline-color\:success-900\* *, .outline-color\:success-900\@hover:where(:hover), .outline-color\:success-900\@focus:where(:focus), .outline-color\:success-900\@target:where(:target) {
+  outline-color: var(--success-900);
+}
+
+.outline-color\:info-100, .outline-color\:info-100\>\* > *, .outline-color\:info-100\* *, .outline-color\:info-100\@hover:where(:hover), .outline-color\:info-100\@focus:where(:focus), .outline-color\:info-100\@target:where(:target) {
+  outline-color: var(--info-100);
+}
+
+.outline-color\:info-200, .outline-color\:info-200\>\* > *, .outline-color\:info-200\* *, .outline-color\:info-200\@hover:where(:hover), .outline-color\:info-200\@focus:where(:focus), .outline-color\:info-200\@target:where(:target) {
+  outline-color: var(--info-200);
+}
+
+.outline-color\:info-300, .outline-color\:info-300\>\* > *, .outline-color\:info-300\* *, .outline-color\:info-300\@hover:where(:hover), .outline-color\:info-300\@focus:where(:focus), .outline-color\:info-300\@target:where(:target) {
+  outline-color: var(--info-300);
+}
+
+.outline-color\:info-400, .outline-color\:info-400\>\* > *, .outline-color\:info-400\* *, .outline-color\:info-400\@hover:where(:hover), .outline-color\:info-400\@focus:where(:focus), .outline-color\:info-400\@target:where(:target) {
+  outline-color: var(--info-400);
+}
+
+.outline-color\:info-500, .outline-color\:info-500\>\* > *, .outline-color\:info-500\* *, .outline-color\:info-500\@hover:where(:hover), .outline-color\:info-500\@focus:where(:focus), .outline-color\:info-500\@target:where(:target) {
+  outline-color: var(--info-500);
+}
+
+.outline-color\:info-600, .outline-color\:info-600\>\* > *, .outline-color\:info-600\* *, .outline-color\:info-600\@hover:where(:hover), .outline-color\:info-600\@focus:where(:focus), .outline-color\:info-600\@target:where(:target) {
+  outline-color: var(--info-600);
+}
+
+.outline-color\:info-700, .outline-color\:info-700\>\* > *, .outline-color\:info-700\* *, .outline-color\:info-700\@hover:where(:hover), .outline-color\:info-700\@focus:where(:focus), .outline-color\:info-700\@target:where(:target) {
+  outline-color: var(--info-700);
+}
+
+.outline-color\:info-800, .outline-color\:info-800\>\* > *, .outline-color\:info-800\* *, .outline-color\:info-800\@hover:where(:hover), .outline-color\:info-800\@focus:where(:focus), .outline-color\:info-800\@target:where(:target) {
+  outline-color: var(--info-800);
+}
+
+.outline-color\:info-900, .outline-color\:info-900\>\* > *, .outline-color\:info-900\* *, .outline-color\:info-900\@hover:where(:hover), .outline-color\:info-900\@focus:where(:focus), .outline-color\:info-900\@target:where(:target) {
+  outline-color: var(--info-900);
+}
+
+.outline-color\:warning-100, .outline-color\:warning-100\>\* > *, .outline-color\:warning-100\* *, .outline-color\:warning-100\@hover:where(:hover), .outline-color\:warning-100\@focus:where(:focus), .outline-color\:warning-100\@target:where(:target) {
+  outline-color: var(--warning-100);
+}
+
+.outline-color\:warning-200, .outline-color\:warning-200\>\* > *, .outline-color\:warning-200\* *, .outline-color\:warning-200\@hover:where(:hover), .outline-color\:warning-200\@focus:where(:focus), .outline-color\:warning-200\@target:where(:target) {
+  outline-color: var(--warning-200);
+}
+
+.outline-color\:warning-300, .outline-color\:warning-300\>\* > *, .outline-color\:warning-300\* *, .outline-color\:warning-300\@hover:where(:hover), .outline-color\:warning-300\@focus:where(:focus), .outline-color\:warning-300\@target:where(:target) {
+  outline-color: var(--warning-300);
+}
+
+.outline-color\:warning-400, .outline-color\:warning-400\>\* > *, .outline-color\:warning-400\* *, .outline-color\:warning-400\@hover:where(:hover), .outline-color\:warning-400\@focus:where(:focus), .outline-color\:warning-400\@target:where(:target) {
+  outline-color: var(--warning-400);
+}
+
+.outline-color\:warning-500, .outline-color\:warning-500\>\* > *, .outline-color\:warning-500\* *, .outline-color\:warning-500\@hover:where(:hover), .outline-color\:warning-500\@focus:where(:focus), .outline-color\:warning-500\@target:where(:target) {
+  outline-color: var(--warning-500);
+}
+
+.outline-color\:warning-600, .outline-color\:warning-600\>\* > *, .outline-color\:warning-600\* *, .outline-color\:warning-600\@hover:where(:hover), .outline-color\:warning-600\@focus:where(:focus), .outline-color\:warning-600\@target:where(:target) {
+  outline-color: var(--warning-600);
+}
+
+.outline-color\:warning-700, .outline-color\:warning-700\>\* > *, .outline-color\:warning-700\* *, .outline-color\:warning-700\@hover:where(:hover), .outline-color\:warning-700\@focus:where(:focus), .outline-color\:warning-700\@target:where(:target) {
+  outline-color: var(--warning-700);
+}
+
+.outline-color\:warning-800, .outline-color\:warning-800\>\* > *, .outline-color\:warning-800\* *, .outline-color\:warning-800\@hover:where(:hover), .outline-color\:warning-800\@focus:where(:focus), .outline-color\:warning-800\@target:where(:target) {
+  outline-color: var(--warning-800);
+}
+
+.outline-color\:warning-900, .outline-color\:warning-900\>\* > *, .outline-color\:warning-900\* *, .outline-color\:warning-900\@hover:where(:hover), .outline-color\:warning-900\@focus:where(:focus), .outline-color\:warning-900\@target:where(:target) {
+  outline-color: var(--warning-900);
+}
+
+.outline-color\:danger-100, .outline-color\:danger-100\>\* > *, .outline-color\:danger-100\* *, .outline-color\:danger-100\@hover:where(:hover), .outline-color\:danger-100\@focus:where(:focus), .outline-color\:danger-100\@target:where(:target) {
+  outline-color: var(--danger-100);
+}
+
+.outline-color\:danger-200, .outline-color\:danger-200\>\* > *, .outline-color\:danger-200\* *, .outline-color\:danger-200\@hover:where(:hover), .outline-color\:danger-200\@focus:where(:focus), .outline-color\:danger-200\@target:where(:target) {
+  outline-color: var(--danger-200);
+}
+
+.outline-color\:danger-300, .outline-color\:danger-300\>\* > *, .outline-color\:danger-300\* *, .outline-color\:danger-300\@hover:where(:hover), .outline-color\:danger-300\@focus:where(:focus), .outline-color\:danger-300\@target:where(:target) {
+  outline-color: var(--danger-300);
+}
+
+.outline-color\:danger-400, .outline-color\:danger-400\>\* > *, .outline-color\:danger-400\* *, .outline-color\:danger-400\@hover:where(:hover), .outline-color\:danger-400\@focus:where(:focus), .outline-color\:danger-400\@target:where(:target) {
+  outline-color: var(--danger-400);
+}
+
+.outline-color\:danger-500, .outline-color\:danger-500\>\* > *, .outline-color\:danger-500\* *, .outline-color\:danger-500\@hover:where(:hover), .outline-color\:danger-500\@focus:where(:focus), .outline-color\:danger-500\@target:where(:target) {
+  outline-color: var(--danger-500);
+}
+
+.outline-color\:danger-600, .outline-color\:danger-600\>\* > *, .outline-color\:danger-600\* *, .outline-color\:danger-600\@hover:where(:hover), .outline-color\:danger-600\@focus:where(:focus), .outline-color\:danger-600\@target:where(:target) {
+  outline-color: var(--danger-600);
+}
+
+.outline-color\:danger-700, .outline-color\:danger-700\>\* > *, .outline-color\:danger-700\* *, .outline-color\:danger-700\@hover:where(:hover), .outline-color\:danger-700\@focus:where(:focus), .outline-color\:danger-700\@target:where(:target) {
+  outline-color: var(--danger-700);
+}
+
+.outline-color\:danger-800, .outline-color\:danger-800\>\* > *, .outline-color\:danger-800\* *, .outline-color\:danger-800\@hover:where(:hover), .outline-color\:danger-800\@focus:where(:focus), .outline-color\:danger-800\@target:where(:target) {
+  outline-color: var(--danger-800);
+}
+
+.outline-color\:danger-900, .outline-color\:danger-900\>\* > *, .outline-color\:danger-900\* *, .outline-color\:danger-900\@hover:where(:hover), .outline-color\:danger-900\@focus:where(:focus), .outline-color\:danger-900\@target:where(:target) {
+  outline-color: var(--danger-900);
+}
+
+.outline-color\:light-100, .outline-color\:light-100\>\* > *, .outline-color\:light-100\* *, .outline-color\:light-100\@hover:where(:hover), .outline-color\:light-100\@focus:where(:focus), .outline-color\:light-100\@target:where(:target) {
+  outline-color: var(--light-100);
+}
+
+.outline-color\:light-200, .outline-color\:light-200\>\* > *, .outline-color\:light-200\* *, .outline-color\:light-200\@hover:where(:hover), .outline-color\:light-200\@focus:where(:focus), .outline-color\:light-200\@target:where(:target) {
+  outline-color: var(--light-200);
+}
+
+.outline-color\:light-300, .outline-color\:light-300\>\* > *, .outline-color\:light-300\* *, .outline-color\:light-300\@hover:where(:hover), .outline-color\:light-300\@focus:where(:focus), .outline-color\:light-300\@target:where(:target) {
+  outline-color: var(--light-300);
+}
+
+.outline-color\:light-400, .outline-color\:light-400\>\* > *, .outline-color\:light-400\* *, .outline-color\:light-400\@hover:where(:hover), .outline-color\:light-400\@focus:where(:focus), .outline-color\:light-400\@target:where(:target) {
+  outline-color: var(--light-400);
+}
+
+.outline-color\:light-500, .outline-color\:light-500\>\* > *, .outline-color\:light-500\* *, .outline-color\:light-500\@hover:where(:hover), .outline-color\:light-500\@focus:where(:focus), .outline-color\:light-500\@target:where(:target) {
+  outline-color: var(--light-500);
+}
+
+.outline-color\:light-600, .outline-color\:light-600\>\* > *, .outline-color\:light-600\* *, .outline-color\:light-600\@hover:where(:hover), .outline-color\:light-600\@focus:where(:focus), .outline-color\:light-600\@target:where(:target) {
+  outline-color: var(--light-600);
+}
+
+.outline-color\:light-700, .outline-color\:light-700\>\* > *, .outline-color\:light-700\* *, .outline-color\:light-700\@hover:where(:hover), .outline-color\:light-700\@focus:where(:focus), .outline-color\:light-700\@target:where(:target) {
+  outline-color: var(--light-700);
+}
+
+.outline-color\:light-800, .outline-color\:light-800\>\* > *, .outline-color\:light-800\* *, .outline-color\:light-800\@hover:where(:hover), .outline-color\:light-800\@focus:where(:focus), .outline-color\:light-800\@target:where(:target) {
+  outline-color: var(--light-800);
+}
+
+.outline-color\:light-900, .outline-color\:light-900\>\* > *, .outline-color\:light-900\* *, .outline-color\:light-900\@hover:where(:hover), .outline-color\:light-900\@focus:where(:focus), .outline-color\:light-900\@target:where(:target) {
+  outline-color: var(--light-900);
+}
+
+.outline-color\:dark-100, .outline-color\:dark-100\>\* > *, .outline-color\:dark-100\* *, .outline-color\:dark-100\@hover:where(:hover), .outline-color\:dark-100\@focus:where(:focus), .outline-color\:dark-100\@target:where(:target) {
+  outline-color: var(--dark-100);
+}
+
+.outline-color\:dark-200, .outline-color\:dark-200\>\* > *, .outline-color\:dark-200\* *, .outline-color\:dark-200\@hover:where(:hover), .outline-color\:dark-200\@focus:where(:focus), .outline-color\:dark-200\@target:where(:target) {
+  outline-color: var(--dark-200);
+}
+
+.outline-color\:dark-300, .outline-color\:dark-300\>\* > *, .outline-color\:dark-300\* *, .outline-color\:dark-300\@hover:where(:hover), .outline-color\:dark-300\@focus:where(:focus), .outline-color\:dark-300\@target:where(:target) {
+  outline-color: var(--dark-300);
+}
+
+.outline-color\:dark-400, .outline-color\:dark-400\>\* > *, .outline-color\:dark-400\* *, .outline-color\:dark-400\@hover:where(:hover), .outline-color\:dark-400\@focus:where(:focus), .outline-color\:dark-400\@target:where(:target) {
+  outline-color: var(--dark-400);
+}
+
+.outline-color\:dark-500, .outline-color\:dark-500\>\* > *, .outline-color\:dark-500\* *, .outline-color\:dark-500\@hover:where(:hover), .outline-color\:dark-500\@focus:where(:focus), .outline-color\:dark-500\@target:where(:target) {
+  outline-color: var(--dark-500);
+}
+
+.outline-color\:dark-600, .outline-color\:dark-600\>\* > *, .outline-color\:dark-600\* *, .outline-color\:dark-600\@hover:where(:hover), .outline-color\:dark-600\@focus:where(:focus), .outline-color\:dark-600\@target:where(:target) {
+  outline-color: var(--dark-600);
+}
+
+.outline-color\:dark-700, .outline-color\:dark-700\>\* > *, .outline-color\:dark-700\* *, .outline-color\:dark-700\@hover:where(:hover), .outline-color\:dark-700\@focus:where(:focus), .outline-color\:dark-700\@target:where(:target) {
+  outline-color: var(--dark-700);
+}
+
+.outline-color\:dark-800, .outline-color\:dark-800\>\* > *, .outline-color\:dark-800\* *, .outline-color\:dark-800\@hover:where(:hover), .outline-color\:dark-800\@focus:where(:focus), .outline-color\:dark-800\@target:where(:target) {
+  outline-color: var(--dark-800);
+}
+
+.outline-color\:dark-900, .outline-color\:dark-900\>\* > *, .outline-color\:dark-900\* *, .outline-color\:dark-900\@hover:where(:hover), .outline-color\:dark-900\@focus:where(:focus), .outline-color\:dark-900\@target:where(:target) {
+  outline-color: var(--dark-900);
+}
+
+.outline-color\:shade-xxs-100, .outline-color\:shade-xxs-100\>\* > *, .outline-color\:shade-xxs-100\* *, .outline-color\:shade-xxs-100\@hover:where(:hover), .outline-color\:shade-xxs-100\@focus:where(:focus), .outline-color\:shade-xxs-100\@target:where(:target) {
+  outline-color: var(--shade-xxs-100);
+}
+
+.outline-color\:shade-xxs-200, .outline-color\:shade-xxs-200\>\* > *, .outline-color\:shade-xxs-200\* *, .outline-color\:shade-xxs-200\@hover:where(:hover), .outline-color\:shade-xxs-200\@focus:where(:focus), .outline-color\:shade-xxs-200\@target:where(:target) {
+  outline-color: var(--shade-xxs-200);
+}
+
+.outline-color\:shade-xxs-300, .outline-color\:shade-xxs-300\>\* > *, .outline-color\:shade-xxs-300\* *, .outline-color\:shade-xxs-300\@hover:where(:hover), .outline-color\:shade-xxs-300\@focus:where(:focus), .outline-color\:shade-xxs-300\@target:where(:target) {
+  outline-color: var(--shade-xxs-300);
+}
+
+.outline-color\:shade-xxs-400, .outline-color\:shade-xxs-400\>\* > *, .outline-color\:shade-xxs-400\* *, .outline-color\:shade-xxs-400\@hover:where(:hover), .outline-color\:shade-xxs-400\@focus:where(:focus), .outline-color\:shade-xxs-400\@target:where(:target) {
+  outline-color: var(--shade-xxs-400);
+}
+
+.outline-color\:shade-xxs-500, .outline-color\:shade-xxs-500\>\* > *, .outline-color\:shade-xxs-500\* *, .outline-color\:shade-xxs-500\@hover:where(:hover), .outline-color\:shade-xxs-500\@focus:where(:focus), .outline-color\:shade-xxs-500\@target:where(:target) {
+  outline-color: var(--shade-xxs-500);
+}
+
+.outline-color\:shade-xxs-600, .outline-color\:shade-xxs-600\>\* > *, .outline-color\:shade-xxs-600\* *, .outline-color\:shade-xxs-600\@hover:where(:hover), .outline-color\:shade-xxs-600\@focus:where(:focus), .outline-color\:shade-xxs-600\@target:where(:target) {
+  outline-color: var(--shade-xxs-600);
+}
+
+.outline-color\:shade-xxs-700, .outline-color\:shade-xxs-700\>\* > *, .outline-color\:shade-xxs-700\* *, .outline-color\:shade-xxs-700\@hover:where(:hover), .outline-color\:shade-xxs-700\@focus:where(:focus), .outline-color\:shade-xxs-700\@target:where(:target) {
+  outline-color: var(--shade-xxs-700);
+}
+
+.outline-color\:shade-xxs-800, .outline-color\:shade-xxs-800\>\* > *, .outline-color\:shade-xxs-800\* *, .outline-color\:shade-xxs-800\@hover:where(:hover), .outline-color\:shade-xxs-800\@focus:where(:focus), .outline-color\:shade-xxs-800\@target:where(:target) {
+  outline-color: var(--shade-xxs-800);
+}
+
+.outline-color\:shade-xxs-900, .outline-color\:shade-xxs-900\>\* > *, .outline-color\:shade-xxs-900\* *, .outline-color\:shade-xxs-900\@hover:where(:hover), .outline-color\:shade-xxs-900\@focus:where(:focus), .outline-color\:shade-xxs-900\@target:where(:target) {
+  outline-color: var(--shade-xxs-900);
+}
+
+.outline-color\:shade-xs-100, .outline-color\:shade-xs-100\>\* > *, .outline-color\:shade-xs-100\* *, .outline-color\:shade-xs-100\@hover:where(:hover), .outline-color\:shade-xs-100\@focus:where(:focus), .outline-color\:shade-xs-100\@target:where(:target) {
+  outline-color: var(--shade-xs-100);
+}
+
+.outline-color\:shade-xs-200, .outline-color\:shade-xs-200\>\* > *, .outline-color\:shade-xs-200\* *, .outline-color\:shade-xs-200\@hover:where(:hover), .outline-color\:shade-xs-200\@focus:where(:focus), .outline-color\:shade-xs-200\@target:where(:target) {
+  outline-color: var(--shade-xs-200);
+}
+
+.outline-color\:shade-xs-300, .outline-color\:shade-xs-300\>\* > *, .outline-color\:shade-xs-300\* *, .outline-color\:shade-xs-300\@hover:where(:hover), .outline-color\:shade-xs-300\@focus:where(:focus), .outline-color\:shade-xs-300\@target:where(:target) {
+  outline-color: var(--shade-xs-300);
+}
+
+.outline-color\:shade-xs-400, .outline-color\:shade-xs-400\>\* > *, .outline-color\:shade-xs-400\* *, .outline-color\:shade-xs-400\@hover:where(:hover), .outline-color\:shade-xs-400\@focus:where(:focus), .outline-color\:shade-xs-400\@target:where(:target) {
+  outline-color: var(--shade-xs-400);
+}
+
+.outline-color\:shade-xs-500, .outline-color\:shade-xs-500\>\* > *, .outline-color\:shade-xs-500\* *, .outline-color\:shade-xs-500\@hover:where(:hover), .outline-color\:shade-xs-500\@focus:where(:focus), .outline-color\:shade-xs-500\@target:where(:target) {
+  outline-color: var(--shade-xs-500);
+}
+
+.outline-color\:shade-xs-600, .outline-color\:shade-xs-600\>\* > *, .outline-color\:shade-xs-600\* *, .outline-color\:shade-xs-600\@hover:where(:hover), .outline-color\:shade-xs-600\@focus:where(:focus), .outline-color\:shade-xs-600\@target:where(:target) {
+  outline-color: var(--shade-xs-600);
+}
+
+.outline-color\:shade-xs-700, .outline-color\:shade-xs-700\>\* > *, .outline-color\:shade-xs-700\* *, .outline-color\:shade-xs-700\@hover:where(:hover), .outline-color\:shade-xs-700\@focus:where(:focus), .outline-color\:shade-xs-700\@target:where(:target) {
+  outline-color: var(--shade-xs-700);
+}
+
+.outline-color\:shade-xs-800, .outline-color\:shade-xs-800\>\* > *, .outline-color\:shade-xs-800\* *, .outline-color\:shade-xs-800\@hover:where(:hover), .outline-color\:shade-xs-800\@focus:where(:focus), .outline-color\:shade-xs-800\@target:where(:target) {
+  outline-color: var(--shade-xs-800);
+}
+
+.outline-color\:shade-xs-900, .outline-color\:shade-xs-900\>\* > *, .outline-color\:shade-xs-900\* *, .outline-color\:shade-xs-900\@hover:where(:hover), .outline-color\:shade-xs-900\@focus:where(:focus), .outline-color\:shade-xs-900\@target:where(:target) {
+  outline-color: var(--shade-xs-900);
+}
+
+.outline-color\:shade-sm-100, .outline-color\:shade-sm-100\>\* > *, .outline-color\:shade-sm-100\* *, .outline-color\:shade-sm-100\@hover:where(:hover), .outline-color\:shade-sm-100\@focus:where(:focus), .outline-color\:shade-sm-100\@target:where(:target) {
+  outline-color: var(--shade-sm-100);
+}
+
+.outline-color\:shade-sm-200, .outline-color\:shade-sm-200\>\* > *, .outline-color\:shade-sm-200\* *, .outline-color\:shade-sm-200\@hover:where(:hover), .outline-color\:shade-sm-200\@focus:where(:focus), .outline-color\:shade-sm-200\@target:where(:target) {
+  outline-color: var(--shade-sm-200);
+}
+
+.outline-color\:shade-sm-300, .outline-color\:shade-sm-300\>\* > *, .outline-color\:shade-sm-300\* *, .outline-color\:shade-sm-300\@hover:where(:hover), .outline-color\:shade-sm-300\@focus:where(:focus), .outline-color\:shade-sm-300\@target:where(:target) {
+  outline-color: var(--shade-sm-300);
+}
+
+.outline-color\:shade-sm-400, .outline-color\:shade-sm-400\>\* > *, .outline-color\:shade-sm-400\* *, .outline-color\:shade-sm-400\@hover:where(:hover), .outline-color\:shade-sm-400\@focus:where(:focus), .outline-color\:shade-sm-400\@target:where(:target) {
+  outline-color: var(--shade-sm-400);
+}
+
+.outline-color\:shade-sm-500, .outline-color\:shade-sm-500\>\* > *, .outline-color\:shade-sm-500\* *, .outline-color\:shade-sm-500\@hover:where(:hover), .outline-color\:shade-sm-500\@focus:where(:focus), .outline-color\:shade-sm-500\@target:where(:target) {
+  outline-color: var(--shade-sm-500);
+}
+
+.outline-color\:shade-sm-600, .outline-color\:shade-sm-600\>\* > *, .outline-color\:shade-sm-600\* *, .outline-color\:shade-sm-600\@hover:where(:hover), .outline-color\:shade-sm-600\@focus:where(:focus), .outline-color\:shade-sm-600\@target:where(:target) {
+  outline-color: var(--shade-sm-600);
+}
+
+.outline-color\:shade-sm-700, .outline-color\:shade-sm-700\>\* > *, .outline-color\:shade-sm-700\* *, .outline-color\:shade-sm-700\@hover:where(:hover), .outline-color\:shade-sm-700\@focus:where(:focus), .outline-color\:shade-sm-700\@target:where(:target) {
+  outline-color: var(--shade-sm-700);
+}
+
+.outline-color\:shade-sm-800, .outline-color\:shade-sm-800\>\* > *, .outline-color\:shade-sm-800\* *, .outline-color\:shade-sm-800\@hover:where(:hover), .outline-color\:shade-sm-800\@focus:where(:focus), .outline-color\:shade-sm-800\@target:where(:target) {
+  outline-color: var(--shade-sm-800);
+}
+
+.outline-color\:shade-sm-900, .outline-color\:shade-sm-900\>\* > *, .outline-color\:shade-sm-900\* *, .outline-color\:shade-sm-900\@hover:where(:hover), .outline-color\:shade-sm-900\@focus:where(:focus), .outline-color\:shade-sm-900\@target:where(:target) {
+  outline-color: var(--shade-sm-900);
+}
+
+.outline-color\:shade-md-100, .outline-color\:shade-md-100\>\* > *, .outline-color\:shade-md-100\* *, .outline-color\:shade-md-100\@hover:where(:hover), .outline-color\:shade-md-100\@focus:where(:focus), .outline-color\:shade-md-100\@target:where(:target) {
+  outline-color: var(--shade-md-100);
+}
+
+.outline-color\:shade-md-200, .outline-color\:shade-md-200\>\* > *, .outline-color\:shade-md-200\* *, .outline-color\:shade-md-200\@hover:where(:hover), .outline-color\:shade-md-200\@focus:where(:focus), .outline-color\:shade-md-200\@target:where(:target) {
+  outline-color: var(--shade-md-200);
+}
+
+.outline-color\:shade-md-300, .outline-color\:shade-md-300\>\* > *, .outline-color\:shade-md-300\* *, .outline-color\:shade-md-300\@hover:where(:hover), .outline-color\:shade-md-300\@focus:where(:focus), .outline-color\:shade-md-300\@target:where(:target) {
+  outline-color: var(--shade-md-300);
+}
+
+.outline-color\:shade-md-400, .outline-color\:shade-md-400\>\* > *, .outline-color\:shade-md-400\* *, .outline-color\:shade-md-400\@hover:where(:hover), .outline-color\:shade-md-400\@focus:where(:focus), .outline-color\:shade-md-400\@target:where(:target) {
+  outline-color: var(--shade-md-400);
+}
+
+.outline-color\:shade-md-500, .outline-color\:shade-md-500\>\* > *, .outline-color\:shade-md-500\* *, .outline-color\:shade-md-500\@hover:where(:hover), .outline-color\:shade-md-500\@focus:where(:focus), .outline-color\:shade-md-500\@target:where(:target) {
+  outline-color: var(--shade-md-500);
+}
+
+.outline-color\:shade-md-600, .outline-color\:shade-md-600\>\* > *, .outline-color\:shade-md-600\* *, .outline-color\:shade-md-600\@hover:where(:hover), .outline-color\:shade-md-600\@focus:where(:focus), .outline-color\:shade-md-600\@target:where(:target) {
+  outline-color: var(--shade-md-600);
+}
+
+.outline-color\:shade-md-700, .outline-color\:shade-md-700\>\* > *, .outline-color\:shade-md-700\* *, .outline-color\:shade-md-700\@hover:where(:hover), .outline-color\:shade-md-700\@focus:where(:focus), .outline-color\:shade-md-700\@target:where(:target) {
+  outline-color: var(--shade-md-700);
+}
+
+.outline-color\:shade-md-800, .outline-color\:shade-md-800\>\* > *, .outline-color\:shade-md-800\* *, .outline-color\:shade-md-800\@hover:where(:hover), .outline-color\:shade-md-800\@focus:where(:focus), .outline-color\:shade-md-800\@target:where(:target) {
+  outline-color: var(--shade-md-800);
+}
+
+.outline-color\:shade-md-900, .outline-color\:shade-md-900\>\* > *, .outline-color\:shade-md-900\* *, .outline-color\:shade-md-900\@hover:where(:hover), .outline-color\:shade-md-900\@focus:where(:focus), .outline-color\:shade-md-900\@target:where(:target) {
+  outline-color: var(--shade-md-900);
+}
+
+.outline-color\:shade-lg-100, .outline-color\:shade-lg-100\>\* > *, .outline-color\:shade-lg-100\* *, .outline-color\:shade-lg-100\@hover:where(:hover), .outline-color\:shade-lg-100\@focus:where(:focus), .outline-color\:shade-lg-100\@target:where(:target) {
+  outline-color: var(--shade-lg-100);
+}
+
+.outline-color\:shade-lg-200, .outline-color\:shade-lg-200\>\* > *, .outline-color\:shade-lg-200\* *, .outline-color\:shade-lg-200\@hover:where(:hover), .outline-color\:shade-lg-200\@focus:where(:focus), .outline-color\:shade-lg-200\@target:where(:target) {
+  outline-color: var(--shade-lg-200);
+}
+
+.outline-color\:shade-lg-300, .outline-color\:shade-lg-300\>\* > *, .outline-color\:shade-lg-300\* *, .outline-color\:shade-lg-300\@hover:where(:hover), .outline-color\:shade-lg-300\@focus:where(:focus), .outline-color\:shade-lg-300\@target:where(:target) {
+  outline-color: var(--shade-lg-300);
+}
+
+.outline-color\:shade-lg-400, .outline-color\:shade-lg-400\>\* > *, .outline-color\:shade-lg-400\* *, .outline-color\:shade-lg-400\@hover:where(:hover), .outline-color\:shade-lg-400\@focus:where(:focus), .outline-color\:shade-lg-400\@target:where(:target) {
+  outline-color: var(--shade-lg-400);
+}
+
+.outline-color\:shade-lg-500, .outline-color\:shade-lg-500\>\* > *, .outline-color\:shade-lg-500\* *, .outline-color\:shade-lg-500\@hover:where(:hover), .outline-color\:shade-lg-500\@focus:where(:focus), .outline-color\:shade-lg-500\@target:where(:target) {
+  outline-color: var(--shade-lg-500);
+}
+
+.outline-color\:shade-lg-600, .outline-color\:shade-lg-600\>\* > *, .outline-color\:shade-lg-600\* *, .outline-color\:shade-lg-600\@hover:where(:hover), .outline-color\:shade-lg-600\@focus:where(:focus), .outline-color\:shade-lg-600\@target:where(:target) {
+  outline-color: var(--shade-lg-600);
+}
+
+.outline-color\:shade-lg-700, .outline-color\:shade-lg-700\>\* > *, .outline-color\:shade-lg-700\* *, .outline-color\:shade-lg-700\@hover:where(:hover), .outline-color\:shade-lg-700\@focus:where(:focus), .outline-color\:shade-lg-700\@target:where(:target) {
+  outline-color: var(--shade-lg-700);
+}
+
+.outline-color\:shade-lg-800, .outline-color\:shade-lg-800\>\* > *, .outline-color\:shade-lg-800\* *, .outline-color\:shade-lg-800\@hover:where(:hover), .outline-color\:shade-lg-800\@focus:where(:focus), .outline-color\:shade-lg-800\@target:where(:target) {
+  outline-color: var(--shade-lg-800);
+}
+
+.outline-color\:shade-lg-900, .outline-color\:shade-lg-900\>\* > *, .outline-color\:shade-lg-900\* *, .outline-color\:shade-lg-900\@hover:where(:hover), .outline-color\:shade-lg-900\@focus:where(:focus), .outline-color\:shade-lg-900\@target:where(:target) {
+  outline-color: var(--shade-lg-900);
+}
+
+.outline-color\:shade-xl-100, .outline-color\:shade-xl-100\>\* > *, .outline-color\:shade-xl-100\* *, .outline-color\:shade-xl-100\@hover:where(:hover), .outline-color\:shade-xl-100\@focus:where(:focus), .outline-color\:shade-xl-100\@target:where(:target) {
+  outline-color: var(--shade-xl-100);
+}
+
+.outline-color\:shade-xl-200, .outline-color\:shade-xl-200\>\* > *, .outline-color\:shade-xl-200\* *, .outline-color\:shade-xl-200\@hover:where(:hover), .outline-color\:shade-xl-200\@focus:where(:focus), .outline-color\:shade-xl-200\@target:where(:target) {
+  outline-color: var(--shade-xl-200);
+}
+
+.outline-color\:shade-xl-300, .outline-color\:shade-xl-300\>\* > *, .outline-color\:shade-xl-300\* *, .outline-color\:shade-xl-300\@hover:where(:hover), .outline-color\:shade-xl-300\@focus:where(:focus), .outline-color\:shade-xl-300\@target:where(:target) {
+  outline-color: var(--shade-xl-300);
+}
+
+.outline-color\:shade-xl-400, .outline-color\:shade-xl-400\>\* > *, .outline-color\:shade-xl-400\* *, .outline-color\:shade-xl-400\@hover:where(:hover), .outline-color\:shade-xl-400\@focus:where(:focus), .outline-color\:shade-xl-400\@target:where(:target) {
+  outline-color: var(--shade-xl-400);
+}
+
+.outline-color\:shade-xl-500, .outline-color\:shade-xl-500\>\* > *, .outline-color\:shade-xl-500\* *, .outline-color\:shade-xl-500\@hover:where(:hover), .outline-color\:shade-xl-500\@focus:where(:focus), .outline-color\:shade-xl-500\@target:where(:target) {
+  outline-color: var(--shade-xl-500);
+}
+
+.outline-color\:shade-xl-600, .outline-color\:shade-xl-600\>\* > *, .outline-color\:shade-xl-600\* *, .outline-color\:shade-xl-600\@hover:where(:hover), .outline-color\:shade-xl-600\@focus:where(:focus), .outline-color\:shade-xl-600\@target:where(:target) {
+  outline-color: var(--shade-xl-600);
+}
+
+.outline-color\:shade-xl-700, .outline-color\:shade-xl-700\>\* > *, .outline-color\:shade-xl-700\* *, .outline-color\:shade-xl-700\@hover:where(:hover), .outline-color\:shade-xl-700\@focus:where(:focus), .outline-color\:shade-xl-700\@target:where(:target) {
+  outline-color: var(--shade-xl-700);
+}
+
+.outline-color\:shade-xl-800, .outline-color\:shade-xl-800\>\* > *, .outline-color\:shade-xl-800\* *, .outline-color\:shade-xl-800\@hover:where(:hover), .outline-color\:shade-xl-800\@focus:where(:focus), .outline-color\:shade-xl-800\@target:where(:target) {
+  outline-color: var(--shade-xl-800);
+}
+
+.outline-color\:shade-xl-900, .outline-color\:shade-xl-900\>\* > *, .outline-color\:shade-xl-900\* *, .outline-color\:shade-xl-900\@hover:where(:hover), .outline-color\:shade-xl-900\@focus:where(:focus), .outline-color\:shade-xl-900\@target:where(:target) {
+  outline-color: var(--shade-xl-900);
+}
+
+.outline-color\:shade-xxl-100, .outline-color\:shade-xxl-100\>\* > *, .outline-color\:shade-xxl-100\* *, .outline-color\:shade-xxl-100\@hover:where(:hover), .outline-color\:shade-xxl-100\@focus:where(:focus), .outline-color\:shade-xxl-100\@target:where(:target) {
+  outline-color: var(--shade-xxl-100);
+}
+
+.outline-color\:shade-xxl-200, .outline-color\:shade-xxl-200\>\* > *, .outline-color\:shade-xxl-200\* *, .outline-color\:shade-xxl-200\@hover:where(:hover), .outline-color\:shade-xxl-200\@focus:where(:focus), .outline-color\:shade-xxl-200\@target:where(:target) {
+  outline-color: var(--shade-xxl-200);
+}
+
+.outline-color\:shade-xxl-300, .outline-color\:shade-xxl-300\>\* > *, .outline-color\:shade-xxl-300\* *, .outline-color\:shade-xxl-300\@hover:where(:hover), .outline-color\:shade-xxl-300\@focus:where(:focus), .outline-color\:shade-xxl-300\@target:where(:target) {
+  outline-color: var(--shade-xxl-300);
+}
+
+.outline-color\:shade-xxl-400, .outline-color\:shade-xxl-400\>\* > *, .outline-color\:shade-xxl-400\* *, .outline-color\:shade-xxl-400\@hover:where(:hover), .outline-color\:shade-xxl-400\@focus:where(:focus), .outline-color\:shade-xxl-400\@target:where(:target) {
+  outline-color: var(--shade-xxl-400);
+}
+
+.outline-color\:shade-xxl-500, .outline-color\:shade-xxl-500\>\* > *, .outline-color\:shade-xxl-500\* *, .outline-color\:shade-xxl-500\@hover:where(:hover), .outline-color\:shade-xxl-500\@focus:where(:focus), .outline-color\:shade-xxl-500\@target:where(:target) {
+  outline-color: var(--shade-xxl-500);
+}
+
+.outline-color\:shade-xxl-600, .outline-color\:shade-xxl-600\>\* > *, .outline-color\:shade-xxl-600\* *, .outline-color\:shade-xxl-600\@hover:where(:hover), .outline-color\:shade-xxl-600\@focus:where(:focus), .outline-color\:shade-xxl-600\@target:where(:target) {
+  outline-color: var(--shade-xxl-600);
+}
+
+.outline-color\:shade-xxl-700, .outline-color\:shade-xxl-700\>\* > *, .outline-color\:shade-xxl-700\* *, .outline-color\:shade-xxl-700\@hover:where(:hover), .outline-color\:shade-xxl-700\@focus:where(:focus), .outline-color\:shade-xxl-700\@target:where(:target) {
+  outline-color: var(--shade-xxl-700);
+}
+
+.outline-color\:shade-xxl-800, .outline-color\:shade-xxl-800\>\* > *, .outline-color\:shade-xxl-800\* *, .outline-color\:shade-xxl-800\@hover:where(:hover), .outline-color\:shade-xxl-800\@focus:where(:focus), .outline-color\:shade-xxl-800\@target:where(:target) {
+  outline-color: var(--shade-xxl-800);
+}
+
+.outline-color\:shade-xxl-900, .outline-color\:shade-xxl-900\>\* > *, .outline-color\:shade-xxl-900\* *, .outline-color\:shade-xxl-900\@hover:where(:hover), .outline-color\:shade-xxl-900\@focus:where(:focus), .outline-color\:shade-xxl-900\@target:where(:target) {
+  outline-color: var(--shade-xxl-900);
+}
+
+.outline-color\:shade-invert-xxs-100, .outline-color\:shade-invert-xxs-100\>\* > *, .outline-color\:shade-invert-xxs-100\* *, .outline-color\:shade-invert-xxs-100\@hover:where(:hover), .outline-color\:shade-invert-xxs-100\@focus:where(:focus), .outline-color\:shade-invert-xxs-100\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-100);
+}
+
+.outline-color\:shade-invert-xxs-200, .outline-color\:shade-invert-xxs-200\>\* > *, .outline-color\:shade-invert-xxs-200\* *, .outline-color\:shade-invert-xxs-200\@hover:where(:hover), .outline-color\:shade-invert-xxs-200\@focus:where(:focus), .outline-color\:shade-invert-xxs-200\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-200);
+}
+
+.outline-color\:shade-invert-xxs-300, .outline-color\:shade-invert-xxs-300\>\* > *, .outline-color\:shade-invert-xxs-300\* *, .outline-color\:shade-invert-xxs-300\@hover:where(:hover), .outline-color\:shade-invert-xxs-300\@focus:where(:focus), .outline-color\:shade-invert-xxs-300\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-300);
+}
+
+.outline-color\:shade-invert-xxs-400, .outline-color\:shade-invert-xxs-400\>\* > *, .outline-color\:shade-invert-xxs-400\* *, .outline-color\:shade-invert-xxs-400\@hover:where(:hover), .outline-color\:shade-invert-xxs-400\@focus:where(:focus), .outline-color\:shade-invert-xxs-400\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-400);
+}
+
+.outline-color\:shade-invert-xxs-500, .outline-color\:shade-invert-xxs-500\>\* > *, .outline-color\:shade-invert-xxs-500\* *, .outline-color\:shade-invert-xxs-500\@hover:where(:hover), .outline-color\:shade-invert-xxs-500\@focus:where(:focus), .outline-color\:shade-invert-xxs-500\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-500);
+}
+
+.outline-color\:shade-invert-xxs-600, .outline-color\:shade-invert-xxs-600\>\* > *, .outline-color\:shade-invert-xxs-600\* *, .outline-color\:shade-invert-xxs-600\@hover:where(:hover), .outline-color\:shade-invert-xxs-600\@focus:where(:focus), .outline-color\:shade-invert-xxs-600\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-600);
+}
+
+.outline-color\:shade-invert-xxs-700, .outline-color\:shade-invert-xxs-700\>\* > *, .outline-color\:shade-invert-xxs-700\* *, .outline-color\:shade-invert-xxs-700\@hover:where(:hover), .outline-color\:shade-invert-xxs-700\@focus:where(:focus), .outline-color\:shade-invert-xxs-700\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-700);
+}
+
+.outline-color\:shade-invert-xxs-800, .outline-color\:shade-invert-xxs-800\>\* > *, .outline-color\:shade-invert-xxs-800\* *, .outline-color\:shade-invert-xxs-800\@hover:where(:hover), .outline-color\:shade-invert-xxs-800\@focus:where(:focus), .outline-color\:shade-invert-xxs-800\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-800);
+}
+
+.outline-color\:shade-invert-xxs-900, .outline-color\:shade-invert-xxs-900\>\* > *, .outline-color\:shade-invert-xxs-900\* *, .outline-color\:shade-invert-xxs-900\@hover:where(:hover), .outline-color\:shade-invert-xxs-900\@focus:where(:focus), .outline-color\:shade-invert-xxs-900\@target:where(:target) {
+  outline-color: var(--shade-invert-xxs-900);
+}
+
+.outline-color\:shade-invert-xs-100, .outline-color\:shade-invert-xs-100\>\* > *, .outline-color\:shade-invert-xs-100\* *, .outline-color\:shade-invert-xs-100\@hover:where(:hover), .outline-color\:shade-invert-xs-100\@focus:where(:focus), .outline-color\:shade-invert-xs-100\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-100);
+}
+
+.outline-color\:shade-invert-xs-200, .outline-color\:shade-invert-xs-200\>\* > *, .outline-color\:shade-invert-xs-200\* *, .outline-color\:shade-invert-xs-200\@hover:where(:hover), .outline-color\:shade-invert-xs-200\@focus:where(:focus), .outline-color\:shade-invert-xs-200\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-200);
+}
+
+.outline-color\:shade-invert-xs-300, .outline-color\:shade-invert-xs-300\>\* > *, .outline-color\:shade-invert-xs-300\* *, .outline-color\:shade-invert-xs-300\@hover:where(:hover), .outline-color\:shade-invert-xs-300\@focus:where(:focus), .outline-color\:shade-invert-xs-300\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-300);
+}
+
+.outline-color\:shade-invert-xs-400, .outline-color\:shade-invert-xs-400\>\* > *, .outline-color\:shade-invert-xs-400\* *, .outline-color\:shade-invert-xs-400\@hover:where(:hover), .outline-color\:shade-invert-xs-400\@focus:where(:focus), .outline-color\:shade-invert-xs-400\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-400);
+}
+
+.outline-color\:shade-invert-xs-500, .outline-color\:shade-invert-xs-500\>\* > *, .outline-color\:shade-invert-xs-500\* *, .outline-color\:shade-invert-xs-500\@hover:where(:hover), .outline-color\:shade-invert-xs-500\@focus:where(:focus), .outline-color\:shade-invert-xs-500\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-500);
+}
+
+.outline-color\:shade-invert-xs-600, .outline-color\:shade-invert-xs-600\>\* > *, .outline-color\:shade-invert-xs-600\* *, .outline-color\:shade-invert-xs-600\@hover:where(:hover), .outline-color\:shade-invert-xs-600\@focus:where(:focus), .outline-color\:shade-invert-xs-600\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-600);
+}
+
+.outline-color\:shade-invert-xs-700, .outline-color\:shade-invert-xs-700\>\* > *, .outline-color\:shade-invert-xs-700\* *, .outline-color\:shade-invert-xs-700\@hover:where(:hover), .outline-color\:shade-invert-xs-700\@focus:where(:focus), .outline-color\:shade-invert-xs-700\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-700);
+}
+
+.outline-color\:shade-invert-xs-800, .outline-color\:shade-invert-xs-800\>\* > *, .outline-color\:shade-invert-xs-800\* *, .outline-color\:shade-invert-xs-800\@hover:where(:hover), .outline-color\:shade-invert-xs-800\@focus:where(:focus), .outline-color\:shade-invert-xs-800\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-800);
+}
+
+.outline-color\:shade-invert-xs-900, .outline-color\:shade-invert-xs-900\>\* > *, .outline-color\:shade-invert-xs-900\* *, .outline-color\:shade-invert-xs-900\@hover:where(:hover), .outline-color\:shade-invert-xs-900\@focus:where(:focus), .outline-color\:shade-invert-xs-900\@target:where(:target) {
+  outline-color: var(--shade-invert-xs-900);
+}
+
+.outline-color\:shade-invert-sm-100, .outline-color\:shade-invert-sm-100\>\* > *, .outline-color\:shade-invert-sm-100\* *, .outline-color\:shade-invert-sm-100\@hover:where(:hover), .outline-color\:shade-invert-sm-100\@focus:where(:focus), .outline-color\:shade-invert-sm-100\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-100);
+}
+
+.outline-color\:shade-invert-sm-200, .outline-color\:shade-invert-sm-200\>\* > *, .outline-color\:shade-invert-sm-200\* *, .outline-color\:shade-invert-sm-200\@hover:where(:hover), .outline-color\:shade-invert-sm-200\@focus:where(:focus), .outline-color\:shade-invert-sm-200\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-200);
+}
+
+.outline-color\:shade-invert-sm-300, .outline-color\:shade-invert-sm-300\>\* > *, .outline-color\:shade-invert-sm-300\* *, .outline-color\:shade-invert-sm-300\@hover:where(:hover), .outline-color\:shade-invert-sm-300\@focus:where(:focus), .outline-color\:shade-invert-sm-300\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-300);
+}
+
+.outline-color\:shade-invert-sm-400, .outline-color\:shade-invert-sm-400\>\* > *, .outline-color\:shade-invert-sm-400\* *, .outline-color\:shade-invert-sm-400\@hover:where(:hover), .outline-color\:shade-invert-sm-400\@focus:where(:focus), .outline-color\:shade-invert-sm-400\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-400);
+}
+
+.outline-color\:shade-invert-sm-500, .outline-color\:shade-invert-sm-500\>\* > *, .outline-color\:shade-invert-sm-500\* *, .outline-color\:shade-invert-sm-500\@hover:where(:hover), .outline-color\:shade-invert-sm-500\@focus:where(:focus), .outline-color\:shade-invert-sm-500\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-500);
+}
+
+.outline-color\:shade-invert-sm-600, .outline-color\:shade-invert-sm-600\>\* > *, .outline-color\:shade-invert-sm-600\* *, .outline-color\:shade-invert-sm-600\@hover:where(:hover), .outline-color\:shade-invert-sm-600\@focus:where(:focus), .outline-color\:shade-invert-sm-600\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-600);
+}
+
+.outline-color\:shade-invert-sm-700, .outline-color\:shade-invert-sm-700\>\* > *, .outline-color\:shade-invert-sm-700\* *, .outline-color\:shade-invert-sm-700\@hover:where(:hover), .outline-color\:shade-invert-sm-700\@focus:where(:focus), .outline-color\:shade-invert-sm-700\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-700);
+}
+
+.outline-color\:shade-invert-sm-800, .outline-color\:shade-invert-sm-800\>\* > *, .outline-color\:shade-invert-sm-800\* *, .outline-color\:shade-invert-sm-800\@hover:where(:hover), .outline-color\:shade-invert-sm-800\@focus:where(:focus), .outline-color\:shade-invert-sm-800\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-800);
+}
+
+.outline-color\:shade-invert-sm-900, .outline-color\:shade-invert-sm-900\>\* > *, .outline-color\:shade-invert-sm-900\* *, .outline-color\:shade-invert-sm-900\@hover:where(:hover), .outline-color\:shade-invert-sm-900\@focus:where(:focus), .outline-color\:shade-invert-sm-900\@target:where(:target) {
+  outline-color: var(--shade-invert-sm-900);
+}
+
+.outline-color\:shade-invert-md-100, .outline-color\:shade-invert-md-100\>\* > *, .outline-color\:shade-invert-md-100\* *, .outline-color\:shade-invert-md-100\@hover:where(:hover), .outline-color\:shade-invert-md-100\@focus:where(:focus), .outline-color\:shade-invert-md-100\@target:where(:target) {
+  outline-color: var(--shade-invert-md-100);
+}
+
+.outline-color\:shade-invert-md-200, .outline-color\:shade-invert-md-200\>\* > *, .outline-color\:shade-invert-md-200\* *, .outline-color\:shade-invert-md-200\@hover:where(:hover), .outline-color\:shade-invert-md-200\@focus:where(:focus), .outline-color\:shade-invert-md-200\@target:where(:target) {
+  outline-color: var(--shade-invert-md-200);
+}
+
+.outline-color\:shade-invert-md-300, .outline-color\:shade-invert-md-300\>\* > *, .outline-color\:shade-invert-md-300\* *, .outline-color\:shade-invert-md-300\@hover:where(:hover), .outline-color\:shade-invert-md-300\@focus:where(:focus), .outline-color\:shade-invert-md-300\@target:where(:target) {
+  outline-color: var(--shade-invert-md-300);
+}
+
+.outline-color\:shade-invert-md-400, .outline-color\:shade-invert-md-400\>\* > *, .outline-color\:shade-invert-md-400\* *, .outline-color\:shade-invert-md-400\@hover:where(:hover), .outline-color\:shade-invert-md-400\@focus:where(:focus), .outline-color\:shade-invert-md-400\@target:where(:target) {
+  outline-color: var(--shade-invert-md-400);
+}
+
+.outline-color\:shade-invert-md-500, .outline-color\:shade-invert-md-500\>\* > *, .outline-color\:shade-invert-md-500\* *, .outline-color\:shade-invert-md-500\@hover:where(:hover), .outline-color\:shade-invert-md-500\@focus:where(:focus), .outline-color\:shade-invert-md-500\@target:where(:target) {
+  outline-color: var(--shade-invert-md-500);
+}
+
+.outline-color\:shade-invert-md-600, .outline-color\:shade-invert-md-600\>\* > *, .outline-color\:shade-invert-md-600\* *, .outline-color\:shade-invert-md-600\@hover:where(:hover), .outline-color\:shade-invert-md-600\@focus:where(:focus), .outline-color\:shade-invert-md-600\@target:where(:target) {
+  outline-color: var(--shade-invert-md-600);
+}
+
+.outline-color\:shade-invert-md-700, .outline-color\:shade-invert-md-700\>\* > *, .outline-color\:shade-invert-md-700\* *, .outline-color\:shade-invert-md-700\@hover:where(:hover), .outline-color\:shade-invert-md-700\@focus:where(:focus), .outline-color\:shade-invert-md-700\@target:where(:target) {
+  outline-color: var(--shade-invert-md-700);
+}
+
+.outline-color\:shade-invert-md-800, .outline-color\:shade-invert-md-800\>\* > *, .outline-color\:shade-invert-md-800\* *, .outline-color\:shade-invert-md-800\@hover:where(:hover), .outline-color\:shade-invert-md-800\@focus:where(:focus), .outline-color\:shade-invert-md-800\@target:where(:target) {
+  outline-color: var(--shade-invert-md-800);
+}
+
+.outline-color\:shade-invert-md-900, .outline-color\:shade-invert-md-900\>\* > *, .outline-color\:shade-invert-md-900\* *, .outline-color\:shade-invert-md-900\@hover:where(:hover), .outline-color\:shade-invert-md-900\@focus:where(:focus), .outline-color\:shade-invert-md-900\@target:where(:target) {
+  outline-color: var(--shade-invert-md-900);
+}
+
+.outline-color\:shade-invert-lg-100, .outline-color\:shade-invert-lg-100\>\* > *, .outline-color\:shade-invert-lg-100\* *, .outline-color\:shade-invert-lg-100\@hover:where(:hover), .outline-color\:shade-invert-lg-100\@focus:where(:focus), .outline-color\:shade-invert-lg-100\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-100);
+}
+
+.outline-color\:shade-invert-lg-200, .outline-color\:shade-invert-lg-200\>\* > *, .outline-color\:shade-invert-lg-200\* *, .outline-color\:shade-invert-lg-200\@hover:where(:hover), .outline-color\:shade-invert-lg-200\@focus:where(:focus), .outline-color\:shade-invert-lg-200\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-200);
+}
+
+.outline-color\:shade-invert-lg-300, .outline-color\:shade-invert-lg-300\>\* > *, .outline-color\:shade-invert-lg-300\* *, .outline-color\:shade-invert-lg-300\@hover:where(:hover), .outline-color\:shade-invert-lg-300\@focus:where(:focus), .outline-color\:shade-invert-lg-300\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-300);
+}
+
+.outline-color\:shade-invert-lg-400, .outline-color\:shade-invert-lg-400\>\* > *, .outline-color\:shade-invert-lg-400\* *, .outline-color\:shade-invert-lg-400\@hover:where(:hover), .outline-color\:shade-invert-lg-400\@focus:where(:focus), .outline-color\:shade-invert-lg-400\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-400);
+}
+
+.outline-color\:shade-invert-lg-500, .outline-color\:shade-invert-lg-500\>\* > *, .outline-color\:shade-invert-lg-500\* *, .outline-color\:shade-invert-lg-500\@hover:where(:hover), .outline-color\:shade-invert-lg-500\@focus:where(:focus), .outline-color\:shade-invert-lg-500\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-500);
+}
+
+.outline-color\:shade-invert-lg-600, .outline-color\:shade-invert-lg-600\>\* > *, .outline-color\:shade-invert-lg-600\* *, .outline-color\:shade-invert-lg-600\@hover:where(:hover), .outline-color\:shade-invert-lg-600\@focus:where(:focus), .outline-color\:shade-invert-lg-600\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-600);
+}
+
+.outline-color\:shade-invert-lg-700, .outline-color\:shade-invert-lg-700\>\* > *, .outline-color\:shade-invert-lg-700\* *, .outline-color\:shade-invert-lg-700\@hover:where(:hover), .outline-color\:shade-invert-lg-700\@focus:where(:focus), .outline-color\:shade-invert-lg-700\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-700);
+}
+
+.outline-color\:shade-invert-lg-800, .outline-color\:shade-invert-lg-800\>\* > *, .outline-color\:shade-invert-lg-800\* *, .outline-color\:shade-invert-lg-800\@hover:where(:hover), .outline-color\:shade-invert-lg-800\@focus:where(:focus), .outline-color\:shade-invert-lg-800\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-800);
+}
+
+.outline-color\:shade-invert-lg-900, .outline-color\:shade-invert-lg-900\>\* > *, .outline-color\:shade-invert-lg-900\* *, .outline-color\:shade-invert-lg-900\@hover:where(:hover), .outline-color\:shade-invert-lg-900\@focus:where(:focus), .outline-color\:shade-invert-lg-900\@target:where(:target) {
+  outline-color: var(--shade-invert-lg-900);
+}
+
+.outline-color\:shade-invert-xl-100, .outline-color\:shade-invert-xl-100\>\* > *, .outline-color\:shade-invert-xl-100\* *, .outline-color\:shade-invert-xl-100\@hover:where(:hover), .outline-color\:shade-invert-xl-100\@focus:where(:focus), .outline-color\:shade-invert-xl-100\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-100);
+}
+
+.outline-color\:shade-invert-xl-200, .outline-color\:shade-invert-xl-200\>\* > *, .outline-color\:shade-invert-xl-200\* *, .outline-color\:shade-invert-xl-200\@hover:where(:hover), .outline-color\:shade-invert-xl-200\@focus:where(:focus), .outline-color\:shade-invert-xl-200\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-200);
+}
+
+.outline-color\:shade-invert-xl-300, .outline-color\:shade-invert-xl-300\>\* > *, .outline-color\:shade-invert-xl-300\* *, .outline-color\:shade-invert-xl-300\@hover:where(:hover), .outline-color\:shade-invert-xl-300\@focus:where(:focus), .outline-color\:shade-invert-xl-300\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-300);
+}
+
+.outline-color\:shade-invert-xl-400, .outline-color\:shade-invert-xl-400\>\* > *, .outline-color\:shade-invert-xl-400\* *, .outline-color\:shade-invert-xl-400\@hover:where(:hover), .outline-color\:shade-invert-xl-400\@focus:where(:focus), .outline-color\:shade-invert-xl-400\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-400);
+}
+
+.outline-color\:shade-invert-xl-500, .outline-color\:shade-invert-xl-500\>\* > *, .outline-color\:shade-invert-xl-500\* *, .outline-color\:shade-invert-xl-500\@hover:where(:hover), .outline-color\:shade-invert-xl-500\@focus:where(:focus), .outline-color\:shade-invert-xl-500\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-500);
+}
+
+.outline-color\:shade-invert-xl-600, .outline-color\:shade-invert-xl-600\>\* > *, .outline-color\:shade-invert-xl-600\* *, .outline-color\:shade-invert-xl-600\@hover:where(:hover), .outline-color\:shade-invert-xl-600\@focus:where(:focus), .outline-color\:shade-invert-xl-600\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-600);
+}
+
+.outline-color\:shade-invert-xl-700, .outline-color\:shade-invert-xl-700\>\* > *, .outline-color\:shade-invert-xl-700\* *, .outline-color\:shade-invert-xl-700\@hover:where(:hover), .outline-color\:shade-invert-xl-700\@focus:where(:focus), .outline-color\:shade-invert-xl-700\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-700);
+}
+
+.outline-color\:shade-invert-xl-800, .outline-color\:shade-invert-xl-800\>\* > *, .outline-color\:shade-invert-xl-800\* *, .outline-color\:shade-invert-xl-800\@hover:where(:hover), .outline-color\:shade-invert-xl-800\@focus:where(:focus), .outline-color\:shade-invert-xl-800\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-800);
+}
+
+.outline-color\:shade-invert-xl-900, .outline-color\:shade-invert-xl-900\>\* > *, .outline-color\:shade-invert-xl-900\* *, .outline-color\:shade-invert-xl-900\@hover:where(:hover), .outline-color\:shade-invert-xl-900\@focus:where(:focus), .outline-color\:shade-invert-xl-900\@target:where(:target) {
+  outline-color: var(--shade-invert-xl-900);
+}
+
+.outline-color\:shade-invert-xxl-100, .outline-color\:shade-invert-xxl-100\>\* > *, .outline-color\:shade-invert-xxl-100\* *, .outline-color\:shade-invert-xxl-100\@hover:where(:hover), .outline-color\:shade-invert-xxl-100\@focus:where(:focus), .outline-color\:shade-invert-xxl-100\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-100);
+}
+
+.outline-color\:shade-invert-xxl-200, .outline-color\:shade-invert-xxl-200\>\* > *, .outline-color\:shade-invert-xxl-200\* *, .outline-color\:shade-invert-xxl-200\@hover:where(:hover), .outline-color\:shade-invert-xxl-200\@focus:where(:focus), .outline-color\:shade-invert-xxl-200\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-200);
+}
+
+.outline-color\:shade-invert-xxl-300, .outline-color\:shade-invert-xxl-300\>\* > *, .outline-color\:shade-invert-xxl-300\* *, .outline-color\:shade-invert-xxl-300\@hover:where(:hover), .outline-color\:shade-invert-xxl-300\@focus:where(:focus), .outline-color\:shade-invert-xxl-300\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-300);
+}
+
+.outline-color\:shade-invert-xxl-400, .outline-color\:shade-invert-xxl-400\>\* > *, .outline-color\:shade-invert-xxl-400\* *, .outline-color\:shade-invert-xxl-400\@hover:where(:hover), .outline-color\:shade-invert-xxl-400\@focus:where(:focus), .outline-color\:shade-invert-xxl-400\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-400);
+}
+
+.outline-color\:shade-invert-xxl-500, .outline-color\:shade-invert-xxl-500\>\* > *, .outline-color\:shade-invert-xxl-500\* *, .outline-color\:shade-invert-xxl-500\@hover:where(:hover), .outline-color\:shade-invert-xxl-500\@focus:where(:focus), .outline-color\:shade-invert-xxl-500\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-500);
+}
+
+.outline-color\:shade-invert-xxl-600, .outline-color\:shade-invert-xxl-600\>\* > *, .outline-color\:shade-invert-xxl-600\* *, .outline-color\:shade-invert-xxl-600\@hover:where(:hover), .outline-color\:shade-invert-xxl-600\@focus:where(:focus), .outline-color\:shade-invert-xxl-600\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-600);
+}
+
+.outline-color\:shade-invert-xxl-700, .outline-color\:shade-invert-xxl-700\>\* > *, .outline-color\:shade-invert-xxl-700\* *, .outline-color\:shade-invert-xxl-700\@hover:where(:hover), .outline-color\:shade-invert-xxl-700\@focus:where(:focus), .outline-color\:shade-invert-xxl-700\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-700);
+}
+
+.outline-color\:shade-invert-xxl-800, .outline-color\:shade-invert-xxl-800\>\* > *, .outline-color\:shade-invert-xxl-800\* *, .outline-color\:shade-invert-xxl-800\@hover:where(:hover), .outline-color\:shade-invert-xxl-800\@focus:where(:focus), .outline-color\:shade-invert-xxl-800\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-800);
+}
+
+.outline-color\:shade-invert-xxl-900, .outline-color\:shade-invert-xxl-900\>\* > *, .outline-color\:shade-invert-xxl-900\* *, .outline-color\:shade-invert-xxl-900\@hover:where(:hover), .outline-color\:shade-invert-xxl-900\@focus:where(:focus), .outline-color\:shade-invert-xxl-900\@target:where(:target) {
+  outline-color: var(--shade-invert-xxl-900);
 }
 
 .stroke\:transparent, .stroke\:transparent\>\* > *, .stroke\:transparent\* *, .stroke\:transparent\@hover:where(:hover), .stroke\:transparent\@focus:where(:focus), .stroke\:transparent\@target:where(:target) {

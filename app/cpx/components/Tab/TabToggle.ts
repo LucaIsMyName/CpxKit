@@ -6,6 +6,8 @@ export class CpxTabToggle extends CpxElement {
   tabToggleId: any;
   classNames: string;
   padding: number;
+  paddingX: number;
+  paddingY: number;
   color: string;
   bgColor: string;
   borderColor: string;
@@ -20,6 +22,8 @@ export class CpxTabToggle extends CpxElement {
     this.classNames = this.getAttribute("tab-toggle:class") || "";
     this.handleClick = this.handleClick.bind(this);
     this.padding = parseInt(this.getAttribute("tab-toggle:padding")) || 0;
+    this.paddingX = parseInt(this.getAttribute("tab-toggle:padding:x")) || 0;
+    this.paddingY = parseInt(this.getAttribute("tab-toggle:padding:y")) || 0;
     this.color = this.getAttribute("tab-toggle:color") || "inherit";
     this.bgColor = this.getAttribute("tab-toggle:bg-color") || "transparent";
     this.borderColor = this.getAttribute("tab-toggle:border-color") || "transparent";
@@ -64,6 +68,8 @@ export class CpxTabToggle extends CpxElement {
         class="${Cpx.String.trimWhitespace(
         `
             ${this.padding !== 0 ? `p:${this.padding}` : ``}
+            ${this.paddingX !== 0 ? `px:${this.paddingX}` : ``}
+            ${this.paddingY !== 0 ? `py:${this.paddingY}` : ``}
             ${this.color !== "inherit" ? `color:${this.color}` : ``}
             ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ``}
             ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ``}

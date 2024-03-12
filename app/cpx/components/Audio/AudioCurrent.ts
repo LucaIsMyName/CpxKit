@@ -50,8 +50,8 @@ export class CpxAudioCurrent extends CpxElement {
                 ${
                   evalTitle === true || evalArtist === true
                     ? `
-                    <div class="">
-                      ${evalTitle === true ? `<p class="align:center size:lg" audio-current="title">${this.title}</p>` : ``}
+                    <div class="my:2>*">
+                      ${evalTitle === true ? `<p class="align:center size:lg weight:semibold" audio-current="title">${this.title}</p>` : ``}
                       ${evalArtist === true ? `<p class="size:md align:center" audio-current="artist">${this.artist}</p>` : ``}
                     </div>
                     `

@@ -20,7 +20,8 @@ export class CpxPictureElement extends CpxElement {
   height: string;
   aspectRatio: string;
   loading: string;
-  
+  hasCaption: boolean;
+
   constructor() {
     super();
     this.classNames = this.getAttribute("picture-element:class") || "";
@@ -34,6 +35,7 @@ export class CpxPictureElement extends CpxElement {
     this.screenBig = this.getAttribute("picture-element:screen:xl") || "1240px";
     this.screenMedium = this.getAttribute("picture-element:screen:md") || "720px";
     this.loading = this.getAttribute("picture-element:loading") || "lazy";
+    this.hasCaption = this.getAttribute("picture-element:has-caption") === "true" ? true : false;
   }
 
   render() {
@@ -44,7 +46,13 @@ export class CpxPictureElement extends CpxElement {
               ${this.urlImgMedium !== false ? `<source media="(min-width:${this.screenMedium})" srcset="${this.urlImgMedium}?as=webp?width=${this.screenMedium}">` : ``}
                 <img loading="${this.loading}" class="w:${this.width} h:${this.height}" src="${this.url}" alt="${this.alt}">
             </picture>
-            ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
+            ${
+              this.hasCaption
+                ? `
+                  ${this.initialContent !== "" ? `<figcaption class="picture-element__caption">${this.initialContent}</figcaption>` : ``}
+                  `
+                : ``
+            }
           </figure>
         `;
   }

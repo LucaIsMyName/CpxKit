@@ -46,7 +46,7 @@ export class CpxSuspenseAll extends CpxElement implements Element {
   render() {
     // Display loading screen initially
     this.innerHTML = `
-    <section class="h:available display:grid place-content:center ${this.classNames}">
+    <section class="h:available bg:light-200 display:grid place-content:center ${this.classNames}">
       ${
         this.hasIcon === true
           ? `

@@ -71,7 +71,7 @@ export class CpxAudioControls extends CpxElement {
                               evalPrev === true
                                 ? `
                                 <audio-control class="" audio-control:color="${this.color} audio-control="prev">
-                                    ${this.iconPrev}
+                                    <icon-element icon-element:width=10 icon-element:height=10 icon-element:svg:stroke-width="1.5" icon-element:icon="backward"></icon-element>
                                 </audio-control>
                                     `
                                 : ``
@@ -80,7 +80,7 @@ export class CpxAudioControls extends CpxElement {
                               evalPlayPause === true
                                 ? `
                                 <audio-control class="" audio-control:color="${this.color} audio-control="play-pause">
-                                    ${this.iconPlay}
+                                <icon-element icon-element:width=10 icon-element:height=10 icon-element:svg:stroke-width="1.5" icon-element:icon="play"></icon-element>
                                 </audio-control>
                                 `
                                 : ``
@@ -89,7 +89,7 @@ export class CpxAudioControls extends CpxElement {
                               evalNext === true
                                 ? `
                                   <audio-control class="" audio-control:color="${this.color} audio-control="next">
-                                      ${this.iconNext}
+                                    <icon-element icon-element:width=10 icon-element:height=10 icon-element:svg:stroke-width="1.5" icon-element:icon="forward"></icon-element>
                                   </audio-control>
                                         `
                                 : ``

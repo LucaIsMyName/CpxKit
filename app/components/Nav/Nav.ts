@@ -9,12 +9,20 @@ import { Cpx, Config, DB } from "../../app";
  * <app-nav></app-nav>
  */
 export class ComponentNav extends Cpx.Element {
+  classNames: string;
   nav: string;
   storage: any;
   state: any;
+  padding: string;
+  size: string;
+  borderColor: string;
+  borderWidth: string;
+  color: string;
+  bgColor: string;
 
   constructor() {
     super();
+    this.classNames = this.getAttribute("nav:class") || "";
     this.nav = this.getAttribute("nav:type") || "main"; // DB Hook in DB.NAVIGATION[nav]
     this.state = Cpx.State;
   }
@@ -30,7 +38,7 @@ export class ComponentNav extends Cpx.Element {
         // console.log(item);
         return `
           <li class="">
-            <button class="px:2 py:1 radius:sm border-width:1 border-" nav nav:type="${item.type}" nav:location="${item.page}" >${item.title}</button>
+            <button class="px:2 py:1 radius:sm" nav nav:type="${item.type}" nav:location="${item.page}" >${item.title}</button>
           </li>`;
       })
       .join("");

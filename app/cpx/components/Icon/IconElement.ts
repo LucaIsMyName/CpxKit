@@ -41,7 +41,7 @@ export class CpxIconElement extends CpxElement {
     this.isInline = this.getAttribute("icon-element:is-inline") || true;
     this.stroke = this.getAttribute("icon-element:svg:stroke") || "currentColor";
     this.fill = this.getAttribute("icon-element:svg:fill") || "none";
-    this.strokeWidth = parseInt(this.getAttribute("icon-element:svg:stroke-width")) || "2";
+    this.strokeWidth = parseFloat(this.getAttribute("icon-element:svg:stroke-width")) || 2;
     this.setAttribute("class", `w:${this.width} h:${this.height}`);
   }
 

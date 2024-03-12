@@ -13,6 +13,8 @@ export class CpxTabContent extends CpxElement {
   bgColor: string;
   borderColor: string;
   padding: number;
+  paddingX: number;
+  paddingY: number;
 
   constructor() {
     super();
@@ -26,6 +28,8 @@ export class CpxTabContent extends CpxElement {
     this.bgColor = this.getAttribute("tab-content:bg-color") || "transparent";
     this.borderColor = this.getAttribute("tab-content:border-color") || "transparent";
     this.padding = parseInt(this.getAttribute("tab-content:padding")) || 0;
+    this.paddingX = parseInt(this.getAttribute("tab-content:padding:x")) || 0;
+    this.paddingY = parseInt(this.getAttribute("tab-content:padding:y")) || 0;
   }
 
   connectedCallback() {
@@ -50,6 +54,8 @@ export class CpxTabContent extends CpxElement {
         class="${Cpx.String.trimWhitespace(
           `
           ${this.padding !== 0 ? `p:${this.padding}` : ""}
+          ${this.paddingX !== 0 ? `px:${this.paddingX}` : ""}
+          ${this.paddingY !== 0 ? `py:${this.paddingY}` : ""}
           ${this.color !== "inherit" ? `color:${this.color}` : ""}
           ${this.bgColor !== "transparent" ? `bg:${this.bgColor}` : ""}
           ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}

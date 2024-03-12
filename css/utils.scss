@@ -387,6 +387,21 @@ $utils: (
     // xl: 1440px,
   ),
   properties: (
+    outline-offset: (
+      hasMediaQuery: false,
+      variants: (
+        outline-offset: outline-offset,
+      ),
+      values: (
+        none: 0,
+        xxs: var(--relative-1),
+        xs: var(--relative-2),
+        sm: var(--relative-3),
+        md: var(--relative-4),
+        lg: var(--relative-5),
+        xl: var(--relative-6),
+      ),
+    ),
     z-index: (
       hasMediaQuery: false,
       variants: (
@@ -533,6 +548,7 @@ $utils: (
       hasMediaQuery: false,
       variants: (
         underline-offset: text-underline-offset,
+        outline-offset: outline-offset,
       ),
       values: (
         xxs: 0.01em,
@@ -1055,6 +1071,7 @@ $utils: (
         color: color,
         bg: background-color,
         border-color: border-color,
+        outline-color: outline-color,
         stroke: stroke,
         fill: fill,
       ),

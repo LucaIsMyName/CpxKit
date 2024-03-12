@@ -9,6 +9,7 @@ export class CpxAudioControl extends CpxElement {
   hasIcon: any;
   hasText: any;
   icon: string;
+  strokeWidth: number;
   size: string;
   color: string;
 
@@ -18,6 +19,7 @@ export class CpxAudioControl extends CpxElement {
     this.type = this.getAttribute("audio-control:type") || "play-pause";
     this.icon = this.getAttribute("audio-control:icon") || "play";
     this.size = this.getAttribute("audio-control:size") || "16";
+    this.strokeWidth = parseFloat(this.getAttribute("icon-element:svg:stroke-width")) || 2;
     this.color = this.getAttribute("audio-control:color") || "gray-dark-700";
     this.hasIcon = this.getAttribute("audio-control:has-icon") || true;
     this.hasText = this.getAttribute("audio-control:has-text") || true;
@@ -44,7 +46,11 @@ export class CpxAudioControl extends CpxElement {
                           evalIcon
                             ? `
                                 <div class="w:${this.size} h:${this.size}">
-                                    ${Icon[this.icon]}
+                                   <icon-element
+                                    icon-element:width=${this.size}
+                                    icon-element:height=${this.size}
+                                    icon-element:svg:stroke-width="${this.strokeWidth}"
+                                    icon-element:icon="${this.icon}"></icon-element>
                                 </div>
                                     `
                             : ""

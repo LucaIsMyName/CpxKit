@@ -30,7 +30,9 @@ export class CpxSliderContainer extends CpxElement {
     const spaceBetween = eval(this.getAttribute("slider-container:space-between")) || 0;
     const spaceBetweenMedium = eval(this.getAttribute("slider-container:space-between:medium")) || eval(this.getAttribute("slider-container:space-between"));
     const spaceBetweenLarge = eval(this.getAttribute("slider-container:space-between:large")) || eval(this.getAttribute("slider-container:space-between:medium")) || eval(this.getAttribute("slider-container:space-between"));
-    
+
+    if (!container) return;
+    // @ts-ignore
     new Swiper(container, {
       direction: sliderDirection,
       loop: sliderLoop,
@@ -66,8 +68,8 @@ export class CpxSliderContainer extends CpxElement {
             ${this.initialContent}
           </div>
           <div id="pagination-${this.ID}" class="swiper-pagination slider-pagination "></div>
-          <div id="navigation-prev-${this.ID}" class="swiper-navigation-prev slider-navigation-prev"></div>
-          <div id="navigation-next-${this.ID}" class="swiper-navigation-next slider-navigation-next"></div>
+          <div id="prev-${this.ID}" class="swiper-navigation-prev slider-navigation-prev"></div>
+          <div id="next-${this.ID}" class="swiper-navigation-next slider-navigation-next"></div>
           <div id="scrollbar-${this.ID}" class="swiper-scrollbar slider-scrollbar"></div>
       </div>
     `;

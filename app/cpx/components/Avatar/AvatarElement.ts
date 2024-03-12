@@ -12,6 +12,7 @@ export class CpxAvatarElement extends CpxElement {
   borderColor: string;
   borderWidth: string | number;
   borderRadius: string | number;
+  fontWeight: string;
   constructor() {
     super();
     this.classNames = this.getAttribute("avatar-element:class") || "";
@@ -19,6 +20,7 @@ export class CpxAvatarElement extends CpxElement {
     this.borderColor = this.getAttribute("avatar-element:border-color") || "light-200";
     this.borderWidth = this.getAttribute("avatar-element:border-width") || 2;
     this.borderRadius = this.getAttribute("avatar-element:radius") || "pill";
+    this.fontWeight = this.getAttribute("avatar-element:font-weight") || "normal";
     this.alt = this.getAttribute("avatar-element:alt") || "";
     this.url = this.getAttribute("avatar-element:url") || false;
     this.setAttribute("class", `display:block w:${this.size} h:${this.size}`);
@@ -30,13 +32,14 @@ export class CpxAvatarElement extends CpxElement {
           `
             overflow:hidden
             display:grid
-            place-content:center
+            content:center
             ${this.borderRadius !== "none" ? `radius:${this.borderRadius}` : ""}
             ${this.borderColor !== "transparent" ? `border-color:${this.borderColor}` : ""}
-            ${this.borderWidth !== 0 ? `border-width:${this.borderWidth}` : ""}
-            ${this.borderWidth !== 0 ? `outline-width:${parseInt(this.borderWidth) / 2}` : ""}
-            ${this.borderColor !== "transparent" ? `outline-color:${this.borderColor}` : ""}
-            outline-offset:2
+            ${this.borderWidth !== 0 ? `border-width:${Math.floor(Math.round(parseInt(this.borderWidth)))}` : ""}
+            ${this.borderWidth !== 0 ? `outline-width:${Math.floor(Math.round(parseInt(this.borderWidth) * 2))}@hover` : ""}
+            ${this.borderWidth !== 0 ? `outline-width:${Math.floor(Math.round(parseInt(this.borderWidth) / 2))}` : ""}
+            ${this.borderColor !== "transparent" ? `outline-color:${this.borderColor} outline-color:light-900@hover` : ""}
+            outline-offset:xxs
             w:${this.size}
             h:${this.size}
             ${this.classNames}">
@@ -49,10 +52,12 @@ export class CpxAvatarElement extends CpxElement {
               `
                 : `
                 <picture-element
+                  picture-element:has-caption="false"
                   picture-element:width=${this.size}
                   picture-element:height=${this.size}
                   picture-element:alt="${this.alt}"
-                  picture-element:url="${this.url}"></picture-element>
+                  picture-element:url="${this.url}">
+                ${this.alt}</picture-element>
                 `
             }
         </section>
