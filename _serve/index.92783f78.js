@@ -34899,7 +34899,7 @@ class PageAbout extends (0, _app.Cpx).Element {
     render() {
         console.log(this.state.get("page"));
         this.innerHTML = `
-    <chart-element chart-element:type="pie">
+    <chart-element chart-element:type="line">
 </chart-element>
     <br><br>
     <br><br>
