@@ -34740,16 +34740,17 @@ class ComponentRoot extends (0, _app.Cpx).Element {
     }
     connectedCallback() {
         this.setInitialState();
-        this.render();
         this.setThemeColor();
+        this.render();
         this.addClickHandler();
     }
     setThemeColor() {
         const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)") ? `dark` : `light`;
-        console.log("Colorscheme: " + prefersDarkScheme);
-        console.log("User Colorscheme: " + this.storage.Local.get("user-color-scheme"));
-        console.log("User Colorscheme: " + this.state.get("theme"));
+        console.log("Colorscheme Agent: " + prefersDarkScheme);
+        console.log("Colorscheme Storage: " + this.storage.Local.get("user-color-scheme"));
+        console.log("Colorscheme State: " + this.state.get("theme"));
         const userPreferedColorScheme = this.state.get("theme") || this.storage.Local.get("user-color-scheme") || prefersDarkScheme;
+        console.log("Colorscheme chosen: " + userPreferedColorScheme);
         this.storage.Local.set("user-color-scheme", userPreferedColorScheme);
         document.body.setAttribute("theme", userPreferedColorScheme);
         if (userPreferedColorScheme !== this.state.get("theme")) this.state.set(`theme`, userPreferedColorScheme);
